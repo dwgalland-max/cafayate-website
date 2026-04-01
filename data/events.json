@@ -1,0 +1,52 @@
+[
+  {
+    "title_es": "Festival de la Vendimia",
+    "title_en": "Harvest Festival",
+    "date": "2026-03-15",
+    "time": "18:00",
+    "location": "Plaza Principal, Cafayate",
+    "description_es": "Celebraci\u00f3n anual de la cosecha de uvas con m\u00fasica en vivo, degustaciones de vino y comida regional.",
+    "description_en": "Annual grape harvest celebration with live music, wine tastings, and regional food.",
+    "category": "festival"
+  },
+  {
+    "title_es": "Serenata a Cafayate",
+    "title_en": "Serenata a Cafayate",
+    "date": "2026-02-14",
+    "time": "20:00",
+    "location": "Anfiteatro Municipal",
+    "description_es": "El festival de m\u00fasica folkl\u00f3rica m\u00e1s importante de la regi\u00f3n, con artistas nacionales e internacionales.",
+    "description_en": "The most important folk music festival in the region, featuring national and international artists.",
+    "category": "music"
+  },
+  {
+    "title_es": "Feria de Vinos de Altura",
+    "title_en": "High Altitude Wine Fair",
+    "date": "2026-05-10",
+    "time": "11:00 - 20:00",
+    "location": "Bodega El Esteco",
+    "description_es": "Feria anual donde bodegas de la regi\u00f3n presentan sus mejores vinos de altura. Incluye charlas con en\u00f3logos.",
+    "description_en": "Annual fair where regional wineries showcase their best high-altitude wines. Includes talks with winemakers.",
+    "category": "wine"
+  },
+  {
+    "title_es": "Noche de las Bodegas",
+    "title_en": "Night of the Wineries",
+    "date": "2026-06-20",
+    "time": "19:00",
+    "location": "Varias bodegas de Cafayate",
+    "description_es": "Una noche especial donde las bodegas de Cafayate abren sus puertas con degustaciones nocturnas, m\u00fasica y gastronom\u00eda.",
+    "description_en": "A special night where Cafayate wineries open their doors with evening tastings, music, and gastronomy.",
+    "category": "wine"
+  },
+  {
+    "title_es": "Carrera de Mountain Bike Valles Calchaqu\u00edes",
+    "title_en": "Calchaqu\u00ed Valleys Mountain Bike Race",
+    "date": "2026-04-25",
+    "time": "08:00",
+    "location": "Quebrada de las Flechas",
+    "description_es": "Competencia de ciclismo de monta\u00f1a a trav\u00e9s de los paisajes espectaculares de los Valles Calchaqu\u00edes.",
+    "description_en": "Mountain biking competition through the spectacular landscapes of the Calchaqu\u00ed Valleys.",
+    "category": "sport"
+  }
+]
