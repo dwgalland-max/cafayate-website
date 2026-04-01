@@ -167,4 +167,113 @@
       '</div>';
   }
 
+  // ===== CONTACT FORM SUBMISSION =====
+  var contactForm = document.querySelector('.contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = contactForm.querySelector('button[type="submit"]');
+      var origText = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = isEnglish ? 'Sending...' : 'Enviando...';
+
+      // Remove any previous status message
+      var oldMsg = contactForm.querySelector('.form-status');
+      if (oldMsg) oldMsg.remove();
+
+      var data = {
+        name: contactForm.querySelector('[name="name"]').value,
+        email: contactForm.querySelector('[name="email"]').value,
+        subject: contactForm.querySelector('[name="subject"]').value,
+        message: contactForm.querySelector('[name="message"]').value
+      };
+
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      .then(function (r) { return r.json(); })
+      .then(function (result) {
+        var msg = document.createElement('p');
+        msg.className = 'form-status';
+        if (result.success) {
+          msg.style.color = '#2d8a4e';
+          msg.textContent = isEnglish ? 'Message sent successfully! We will get back to you soon.' : 'Mensaje enviado con \u00e9xito. Nos pondremos en contacto pronto.';
+          contactForm.reset();
+        } else {
+          msg.style.color = '#c0392b';
+          msg.textContent = result.error || (isEnglish ? 'Failed to send. Please try again.' : 'Error al enviar. Intente de nuevo.');
+        }
+        contactForm.appendChild(msg);
+      })
+      .catch(function () {
+        var msg = document.createElement('p');
+        msg.className = 'form-status';
+        msg.style.color = '#c0392b';
+        msg.textContent = isEnglish ? 'Connection error. Please try again.' : 'Error de conexi\u00f3n. Intente de nuevo.';
+        contactForm.appendChild(msg);
+      })
+      .finally(function () {
+        btn.disabled = false;
+        btn.textContent = origText;
+      });
+    });
+  }
+
+  // ===== NEWSLETTER FORM SUBMISSION =====
+  var newsletterForms = document.querySelectorAll('.newsletter-form');
+  newsletterForms.forEach(function (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = form.querySelector('button[type="submit"]');
+      var origText = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = isEnglish ? 'Subscribing...' : 'Suscribiendo...';
+
+      var oldMsg = form.querySelector('.form-status');
+      if (oldMsg) oldMsg.remove();
+
+      var data = {
+        name: form.querySelector('[name="name"]').value,
+        email: form.querySelector('[name="email"]').value
+      };
+
+      fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      .then(function (r) { return r.json(); })
+      .then(function (result) {
+        var msg = document.createElement('p');
+        msg.className = 'form-status';
+        msg.style.fontSize = '14px';
+        msg.style.marginTop = '8px';
+        if (result.success) {
+          msg.style.color = '#2d8a4e';
+          msg.textContent = isEnglish ? 'Subscribed! Thank you.' : '\u00a1Suscrito! Gracias.';
+          form.reset();
+        } else {
+          msg.style.color = '#c0392b';
+          msg.textContent = result.error || (isEnglish ? 'Failed. Please try again.' : 'Error. Intente de nuevo.');
+        }
+        form.appendChild(msg);
+      })
+      .catch(function () {
+        var msg = document.createElement('p');
+        msg.className = 'form-status';
+        msg.style.color = '#c0392b';
+        msg.style.fontSize = '14px';
+        msg.style.marginTop = '8px';
+        msg.textContent = isEnglish ? 'Connection error.' : 'Error de conexi\u00f3n.';
+        form.appendChild(msg);
+      })
+      .finally(function () {
+        btn.disabled = false;
+        btn.textContent = origText;
+      });
+    });
+  });
+
 })();
