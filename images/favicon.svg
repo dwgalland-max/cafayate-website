@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Handle -->
+  <rect x="8" y="2" width="16" height="3.5" rx="1.5" fill="#333"/>
+  <!-- Shaft -->
+  <rect x="14.5" y="5.5" width="3" height="8" fill="#333"/>
+  <!-- Corkscrew helix -->
+  <path d="M16 13.5 Q21 15.5, 16 18 Q11 20.5, 16 23 Q21 25.5, 16 28" stroke="#333" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- Tip -->
+  <circle cx="16" cy="29.5" r="1" fill="#333"/>
+</svg>
