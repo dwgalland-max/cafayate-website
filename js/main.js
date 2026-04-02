@@ -68,7 +68,7 @@
     bodegas.forEach(function (b) {
       var desc = b['description_' + lang] || b.description_es || '';
       var card = '<div class="bodega-card">' +
-        (b.image ? '<img class="bodega-card-img" src="' + b.image + '" alt="' + b.name + '">' : '<div class="bodega-card-img"></div>') +
+        (b.image ? '<img class="bodega-card-img" src="' + b.image + '" alt="' + b.name + '" loading="lazy">' : '') +
         '<div class="bodega-card-info">' +
         '<h3>' + b.name + '</h3>' +
         '<div class="bodega-altitude">' + b.altitude + ' ' + (isEnglish ? 'm.a.s.l.' : 'm.s.n.m.') + '</div>' +
