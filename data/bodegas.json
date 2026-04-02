@@ -3,52 +3,25 @@
     "name": "Agustin Lanus Wines (SUNAL)",
     "altitude": 2680,
     "category": "extreme",
-    "description_es": "Creadores de los premiados vinos SUNAL de altitud extrema, con vi\u00f1edos a 2,680 m.s.n.m.",
+    "description_es": "Creadores de los premiados vinos SUNAL de altitud extrema, con viñedos a 2,680 m.s.n.m.",
     "description_en": "Creators of the award-winning SUNAL extreme altitude wines, with vineyards at 2,680 m.a.s.l.",
-    "website": "https://www.instagram.com/sunalwines/",
+    "website": "https://www.agustinlanuswines.com/",
     "image": ""
   },
   {
-    "name": "Bodega Colom\u00e9",
-    "altitude": 3111,
-    "category": "extreme",
-    "description_es": "Desde 1998, Donald y Ursula Hess plantaron vi\u00f1edos en altitudes r\u00e9cord, incluyendo el Altura M\u00e1xima a 3,111 m.s.n.m., uno de los vi\u00f1edos m\u00e1s altos del mundo.",
-    "description_en": "Since 1998, Donald and Ursula Hess planted vineyards at record altitudes, including Altura M\u00e1xima at 3,111 m.a.s.l., one of the highest vineyards in the world.",
-    "website": "https://www.bodegacolome.com/",
-    "image": ""
-  },
-  {
-    "name": "Bodega Tacuil",
-    "altitude": 2600,
-    "category": "extreme",
-    "description_es": "Fundado por Ra\u00fal D\u00e1valos y actualmente dirigido por su hijo, con un vi\u00f1edo a 2,600 m.s.n.m.",
-    "description_en": "Founded by Ra\u00fal D\u00e1valos and currently run by his son, with a vineyard at 2,600 m.a.s.l.",
-    "website": "",
-    "image": ""
-  },
-  {
-    "name": "Bodega Yacochuya",
-    "altitude": 2035,
-    "category": "extreme",
-    "description_es": "Marcos Etchart, leyenda local, cultiva en el vi\u00f1edo Yacochuya a 2,035 m.s.n.m.",
-    "description_en": "Marcos Etchart, local legend, cultivates at the Yacochuya vineyard at 2,035 m.a.s.l.",
-    "website": "https://www.yacochuya.com/",
-    "image": ""
-  },
-  {
-    "name": "Bodega Humanao",
-    "altitude": 2600,
-    "category": "extreme",
-    "description_es": "Bodega de altitud extrema con vi\u00f1edos a 2,600 m.s.n.m. en los Valles Calchaqu\u00edes.",
-    "description_en": "Extreme altitude winery with vineyards at 2,600 m.a.s.l. in the Calchaqu\u00ed Valleys.",
-    "website": "",
+    "name": "Bad Brothers Wine & Food Experience",
+    "altitude": 1700,
+    "category": "high",
+    "description_es": "Productores de la línea especial Facón; experiencia de vino y comida en el centro de Cafayate.",
+    "description_en": "Producers of the special Facón line; wine and food experience in downtown Cafayate.",
+    "website": "https://www.badbrothers.com.ar/",
     "image": ""
   },
   {
     "name": "Bodega Altupalka",
     "altitude": 2500,
     "category": "extreme",
-    "description_es": "Vi\u00f1edos de altitud extrema a 2,500 m.s.n.m.",
+    "description_es": "Viñedos de altitud extrema a 2,500 m.s.n.m.",
     "description_en": "Extreme altitude vineyards at 2,500 m.a.s.l.",
     "website": "",
     "image": ""
@@ -57,72 +30,27 @@
     "name": "Bodega Amalaya",
     "altitude": 1800,
     "category": "high",
-    "description_es": "Fundada en 2010, sus vinos nacen en las llanuras del Valle Calchaqu\u00ed.",
-    "description_en": "Founded in 2010, their wines are born in the plains of the Calchaqu\u00ed Valley.",
+    "description_es": "Fundada en 2010, sus vinos nacen en las llanuras del Valle Calchaqueño.",
+    "description_en": "Founded in 2010, their wines are born in the plains of the Calchaquí Valley.",
     "website": "https://www.bodegaamalaya.com/",
     "image": ""
   },
   {
-    "name": "Bodega El Esteco",
-    "altitude": 1700,
+    "name": "Bodega Animaná",
+    "altitude": 1800,
     "category": "high",
-    "description_es": "Tradici\u00f3n desde 1892 y arquitectura destacada en el coraz\u00f3n de Cafayate.",
-    "description_en": "Tradition since 1892 with outstanding architecture in the heart of Cafayate.",
-    "website": "https://www.elesteco.com/",
-    "image": ""
-  },
-  {
-    "name": "Bodega Nanni",
-    "altitude": 1700,
-    "category": "high",
-    "description_es": "Una bodega familiar con m\u00e1s de 120 a\u00f1os produciendo vinos emblem\u00e1ticos como Torront\u00e9s y Tannat.",
-    "description_en": "A family winery with over 120 years producing iconic wines such as Torront\u00e9s and Tannat.",
-    "website": "https://www.bodegananni.com/",
-    "image": ""
-  },
-  {
-    "name": "Bodega Piattelli Vineyards",
-    "altitude": 1700,
-    "category": "high",
-    "description_es": "Moderna, con espectaculares vistas panor\u00e1micas y excelentes Torront\u00e9s.",
-    "description_en": "Modern winery with spectacular panoramic views and excellent Torront\u00e9s.",
-    "website": "https://www.piattellivineyards.com/",
-    "image": ""
-  },
-  {
-    "name": "Domingo Hermanos",
-    "altitude": 1750,
-    "category": "high",
-    "description_es": "Pioneros en Cafayate; tambi\u00e9n operan Domingo Molina, dedicada a vinos premium.",
-    "description_en": "Pioneers in Cafayate; they also operate Domingo Molina, dedicated to premium wines.",
-    "website": "https://www.domingohermanos.com/",
-    "image": ""
-  },
-  {
-    "name": "El Porvenir de Cafayate",
-    "altitude": 1750,
-    "category": "high",
-    "description_es": "Conocidos por su l\u00ednea Laborum y experiencias gastron\u00f3micas en La Pausa.",
-    "description_en": "Known for their Laborum line and gastronomic experiences at La Pausa.",
-    "website": "https://www.elporvenirdecafayate.com/",
-    "image": ""
-  },
-  {
-    "name": "Bodega Vasija Secreta",
-    "altitude": 1700,
-    "category": "high",
-    "description_es": "Bodega boutique en el centro de Cafayate con degustaciones personalizadas.",
-    "description_en": "Boutique winery in downtown Cafayate with personalized tastings.",
+    "description_es": "Bodega en la localidad de Animaná, cerca de Cafayate.",
+    "description_en": "Winery in the town of Animaná, near Cafayate.",
     "website": "",
     "image": ""
   },
   {
-    "name": "Finca Quara",
-    "altitude": 1700,
-    "category": "high",
-    "description_es": "Vinos de calidad del Valle Calchaqu\u00ed con buena relaci\u00f3n calidad-precio.",
-    "description_en": "Quality wines from the Calchaqu\u00ed Valley with great value.",
-    "website": "https://www.fincaquara.com.ar/",
+    "name": "Bodega Colomé",
+    "altitude": 3111,
+    "category": "extreme",
+    "description_es": "Desde 1998, Donald y Ursula Hess plantaron viñedos en altitudes récord, incluyendo el Altura Máxima a 3,111 m.s.n.m., uno de los viñedos más altos del mundo.",
+    "description_en": "Since 1998, Donald and Ursula Hess planted vineyards at record altitudes, including Altura Máxima at 3,111 m.a.s.l., one of the highest vineyards in the world.",
+    "website": "https://www.bodegacolome.com/",
     "image": ""
   },
   {
@@ -135,11 +63,20 @@
     "image": ""
   },
   {
-    "name": "Bodega Tukma",
-    "altitude": 2000,
+    "name": "Bodega El Esteco",
+    "altitude": 1700,
     "category": "high",
-    "description_es": "Vi\u00f1edos a 2,000 m.s.n.m. en los Valles Calchaqu\u00edes.",
-    "description_en": "Vineyards at 2,000 m.a.s.l. in the Calchaqu\u00ed Valleys.",
+    "description_es": "Tradición desde 1892 y arquitectura destacada en el corazón de Cafayate.",
+    "description_en": "Tradition since 1892 with outstanding architecture in the heart of Cafayate.",
+    "website": "https://www.elesteco.com/",
+    "image": ""
+  },
+  {
+    "name": "Bodega El Tránsito",
+    "altitude": 1700,
+    "category": "high",
+    "description_es": "Bodega en el pueblo de Cafayate.",
+    "description_en": "Winery in the town of Cafayate.",
     "website": "",
     "image": ""
   },
@@ -153,20 +90,47 @@
     "image": ""
   },
   {
-    "name": "Bodega El Tr\u00e1nsito",
-    "altitude": 1700,
-    "category": "high",
-    "description_es": "Bodega en el pueblo de Cafayate.",
-    "description_en": "Winery in the town of Cafayate.",
+    "name": "Bodega Humanao",
+    "altitude": 2600,
+    "category": "extreme",
+    "description_es": "Bodega de altitud extrema con viñedos a 2,600 m.s.n.m. en los Valles Calchaqueños.",
+    "description_en": "Extreme altitude winery with vineyards at 2,600 m.a.s.l. in the Calchaquí Valleys.",
     "website": "",
     "image": ""
   },
   {
-    "name": "Finca las Nubes",
-    "altitude": 1850,
+    "name": "Bodega Nanni",
+    "altitude": 1700,
     "category": "high",
-    "description_es": "Vi\u00f1edos en las afueras de Cafayate con vistas espectaculares.",
-    "description_en": "Vineyards on the outskirts of Cafayate with spectacular views.",
+    "description_es": "Una bodega familiar con más de 120 años produciendo vinos emblemáticos como Torrontés y Tannat.",
+    "description_en": "A family winery with over 120 years producing iconic wines such as Torrontés and Tannat.",
+    "website": "https://www.bodegananni.com/",
+    "image": ""
+  },
+  {
+    "name": "Bodega Piattelli Vineyards",
+    "altitude": 1700,
+    "category": "high",
+    "description_es": "Moderna, con espectaculares vistas panorámicas y excelentes Torrontés.",
+    "description_en": "Modern winery with spectacular panoramic views and excellent Torrontés.",
+    "website": "https://www.piattellivineyards.com/",
+    "image": ""
+  },
+  {
+    "name": "Bodega San Pedro de Yacochuya",
+    "altitude": 2035,
+    "category": "high",
+    "description_es": "Viñedos en la zona de Yacochuya a 2,035 m.s.n.m.",
+    "description_en": "Vineyards in the Yacochuya area at 2,035 m.a.s.l.",
+    "website": "",
+    "image": ""
+  },
+  {
+    "name": "Bodega Tacuil",
+    "altitude": 2600,
+    "category": "extreme",
+    "description_es": "Fundado por Raúl Dávalos y actualmente dirigido por su hijo, con un viñedo a 2,600 m.s.n.m.",
+    "description_en": "Founded by Raúl Dávalos and currently run by his son, with a vineyard at 2,600 m.a.s.l.",
     "website": "",
     "image": ""
   },
@@ -180,48 +144,84 @@
     "image": ""
   },
   {
-    "name": "Bodega Animan\u00e1",
-    "altitude": 1800,
+    "name": "Bodega Tukma",
+    "altitude": 2000,
     "category": "high",
-    "description_es": "Bodega en la localidad de Animan\u00e1, cerca de Cafayate.",
-    "description_en": "Winery in the town of Animan\u00e1, near Cafayate.",
+    "description_es": "Viñedos a 2,000 m.s.n.m. en los Valles Calchaqueños.",
+    "description_en": "Vineyards at 2,000 m.a.s.l. in the Calchaquí Valleys.",
     "website": "",
     "image": ""
   },
   {
-    "name": "Bodega San Pedro de Yacochuya",
-    "altitude": 2035,
+    "name": "Bodega Vasija Secreta",
+    "altitude": 1700,
     "category": "high",
-    "description_es": "Vi\u00f1edos en la zona de Yacochuya a 2,035 m.s.n.m.",
-    "description_en": "Vineyards in the Yacochuya area at 2,035 m.a.s.l.",
+    "description_es": "Bodega boutique en el centro de Cafayate con degustaciones personalizadas.",
+    "description_en": "Boutique winery in downtown Cafayate with personalized tastings.",
     "website": "",
+    "image": ""
+  },
+  {
+    "name": "Bodega Yacochuya",
+    "altitude": 2035,
+    "category": "extreme",
+    "description_es": "Marcos Etchart, leyenda local, cultiva en el viñedo Yacochuya a 2,035 m.s.n.m.",
+    "description_en": "Marcos Etchart, local legend, cultivates at the Yacochuya vineyard at 2,035 m.a.s.l.",
+    "website": "https://www.yacochuya.com/",
+    "image": ""
+  },
+  {
+    "name": "Domingo Hermanos",
+    "altitude": 1750,
+    "category": "high",
+    "description_es": "Pioneros en Cafayate; también operan Domingo Molina, dedicada a vinos premium.",
+    "description_en": "Pioneers in Cafayate; they also operate Domingo Molina, dedicated to premium wines.",
+    "website": "https://www.domingohermanos.com/",
+    "image": ""
+  },
+  {
+    "name": "El Porvenir de Cafayate",
+    "altitude": 1750,
+    "category": "high",
+    "description_es": "Conocidos por su línea Laborum y experiencias gastronómicas en La Pausa.",
+    "description_en": "Known for their Laborum line and gastronomic experiences at La Pausa.",
+    "website": "https://www.elporvenirdecafayate.com/",
+    "image": ""
+  },
+  {
+    "name": "Finca las Nubes",
+    "altitude": 1850,
+    "category": "high",
+    "description_es": "Viñedos en las afueras de Cafayate con vistas espectaculares.",
+    "description_en": "Vineyards on the outskirts of Cafayate with spectacular views.",
+    "website": "",
+    "image": ""
+  },
+  {
+    "name": "Finca Quara",
+    "altitude": 1700,
+    "category": "high",
+    "description_es": "Vinos de calidad del Valle Calchaqueño con buena relación calidad-precio.",
+    "description_en": "Quality wines from the Calchaquí Valley with great value.",
+    "website": "https://www.fincaquara.com.ar/",
     "image": ""
   },
   {
     "name": "Stutz Vinos",
     "altitude": 1700,
     "category": "high",
-    "description_es": "Inici\u00f3 certificaci\u00f3n org\u00e1nica en 2015; variedad de vinos \u00fanicos.",
+    "description_es": "Inició certificación orgánica en 2015; variedad de vinos únicos.",
     "description_en": "Started organic certification in 2015; variety of unique wines.",
     "website": "",
     "image": ""
   },
   {
-    "name": "Vi\u00f1as en Flor",
+    "name": "Viñas en Flor",
     "altitude": 1700,
     "category": "high",
-    "description_es": "Producci\u00f3n de vinos mono-varietales con experiencia gastron\u00f3mica en su restaurante.",
+    "description_es": "Producción de vinos mono-varietales con experiencia gastronómica en su restaurante.",
     "description_en": "Production of single-varietal wines with gastronomic experience at their restaurant.",
     "website": "",
-    "image": ""
-  },
-  {
-    "name": "Bad Brothers",
-    "altitude": 1700,
-    "category": "high",
-    "description_es": "Productores de la l\u00ednea especial Fac\u00f3n; experiencia de vino y comida en el centro de Cafayate.",
-    "description_en": "Producers of the special Fac\u00f3n line; wine and food experience in downtown Cafayate.",
-    "website": "https://www.badbrothers.com.ar/",
     "image": ""
   }
 ]
