@@ -167,6 +167,75 @@
       '</div>';
   }
 
+  // ===== DYNAMIC PROPERTY LISTINGS =====
+  var propertiesContainer = document.getElementById('properties-list');
+  if (propertiesContainer) {
+    var propPath = propertiesContainer.dataset.src || '/data/properties.json';
+    fetch(propPath)
+      .then(function (r) { return r.json(); })
+      .then(function (properties) {
+        renderProperties(properties, propertiesContainer);
+      })
+      .catch(function (err) {
+        console.error('Error loading properties:', err);
+        propertiesContainer.innerHTML = '<p>' + (isEnglish ? 'Error loading listings.' : 'Error al cargar las propiedades.') + '</p>';
+      });
+  }
+
+  function renderProperties(properties, container) {
+    var lang = isEnglish ? 'en' : 'es';
+
+    if (properties.length === 0) {
+      container.innerHTML = '<p>' +
+        (isEnglish ? 'No properties listed at this time. Contact us for available options.' : 'No hay propiedades listadas en este momento. Contáctenos para opciones disponibles.') +
+        '</p>';
+      return;
+    }
+
+    var html = '<div class="properties-list">';
+    properties.forEach(function (p) {
+      var title = p['title_' + lang] || p.title_es || '';
+      var type = p['type_' + lang] || p.type_es || '';
+      var location = p['location_' + lang] || p.location_es || '';
+      var desc = p['description_' + lang] || p.description_es || '';
+      var contactText = isEnglish ? 'Contact us' : 'Consultar';
+
+      var statusLabel = '';
+      var statusClass = p.status || 'for_sale';
+      if (statusClass === 'for_sale') statusLabel = isEnglish ? 'For Sale' : 'En Venta';
+      else if (statusClass === 'sold') statusLabel = isEnglish ? 'Sold' : 'Vendido';
+      else if (statusClass === 'pending') statusLabel = isEnglish ? 'Under Contract' : 'Reservado';
+      statusClass = statusClass.replace('_', '-');
+
+      var imgHTML = p.image
+        ? '<img class="property-card-img" src="' + p.image + '" alt="' + title + '" loading="lazy">'
+        : '<div class="property-card-img-placeholder">' + type + '</div>';
+
+      var metaHTML = '<div class="property-meta">';
+      metaHTML += '<span>' + type + '</span>';
+      if (p.size) metaHTML += '<span>' + p.size + '</span>';
+      if (p.bedrooms > 0) metaHTML += '<span>' + p.bedrooms + ' ' + (isEnglish ? 'bed' : 'dorm') + '</span>';
+      if (p.bathrooms > 0) metaHTML += '<span>' + p.bathrooms + ' ' + (isEnglish ? 'bath' : 'baño') + '</span>';
+      if (location) metaHTML += '<span>' + location + '</span>';
+      metaHTML += '</div>';
+
+      html += '<div class="property-card">' +
+        imgHTML +
+        '<div class="property-card-info">' +
+        '<div class="property-card-header">' +
+        '<h3>' + title + '</h3>' +
+        '<span class="property-badge ' + statusClass + '">' + statusLabel + '</span>' +
+        '</div>' +
+        '<div class="property-price">' + (p.price || '') + '</div>' +
+        metaHTML +
+        '<p>' + desc + '</p>' +
+        '<a class="property-contact" href="mailto:' + (p.contact_email || 'info@cafayate.com') + '?subject=' + encodeURIComponent(title) + '">' + contactText + ' &rarr;</a>' +
+        '</div></div>';
+    });
+    html += '</div>';
+    container.innerHTML = html;
+  }
+
   // ===== CONTACT FORM SUBMISSION =====
   var contactForm = document.querySelector('.contact-form');
   if (contactForm) {
