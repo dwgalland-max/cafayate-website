@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://cafayate.com/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cafayate.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cafayate.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cafayate.com/"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://cafayate.com/en/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cafayate.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cafayate.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cafayate.com/"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Vinos -->
+  <url>
+    <loc>https://cafayate.com/pages/vinos</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cafayate.com/pages/vinos"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cafayate.com/en/pages/vinos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cafayate.com/pages/vinos"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cafayate.com/en/pages/vinos</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cafayate.com/pages/vinos"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cafayate.com/en/pages/vinos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cafayate.com/pages/vinos"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Degustaciones -->
+  <url>
+    <loc>https://cafayate.com/pages/degustaciones</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cafayate.com/pages/degustaciones"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cafayate.com/en/pages/degustaciones"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cafayate.com/pages/degustaciones"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cafayate.com/en/pages/degustaciones</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cafayate.com/pages/degustaciones"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cafayate.com/en/pages/degustaciones"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cafayate.com/pages/degustaciones"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Vinotecas -->
+  <url>
+    <loc>https://cafayate.com/pages/vinotecas</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cafayate.com/pages/vinotecas"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cafayate.com/en/pages/vinotecas"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cafayate.com/pages/vinotecas"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cafayate.com/en/pages/vinotecas</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cafayate.com/pages/vinotecas"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cafayate.com/en/pages/vinotecas"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cafayate.com/pages/vinotecas"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Fotos -->
+  <url>
+    <loc>https://cafayate.com/pages/fotos</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cafayate.com/pages/fotos"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cafayate.com/en/pages/fotos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cafayate.com/pages/fotos"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cafayate.com/en/pages/fotos</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cafayate.com/pages/fotos"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cafayate.com/en/pages/fotos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cafayate.com/pages/fotos"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Visitas -->
+  <url>
+    <loc>https://cafayate.com/pages/visitas</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cafayate.com/pages/visitas"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cafayate.com/en/pages/visitas"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cafayate.com/pages/visitas"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cafayate.com/en/pages/visitas</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cafayate.com/pages/visitas"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cafayate.com/en/pages/visitas"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cafayate.com/pages/visitas"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Lugares -->
+  <url>
+    <loc>https://cafayate.com/pages/lugares</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cafayate.com/pages/lugares"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cafayate.com/en/pages/lugares"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cafayate.com/pages/lugares"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cafayate.com/en/pages/lugares</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cafayate.com/pages/lugares"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cafayate.com/en/pages/lugares"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cafayate.com/pages/lugares"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Agenda -->
+  <url>
+    <loc>https://cafayate.com/pages/agenda</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cafayate.com/pages/agenda"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cafayate.com/en/pages/agenda"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cafayate.com/pages/agenda"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cafayate.com/en/pages/agenda</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cafayate.com/pages/agenda"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cafayate.com/en/pages/agenda"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cafayate.com/pages/agenda"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Propiedad -->
+  <url>
+    <loc>https://cafayate.com/pages/propiedad</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cafayate.com/pages/propiedad"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cafayate.com/en/pages/propiedad"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cafayate.com/pages/propiedad"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cafayate.com/en/pages/propiedad</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cafayate.com/pages/propiedad"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cafayate.com/en/pages/propiedad"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cafayate.com/pages/propiedad"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Contacto -->
+  <url>
+    <loc>https://cafayate.com/pages/contacto</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cafayate.com/pages/contacto"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cafayate.com/en/pages/contacto"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cafayate.com/pages/contacto"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://cafayate.com/en/pages/contacto</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cafayate.com/pages/contacto"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cafayate.com/en/pages/contacto"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cafayate.com/pages/contacto"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+</urlset>
