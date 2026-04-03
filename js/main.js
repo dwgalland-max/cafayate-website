@@ -361,8 +361,9 @@
           var label = ad['label_' + lang] || ad.label_es || '';
           var tagline = ad['tagline_' + lang] || ad.tagline_es || '';
 
+          slot.style.cssText = 'position:relative!important;display:block!important;';
           slot.innerHTML =
-            '<div class="ad-slot ad-slot-' + position + '">' +
+            '<div class="ad-slot ad-slot-' + position + '" style="position:relative!important;display:block!important;">' +
             '<div class="ad-label">' + label + '</div>' +
             '<a href="' + ad.link + '" target="_blank" rel="noopener">' +
             '<img src="' + ad.image + '" alt="' + alt + '" loading="lazy">' +
