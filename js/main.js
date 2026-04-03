@@ -345,4 +345,34 @@
     });
   });
 
+  // ===== DYNAMIC AD RENDERING =====
+  var adSlots = document.querySelectorAll('[data-ad-position]');
+  if (adSlots.length > 0) {
+    fetch('/data/ads.json')
+      .then(function (r) { return r.json(); })
+      .then(function (ads) {
+        var lang = isEnglish ? 'en' : 'es';
+        adSlots.forEach(function (slot) {
+          var position = slot.dataset.adPosition;
+          var ad = ads.find(function (a) { return a.position === position && a.active; });
+          if (!ad) return;
+
+          var alt = ad['alt_' + lang] || ad.alt_es || '';
+          var label = ad['label_' + lang] || ad.label_es || '';
+          var tagline = ad['tagline_' + lang] || ad.tagline_es || '';
+
+          slot.innerHTML =
+            '<div class="ad-slot ad-slot-' + position + '">' +
+            '<div class="ad-label">' + label + '</div>' +
+            '<a href="' + ad.link + '" target="_blank" rel="noopener">' +
+            '<img src="' + ad.image + '" alt="' + alt + '" loading="lazy">' +
+            (tagline ? '<div class="ad-tagline">' + tagline + '</div>' : '') +
+            '</a></div>';
+        });
+      })
+      .catch(function (err) {
+        console.error('Error loading ads:', err);
+      });
+  }
+
 })();
