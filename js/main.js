@@ -345,34 +345,34 @@
     });
   });
 
-  // ===== DYNAMIC AD RENDERING =====
-  var adSlots = document.querySelectorAll('[data-ad-position]');
-  if (adSlots.length > 0) {
-    fetch('/data/ads.json')
+  // ===== DYNAMIC PROMO RENDERING =====
+  var promoSlots = document.querySelectorAll('[data-promo]');
+  if (promoSlots.length > 0) {
+    fetch('/data/promos.json')
       .then(function (r) { return r.json(); })
-      .then(function (ads) {
+      .then(function (promos) {
         var lang = isEnglish ? 'en' : 'es';
-        adSlots.forEach(function (slot) {
-          var position = slot.dataset.adPosition;
-          var ad = ads.find(function (a) { return a.position === position && a.active; });
-          if (!ad) return;
+        promoSlots.forEach(function (slot) {
+          var position = slot.dataset.promo;
+          var promo = promos.find(function (p) { return p.position === position && p.active; });
+          if (!promo) return;
 
-          var alt = ad['alt_' + lang] || ad.alt_es || '';
-          var label = ad['label_' + lang] || ad.label_es || '';
-          var tagline = ad['tagline_' + lang] || ad.tagline_es || '';
+          var alt = promo['alt_' + lang] || promo.alt_es || '';
+          var label = promo['label_' + lang] || promo.label_es || '';
+          var caption = promo['caption_' + lang] || promo.caption_es || '';
+          var posClass = position === 'banner' ? 'promo-box-wide' : 'promo-box-sidebar';
 
-          slot.style.cssText = 'position:relative!important;display:block!important;';
           slot.innerHTML =
-            '<div class="ad-slot ad-slot-' + position + '" style="position:relative!important;display:block!important;">' +
-            '<div class="ad-label">' + label + '</div>' +
-            '<a href="' + ad.link + '" target="_blank" rel="noopener">' +
-            '<img src="' + ad.image + '" alt="' + alt + '" loading="lazy">' +
-            (tagline ? '<div class="ad-tagline">' + tagline + '</div>' : '') +
+            '<div class="promo-box ' + posClass + '">' +
+            '<div class="promo-label">' + label + '</div>' +
+            '<a href="' + promo.link + '" target="_blank" rel="noopener">' +
+            '<img src="' + promo.image + '" alt="' + alt + '" loading="lazy">' +
+            (caption ? '<div class="promo-caption">' + caption + '</div>' : '') +
             '</a></div>';
         });
       })
       .catch(function (err) {
-        console.error('Error loading ads:', err);
+        console.error('Error loading promos:', err);
       });
   }
 

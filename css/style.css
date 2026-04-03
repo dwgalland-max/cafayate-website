@@ -769,8 +769,8 @@ img { max-width: 100%; height: auto; display: block; }
   .hero-section h2 { font-size: 20px; }
 }
 
-/* ===== AD SLOTS ===== */
-.ad-slot {
+/* ===== PROMO BOXES ===== */
+.promo-box {
   position: relative !important;
   margin-bottom: 24px;
   border-radius: 6px;
@@ -779,15 +779,15 @@ img { max-width: 100%; height: auto; display: block; }
   border: 1px solid var(--border-light);
 }
 
-[data-ad-position] {
+[data-promo] {
   position: relative !important;
   display: block;
 }
 
-.ad-slot a { display: block; text-decoration: none; color: inherit; }
-.ad-slot a:hover { text-decoration: none; opacity: 0.95; }
+.promo-box a { display: block; text-decoration: none; color: inherit; }
+.promo-box a:hover { text-decoration: none; opacity: 0.95; }
 
-.ad-label {
+.promo-label {
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -796,13 +796,13 @@ img { max-width: 100%; height: auto; display: block; }
   background: var(--bg-light);
 }
 
-.ad-slot img {
+.promo-box img {
   width: 100%;
   height: auto;
   display: block;
 }
 
-.ad-tagline {
+.promo-caption {
   font-size: 13px;
   color: var(--text-medium);
   padding: 8px 10px;
@@ -811,31 +811,31 @@ img { max-width: 100%; height: auto; display: block; }
   background: var(--bg-light);
 }
 
-/* Sidebar ad */
-.ad-slot-sidebar {
+/* Sidebar promo */
+.promo-box-sidebar {
   margin-bottom: 20px;
 }
 
-.ad-slot-sidebar img {
+.promo-box-sidebar img {
   max-height: 300px;
   object-fit: contain;
   padding: 10px;
   background: #fff;
 }
 
-/* Banner ad (homepage mid-content) */
-.ad-slot-banner {
+/* Banner promo (homepage mid-content) */
+.promo-box-wide {
   max-width: var(--max-width);
   margin: 24px auto;
 }
 
-.ad-slot-banner img {
+.promo-box-wide img {
   width: 100%;
   height: 200px;
   object-fit: cover;
 }
 
-.ad-slot-banner .ad-tagline {
+.promo-box-wide .promo-caption {
   font-size: 14px;
   padding: 10px 16px;
 }
@@ -844,5 +844,5 @@ img { max-width: 100%; height: auto; display: block; }
   .top-bar { font-size: 12px; padding: 4px 12px; }
   .site-logo { max-width: 240px; }
   .photo-grid { grid-template-columns: 1fr; }
-  .ad-slot-banner img { height: 140px; }
+  .promo-box-wide img { height: 140px; }
 }
