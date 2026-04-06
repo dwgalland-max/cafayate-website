@@ -22,6 +22,8 @@
   <meta name="twitter:image" content="https://cafayate.com/images/logo-header.png">
   <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -172,9 +174,9 @@
 
       <!-- Mapa de Cafayate -->
       <section class="hero-section">
-        <img src="/images/hero/mapa.jpg" alt="Mapa de Cafayate">
-        <h2>Mapa de Cafayate</h2>
-        <p>Un mapa actualizado de las bodegas y lugares de Cafayate para que puedas planear y organizar tu visita a la regi&oacute;n | <a href="/pages/lugares.html" class="read-more">Leer m&aacute;s</a></p>
+        <h2>Mapa de Bodegas</h2>
+        <div id="home-map" style="height: 300px; border-radius: 4px; margin-bottom: 12px;"></div>
+        <p>Explor&aacute; las bodegas de Cafayate en nuestro mapa interactivo | <a href="/pages/lugares.html" class="read-more">Ver mapa completo</a></p>
       </section>
 
       <hr class="section-divider">

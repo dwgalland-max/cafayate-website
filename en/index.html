@@ -22,6 +22,8 @@
   <meta name="twitter:image" content="https://cafayate.com/images/logo-header.png">
   <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -172,9 +174,9 @@
 
       <!-- Map of Cafayate -->
       <section class="hero-section">
-        <img src="/images/hero/mapa.jpg" alt="Map of Cafayate">
-        <h2>Map of Cafayate</h2>
-        <p>An updated map of the wineries and places in Cafayate so you can plan and organize your visit to the region | <a href="/en/pages/lugares.html" class="read-more">Read more</a></p>
+        <h2>Winery Map</h2>
+        <div id="home-map" style="height: 300px; border-radius: 4px; margin-bottom: 12px;"></div>
+        <p>Explore the wineries of Cafayate on our interactive map | <a href="/en/pages/lugares.html" class="read-more">View full map</a></p>
       </section>
 
       <hr class="section-divider">

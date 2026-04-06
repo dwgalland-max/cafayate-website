@@ -399,6 +399,40 @@
       });
   }
 
+  // ===== HOMEPAGE MINI MAP =====
+  var homeMapContainer = document.getElementById('home-map');
+  if (homeMapContainer && typeof L !== 'undefined') {
+    var homeMap = L.map('home-map', { scrollWheelZoom: false }).setView([-26.0724, -65.9749], 14);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      maxZoom: 18
+    }).addTo(homeMap);
+
+    var hmRedIcon = L.divIcon({
+      className: 'bodega-marker',
+      html: '<div style="background:#c0392b;color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:12px;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.3);">\ud83c\udf77</div>',
+      iconSize: [24, 24], iconAnchor: [12, 12], popupAnchor: [0, -14]
+    });
+    var hmGreenIcon = L.divIcon({
+      className: 'bodega-marker',
+      html: '<div style="background:#1e6a3a;color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:12px;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.3);">\ud83c\udf77</div>',
+      iconSize: [24, 24], iconAnchor: [12, 12], popupAnchor: [0, -14]
+    });
+
+    fetch('/data/bodegas.json')
+      .then(function (r) { return r.json(); })
+      .then(function (bodegas) {
+        var lugaresUrl = isEnglish ? '/en/pages/lugares.html' : '/pages/lugares.html';
+        bodegas.forEach(function (b) {
+          if (!b.lat || !b.lng) return;
+          var isSponsor = b.name.indexOf('Bad Brothers') !== -1;
+          var icon = (isSponsor || b.category === 'extreme') ? hmRedIcon : hmGreenIcon;
+          L.marker([b.lat, b.lng], { icon: icon }).addTo(homeMap)
+            .bindPopup('<strong>' + b.name + '</strong><br><a href="' + lugaresUrl + '">' + (isEnglish ? 'View full map' : 'Ver mapa completo') + ' \u2192</a>');
+        });
+      });
+  }
+
   // ===== DYNAMIC PROMO RENDERING =====
   var promoSlots = document.querySelectorAll('[data-promo]');
   if (promoSlots.length > 0) {
