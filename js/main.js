@@ -348,14 +348,14 @@
   // ===== INTERACTIVE BODEGA MAP (Leaflet) =====
   var mapContainer = document.getElementById('bodega-map');
   if (mapContainer && typeof L !== 'undefined') {
-    var map = L.map('bodega-map').setView([-26.0724, -65.9749], 11);
+    var map = L.map('bodega-map').setView([-26.0724, -65.9749], 14);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
       maxZoom: 18
     }).addTo(map);
 
     // Custom marker icons
-    var extremeIcon = L.divIcon({
+    var redIcon = L.divIcon({
       className: 'bodega-marker',
       html: '<div style="background:#c0392b;color:#fff;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.3);">\ud83c\udf77</div>',
       iconSize: [28, 28],
@@ -363,7 +363,7 @@
       popupAnchor: [0, -16]
     });
 
-    var highIcon = L.divIcon({
+    var greenIcon = L.divIcon({
       className: 'bodega-marker',
       html: '<div style="background:#1e6a3a;color:#fff;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.3);">\ud83c\udf77</div>',
       iconSize: [28, 28],
@@ -375,7 +375,6 @@
       .then(function (r) { return r.json(); })
       .then(function (bodegas) {
         var lang = isEnglish ? 'en' : 'es';
-        var bounds = [];
         bodegas.forEach(function (b) {
           if (!b.lat || !b.lng) return;
           var desc = b['description_' + lang] || b.description_es || '';
@@ -387,13 +386,11 @@
             '<div class="map-popup-alt">' + b.altitude + ' ' + altLabel + '</div>' +
             '<div class="map-popup-desc">' + desc + '</div>' +
             websiteLink;
-          var icon = b.category === 'extreme' ? extremeIcon : highIcon;
+          // Red marker for Bad Brothers (sponsor) and extreme altitude; green for others
+          var isSponsor = b.name.indexOf('Bad Brothers') !== -1;
+          var icon = (isSponsor || b.category === 'extreme') ? redIcon : greenIcon;
           L.marker([b.lat, b.lng], { icon: icon }).addTo(map).bindPopup(popup);
-          bounds.push([b.lat, b.lng]);
         });
-        if (bounds.length > 0) {
-          map.fitBounds(bounds, { padding: [30, 30] });
-        }
       })
       .catch(function (err) {
         console.error('Error loading bodegas for map:', err);
