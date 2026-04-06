@@ -961,6 +961,31 @@ img { max-width: 100%; height: auto; display: block; }
   background: var(--bg-light);
 }
 
+.promo-sponsor {
+  text-align: center;
+  padding: 10px 10px 4px;
+  background: var(--bg-light);
+  line-height: 1.2;
+}
+
+.promo-sponsor-name {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-dark);
+  letter-spacing: 0.5px;
+}
+
+.promo-sponsor-sub {
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-medium);
+  margin-top: 2px;
+  letter-spacing: 0.3px;
+}
+
 /* Sidebar promo */
 .promo-box-sidebar {
   margin-bottom: 20px;

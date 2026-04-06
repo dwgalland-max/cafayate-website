@@ -414,11 +414,30 @@
           var caption = promo['caption_' + lang] || promo.caption_es || '';
           var posClass = position === 'banner' ? 'promo-box-wide' : 'promo-box-sidebar';
 
+          // Build sponsor name with "Bad Brothers" styled larger
+          var sponsorHTML = '';
+          if (promo.sponsor) {
+            var name = promo.sponsor;
+            var bbIndex = name.indexOf('Bad Brothers');
+            if (bbIndex !== -1) {
+              var before = name.substring(0, bbIndex);
+              var after = name.substring(bbIndex + 12);
+              sponsorHTML = '<div class="promo-sponsor">' +
+                (before ? '<span>' + before + '</span>' : '') +
+                '<span class="promo-sponsor-name">Bad Brothers</span>' +
+                (after ? '<span class="promo-sponsor-sub">' + after.replace(/^\s+/, '') + '</span>' : '') +
+                '</div>';
+            } else {
+              sponsorHTML = '<div class="promo-sponsor">' + name + '</div>';
+            }
+          }
+
           slot.innerHTML =
             '<div class="promo-box ' + posClass + '">' +
             '<div class="promo-label">' + label + '</div>' +
             '<a href="' + promo.link + '" target="_blank" rel="noopener">' +
             '<img src="' + promo.image + '" alt="' + alt + '" loading="lazy">' +
+            sponsorHTML +
             (caption ? '<div class="promo-caption">' + caption + '</div>' : '') +
             '</a></div>';
         });
