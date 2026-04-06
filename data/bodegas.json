@@ -13,6 +13,7 @@
   {
     "name": "Bad Brothers Wine & Food Experience",
     "altitude": 1700,
+    "altitudeMax": 2680,
     "category": "high",
     "description_es": "Hogar de los vinos de altitud extrema Agustin Lanus (2680 msnm) y Bad Brothers Wines (1700 msnm).",
     "description_en": "Home of Agustin Lanus Extreme Altitude Wines (2680 masl) and Bad Brothers Wines (1700 masl).",

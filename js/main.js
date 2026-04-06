@@ -379,11 +379,12 @@
           if (!b.lat || !b.lng) return;
           var desc = b['description_' + lang] || b.description_es || '';
           var altLabel = isEnglish ? 'm.a.s.l.' : 'm.s.n.m.';
+          var altRange = b.altitudeMax ? (b.altitude + ' - ' + b.altitudeMax) : b.altitude;
           var websiteLink = b.website
             ? '<a class="map-popup-link" href="' + b.website + '" target="_blank" rel="noopener">' + (isEnglish ? 'Visit website' : 'Sitio web') + ' \u2192</a>'
             : '';
           var popup = '<div class="map-popup-name">' + b.name + '</div>' +
-            '<div class="map-popup-alt">' + b.altitude + ' ' + altLabel + '</div>' +
+            '<div class="map-popup-alt">' + altRange + ' ' + altLabel + '</div>' +
             '<div class="map-popup-desc">' + desc + '</div>' +
             websiteLink;
           // Red marker for Bad Brothers (sponsor) and extreme altitude; green for others
