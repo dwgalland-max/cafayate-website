@@ -345,6 +345,61 @@
     });
   });
 
+  // ===== INTERACTIVE BODEGA MAP (Leaflet) =====
+  var mapContainer = document.getElementById('bodega-map');
+  if (mapContainer && typeof L !== 'undefined') {
+    var map = L.map('bodega-map').setView([-26.0724, -65.9749], 11);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      maxZoom: 18
+    }).addTo(map);
+
+    // Custom marker icons
+    var extremeIcon = L.divIcon({
+      className: 'bodega-marker',
+      html: '<div style="background:#c0392b;color:#fff;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.3);">\ud83c\udf77</div>',
+      iconSize: [28, 28],
+      iconAnchor: [14, 14],
+      popupAnchor: [0, -16]
+    });
+
+    var highIcon = L.divIcon({
+      className: 'bodega-marker',
+      html: '<div style="background:#1e6a3a;color:#fff;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.3);">\ud83c\udf77</div>',
+      iconSize: [28, 28],
+      iconAnchor: [14, 14],
+      popupAnchor: [0, -16]
+    });
+
+    fetch('/data/bodegas.json')
+      .then(function (r) { return r.json(); })
+      .then(function (bodegas) {
+        var lang = isEnglish ? 'en' : 'es';
+        var bounds = [];
+        bodegas.forEach(function (b) {
+          if (!b.lat || !b.lng) return;
+          var desc = b['description_' + lang] || b.description_es || '';
+          var altLabel = isEnglish ? 'm.a.s.l.' : 'm.s.n.m.';
+          var websiteLink = b.website
+            ? '<a class="map-popup-link" href="' + b.website + '" target="_blank" rel="noopener">' + (isEnglish ? 'Visit website' : 'Sitio web') + ' \u2192</a>'
+            : '';
+          var popup = '<div class="map-popup-name">' + b.name + '</div>' +
+            '<div class="map-popup-alt">' + b.altitude + ' ' + altLabel + '</div>' +
+            '<div class="map-popup-desc">' + desc + '</div>' +
+            websiteLink;
+          var icon = b.category === 'extreme' ? extremeIcon : highIcon;
+          L.marker([b.lat, b.lng], { icon: icon }).addTo(map).bindPopup(popup);
+          bounds.push([b.lat, b.lng]);
+        });
+        if (bounds.length > 0) {
+          map.fitBounds(bounds, { padding: [30, 30] });
+        }
+      })
+      .catch(function (err) {
+        console.error('Error loading bodegas for map:', err);
+      });
+  }
+
   // ===== DYNAMIC PROMO RENDERING =====
   var promoSlots = document.querySelectorAll('[data-promo]');
   if (promoSlots.length > 0) {

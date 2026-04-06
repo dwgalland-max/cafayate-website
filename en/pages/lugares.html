@@ -22,6 +22,8 @@
   <meta name="twitter:image" content="https://cafayate.com/images/logo-header.png">
   <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <!-- Google Analytics (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-LK24283MWM"></script>
   <script>
@@ -69,16 +71,35 @@
       <h1>Directions &amp; Map</h1>
 
       <h2>How to get to Cafayate</h2>
-      <p>Cafayate is located in the province of Salta, in northern Argentina, about 3 hours south of the provincial capital, Salta. The nearest airport is the Mart&iacute;n Miguel de G&uuml;emes International Airport in Salta, approximately 190 km away.</p>
+      <p>Cafayate is located in the province of Salta, in northern Argentina, about 3 hours south of the provincial capital, Salta. The nearest airport is the Mart&iacute;n Miguel de G&uuml;emes International Airport (SLA) in Salta, approximately 190 km away.</p>
 
-      <p><strong>By air:</strong> Fly to Salta airport and then take a transfer or rent a car.</p>
-      <p><strong>By car:</strong> From Salta via Route 68, a scenic drive through the Quebrada de las Flechas.</p>
-      <p><strong>By bus:</strong> Regular services from Salta and Tucum&aacute;n.</p>
+      <h2>&#9992; By air</h2>
+      <p>Fly to Salta airport (SLA) and rent a car or arrange a transfer. Airlines serving Salta include:</p>
+      <ul class="travel-list">
+        <li><a href="https://www.aerolineas.com.ar/" target="_blank" rel="noopener">Aerol&iacute;neas Argentinas</a> &mdash; flights from Buenos Aires, C&oacute;rdoba, Mendoza</li>
+        <li><a href="https://www.flybondi.com/" target="_blank" rel="noopener">Flybondi</a> &mdash; low-cost flights from Buenos Aires and C&oacute;rdoba</li>
+        <li><a href="https://www.jetsmart.com/" target="_blank" rel="noopener">JetSMART</a> &mdash; low-cost flights from Buenos Aires and Mendoza</li>
+      </ul>
 
-      <h2>Interactive map</h2>
-      <div class="map-container">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28808.84889825537!2d-65.98529523!3d-26.0721!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9422e5e0b64b5f3d%3A0x7f78b622573e4d0d!2sCafayate%2C%20Salta%2C%20Argentina!5e0!3m2!1sen!2sus!4v1" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map of Cafayate"></iframe>
-      </div>
+      <h2>&#128663; By car</h2>
+      <p>From Salta via Route 68, a scenic 190 km drive through the Quebrada de las Flechas (approx. 3 hours). From Tucum&aacute;n via Route 40 and Route 307 (approx. 4.5 hours). Car rental companies at Salta airport:</p>
+      <ul class="travel-list">
+        <li><a href="https://www.hertz.com.ar/" target="_blank" rel="noopener">Hertz</a> &mdash; available at Salta airport and city center</li>
+        <li><a href="https://www.avis.com/" target="_blank" rel="noopener">Avis</a> &mdash; available at Salta airport</li>
+        <li><a href="https://www.europcar.com/" target="_blank" rel="noopener">Europcar</a> &mdash; available at Salta airport</li>
+      </ul>
+
+      <h2>&#128652; By bus</h2>
+      <p>Regular bus services from Salta (approx. 4 hours) and Tucum&aacute;n (approx. 5-6 hours):</p>
+      <ul class="travel-list">
+        <li><strong>From Salta:</strong> <a href="https://www.flechabus.com.ar/" target="_blank" rel="noopener">Flecha Bus</a> &mdash; multiple daily departures from Salta bus terminal</li>
+        <li><strong>From Salta:</strong> El Indio &mdash; 4 daily departures. Cafayate terminal: Belgrano 34, tel. (03868) 421002</li>
+        <li><strong>From Tucum&aacute;n:</strong> <a href="https://transporteaconquija.com.ar/" target="_blank" rel="noopener">Transporte Aconquija</a> &mdash; daily departures from Tucum&aacute;n bus terminal</li>
+      </ul>
+
+      <h2>Winery Map</h2>
+      <p>Click on each marker to see winery details.</p>
+      <div id="bodega-map" style="height:500px;border-radius:6px;border:1px solid #ddd;margin-bottom:20px;"></div>
     </main>
 
     <aside class="sidebar">

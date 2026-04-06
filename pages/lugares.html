@@ -22,6 +22,8 @@
   <meta name="twitter:image" content="https://cafayate.com/images/logo-header.png">
   <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <!-- Google Analytics (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-LK24283MWM"></script>
   <script>
@@ -69,16 +71,35 @@
       <h1>Lugares y Mapa</h1>
 
       <h2>C&oacute;mo llegar a Cafayate</h2>
-      <p>Cafayate se encuentra en la provincia de Salta, en el norte de Argentina, a unas 3 horas al sur de la capital provincial, Salta. El aeropuerto m&aacute;s cercano es el Aeropuerto Internacional Mart&iacute;n Miguel de G&uuml;emes en Salta, a unos 190 km.</p>
+      <p>Cafayate se encuentra en la provincia de Salta, en el norte de Argentina, a unas 3 horas al sur de la capital provincial, Salta. El aeropuerto m&aacute;s cercano es el Aeropuerto Internacional Mart&iacute;n Miguel de G&uuml;emes (SLA) en Salta, a unos 190 km.</p>
 
-      <p><strong>En avi&oacute;n:</strong> Volar al aeropuerto de Salta y luego tomar un transfer o alquilar un auto.</p>
-      <p><strong>En auto:</strong> Desde Salta por la Ruta 68, un recorrido esc&eacute;nico a trav&eacute;s de la Quebrada de las Flechas.</p>
-      <p><strong>En bus:</strong> Servicios regulares desde Salta y Tucum&aacute;n.</p>
+      <h2>&#9992; En avi&oacute;n</h2>
+      <p>Volar al aeropuerto de Salta (SLA) y luego alquilar un auto o tomar un transfer. Las aerol&iacute;neas que vuelan a Salta incluyen:</p>
+      <ul class="travel-list">
+        <li><a href="https://www.aerolineas.com.ar/" target="_blank" rel="noopener">Aerol&iacute;neas Argentinas</a> &mdash; vuelos desde Buenos Aires, C&oacute;rdoba, Mendoza</li>
+        <li><a href="https://www.flybondi.com/" target="_blank" rel="noopener">Flybondi</a> &mdash; vuelos low-cost desde Buenos Aires y C&oacute;rdoba</li>
+        <li><a href="https://www.jetsmart.com/" target="_blank" rel="noopener">JetSMART</a> &mdash; vuelos low-cost desde Buenos Aires y Mendoza</li>
+      </ul>
 
-      <h2>Mapa interactivo</h2>
-      <div class="map-container">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28808.84889825537!2d-65.98529523!3d-26.0721!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9422e5e0b64b5f3d%3A0x7f78b622573e4d0d!2sCafayate%2C%20Salta%2C%20Argentina!5e0!3m2!1ses!2sus!4v1" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa de Cafayate"></iframe>
-      </div>
+      <h2>&#128663; En auto</h2>
+      <p>Desde Salta por la Ruta 68, un recorrido esc&eacute;nico de 190 km a trav&eacute;s de la Quebrada de las Flechas (aprox. 3 horas). Desde Tucum&aacute;n por la Ruta 40 y Ruta 307 (aprox. 4.5 horas). Empresas de alquiler de autos en el aeropuerto de Salta:</p>
+      <ul class="travel-list">
+        <li><a href="https://www.hertz.com.ar/" target="_blank" rel="noopener">Hertz</a> &mdash; disponible en el aeropuerto y centro de Salta</li>
+        <li><a href="https://www.avis.com/" target="_blank" rel="noopener">Avis</a> &mdash; disponible en el aeropuerto de Salta</li>
+        <li><a href="https://www.europcar.com/" target="_blank" rel="noopener">Europcar</a> &mdash; disponible en el aeropuerto de Salta</li>
+      </ul>
+
+      <h2>&#128652; En bus</h2>
+      <p>Servicios regulares de &oacute;mnibus desde Salta (aprox. 4 horas) y Tucum&aacute;n (aprox. 5-6 horas):</p>
+      <ul class="travel-list">
+        <li><strong>Desde Salta:</strong> <a href="https://www.flechabus.com.ar/" target="_blank" rel="noopener">Flecha Bus</a> &mdash; varias salidas diarias desde la Terminal de Salta</li>
+        <li><strong>Desde Salta:</strong> El Indio &mdash; 4 salidas diarias. Terminal de Cafayate: Belgrano 34, tel. (03868) 421002</li>
+        <li><strong>Desde Tucum&aacute;n:</strong> <a href="https://transporteaconquija.com.ar/" target="_blank" rel="noopener">Transporte Aconquija</a> &mdash; salidas diarias desde la Terminal de Tucum&aacute;n</li>
+      </ul>
+
+      <h2>Mapa de Bodegas</h2>
+      <p>Hac&eacute; clic en cada marcador para ver informaci&oacute;n de la bodega.</p>
+      <div id="bodega-map" style="height:500px;border-radius:6px;border:1px solid #ddd;margin-bottom:20px;"></div>
     </main>
 
     <aside class="sidebar">
