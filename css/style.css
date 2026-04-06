@@ -682,6 +682,14 @@ img { max-width: 100%; height: auto; display: block; }
   line-height: 1.6;
 }
 
+.event-link {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--green-dark);
+}
+
 .no-events {
   text-align: center;
   padding: 40px 20px;

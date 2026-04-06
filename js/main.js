@@ -164,6 +164,7 @@
       '<h3>' + title + '</h3>' +
       (e.location ? '<div class="event-location">\ud83d\udccd ' + e.location + '</div>' : '') +
       '<p>' + desc + '</p>' +
+      (e.website ? '<a href="' + e.website + '" target="_blank" rel="noopener" class="event-link">' + (isEnglish ? 'More info \u2192' : 'M\u00e1s info \u2192') + '</a>' : '') +
       '</div>';
   }
 

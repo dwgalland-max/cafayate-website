@@ -1,52 +1,68 @@
 [
   {
-    "title_es": "Festival de la Vendimia",
-    "title_en": "Harvest Festival",
-    "date": "2026-03-15",
-    "time": "18:00",
-    "location": "Plaza Principal, Cafayate",
-    "description_es": "Celebraci\u00f3n anual de la cosecha de uvas con m\u00fasica en vivo, degustaciones de vino y comida regional.",
-    "description_en": "Annual grape harvest celebration with live music, wine tastings, and regional food.",
-    "category": "festival"
+    "title_es": "WINEEX Cafayate 2026 — Día 1: Bienvenida",
+    "title_en": "WINEEX Cafayate 2026 — Day 1: Welcome",
+    "date": "2026-05-01",
+    "time": "17:00",
+    "location": "Finca El Recreo, Ruta 40 Km 4340",
+    "description_es": "Día de bienvenida del festival WINEEX con degustaciones de vino, gastronomía y torneos de polo, golf y tenis en La Estancia de Cafayate.",
+    "description_en": "Opening day of the WINEEX festival with wine tastings, gastronomy, and polo, golf, and tennis tournaments at La Estancia de Cafayate.",
+    "category": "wine",
+    "website": "https://www.instagram.com/wineex.ar/"
   },
   {
-    "title_es": "Serenata a Cafayate",
-    "title_en": "Serenata a Cafayate",
-    "date": "2026-02-14",
-    "time": "20:00",
-    "location": "Anfiteatro Municipal",
-    "description_es": "El festival de m\u00fasica folkl\u00f3rica m\u00e1s importante de la regi\u00f3n, con artistas nacionales e internacionales.",
-    "description_en": "The most important folk music festival in the region, featuring national and international artists.",
-    "category": "music"
+    "title_es": "WINEEX Cafayate 2026 — Día 2: Cachengue al Atardecer",
+    "title_en": "WINEEX Cafayate 2026 — Day 2: Sunset Party",
+    "date": "2026-05-02",
+    "time": "17:00",
+    "location": "Finca El Recreo, Ruta 40 Km 4340",
+    "description_es": "Música al atardecer entre viñedos con DJs en vivo, vinos y gastronomía. Torneos deportivos por la mañana en La Estancia de Cafayate.",
+    "description_en": "Sunset music among the vineyards with live DJs, wine, and gastronomy. Sports tournaments in the morning at La Estancia de Cafayate.",
+    "category": "wine",
+    "website": "https://www.instagram.com/wineex.ar/"
   },
   {
-    "title_es": "Feria de Vinos de Altura",
-    "title_en": "High Altitude Wine Fair",
-    "date": "2026-05-10",
-    "time": "11:00 - 20:00",
-    "location": "Bodega El Esteco",
-    "description_es": "Feria anual donde bodegas de la regi\u00f3n presentan sus mejores vinos de altura. Incluye charlas con en\u00f3logos.",
-    "description_en": "Annual fair where regional wineries showcase their best high-altitude wines. Includes talks with winemakers.",
-    "category": "wine"
+    "title_es": "WINEEX Cafayate 2026 — Día 3: Feria de Vinos y Electrónica",
+    "title_en": "WINEEX Cafayate 2026 — Day 3: Wine Fair & Electronica",
+    "date": "2026-05-03",
+    "time": "11:00",
+    "location": "Finca El Recreo, Ruta 40 Km 4340",
+    "description_es": "Feria de vinos con las mejores bodegas de los Valles Calchaquíes, seguida de fiesta electrónica al atardecer. Torneos deportivos por la mañana.",
+    "description_en": "Wine fair featuring the best wineries of the Calchaquí Valleys, followed by an electronic music party at sunset. Sports tournaments in the morning.",
+    "category": "wine",
+    "website": "https://www.instagram.com/wineex.ar/"
   },
   {
-    "title_es": "Noche de las Bodegas",
-    "title_en": "Night of the Wineries",
-    "date": "2026-06-20",
+    "title_es": "Semana del Malbec de Altura — El Baúl de las Letras",
+    "title_en": "High Altitude Malbec Week — Literary Gathering",
+    "date": "2026-04-01",
     "time": "19:00",
-    "location": "Varias bodegas de Cafayate",
-    "description_es": "Una noche especial donde las bodegas de Cafayate abren sus puertas con degustaciones nocturnas, m\u00fasica y gastronom\u00eda.",
-    "description_en": "A special night where Cafayate wineries open their doors with evening tastings, music, and gastronomy.",
-    "category": "wine"
+    "location": "Museo de la Vid y el Vino, Cafayate",
+    "description_es": "Encuentro literario con lecturas y reflexiones sobre Cafayate, los Valles Calchaquíes, el vino y las tradiciones regionales. Entrada libre y gratuita.",
+    "description_en": "Literary gathering with readings and reflections on Cafayate, the Calchaquí Valleys, wine, and regional traditions. Free admission.",
+    "category": "culture",
+    "website": ""
   },
   {
-    "title_es": "Carrera de Mountain Bike Valles Calchaqu\u00edes",
-    "title_en": "Calchaqu\u00ed Valleys Mountain Bike Race",
-    "date": "2026-04-25",
-    "time": "08:00",
-    "location": "Quebrada de las Flechas",
-    "description_es": "Competencia de ciclismo de monta\u00f1a a trav\u00e9s de los paisajes espectaculares de los Valles Calchaqu\u00edes.",
-    "description_en": "Mountain biking competition through the spectacular landscapes of the Calchaqu\u00ed Valleys.",
-    "category": "sport"
+    "title_es": "Semana del Malbec de Altura — Degustación al Aire Libre",
+    "title_en": "High Altitude Malbec Week — Open-Air Tasting",
+    "date": "2026-04-04",
+    "time": "19:00",
+    "location": "Museo de la Vid y el Vino, Cafayate",
+    "description_es": "Degustación al aire libre con más de 30 bodegas, productores artesanales, música en vivo y DJ. Entrada: $6.000.",
+    "description_en": "Open-air tasting with over 30 wineries, artisan producers, live music, and DJ. Admission: $6,000 ARS.",
+    "category": "wine",
+    "website": ""
+  },
+  {
+    "title_es": "Serenata a Cafayate — Edición 52",
+    "title_en": "Serenata a Cafayate — 52nd Edition",
+    "date": "2026-02-26",
+    "time": "20:00",
+    "location": "Bodega Encantada, Cafayate",
+    "description_es": "El festival de música folklórica más importante de la región. Tres noches con artistas nacionales como El Chaqueño Palavecino, Los Nocheros, Jorge Rojas y más.",
+    "description_en": "The most important folk music festival in the region. Three nights featuring national artists including El Chaqueño Palavecino, Los Nocheros, Jorge Rojas, and more.",
+    "category": "music",
+    "website": "https://serenataacafayate.com/"
   }
 ]
