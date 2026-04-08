@@ -1008,16 +1008,45 @@ img { max-width: 100%; height: auto; display: block; }
   letter-spacing: 0.3px;
 }
 
-/* Sidebar promo */
+/* Sidebar promo — slim landscape strip */
 .promo-box-sidebar {
   margin-bottom: 20px;
 }
 
+.promo-box-sidebar a {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
 .promo-box-sidebar img {
-  max-height: 300px;
-  object-fit: contain;
-  padding: 10px;
-  background: #fff;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.promo-box-sidebar .promo-sponsor {
+  flex: 1;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.promo-box-sidebar .promo-sponsor-name {
+  font-size: 16px;
+}
+
+.promo-box-sidebar .promo-sponsor-sub {
+  font-size: 11px;
+}
+
+.promo-box-sidebar .promo-caption {
+  display: none;
+}
+
+.promo-box-sidebar .promo-label {
+  font-size: 9px;
+  padding: 3px 8px;
 }
 
 /* Banner promo (homepage mid-content) */
