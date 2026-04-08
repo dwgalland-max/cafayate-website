@@ -117,14 +117,14 @@ img { max-width: 100%; height: auto; display: block; }
   font-size: 15px;
   font-weight: 400;
   transition: color 0.2s;
-  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
 }
 
 .nav-list a:hover,
 .nav-list a.active {
   color: var(--green-dark);
   text-decoration: none;
-  border-top-color: var(--green-dark);
+  border-bottom-color: var(--green-dark);
 }
 
 .nav-lang-toggle {
@@ -857,7 +857,7 @@ img { max-width: 100%; height: auto; display: block; }
 
   .nav-list a:hover,
   .nav-list a.active {
-    border-top-color: transparent;
+    border-bottom-color: transparent;
     border-left-color: var(--green-dark);
   }
 
