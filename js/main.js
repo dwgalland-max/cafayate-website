@@ -6,6 +6,45 @@
   // Detect language from path
   const isEnglish = window.location.pathname.startsWith('/en/') || window.location.pathname === '/en';
 
+  // ===== LANGUAGE FLAG → TOP BAR =====
+  // Move the language toggle from the nav into the always-visible top bar
+  var langLink = document.querySelector('.nav-lang-toggle');
+  var topBarRight = document.querySelector('.top-bar-right');
+  if (langLink && topBarRight) {
+    var flagClone = langLink.cloneNode(true);
+    flagClone.classList.add('top-bar-lang');
+    flagClone.querySelector('img').style.width = '22px';
+    flagClone.querySelector('img').style.verticalAlign = 'middle';
+    topBarRight.insertBefore(flagClone, topBarRight.firstChild);
+    // Remove the flag from the nav to avoid duplication
+    var navFlagLi = langLink.closest('li');
+    if (navFlagLi) navFlagLi.style.display = 'none';
+  }
+
+  // ===== AUTO LANGUAGE DETECTION =====
+  // On first visit, redirect to the user's preferred language version
+  if (!document.cookie.includes('lang_pref=')) {
+    var browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+    var prefersEnglish = browserLang.startsWith('en');
+    var onSpanishSite = !isEnglish;
+    var onEnglishSite = isEnglish;
+    // Set cookie so we only do this once (expires in 90 days)
+    document.cookie = 'lang_pref=' + (prefersEnglish ? 'en' : 'es') + ';path=/;max-age=7776000;SameSite=Lax';
+    // Redirect if mismatch: English browser on Spanish page, or vice versa
+    if (prefersEnglish && onSpanishSite) {
+      // Redirect to English equivalent
+      var enPath = '/en' + window.location.pathname;
+      window.location.replace(enPath);
+      return;
+    } else if (!prefersEnglish && onEnglishSite) {
+      // Redirect to Spanish equivalent
+      var esPath = window.location.pathname.replace(/^\/en/, '');
+      if (esPath === '') esPath = '/';
+      window.location.replace(esPath);
+      return;
+    }
+  }
+
   // ===== MOBILE NAV TOGGLE =====
   const navToggle = document.querySelector('.nav-toggle');
   const navList = document.querySelector('.nav-list');

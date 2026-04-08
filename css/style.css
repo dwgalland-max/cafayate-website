@@ -48,7 +48,10 @@ img { max-width: 100%; height: auto; display: block; }
 .top-bar a:hover { opacity: 0.8; text-decoration: none; }
 
 .top-bar-left { display: flex; align-items: center; gap: 12px; }
-.top-bar-right { display: flex; align-items: center; gap: 12px; }
+.top-bar-right { display: flex; align-items: center; gap: 14px; }
+
+.top-bar-lang { display: inline-flex; align-items: center; }
+.top-bar-lang img { border-radius: 2px; }
 
 .instagram-icon {
   width: 20px;
