@@ -1,6 +1,12 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "crons": [
+    {
+      "path": "/api/scrape-events",
+      "schedule": "0 9 * * *"
+    }
+  ],
   "headers": [
     {
       "source": "/data/(.*)",
