@@ -870,7 +870,7 @@ img { max-width: 100%; height: auto; display: block; }
     align-items: center;
   }
 
-  .site-logo { max-width: 300px; }
+  .site-logo { max-width: 300px; margin-bottom: -6px; }
 
   .bodega-card { flex-direction: column; }
   .bodega-card-img { width: 100%; height: 180px; }
@@ -1068,7 +1068,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 @media (max-width: 480px) {
   .top-bar { font-size: 12px; padding: 4px 12px; }
-  .site-logo { max-width: 240px; }
+  .site-logo { max-width: 240px; margin-bottom: -2px; }
   .photo-grid { grid-template-columns: 1fr; }
   .promo-box-wide img { height: 140px; }
 }
