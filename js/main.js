@@ -260,7 +260,7 @@
         metaHTML +
         '<p>' + desc + '</p>' +
         (p.website ? '<a class="property-website" href="' + p.website + '" target="_blank" rel="noopener">' + (isEnglish ? 'View listing' : 'Ver listado') + ' &rarr;</a> ' : '') +
-        '<a class="property-contact" href="mailto:' + (p.contact_email || 'info@cafayate.com') + '?subject=' + encodeURIComponent(title) + '">' + contactText + ' &rarr;</a>' +
+        (p.contact_email ? '<a class="property-contact" href="mailto:' + p.contact_email + '?subject=' + encodeURIComponent(title) + '">' + contactText + ' &rarr;</a>' : '') +
         '</div></div>';
     });
     html += '</div>';
