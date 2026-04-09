@@ -1,8 +1,8 @@
 const Anthropic = require('@anthropic-ai/sdk');
 
 // ── Config ──────────────────────────────────────────────────────────────
-const GITHUB_OWNER = 'dwgalland';
-const GITHUB_REPO = 'Cafayate.com';
+const GITHUB_OWNER = 'dwgalland-max';
+const GITHUB_REPO = 'cafayate-website';
 const EVENTS_PATH = 'data/events.json';
 const GITHUB_BRANCH = 'main';
 
