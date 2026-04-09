@@ -160,10 +160,7 @@
     var upcoming = events.filter(function (e) { return e.date >= today; })
       .sort(function (a, b) { return a.date.localeCompare(b.date); });
 
-    var past = events.filter(function (e) { return e.date < today; })
-      .sort(function (a, b) { return b.date.localeCompare(a.date); });
-
-    if (upcoming.length === 0 && past.length === 0) {
+    if (upcoming.length === 0) {
       container.innerHTML = '<p class="no-events">' +
         (isEnglish ? 'No events scheduled at this time. Check back soon!' : 'No hay eventos programados en este momento. \u00a1Vuelve pronto!') +
         '</p>';
@@ -179,13 +176,6 @@
       html += '</div>';
     }
 
-    if (past.length > 0) {
-      html += '<hr class="section-divider">';
-      html += '<h2>' + (isEnglish ? 'Past Events' : 'Eventos Pasados') + '</h2>';
-      html += '<div class="events-list">';
-      past.slice(0, 5).forEach(function (e) { html += eventCardHTML(e, lang); });
-      html += '</div>';
-    }
 
     container.innerHTML = html;
   }
