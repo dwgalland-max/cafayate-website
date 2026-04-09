@@ -638,6 +638,12 @@ img { max-width: 100%; height: auto; display: block; }
   margin-bottom: 8px;
 }
 
+.property-website {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--green-dark);
+  margin-right: 16px;
+}
 .property-contact {
   font-size: 14px;
   font-weight: 600;

@@ -1,5 +1,24 @@
 [
   {
+    "id": "hotel-cafayate-vistas",
+    "title_es": "Hotel en Venta – Inversión Única con Vistas Inigualables",
+    "title_en": "Hotel for Sale – Unique Investment with Unmatched Views",
+    "type_es": "Comercial",
+    "type_en": "Commercial",
+    "status": "for_sale",
+    "price": "",
+    "size": "",
+    "bedrooms": 0,
+    "bathrooms": 0,
+    "location_es": "Alrededores de Cafayate, Salta",
+    "location_en": "Outskirts of Cafayate, Salta",
+    "description_es": "Ubicado en los alrededores de Cafayate, este hermoso hotel combina tranquilidad, naturaleza y una vista panorámica privilegiada de la ciudad y los cerros.",
+    "description_en": "Located on the outskirts of Cafayate, this beautiful hotel combines tranquility, nature, and a privileged panoramic view of the town and surrounding hills.",
+    "image": "/images/properties/hotel-cafayate.jpg",
+    "website": "https://innoacafayate.com/venta/item.asp?t=Hotel-Texas-&id=171",
+    "contact_email": "info@cafayate.com"
+  },
+  {
     "id": "sample-finca",
     "title_es": "Finca con Viñedos - Ruta 40",
     "title_en": "Vineyard Estate - Ruta 40",
