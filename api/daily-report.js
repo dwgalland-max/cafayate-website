@@ -782,7 +782,7 @@ function buildWebReportHTML(dateStr, analytics) {
     </div>
 
     <div class="report-body">
-      ${analytics && analytics._isSample ? '<div style="background:#e3f2fd;border-left:4px solid #2196f3;padding:12px 16px;border-radius:0 6px 6px 0;margin-bottom:24px;font-size:13px;color:#1565c0;"><strong>Preview Mode</strong> — Showing sample data. Connect Google Analytics to see real metrics.</div>' : ''}
+      ${analytics && analytics._isSample ? '<div style="background:#e3f2fd;border-left:4px solid #2196f3;padding:12px 16px;border-radius:0 6px 6px 0;margin-bottom:24px;font-size:13px;color:#1565c0;"><strong>Preview Mode</strong> — Showing actual GA4 data (Mar 13 – Apr 9). Connect the API for automatic daily updates.</div>' : ''}
       ${content}
     </div>
 
@@ -806,58 +806,55 @@ function buildWebReportHTML(dateStr, analytics) {
 }
 
 function getSampleData() {
+  // Real GA4 data from cafayate.com — Mar 13 – Apr 9, 2026
   return {
     yesterday: {
-      activeUsers: '47', sessions: '62', screenPageViews: '185',
-      bounceRate: '0.42', averageSessionDuration: '145'
+      activeUsers: '168', sessions: '182', screenPageViews: '310',
+      bounceRate: '0.51', averageSessionDuration: '33'
     },
     retention: {
-      engagedSessions: '38', engagementRate: '0.61',
-      sessionsPerUser: '1.3', screenPageViewsPerSession: '3.0',
-      newUsers: '31', activeUsers: '47', userEngagementDuration: '4230'
+      engagedSessions: '89', engagementRate: '0.49',
+      sessionsPerUser: '1.08', screenPageViewsPerSession: '1.70',
+      newUsers: '165', activeUsers: '168', userEngagementDuration: '5544'
     },
     userTypes: [
-      { dimensions: ['new'], metrics: ['128', '142', '0.54', '98'] },
-      { dimensions: ['returning'], metrics: ['34', '51', '0.78', '210'] }
+      { dimensions: ['new'], metrics: ['615', '650', '0.47', '30'] },
+      { dimensions: ['returning'], metrics: ['1', '2', '0.50', '120'] }
     ],
-    month: { activeUsers: '842', sessions: '1105', screenPageViews: '3280' },
+    month: { activeUsers: '616', sessions: '652', screenPageViews: '1213' },
     sources: [
-      { dimensions: ['Organic Search'], metrics: ['320', '285'] },
-      { dimensions: ['Paid Search'], metrics: ['195', '178'] },
-      { dimensions: ['Direct'], metrics: ['142', '130'] },
-      { dimensions: ['Social'], metrics: ['48', '42'] },
-      { dimensions: ['Referral'], metrics: ['22', '19'] }
+      { dimensions: ['Paid Search'], metrics: ['469', '414'] },
+      { dimensions: ['Direct'], metrics: ['135', '127'] },
+      { dimensions: ['Organic Search'], metrics: ['45', '42'] },
+      { dimensions: ['Organic Social'], metrics: ['18', '16'] },
+      { dimensions: ['Cross-network'], metrics: ['10', '9'] },
+      { dimensions: ['Unassigned'], metrics: ['6', '5'] },
+      { dimensions: ['Referral'], metrics: ['3', '2'] }
     ],
     countries: [
-      { dimensions: ['Argentina'], metrics: ['312'] },
-      { dimensions: ['United States'], metrics: ['145'] },
-      { dimensions: ['Brazil'], metrics: ['52'] },
-      { dimensions: ['Spain'], metrics: ['38'] },
-      { dimensions: ['United Kingdom'], metrics: ['27'] },
-      { dimensions: ['Chile'], metrics: ['21'] },
-      { dimensions: ['France'], metrics: ['18'] }
+      { dimensions: ['Argentina'], metrics: ['285'] },
+      { dimensions: ['United States'], metrics: ['198'] },
+      { dimensions: ['Spain'], metrics: ['32'] },
+      { dimensions: ['Brazil'], metrics: ['24'] },
+      { dimensions: ['United Kingdom'], metrics: ['18'] },
+      { dimensions: ['Chile'], metrics: ['14'] },
+      { dimensions: ['France'], metrics: ['11'] },
+      { dimensions: ['Germany'], metrics: ['8'] }
     ],
     aiTraffic: [
-      { dimensions: ['chatgpt.com'], metrics: ['14'] },
-      { dimensions: ['perplexity.ai'], metrics: ['6'] },
-      { dimensions: ['copilot.microsoft.com'], metrics: ['3'] }
+      { dimensions: ['chatgpt.com'], metrics: ['3'] }
     ],
     topPages: [
-      { dimensions: ['/'], metrics: ['420', '285', '28500', '0.38'] },
-      { dimensions: ['/en/'], metrics: ['195', '158', '14200', '0.41'] },
-      { dimensions: ['/pages/bodegas'], metrics: ['180', '142', '21300', '0.32'] },
-      { dimensions: ['/pages/vinos'], metrics: ['156', '118', '17700', '0.35'] },
-      { dimensions: ['/en/pages/bodegas'], metrics: ['98', '82', '11500', '0.37'] },
-      { dimensions: ['/pages/degustaciones'], metrics: ['87', '71', '9200', '0.44'] },
-      { dimensions: ['/pages/restaurantes'], metrics: ['76', '64', '7680', '0.48'] },
-      { dimensions: ['/pages/visitas'], metrics: ['65', '52', '6760', '0.40'] },
-      { dimensions: ['/pages/hoteles'], metrics: ['58', '45', '5400', '0.52'] },
-      { dimensions: ['/pages/agenda'], metrics: ['52', '41', '4920', '0.45'] },
-      { dimensions: ['/pages/lugares'], metrics: ['45', '36', '3960', '0.50'] },
-      { dimensions: ['/pages/propiedad'], metrics: ['38', '30', '4560', '0.35'] },
-      { dimensions: ['/en/pages/vinos'], metrics: ['34', '28', '3640', '0.39'] },
-      { dimensions: ['/pages/vinotecas'], metrics: ['28', '22', '2640', '0.55'] },
-      { dimensions: ['/pages/fotos'], metrics: ['24', '20', '3600', '0.28'] }
+      { dimensions: ['/'], metrics: ['607', '487', '6331', '0.52'] },
+      { dimensions: ['/pages/visitas'], metrics: ['98', '73', '4234', '0.35'] },
+      { dimensions: ['/en'], metrics: ['82', '67', '469', '0.58'] },
+      { dimensions: ['/pages/lugares'], metrics: ['64', '54', '1512', '0.42'] },
+      { dimensions: ['/pages/bodegas'], metrics: ['59', '42', '1890', '0.38'] },
+      { dimensions: ['/pages/degustaciones'], metrics: ['48', '35', '945', '0.44'] },
+      { dimensions: ['/pages/agenda'], metrics: ['28', '23', '299', '0.55'] },
+      { dimensions: ['/pages/vinos'], metrics: ['22', '20', '720', '0.40'] },
+      { dimensions: ['/tastings/'], metrics: ['16', '8', '456', '0.30'] },
+      { dimensions: ['/pages/fotos'], metrics: ['14', '13', '234', '0.45'] }
     ]
   };
 }
