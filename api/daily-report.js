@@ -81,7 +81,7 @@ module.exports = async function handler(req, res) {
           }
         });
 
-        // --- Report 3: Top pages last 7 days ---
+        // --- Report 3: Top pages last 7 days (with retention metrics) ---
         const pagesReport = await analyticsDataClient.properties.runReport({
           property: `properties/${GA4_PROPERTY_ID}`,
           requestBody: {
@@ -89,10 +89,12 @@ module.exports = async function handler(req, res) {
             dimensions: [{ name: 'pagePath' }],
             metrics: [
               { name: 'screenPageViews' },
-              { name: 'activeUsers' }
+              { name: 'activeUsers' },
+              { name: 'userEngagementDuration' },
+              { name: 'bounceRate' }
             ],
             orderBys: [{ metric: { metricName: 'screenPageViews' }, desc: true }],
-            limit: 10
+            limit: 15
           }
         });
 
@@ -118,6 +120,39 @@ module.exports = async function handler(req, res) {
               { name: 'sessions' },
               { name: 'screenPageViews' }
             ]
+          }
+        });
+
+        // --- Report 5b: Retention & engagement metrics (yesterday) ---
+        const retentionReport = await analyticsDataClient.properties.runReport({
+          property: `properties/${GA4_PROPERTY_ID}`,
+          requestBody: {
+            dateRanges: [{ startDate: yesterdayStr, endDate: yesterdayStr }],
+            metrics: [
+              { name: 'engagedSessions' },
+              { name: 'engagementRate' },
+              { name: 'sessionsPerUser' },
+              { name: 'screenPageViewsPerSession' },
+              { name: 'newUsers' },
+              { name: 'activeUsers' },
+              { name: 'userEngagementDuration' }
+            ]
+          }
+        });
+
+        // --- Report 5c: New vs returning users (last 7 days) ---
+        const userTypeReport = await analyticsDataClient.properties.runReport({
+          property: `properties/${GA4_PROPERTY_ID}`,
+          requestBody: {
+            dateRanges: [{ startDate: weekAgoStr, endDate: yesterdayStr }],
+            dimensions: [{ name: 'newVsReturning' }],
+            metrics: [
+              { name: 'activeUsers' },
+              { name: 'sessions' },
+              { name: 'engagementRate' },
+              { name: 'averageSessionDuration' }
+            ],
+            orderBys: [{ metric: { metricName: 'activeUsers' }, desc: true }]
           }
         });
 
@@ -149,6 +184,8 @@ module.exports = async function handler(req, res) {
           topPages: parseReport(pagesReport.data),
           countries: parseReport(countryReport.data),
           month: parseSimpleReport(monthReport.data),
+          retention: parseSimpleReport(retentionReport.data),
+          userTypes: parseReport(userTypeReport.data),
           aiTraffic: parseReport(aiReport.data),
           yesterdayDate: yesterdayStr,
           weekAgoDate: weekAgoStr,
@@ -272,6 +309,65 @@ function buildEmailHTML(dateStr, analytics) {
       </div>
     </div>`;
 
+    // --- Engagement & retention ---
+    const ret = analytics.retention || {};
+    const engagedSessions = parseInt(ret.engagedSessions || 0);
+    const engagementRate = parseFloat(ret.engagementRate || 0);
+    const sessionsPerUser = parseFloat(ret.sessionsPerUser || 0);
+    const pagesPerSession = parseFloat(ret.screenPageViewsPerSession || 0);
+    const newUsers = parseInt(ret.newUsers || 0);
+    const totalUsers = parseInt(ret.activeUsers || 0);
+    const returningUsers = Math.max(0, totalUsers - newUsers);
+    const totalEngagementSecs = parseFloat(ret.userEngagementDuration || 0);
+    const avgEngagementPerUser = totalUsers > 0 ? totalEngagementSecs / totalUsers : 0;
+
+    html += `
+    <div class="section">
+      <h2>Engagement &amp; Retention (Yesterday)</h2>
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-value">${Math.round(engagementRate * 100)}%</div>
+          <div class="stat-label">Engagement Rate</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value">${pagesPerSession.toFixed(1)}</div>
+          <div class="stat-label">Pages / Session</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value">${formatDuration(avgEngagementPerUser)}</div>
+          <div class="stat-label">Avg. Engagement</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value">${sessionsPerUser.toFixed(1)}</div>
+          <div class="stat-label">Sessions / User</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value">${newUsers}</div>
+          <div class="stat-label">New Users</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value">${returningUsers}</div>
+          <div class="stat-label">Returning Users</div>
+        </div>
+      </div>
+    </div>`;
+
+    // --- New vs returning users (last 7 days) ---
+    if (analytics.userTypes && analytics.userTypes.length > 0) {
+      html += `
+    <div class="section">
+      <h2>New vs Returning Users (Last 7 Days)</h2>
+      <table>
+        <tr><th>Type</th><th>Users</th><th>Sessions</th><th>Eng. Rate</th><th>Avg. Duration</th></tr>`;
+      analytics.userTypes.forEach(r => {
+        const label = r.dimensions[0] === 'new' ? 'New visitors' : r.dimensions[0] === 'returning' ? 'Returning visitors' : r.dimensions[0];
+        const er = parseFloat(r.metrics[2] || 0);
+        const dur = parseFloat(r.metrics[3] || 0);
+        html += `<tr><td>${label}</td><td style="text-align:right">${parseInt(r.metrics[0]).toLocaleString()}</td><td style="text-align:right">${parseInt(r.metrics[1]).toLocaleString()}</td><td style="text-align:right">${Math.round(er * 100)}%</td><td style="text-align:right">${formatDuration(dur)}</td></tr>`;
+      });
+      html += `</table></div>`;
+    }
+
     // --- 30-day totals ---
     const m = analytics.month || {};
     html += `
@@ -319,17 +415,22 @@ function buildEmailHTML(dateStr, analytics) {
       html += `</table></div>`;
     }
 
-    // --- Top pages ---
+    // --- Top pages with engagement ---
     if (analytics.topPages && analytics.topPages.length > 0) {
       html += `
     <div class="section">
       <h2>Top Pages (Last 7 Days)</h2>
       <table>
-        <tr><th>Page</th><th>Views</th><th>Users</th></tr>`;
+        <tr><th>Page</th><th>Views</th><th>Users</th><th>Time on Page</th><th>Bounce</th></tr>`;
       analytics.topPages.forEach(r => {
         const path = r.dimensions[0];
-        const pageName = path === '/' ? 'Homepage' : path.replace('/en/', '').replace('/pages/', '').replace('.html', '').replace(/\//g, '');
-        html += `<tr><td>${pageName}</td><td style="text-align:right">${parseInt(r.metrics[0]).toLocaleString()}</td><td style="text-align:right">${parseInt(r.metrics[1]).toLocaleString()}</td></tr>`;
+        const pageName = path === '/' ? 'Homepage (ES)' : path === '/en/' ? 'Homepage (EN)' : path.replace('/en/', '🇺🇸 ').replace('/pages/', '').replace('.html', '').replace(/^\//,'').replace(/\/$/,'');
+        const views = parseInt(r.metrics[0]);
+        const users = parseInt(r.metrics[1]);
+        const engDuration = parseFloat(r.metrics[2] || 0);
+        const avgTimeOnPage = users > 0 ? engDuration / users : 0;
+        const pageBounce = parseFloat(r.metrics[3] || 0);
+        html += `<tr><td>${pageName}</td><td style="text-align:right">${views.toLocaleString()}</td><td style="text-align:right">${users.toLocaleString()}</td><td style="text-align:right">${formatDuration(avgTimeOnPage)}</td><td style="text-align:right">${Math.round(pageBounce * 100)}%</td></tr>`;
       });
       html += `</table></div>`;
     }
