@@ -197,15 +197,23 @@ module.exports = async function handler(req, res) {
       }
     }
 
-    // --- Build email HTML ---
+    // --- Build report ---
     const today = new Date();
     const dateStr = today.toLocaleDateString('en-US', {
       weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
     });
 
+    // Check if this is a web view request
+    const format = req.query.format || '';
+    if (format === 'web' || format === 'pdf') {
+      const webHTML = buildWebReportHTML(dateStr, analyticsData);
+      res.setHeader('Content-Type', 'text/html; charset=utf-8');
+      return res.status(200).send(webHTML);
+    }
+
+    // Otherwise, send email (cron / manual trigger)
     const emailHTML = buildEmailHTML(dateStr, analyticsData);
 
-    // --- Send via Resend ---
     await resend.emails.send({
       from: 'CAFAYATE.com Reports <reports@cafayate.com>',
       to: [REPORT_EMAIL],
@@ -479,6 +487,11 @@ function buildEmailHTML(dateStr, analytics) {
     </div>`;
 
   html += `
+    <div class="section" style="text-align:center;">
+      <p style="font-size:14px;"><a href="https://cafayate.com/api/daily-report?format=web" style="color:#1e6a3a;font-weight:600;">View full report in browser &rarr;</a></p>
+      <p style="font-size:12px;color:#999;">Open in browser to download as PDF or share</p>
+    </div>
+
     <div class="footer">
       <p>CAFAYATE.COM &mdash; Insider's Guide to Salta's Wine Region</p>
       <p>This report is sent daily at 8:00 AM (Argentina time). <a href="mailto:info@cafayate.com">Manage preferences</a></p>
@@ -488,6 +501,299 @@ function buildEmailHTML(dateStr, analytics) {
 </html>`;
 
   return html;
+}
+
+// ===== WEB / PDF REPORT =====
+function buildWebReportHTML(dateStr, analytics) {
+  let content = '';
+
+  if (analytics && !analytics.error) {
+    const y = analytics.yesterday || {};
+    const users = parseInt(y.activeUsers || 0);
+    const sessions = parseInt(y.sessions || 0);
+    const pageviews = parseInt(y.screenPageViews || 0);
+    const bounceRate = parseFloat(y.bounceRate || 0);
+    const avgDuration = parseFloat(y.averageSessionDuration || 0);
+
+    const ret = analytics.retention || {};
+    const engagementRate = parseFloat(ret.engagementRate || 0);
+    const pagesPerSession = parseFloat(ret.screenPageViewsPerSession || 0);
+    const sessionsPerUser = parseFloat(ret.sessionsPerUser || 0);
+    const newUsers = parseInt(ret.newUsers || 0);
+    const totalUsers = parseInt(ret.activeUsers || 0);
+    const returningUsers = Math.max(0, totalUsers - newUsers);
+    const totalEngagementSecs = parseFloat(ret.userEngagementDuration || 0);
+    const avgEngagement = totalUsers > 0 ? totalEngagementSecs / totalUsers : 0;
+
+    const m = analytics.month || {};
+
+    // Yesterday snapshot
+    content += `
+      <section class="report-section">
+        <h2>Yesterday's Snapshot</h2>
+        <div class="kpi-row">
+          <div class="kpi"><span class="kpi-value">${users}</span><span class="kpi-label">Users</span></div>
+          <div class="kpi"><span class="kpi-value">${sessions}</span><span class="kpi-label">Sessions</span></div>
+          <div class="kpi"><span class="kpi-value">${pageviews}</span><span class="kpi-label">Page Views</span></div>
+          <div class="kpi"><span class="kpi-value">${Math.round(bounceRate * 100)}%</span><span class="kpi-label">Bounce Rate</span></div>
+          <div class="kpi"><span class="kpi-value">${formatDuration(avgDuration)}</span><span class="kpi-label">Avg. Duration</span></div>
+        </div>
+      </section>
+
+      <section class="report-section">
+        <h2>Engagement &amp; Retention</h2>
+        <div class="kpi-row">
+          <div class="kpi"><span class="kpi-value">${Math.round(engagementRate * 100)}%</span><span class="kpi-label">Engagement Rate</span></div>
+          <div class="kpi"><span class="kpi-value">${pagesPerSession.toFixed(1)}</span><span class="kpi-label">Pages / Session</span></div>
+          <div class="kpi"><span class="kpi-value">${formatDuration(avgEngagement)}</span><span class="kpi-label">Avg. Engagement</span></div>
+          <div class="kpi"><span class="kpi-value">${sessionsPerUser.toFixed(1)}</span><span class="kpi-label">Sessions / User</span></div>
+          <div class="kpi"><span class="kpi-value">${newUsers}</span><span class="kpi-label">New Users</span></div>
+          <div class="kpi"><span class="kpi-value">${returningUsers}</span><span class="kpi-label">Returning</span></div>
+        </div>
+      </section>`;
+
+    // New vs returning
+    if (analytics.userTypes && analytics.userTypes.length > 0) {
+      content += `
+      <section class="report-section">
+        <h2>New vs Returning (Last 7 Days)</h2>
+        <table>
+          <thead><tr><th>Visitor Type</th><th>Users</th><th>Sessions</th><th>Engagement Rate</th><th>Avg. Duration</th></tr></thead>
+          <tbody>`;
+      analytics.userTypes.forEach(r => {
+        const label = r.dimensions[0] === 'new' ? 'New visitors' : r.dimensions[0] === 'returning' ? 'Returning visitors' : r.dimensions[0];
+        content += `<tr><td>${label}</td><td>${parseInt(r.metrics[0]).toLocaleString()}</td><td>${parseInt(r.metrics[1]).toLocaleString()}</td><td>${Math.round(parseFloat(r.metrics[2] || 0) * 100)}%</td><td>${formatDuration(parseFloat(r.metrics[3] || 0))}</td></tr>`;
+      });
+      content += `</tbody></table></section>`;
+    }
+
+    // 30-day totals
+    content += `
+      <section class="report-section">
+        <h2>30-Day Overview</h2>
+        <div class="kpi-row">
+          <div class="kpi"><span class="kpi-value">${parseInt(m.activeUsers || 0).toLocaleString()}</span><span class="kpi-label">Total Users</span></div>
+          <div class="kpi"><span class="kpi-value">${parseInt(m.sessions || 0).toLocaleString()}</span><span class="kpi-label">Total Sessions</span></div>
+          <div class="kpi"><span class="kpi-value">${parseInt(m.screenPageViews || 0).toLocaleString()}</span><span class="kpi-label">Total Page Views</span></div>
+        </div>
+      </section>`;
+
+    // Two-column layout: sources + countries
+    content += `<div class="two-col">`;
+
+    // Traffic sources
+    if (analytics.sources && analytics.sources.length > 0) {
+      content += `
+      <section class="report-section">
+        <h2>Traffic Sources (7 Days)</h2>
+        <table>
+          <thead><tr><th>Channel</th><th>Sessions</th><th>Users</th></tr></thead>
+          <tbody>`;
+      analytics.sources.forEach(r => {
+        content += `<tr><td>${r.dimensions[0]}</td><td>${parseInt(r.metrics[0]).toLocaleString()}</td><td>${parseInt(r.metrics[1]).toLocaleString()}</td></tr>`;
+      });
+      content += `</tbody></table></section>`;
+    }
+
+    // Countries
+    if (analytics.countries && analytics.countries.length > 0) {
+      content += `
+      <section class="report-section">
+        <h2>Top Countries (7 Days)</h2>
+        <table>
+          <thead><tr><th>Country</th><th>Users</th></tr></thead>
+          <tbody>`;
+      analytics.countries.forEach(r => {
+        content += `<tr><td>${r.dimensions[0]}</td><td>${parseInt(r.metrics[0]).toLocaleString()}</td></tr>`;
+      });
+      content += `</tbody></table></section>`;
+    }
+
+    content += `</div>`; // end two-col
+
+    // AI traffic
+    if (analytics.aiTraffic && analytics.aiTraffic.length > 0) {
+      content += `
+      <section class="report-section">
+        <h2>AI / ChatGPT Traffic (7 Days)</h2>
+        <table>
+          <thead><tr><th>Source</th><th>Sessions</th></tr></thead>
+          <tbody>`;
+      analytics.aiTraffic.forEach(r => {
+        content += `<tr><td>${r.dimensions[0]}</td><td>${parseInt(r.metrics[0]).toLocaleString()}</td></tr>`;
+      });
+      content += `</tbody></table></section>`;
+    }
+
+    // Top pages (the big table)
+    if (analytics.topPages && analytics.topPages.length > 0) {
+      content += `
+      <section class="report-section page-break-before">
+        <h2>Page Performance (Last 7 Days)</h2>
+        <table class="full-table">
+          <thead><tr><th>Page</th><th>Views</th><th>Users</th><th>Avg. Time</th><th>Bounce Rate</th></tr></thead>
+          <tbody>`;
+      analytics.topPages.forEach(r => {
+        const path = r.dimensions[0];
+        let pageName = path === '/' ? 'Homepage (ES)' : path === '/en/' ? 'Homepage (EN)' : path.replace('/en/', 'EN: ').replace('/pages/', '').replace('.html', '').replace(/^\//,'').replace(/\/$/,'');
+        const views = parseInt(r.metrics[0]);
+        const pUsers = parseInt(r.metrics[1]);
+        const engDur = parseFloat(r.metrics[2] || 0);
+        const avgTime = pUsers > 0 ? engDur / pUsers : 0;
+        const pBounce = parseFloat(r.metrics[3] || 0);
+        const bounceColor = pBounce > 0.7 ? '#c0392b' : pBounce > 0.5 ? '#e67e22' : '#27ae60';
+        content += `<tr><td>${pageName}</td><td>${views.toLocaleString()}</td><td>${pUsers.toLocaleString()}</td><td>${formatDuration(avgTime)}</td><td style="color:${bounceColor};font-weight:600">${Math.round(pBounce * 100)}%</td></tr>`;
+      });
+      content += `</tbody></table></section>`;
+    }
+
+  } else if (analytics && analytics.error) {
+    content += `<section class="report-section"><div class="note">Analytics data unavailable: ${analytics.error}</div></section>`;
+  } else {
+    content += `<section class="report-section"><div class="note">Setup required: Add GOOGLE_SERVICE_ACCOUNT_KEY in Vercel to see analytics data.</div></section>`;
+  }
+
+  // Google Ads link
+  content += `
+    <section class="report-section">
+      <h2>Google Ads</h2>
+      <p>Campaign: New Website Search Campaign 2026 &bull; Budget: $12/day &bull; Optimization: 96.8%</p>
+      <p><a href="https://ads.google.com/aw/overview?ocid=7007488989" class="btn-link">Open Google Ads Dashboard &rarr;</a></p>
+    </section>`;
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cafayate.com — Daily Report — ${dateStr}</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif; color: #2c3e50; background: #f0f2f5; line-height: 1.5; }
+
+    .report { max-width: 900px; margin: 0 auto; background: #fff; }
+
+    .report-header {
+      background: linear-gradient(135deg, #1a5e32 0%, #1e6a3a 50%, #247542 100%);
+      color: #fff; padding: 40px 48px; position: relative;
+    }
+    .report-header h1 { font-size: 28px; font-weight: 700; letter-spacing: 2px; margin-bottom: 4px; }
+    .report-header .subtitle { font-size: 15px; opacity: 0.85; }
+    .report-header .date { font-size: 13px; opacity: 0.65; margin-top: 8px; }
+
+    .toolbar {
+      display: flex; gap: 10px; padding: 16px 48px; background: #f8f9fa;
+      border-bottom: 1px solid #e9ecef; justify-content: flex-end;
+    }
+    .toolbar button {
+      padding: 8px 20px; border: 1px solid #1e6a3a; border-radius: 6px;
+      font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+    }
+    .btn-pdf { background: #1e6a3a; color: #fff; }
+    .btn-pdf:hover { background: #165c30; }
+    .btn-share { background: #fff; color: #1e6a3a; }
+    .btn-share:hover { background: #f0f7f2; }
+
+    .report-body { padding: 32px 48px; }
+
+    .report-section { margin-bottom: 32px; }
+    .report-section h2 {
+      font-size: 14px; text-transform: uppercase; letter-spacing: 1.5px;
+      color: #1e6a3a; border-bottom: 2px solid #1e6a3a; padding-bottom: 8px;
+      margin-bottom: 16px; font-weight: 700;
+    }
+
+    .kpi-row { display: flex; flex-wrap: wrap; gap: 12px; }
+    .kpi {
+      flex: 1; min-width: 120px; background: #f8faf9; border: 1px solid #e8efe9;
+      border-radius: 10px; padding: 16px; text-align: center;
+    }
+    .kpi-value { display: block; font-size: 26px; font-weight: 800; color: #1e6a3a; }
+    .kpi-label { display: block; font-size: 11px; color: #7f8c8d; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    thead th {
+      text-align: left; padding: 10px 8px; background: #f8faf9;
+      color: #1e6a3a; font-size: 11px; text-transform: uppercase;
+      letter-spacing: 0.5px; font-weight: 700; border-bottom: 2px solid #d5e8d4;
+    }
+    tbody td { padding: 8px; border-bottom: 1px solid #f0f0f0; }
+    tbody tr:hover { background: #fafffe; }
+    td:nth-child(n+2), th:nth-child(n+2) { text-align: right; }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+    .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 16px; border-radius: 0 6px 6px 0; font-size: 14px; }
+
+    .btn-link {
+      display: inline-block; color: #1e6a3a; font-weight: 600;
+      text-decoration: none; border-bottom: 1px solid #1e6a3a;
+    }
+    .btn-link:hover { color: #165c30; }
+
+    .report-footer {
+      text-align: center; padding: 24px 48px; border-top: 1px solid #eee;
+      font-size: 12px; color: #95a5a6;
+    }
+
+    /* Print / PDF styles */
+    @media print {
+      body { background: #fff; }
+      .toolbar { display: none !important; }
+      .report { max-width: 100%; box-shadow: none; }
+      .report-header { padding: 24px 32px; }
+      .report-body { padding: 20px 32px; }
+      .report-section { margin-bottom: 20px; break-inside: avoid; }
+      .page-break-before { break-before: page; }
+      .kpi { padding: 10px; }
+      .kpi-value { font-size: 20px; }
+      table { font-size: 11px; }
+      .two-col { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .report-header, .report-body, .toolbar, .report-footer { padding-left: 20px; padding-right: 20px; }
+      .kpi-row { gap: 8px; }
+      .kpi { min-width: 90px; padding: 10px; }
+      .kpi-value { font-size: 20px; }
+      .two-col { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="report">
+    <div class="report-header">
+      <h1>CAFAYATE.COM</h1>
+      <div class="subtitle">Daily Performance Report</div>
+      <div class="date">${dateStr}</div>
+    </div>
+
+    <div class="toolbar">
+      <button class="btn-share" onclick="copyLink()">Copy Link</button>
+      <button class="btn-pdf" onclick="window.print()">Download PDF</button>
+    </div>
+
+    <div class="report-body">
+      ${content}
+    </div>
+
+    <div class="report-footer">
+      CAFAYATE.COM &mdash; Insider's Guide to Salta's Wine Region<br>
+      Report generated ${dateStr}
+    </div>
+  </div>
+
+  <script>
+    function copyLink() {
+      navigator.clipboard.writeText(window.location.href).then(function() {
+        var btn = document.querySelector('.btn-share');
+        btn.textContent = 'Copied!';
+        setTimeout(function() { btn.textContent = 'Copy Link'; }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>`;
 }
 
 function formatDuration(seconds) {
