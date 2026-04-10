@@ -545,15 +545,14 @@
               : '';
             slot.innerHTML =
               '<div class="promo-box promo-box-sidebar">' +
-              '<div class="promo-label">' + label + '</div>' +
               '<a href="' + promo.link + '" target="_blank" rel="noopener">' +
               '<div class="promo-sidebar-card">' +
               '<img src="' + promo.image + '" alt="' + alt + '" class="promo-sidebar-bg" loading="lazy">' +
               '<div class="promo-sidebar-overlay">' +
               '<div class="promo-sidebar-content">' +
               logoHTML +
-              '<div class="promo-sidebar-tagline">' + caption + '</div>' +
               '</div>' +
+              '<div class="promo-sidebar-sponsor">' + label + '</div>' +
               '</div>' +
               '</div>' +
               '</a></div>';
