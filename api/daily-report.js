@@ -208,8 +208,12 @@ module.exports = async function handler(req, res) {
     });
 
     // Check if this is a web view request
-    const format = req.query.format || '';
-    if (format === 'web' || format === 'pdf') {
+    if (isWebView) {
+      // Show sample data for template preview when no GA4 credentials
+      if (!analyticsData && isWebView) {
+        analyticsData = getSampleData();
+        analyticsData._isSample = true;
+      }
       const webHTML = buildWebReportHTML(dateStr, analyticsData);
       res.setHeader('Content-Type', 'text/html; charset=utf-8');
       return res.status(200).send(webHTML);
@@ -778,6 +782,7 @@ function buildWebReportHTML(dateStr, analytics) {
     </div>
 
     <div class="report-body">
+      ${analytics && analytics._isSample ? '<div style="background:#e3f2fd;border-left:4px solid #2196f3;padding:12px 16px;border-radius:0 6px 6px 0;margin-bottom:24px;font-size:13px;color:#1565c0;"><strong>Preview Mode</strong> — Showing sample data. Connect Google Analytics to see real metrics.</div>' : ''}
       ${content}
     </div>
 
@@ -798,6 +803,63 @@ function buildWebReportHTML(dateStr, analytics) {
   </script>
 </body>
 </html>`;
+}
+
+function getSampleData() {
+  return {
+    yesterday: {
+      activeUsers: '47', sessions: '62', screenPageViews: '185',
+      bounceRate: '0.42', averageSessionDuration: '145'
+    },
+    retention: {
+      engagedSessions: '38', engagementRate: '0.61',
+      sessionsPerUser: '1.3', screenPageViewsPerSession: '3.0',
+      newUsers: '31', activeUsers: '47', userEngagementDuration: '4230'
+    },
+    userTypes: [
+      { dimensions: ['new'], metrics: ['128', '142', '0.54', '98'] },
+      { dimensions: ['returning'], metrics: ['34', '51', '0.78', '210'] }
+    ],
+    month: { activeUsers: '842', sessions: '1105', screenPageViews: '3280' },
+    sources: [
+      { dimensions: ['Organic Search'], metrics: ['320', '285'] },
+      { dimensions: ['Paid Search'], metrics: ['195', '178'] },
+      { dimensions: ['Direct'], metrics: ['142', '130'] },
+      { dimensions: ['Social'], metrics: ['48', '42'] },
+      { dimensions: ['Referral'], metrics: ['22', '19'] }
+    ],
+    countries: [
+      { dimensions: ['Argentina'], metrics: ['312'] },
+      { dimensions: ['United States'], metrics: ['145'] },
+      { dimensions: ['Brazil'], metrics: ['52'] },
+      { dimensions: ['Spain'], metrics: ['38'] },
+      { dimensions: ['United Kingdom'], metrics: ['27'] },
+      { dimensions: ['Chile'], metrics: ['21'] },
+      { dimensions: ['France'], metrics: ['18'] }
+    ],
+    aiTraffic: [
+      { dimensions: ['chatgpt.com'], metrics: ['14'] },
+      { dimensions: ['perplexity.ai'], metrics: ['6'] },
+      { dimensions: ['copilot.microsoft.com'], metrics: ['3'] }
+    ],
+    topPages: [
+      { dimensions: ['/'], metrics: ['420', '285', '28500', '0.38'] },
+      { dimensions: ['/en/'], metrics: ['195', '158', '14200', '0.41'] },
+      { dimensions: ['/pages/bodegas'], metrics: ['180', '142', '21300', '0.32'] },
+      { dimensions: ['/pages/vinos'], metrics: ['156', '118', '17700', '0.35'] },
+      { dimensions: ['/en/pages/bodegas'], metrics: ['98', '82', '11500', '0.37'] },
+      { dimensions: ['/pages/degustaciones'], metrics: ['87', '71', '9200', '0.44'] },
+      { dimensions: ['/pages/restaurantes'], metrics: ['76', '64', '7680', '0.48'] },
+      { dimensions: ['/pages/visitas'], metrics: ['65', '52', '6760', '0.40'] },
+      { dimensions: ['/pages/hoteles'], metrics: ['58', '45', '5400', '0.52'] },
+      { dimensions: ['/pages/agenda'], metrics: ['52', '41', '4920', '0.45'] },
+      { dimensions: ['/pages/lugares'], metrics: ['45', '36', '3960', '0.50'] },
+      { dimensions: ['/pages/propiedad'], metrics: ['38', '30', '4560', '0.35'] },
+      { dimensions: ['/en/pages/vinos'], metrics: ['34', '28', '3640', '0.39'] },
+      { dimensions: ['/pages/vinotecas'], metrics: ['28', '22', '2640', '0.55'] },
+      { dimensions: ['/pages/fotos'], metrics: ['24', '20', '3600', '0.28'] }
+    ]
+  };
 }
 
 function formatDuration(seconds) {
