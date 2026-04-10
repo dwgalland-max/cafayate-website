@@ -297,7 +297,7 @@
       statusClass = statusClass.replace('_', '-');
 
       var imgHTML = p.image
-        ? '<img class="property-card-img" src="' + p.image + '" alt="' + title + '" loading="lazy">'
+        ? '<img class="property-card-img" src="' + p.image + '" alt="' + title + '">'
         : '<div class="property-card-img-placeholder">' + type + '</div>';
 
       var metaHTML = '<div class="property-meta">';
