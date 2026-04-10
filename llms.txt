@@ -1,0 +1,74 @@
+# CAFAYATE.com — Insider's Guide to Salta's Wine Region
+
+> Cafayate.com is the definitive bilingual (Spanish/English) travel and wine guide for Cafayate, a small town in the Calchaqui Valleys of Salta Province, Argentina. The site is a not-for-profit project with any profits going to local charities.
+
+## About Cafayate
+Cafayate is a charming wine town at 1,660 meters above sea level in northwest Argentina, known for producing world-class Torrontes, Malbec, and Tannat wines at extreme altitudes. It is the heart of the Calchaqui Valleys wine region, home to some of the highest vineyards on Earth (up to 3,111 m.a.s.l.).
+
+## Key Facts
+- Location: Calchaqui Valleys, Salta Province, Argentina
+- Altitude: 1,660 m.a.s.l. (town center)
+- Coordinates: -26.0724, -65.9749
+- Population: ~15,000
+- Known for: High-altitude wines (Torrontes, Malbec, Tannat), wine tourism, stunning landscapes
+- Getting there: 190 km south of Salta city via Ruta 68 through the Quebrada de las Conchas
+
+## Website Sections
+
+### Wineries & Wine (/pages/vinos.html, /pages/bodegas.html)
+The site catalogs 25 wineries in the Calchaqui Valleys region, organized by altitude:
+- **Extreme Altitude** (above 2,200m): Including Bodega Colomé (highest commercial vineyard in the world at 3,111m), Altura Maxima, Tacuil, Humanao, and others
+- **High Altitude** (1,500-2,200m): Including El Esteco, Piattelli, Domingo Molina, San Pedro de Yacochuya, and more
+- Signature grape varieties: Torrontes (aromatic white), Malbec, Tannat, Cabernet Sauvignon
+
+### Hotels & Accommodation (/pages/hoteles.html)
+Accommodation options in Cafayate ranging from luxury resorts to boutique hotels, including properties in La Estancia de Cafayate.
+
+### Restaurants (/pages/restaurantes.html)
+Dining guide covering the best restaurants in Cafayate, from traditional Argentine parrilla to fine dining with wine pairings.
+
+### Events & Calendar (/pages/agenda.html)
+Cultural calendar including:
+- Serenata a Cafayate (annual folk music festival, February)
+- Malbec Week (April)
+- Harvest festivals (Vendimia)
+- Wine fairs and tastings
+
+### Sights & Activities (/pages/visitas.html)
+Things to do in Cafayate and the Calchaqui Valleys, including:
+- Quebrada de las Conchas (Canyon of Shells) — stunning red rock formations
+- Quebrada de las Flechas — dramatic arrow-shaped rock formations
+- Wine tastings and bodega tours
+- Museo de la Vid y el Vino (Vine and Wine Museum)
+
+### Getting There (/pages/lugares.html)
+Directions and maps for reaching Cafayate, including:
+- From Salta city (190 km, Ruta 68)
+- From Tucuman
+- Interactive map with all bodega locations
+
+### Real Estate (/pages/propiedad.html)
+Property listings and investment opportunities in the Cafayate area, including vineyard estates, houses, and commercial properties.
+
+### Holiday Rentals
+Recommended local rental agents:
+- cafayaterentals.com
+- cafayateholiday.com
+
+## Contact
+- Email: info@cafayate.com
+- Website: https://cafayate.com (Spanish) / https://cafayate.com/en/ (English)
+- Instagram: @cafayate.com_
+
+## Optional: Detailed page listing
+- Homepage: /index.html (ES), /en/index.html (EN)
+- Wines: /pages/vinos.html (ES), /en/pages/vinos.html (EN)
+- Wineries: /pages/bodegas.html (ES), /en/pages/bodegas.html (EN)
+- Hotels: /pages/hoteles.html (ES), /en/pages/hoteles.html (EN)
+- Restaurants: /pages/restaurantes.html (ES), /en/pages/restaurantes.html (EN)
+- Sights: /pages/visitas.html (ES), /en/pages/visitas.html (EN)
+- Directions: /pages/lugares.html (ES), /en/pages/lugares.html (EN)
+- Events: /pages/agenda.html (ES), /en/pages/agenda.html (EN)
+- Photos: /pages/fotos.html (ES), /en/pages/fotos.html (EN)
+- Property: /pages/propiedad.html (ES), /en/pages/propiedad.html (EN)
+- Contact: /pages/contacto.html (ES), /en/pages/contacto.html (EN)

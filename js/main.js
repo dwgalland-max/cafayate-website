@@ -135,6 +135,31 @@
       '<h2>' + titleHigh + '</h2>' +
       '<p style="color:#777;font-size:14px;margin-bottom:16px;">' + subtitleHigh + '</p>' +
       '<div class="bodega-list">' + highHTML + '</div>';
+
+    // Inject Winery structured data (JSON-LD) for SEO rich snippets
+    injectBodegaSchema(bodegas);
+  }
+
+  function injectBodegaSchema(bodegas) {
+    var lang = isEnglish ? 'en' : 'es';
+    var schemaItems = bodegas.map(function (b) {
+      var desc = b['description_' + lang] || b.description_es || '';
+      var item = {
+        '@type': 'Winery',
+        'name': b.name,
+        'description': desc,
+        'address': { '@type': 'PostalAddress', 'addressLocality': 'Cafayate', 'addressRegion': 'Salta', 'addressCountry': 'AR' }
+      };
+      if (b.lat && b.lng) item.geo = { '@type': 'GeoCoordinates', 'latitude': b.lat, 'longitude': b.lng };
+      if (b.website) item.url = b.website;
+      return item;
+    });
+
+    var schema = { '@context': 'https://schema.org', '@graph': schemaItems };
+    var script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(schema);
+    document.head.appendChild(script);
   }
 
   // ===== DYNAMIC EVENTS RENDERING =====
@@ -178,6 +203,40 @@
 
 
     container.innerHTML = html;
+
+    // Inject Event structured data (JSON-LD) for SEO rich snippets
+    injectEventSchema(upcoming);
+  }
+
+  function injectEventSchema(events) {
+    var lang = isEnglish ? 'en' : 'es';
+    var schemaEvents = events.map(function (e) {
+      var title = e['title_' + lang] || e.title_es || '';
+      var desc = e['description_' + lang] || e.description_es || '';
+      var ev = {
+        '@type': 'Event',
+        'name': title,
+        'description': desc,
+        'startDate': e.date + (e.time ? 'T' + e.time + ':00' : ''),
+        'eventAttendanceMode': 'https://schema.org/OfflineEventAttendanceMode',
+        'eventStatus': 'https://schema.org/EventScheduled'
+      };
+      if (e.location) {
+        ev.location = {
+          '@type': 'Place',
+          'name': e.location,
+          'address': { '@type': 'PostalAddress', 'addressLocality': 'Cafayate', 'addressRegion': 'Salta', 'addressCountry': 'AR' }
+        };
+      }
+      if (e.website) ev.url = e.website;
+      return ev;
+    });
+
+    var schema = { '@context': 'https://schema.org', '@graph': schemaEvents };
+    var script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(schema);
+    document.head.appendChild(script);
   }
 
   function eventCardHTML(e, lang) {

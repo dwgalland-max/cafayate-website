@@ -2,3 +2,7 @@ User-agent: *
 Allow: /
 
 Sitemap: https://cafayate.com/sitemap.xml
+
+# AI/LLM-friendly site summary
+# See https://llmstxt.org/ for the specification
+LLMs-Txt: https://cafayate.com/llms.txt
