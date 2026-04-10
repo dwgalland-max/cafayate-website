@@ -5,13 +5,14 @@
     "active": true,
     "sponsor": "Bad Brothers Wine & Food Experience",
     "image": "/images/promos/Bad Brothers Ad Photo New.jpg",
+    "logo": "/images/promos/bad-brothers-logo.png",
     "alt_es": "Bad Brothers Wine & Food Experience - Vinos y gastronomía en Cafayate",
     "alt_en": "Bad Brothers Wine & Food Experience - Wine and dining in Cafayate",
     "link": "https://www.badbrotherswe.com/",
     "label_es": "Patrocinador",
     "label_en": "Sponsor",
-    "caption_es": "Vinos & Gastronomía en el corazón de Cafayate",
-    "caption_en": "Wine & Dining in the heart of Cafayate"
+    "caption_es": "Vinos, gastronomía y experiencias únicas",
+    "caption_en": "Wine, food & unforgettable experiences"
   },
   {
     "id": "bb-banner",

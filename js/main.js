@@ -537,34 +537,53 @@
           var alt = promo['alt_' + lang] || promo.alt_es || '';
           var label = promo['label_' + lang] || promo.label_es || '';
           var caption = promo['caption_' + lang] || promo.caption_es || '';
-          var posClass = position === 'banner' ? 'promo-box-wide' : 'promo-box-sidebar';
 
-          // Build sponsor name with "Bad Brothers" styled larger
-          var sponsorHTML = '';
-          if (promo.sponsor) {
-            var name = promo.sponsor;
-            var bbIndex = name.indexOf('Bad Brothers');
-            if (bbIndex !== -1) {
-              var before = name.substring(0, bbIndex);
-              var after = name.substring(bbIndex + 12);
-              sponsorHTML = '<div class="promo-sponsor">' +
-                (before ? '<span>' + before + '</span>' : '') +
-                '<span class="promo-sponsor-name">Bad Brothers</span>' +
-                (after ? '<span class="promo-sponsor-sub">' + after.replace(/^\s+/, '') + '</span>' : '') +
-                '</div>';
-            } else {
-              sponsorHTML = '<div class="promo-sponsor">' + name + '</div>';
+          if (position === 'sidebar') {
+            // Professional full-bleed sidebar ad card
+            var logoHTML = promo.logo
+              ? '<img src="' + promo.logo + '" alt="Bad Brothers" class="promo-sidebar-logo">'
+              : '';
+            slot.innerHTML =
+              '<div class="promo-box promo-box-sidebar">' +
+              '<div class="promo-label">' + label + '</div>' +
+              '<a href="' + promo.link + '" target="_blank" rel="noopener">' +
+              '<div class="promo-sidebar-card">' +
+              '<img src="' + promo.image + '" alt="' + alt + '" class="promo-sidebar-bg" loading="lazy">' +
+              '<div class="promo-sidebar-overlay">' +
+              '<div class="promo-sidebar-content">' +
+              logoHTML +
+              '<div class="promo-sidebar-tagline">' + caption + '</div>' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '</a></div>';
+          } else {
+            // Banner promo (wide)
+            var sponsorHTML = '';
+            if (promo.sponsor) {
+              var name = promo.sponsor;
+              var bbIndex = name.indexOf('Bad Brothers');
+              if (bbIndex !== -1) {
+                var before = name.substring(0, bbIndex);
+                var after = name.substring(bbIndex + 12);
+                sponsorHTML = '<div class="promo-sponsor">' +
+                  (before ? '<span>' + before + '</span>' : '') +
+                  '<span class="promo-sponsor-name">Bad Brothers</span>' +
+                  (after ? '<span class="promo-sponsor-sub">' + after.replace(/^\s+/, '') + '</span>' : '') +
+                  '</div>';
+              } else {
+                sponsorHTML = '<div class="promo-sponsor">' + name + '</div>';
+              }
             }
+            slot.innerHTML =
+              '<div class="promo-box promo-box-wide">' +
+              '<div class="promo-label">' + label + '</div>' +
+              '<a href="' + promo.link + '" target="_blank" rel="noopener">' +
+              '<img src="' + promo.image + '" alt="' + alt + '" loading="lazy">' +
+              sponsorHTML +
+              (caption ? '<div class="promo-caption">' + caption + '</div>' : '') +
+              '</a></div>';
           }
-
-          slot.innerHTML =
-            '<div class="promo-box ' + posClass + '">' +
-            '<div class="promo-label">' + label + '</div>' +
-            '<a href="' + promo.link + '" target="_blank" rel="noopener">' +
-            '<img src="' + promo.image + '" alt="' + alt + '" loading="lazy">' +
-            sponsorHTML +
-            (caption ? '<div class="promo-caption">' + caption + '</div>' : '') +
-            '</a></div>';
         });
       })
       .catch(function (err) {
