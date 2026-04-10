@@ -13,12 +13,16 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  // Verify cron secret to prevent unauthorized access
-  const authHeader = req.headers.authorization;
-  if (process.env.CRON_SECRET && authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
-    // Allow if no CRON_SECRET is set (for testing)
-    if (process.env.CRON_SECRET) {
-      return res.status(401).json({ error: 'Unauthorized' });
+  // Allow web/pdf views without auth; require cron secret for email sends
+  const format = req.query.format || '';
+  const isWebView = (format === 'web' || format === 'pdf');
+
+  if (!isWebView) {
+    const authHeader = req.headers.authorization;
+    if (process.env.CRON_SECRET && authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+      if (process.env.CRON_SECRET) {
+        return res.status(401).json({ error: 'Unauthorized' });
+      }
     }
   }
 
