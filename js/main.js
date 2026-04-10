@@ -319,7 +319,8 @@
         metaHTML +
         '<p>' + desc + '</p>' +
         (p.website ? '<a class="property-website" href="' + p.website + '" target="_blank" rel="noopener">' + (isEnglish ? 'View listing' : 'Ver listado') + ' &rarr;</a> ' : '') +
-        (p.contact_email ? '<a class="property-contact" href="mailto:' + p.contact_email + '?subject=' + encodeURIComponent(title) + '">' + contactText + ' &rarr;</a>' : '') +
+        (p.contact_email ? '<a class="property-contact" href="mailto:' + p.contact_email + '?subject=' + encodeURIComponent(title) + '">' + contactText + ' &rarr;</a> ' : '') +
+        (p.contact_phone ? '<a class="property-contact" href="tel:' + p.contact_phone.replace(/[^+\d]/g, '') + '">Tel: ' + p.contact_phone + '</a>' : '') +
         '</div></div>';
     });
     html += '</div>';

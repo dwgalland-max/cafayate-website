@@ -16,5 +16,24 @@
     "description_en": "Located on the outskirts of Cafayate, this beautiful hotel combines tranquility, nature, and a privileged panoramic view of the town and surrounding hills.",
     "image": "/images/properties/hotel-cafayate.jpg",
     "website": "https://innoacafayate.com/venta/item.asp?t=Hotel-Texas-&id=171"
+  },
+  {
+    "id": "lote-f12-estancia",
+    "title_es": "Lote F12 – 2.067 m² en La Estancia de Cafayate",
+    "title_en": "Lot F12 – 2,067 m² in La Estancia de Cafayate",
+    "type_es": "Terreno",
+    "type_en": "Land",
+    "status": "for_sale",
+    "price": "",
+    "size": "2.067 m²",
+    "bedrooms": 0,
+    "bathrooms": 0,
+    "location_es": "La Estancia de Cafayate, Salta",
+    "location_en": "La Estancia de Cafayate, Salta",
+    "description_es": "Lote de 2.067 m² con 33,15 m de frente, laterales de 61,70 m y 61,72 m, y 33,50 m de fondo. Orientación oeste con atardeceres abiertos y viñedos al fondo que garantizan vistas despejadas y permanentes. Venta exclusiva de Ivertix. CUCIS 372.",
+    "description_en": "2,067 m² lot with 33.15 m frontage, sides of 61.70 m and 61.72 m, and 33.50 m depth. West-facing orientation with open sunsets and vineyards behind ensuring clear, permanent views. Exclusive sale by Ivertix. CUCIS 372.",
+    "image": "/images/properties/F12 Lote from Ivertix.jpeg",
+    "contact_email": "info@cafayate.com",
+    "contact_phone": "3868-401416"
   }
 ]
