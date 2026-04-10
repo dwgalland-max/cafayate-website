@@ -843,6 +843,9 @@ img { max-width: 100%; height: auto; display: block; }
     gap: 30px;
     padding: 20px 16px;
   }
+  .content-layout .sidebar {
+    margin-top: -14px;
+  }
 
   .footer-grid {
     grid-template-columns: 1fr;
