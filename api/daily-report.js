@@ -209,10 +209,10 @@ module.exports = async function handler(req, res) {
 
     // Check if this is a web view request
     if (isWebView) {
-      // Show sample data for template preview when no GA4 credentials
-      if (!analyticsData && isWebView) {
-        analyticsData = getSampleData();
-        analyticsData._isSample = true;
+      if (!analyticsData || analyticsData.error) {
+        const errMsg = analyticsData ? analyticsData.error : 'GOOGLE_SERVICE_ACCOUNT_KEY not configured in Vercel environment variables.';
+        res.setHeader('Content-Type', 'text/html; charset=utf-8');
+        return res.status(200).send(`<!DOCTYPE html><html><head><title>Report Unavailable</title><style>body{font-family:sans-serif;display:flex;justify-content:center;align-items:center;min-height:100vh;margin:0;background:#f5f5f5;}.msg{background:#fff;padding:40px;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,.1);max-width:500px;text-align:center;}h1{color:#1e6a3a;margin:0 0 12px;}p{color:#666;}</style></head><body><div class="msg"><h1>Report Unavailable</h1><p>${errMsg}</p></div></body></html>`);
       }
       const webHTML = buildWebReportHTML(dateStr, analyticsData);
       res.setHeader('Content-Type', 'text/html; charset=utf-8');
@@ -220,6 +220,11 @@ module.exports = async function handler(req, res) {
     }
 
     // Otherwise, send email (cron / manual trigger)
+    if (!analyticsData || analyticsData.error) {
+      const errMsg = analyticsData ? analyticsData.error : 'GOOGLE_SERVICE_ACCOUNT_KEY not configured';
+      return res.status(500).json({ error: `Cannot send report: ${errMsg}` });
+    }
+
     const emailHTML = buildEmailHTML(dateStr, analyticsData);
 
     await resend.emails.send({
@@ -805,59 +810,6 @@ function buildWebReportHTML(dateStr, analytics) {
 </html>`;
 }
 
-function getSampleData() {
-  // Real GA4 data from cafayate.com — Mar 13 – Apr 9, 2026
-  return {
-    yesterday: {
-      activeUsers: '168', sessions: '182', screenPageViews: '310',
-      bounceRate: '0.51', averageSessionDuration: '33'
-    },
-    retention: {
-      engagedSessions: '89', engagementRate: '0.49',
-      sessionsPerUser: '1.08', screenPageViewsPerSession: '1.70',
-      newUsers: '165', activeUsers: '168', userEngagementDuration: '5544'
-    },
-    userTypes: [
-      { dimensions: ['new'], metrics: ['615', '650', '0.47', '30'] },
-      { dimensions: ['returning'], metrics: ['1', '2', '0.50', '120'] }
-    ],
-    month: { activeUsers: '616', sessions: '652', screenPageViews: '1213' },
-    sources: [
-      { dimensions: ['Paid Search'], metrics: ['469', '414'] },
-      { dimensions: ['Direct'], metrics: ['135', '127'] },
-      { dimensions: ['Organic Search'], metrics: ['45', '42'] },
-      { dimensions: ['Organic Social'], metrics: ['18', '16'] },
-      { dimensions: ['Cross-network'], metrics: ['10', '9'] },
-      { dimensions: ['Unassigned'], metrics: ['6', '5'] },
-      { dimensions: ['Referral'], metrics: ['3', '2'] }
-    ],
-    countries: [
-      { dimensions: ['Argentina'], metrics: ['285'] },
-      { dimensions: ['United States'], metrics: ['198'] },
-      { dimensions: ['Spain'], metrics: ['32'] },
-      { dimensions: ['Brazil'], metrics: ['24'] },
-      { dimensions: ['United Kingdom'], metrics: ['18'] },
-      { dimensions: ['Chile'], metrics: ['14'] },
-      { dimensions: ['France'], metrics: ['11'] },
-      { dimensions: ['Germany'], metrics: ['8'] }
-    ],
-    aiTraffic: [
-      { dimensions: ['chatgpt.com'], metrics: ['3'] }
-    ],
-    topPages: [
-      { dimensions: ['/'], metrics: ['607', '487', '6331', '0.52'] },
-      { dimensions: ['/pages/visitas'], metrics: ['98', '73', '4234', '0.35'] },
-      { dimensions: ['/en'], metrics: ['82', '67', '469', '0.58'] },
-      { dimensions: ['/pages/lugares'], metrics: ['64', '54', '1512', '0.42'] },
-      { dimensions: ['/pages/bodegas'], metrics: ['59', '42', '1890', '0.38'] },
-      { dimensions: ['/pages/degustaciones'], metrics: ['48', '35', '945', '0.44'] },
-      { dimensions: ['/pages/agenda'], metrics: ['28', '23', '299', '0.55'] },
-      { dimensions: ['/pages/vinos'], metrics: ['22', '20', '720', '0.40'] },
-      { dimensions: ['/tastings/'], metrics: ['16', '8', '456', '0.30'] },
-      { dimensions: ['/pages/fotos'], metrics: ['14', '13', '234', '0.45'] }
-    ]
-  };
-}
 
 function formatDuration(seconds) {
   const mins = Math.floor(seconds / 60);
