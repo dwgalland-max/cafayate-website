@@ -21,6 +21,16 @@ function isRateLimited(ip) {
   return false;
 }
 
+// --- HTML sanitization ---
+function escapeHtml(str) {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 // --- Simple content heuristics ---
 function looksLikeSpam(name, subject, message) {
   // Check for gibberish: high ratio of uppercase or no spaces in long strings
@@ -43,8 +53,12 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  // CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  // CORS headers — only allow submissions from cafayate.com
+  const origin = req.headers.origin || '';
+  const allowedOrigins = ['https://cafayate.com', 'https://www.cafayate.com'];
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
   res.setHeader('Access-Control-Allow-Methods', 'POST');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
@@ -82,18 +96,24 @@ module.exports = async function handler(req, res) {
       return res.status(200).json({ success: true }); // fake success
     }
 
+    // --- Sanitize all user input before putting in HTML ---
+    const safeName = escapeHtml(name);
+    const safeEmail = escapeHtml(email);
+    const safeSubject = escapeHtml(subject);
+    const safeMessage = escapeHtml(message).replace(/\n/g, '<br>');
+
     // --- Send email via Resend ---
     const { data, error } = await resend.emails.send({
       from: 'Cafayate.com Contact <noreply@cafayate.com>',
       to: 'dwgalland@gmail.com',
       replyTo: email,
-      subject: `[Cafayate.com] ${subject}`,
+      subject: `[Cafayate.com] ${safeSubject}`,
       html: `
         <h2>New Contact Form Message</h2>
-        <p><strong>From:</strong> ${name} (<a href="mailto:${email}">${email}</a>)</p>
-        <p><strong>Subject:</strong> ${subject}</p>
+        <p><strong>From:</strong> ${safeName} (<a href="mailto:${safeEmail}">${safeEmail}</a>)</p>
+        <p><strong>Subject:</strong> ${safeSubject}</p>
         <hr>
-        <p>${message.replace(/\n/g, '<br>')}</p>
+        <p>${safeMessage}</p>
         <hr>
         <p style="color:#999;font-size:12px;">Sent from the <a href="https://cafayate.com">cafayate.com</a> contact form</p>
       `,
