@@ -160,75 +160,94 @@ module.exports = async function handler(req, res) {
           }
         });
 
-        // --- Report 7: Google Ads keyword performance (last 7 days) ---
-        // Uses googleAdsKeyword dimension (compatible with advertiser metrics)
-        const keywordReport = await analyticsDataClient.properties.runReport({
-          property: `properties/${GA4_PROPERTY_ID}`,
-          requestBody: {
-            dateRanges: [{ startDate: weekAgoStr, endDate: yesterdayStr }],
-            dimensions: [{ name: 'googleAdsKeyword' }],
-            metrics: [
-              { name: 'advertiserAdClicks' },
-              { name: 'advertiserAdImpressions' },
-              { name: 'advertiserAdCost' },
-              { name: 'advertiserAdCostPerClick' }
-            ],
-            orderBys: [{ metric: { metricName: 'advertiserAdClicks' }, desc: true }],
-            limit: 20
-          }
-        });
+        // --- Google Ads reports (wrapped in try-catch to not break main report) ---
+        let keywordReport = { data: {} };
+        let keywordEngagementReport = { data: {} };
+        let adsTrendReport = { data: {} };
+        let adsCampaignReport = { data: {} };
 
-        // --- Report 7b: Keyword engagement from session data ---
-        const keywordEngagementReport = await analyticsDataClient.properties.runReport({
-          property: `properties/${GA4_PROPERTY_ID}`,
-          requestBody: {
-            dateRanges: [{ startDate: weekAgoStr, endDate: yesterdayStr }],
-            dimensions: [{ name: 'sessionGoogleAdsKeyword' }],
-            metrics: [
-              { name: 'sessions' },
-              { name: 'engagementRate' },
-              { name: 'averageSessionDuration' }
-            ],
-            orderBys: [{ metric: { metricName: 'sessions' }, desc: true }],
-            limit: 20
-          }
-        });
+        try {
+          // Report 7: Keyword cost data
+          keywordReport = await analyticsDataClient.properties.runReport({
+            property: `properties/${GA4_PROPERTY_ID}`,
+            requestBody: {
+              dateRanges: [{ startDate: weekAgoStr, endDate: yesterdayStr }],
+              dimensions: [{ name: 'sessionGoogleAdsKeyword' }, { name: 'sessionCampaignName' }],
+              metrics: [
+                { name: 'advertiserAdClicks' },
+                { name: 'advertiserAdImpressions' },
+                { name: 'advertiserAdCost' },
+                { name: 'advertiserAdCostPerClick' }
+              ],
+              orderBys: [{ metric: { metricName: 'advertiserAdClicks' }, desc: true }],
+              limit: 20
+            }
+          });
+        } catch (e) { console.error('Keyword report error:', e.message); }
 
-        // --- Report 8: Google Ads daily trend (last 14 days) ---
-        const twoWeeksAgo = new Date();
-        twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 14);
-        const twoWeeksAgoStr = twoWeeksAgo.toISOString().split('T')[0];
+        try {
+          // Report 7b: Keyword engagement
+          keywordEngagementReport = await analyticsDataClient.properties.runReport({
+            property: `properties/${GA4_PROPERTY_ID}`,
+            requestBody: {
+              dateRanges: [{ startDate: weekAgoStr, endDate: yesterdayStr }],
+              dimensions: [{ name: 'sessionGoogleAdsKeyword' }],
+              metrics: [
+                { name: 'sessions' },
+                { name: 'engagementRate' },
+                { name: 'averageSessionDuration' }
+              ],
+              orderBys: [{ metric: { metricName: 'sessions' }, desc: true }],
+              limit: 20
+            }
+          });
+        } catch (e) { console.error('Keyword engagement report error:', e.message); }
 
-        const adsTrendReport = await analyticsDataClient.properties.runReport({
-          property: `properties/${GA4_PROPERTY_ID}`,
-          requestBody: {
-            dateRanges: [{ startDate: twoWeeksAgoStr, endDate: yesterdayStr }],
-            dimensions: [{ name: 'date' }],
-            metrics: [
-              { name: 'advertiserAdClicks' },
-              { name: 'advertiserAdImpressions' },
-              { name: 'advertiserAdCost' }
-            ],
-            orderBys: [{ dimension: { dimensionName: 'date' }, desc: false }]
-          }
-        });
+        try {
+          // Report 8: Daily trend (14 days)
+          const twoWeeksAgo = new Date();
+          twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 14);
+          const twoWeeksAgoStr = twoWeeksAgo.toISOString().split('T')[0];
 
-        // --- Report 9: Google Ads campaign summary (last 7 days) ---
-        const adsCampaignReport = await analyticsDataClient.properties.runReport({
-          property: `properties/${GA4_PROPERTY_ID}`,
-          requestBody: {
-            dateRanges: [{ startDate: weekAgoStr, endDate: yesterdayStr }],
-            dimensions: [{ name: 'googleAdsCampaignName' }],
-            metrics: [
-              { name: 'advertiserAdClicks' },
-              { name: 'advertiserAdImpressions' },
-              { name: 'advertiserAdCost' },
-              { name: 'advertiserAdCostPerClick' }
-            ],
-            orderBys: [{ metric: { metricName: 'advertiserAdClicks' }, desc: true }],
-            limit: 5
-          }
-        });
+          adsTrendReport = await analyticsDataClient.properties.runReport({
+            property: `properties/${GA4_PROPERTY_ID}`,
+            requestBody: {
+              dateRanges: [{ startDate: twoWeeksAgoStr, endDate: yesterdayStr }],
+              dimensions: [{ name: 'date' }, { name: 'sessionCampaignName' }],
+              metrics: [
+                { name: 'advertiserAdClicks' },
+                { name: 'advertiserAdImpressions' },
+                { name: 'advertiserAdCost' }
+              ],
+              orderBys: [{ dimension: { dimensionName: 'date' }, desc: false }]
+            }
+          });
+        } catch (e) { console.error('Ads trend report error:', e.message); }
+
+        try {
+          // Report 9: Campaign summary
+          adsCampaignReport = await analyticsDataClient.properties.runReport({
+            property: `properties/${GA4_PROPERTY_ID}`,
+            requestBody: {
+              dateRanges: [{ startDate: weekAgoStr, endDate: yesterdayStr }],
+              dimensions: [{ name: 'sessionCampaignName' }],
+              metrics: [
+                { name: 'advertiserAdClicks' },
+                { name: 'advertiserAdImpressions' },
+                { name: 'advertiserAdCost' },
+                { name: 'advertiserAdCostPerClick' }
+              ],
+              dimensionFilter: {
+                filter: {
+                  fieldName: 'sessionCampaignName',
+                  stringFilter: { matchType: 'FULL_REGEXP', value: '.+' }
+                }
+              },
+              orderBys: [{ metric: { metricName: 'advertiserAdClicks' }, desc: true }],
+              limit: 5
+            }
+          });
+        } catch (e) { console.error('Campaign report error:', e.message); }
 
         // --- Report 6: Traffic from AI sources (ChatGPT, etc.) ---
         const aiReport = await analyticsDataClient.properties.runReport({
@@ -261,9 +280,9 @@ module.exports = async function handler(req, res) {
           retention: parseSimpleReport(retentionReport.data),
           userTypes: parseReport(userTypeReport.data),
           aiTraffic: parseReport(aiReport.data),
-          keywords: parseReport(keywordReport.data),
+          keywords: aggregateKeywords(parseReport(keywordReport.data)),
           keywordEngagement: parseReport(keywordEngagementReport.data),
-          adsTrend: parseReport(adsTrendReport.data),
+          adsTrend: aggregateByDate(parseReport(adsTrendReport.data)),
           adsCampaigns: parseReport(adsCampaignReport.data),
           yesterdayDate: yesterdayStr,
           weekAgoDate: weekAgoStr,
@@ -333,6 +352,51 @@ function parseSimpleReport(data) {
   const result = {};
   headers.forEach((h, i) => { result[h] = values[i]; });
   return result;
+}
+
+// Aggregate keyword rows that have 2 dimensions (keyword + campaign) into keyword-only rows
+function aggregateKeywords(rows) {
+  const map = {};
+  rows.forEach(r => {
+    const kw = r.dimensions[0];
+    if (!map[kw]) {
+      map[kw] = { clicks: 0, impressions: 0, cost: 0 };
+    }
+    map[kw].clicks += parseInt(r.metrics[0] || 0);
+    map[kw].impressions += parseInt(r.metrics[1] || 0);
+    map[kw].cost += parseFloat(r.metrics[2] || 0);
+  });
+  return Object.entries(map)
+    .map(([kw, d]) => ({
+      dimensions: [kw],
+      metrics: [
+        String(d.clicks),
+        String(d.impressions),
+        String(d.cost),
+        String(d.clicks > 0 ? d.cost / d.clicks : 0)
+      ]
+    }))
+    .sort((a, b) => parseInt(b.metrics[0]) - parseInt(a.metrics[0]));
+}
+
+// Aggregate trend rows by date (collapse campaign dimension)
+function aggregateByDate(rows) {
+  const map = {};
+  rows.forEach(r => {
+    const date = r.dimensions[0];
+    if (!map[date]) {
+      map[date] = { clicks: 0, impressions: 0, cost: 0 };
+    }
+    map[date].clicks += parseInt(r.metrics[0] || 0);
+    map[date].impressions += parseInt(r.metrics[1] || 0);
+    map[date].cost += parseFloat(r.metrics[2] || 0);
+  });
+  return Object.entries(map)
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([date, d]) => ({
+      dimensions: [date],
+      metrics: [String(d.clicks), String(d.impressions), String(d.cost)]
+    }));
 }
 
 function buildEmailHTML(dateStr, analytics) {
