@@ -345,7 +345,8 @@
         name: contactForm.querySelector('[name="name"]').value,
         email: contactForm.querySelector('[name="email"]').value,
         subject: contactForm.querySelector('[name="subject"]').value,
-        message: contactForm.querySelector('[name="message"]').value
+        message: contactForm.querySelector('[name="message"]').value,
+        website: contactForm.querySelector('[name="website"]') ? contactForm.querySelector('[name="website"]').value : ''
       };
 
       fetch('/api/contact', {
