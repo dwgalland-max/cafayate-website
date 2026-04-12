@@ -161,27 +161,35 @@ module.exports = async function handler(req, res) {
         });
 
         // --- Report 7: Google Ads keyword performance (last 7 days) ---
+        // Uses googleAdsKeyword dimension (compatible with advertiser metrics)
         const keywordReport = await analyticsDataClient.properties.runReport({
+          property: `properties/${GA4_PROPERTY_ID}`,
+          requestBody: {
+            dateRanges: [{ startDate: weekAgoStr, endDate: yesterdayStr }],
+            dimensions: [{ name: 'googleAdsKeyword' }],
+            metrics: [
+              { name: 'advertiserAdClicks' },
+              { name: 'advertiserAdImpressions' },
+              { name: 'advertiserAdCost' },
+              { name: 'advertiserAdCostPerClick' }
+            ],
+            orderBys: [{ metric: { metricName: 'advertiserAdClicks' }, desc: true }],
+            limit: 20
+          }
+        });
+
+        // --- Report 7b: Keyword engagement from session data ---
+        const keywordEngagementReport = await analyticsDataClient.properties.runReport({
           property: `properties/${GA4_PROPERTY_ID}`,
           requestBody: {
             dateRanges: [{ startDate: weekAgoStr, endDate: yesterdayStr }],
             dimensions: [{ name: 'sessionGoogleAdsKeyword' }],
             metrics: [
-              { name: 'advertiserAdClicks' },
-              { name: 'advertiserAdImpressions' },
-              { name: 'advertiserAdCost' },
-              { name: 'advertiserAdCostPerClick' },
               { name: 'sessions' },
-              { name: 'activeUsers' },
-              { name: 'engagementRate' }
+              { name: 'engagementRate' },
+              { name: 'averageSessionDuration' }
             ],
-            dimensionFilter: {
-              filter: {
-                fieldName: 'sessionGoogleAdsKeyword',
-                stringFilter: { matchType: 'FULL_REGEXP', value: '.+' }
-              }
-            },
-            orderBys: [{ metric: { metricName: 'advertiserAdClicks' }, desc: true }],
+            orderBys: [{ metric: { metricName: 'sessions' }, desc: true }],
             limit: 20
           }
         });
@@ -199,8 +207,7 @@ module.exports = async function handler(req, res) {
             metrics: [
               { name: 'advertiserAdClicks' },
               { name: 'advertiserAdImpressions' },
-              { name: 'advertiserAdCost' },
-              { name: 'sessions' }
+              { name: 'advertiserAdCost' }
             ],
             orderBys: [{ dimension: { dimensionName: 'date' }, desc: false }]
           }
@@ -210,24 +217,14 @@ module.exports = async function handler(req, res) {
         const adsCampaignReport = await analyticsDataClient.properties.runReport({
           property: `properties/${GA4_PROPERTY_ID}`,
           requestBody: {
-            dateRanges: [
-              { startDate: weekAgoStr, endDate: yesterdayStr, name: 'thisWeek' },
-              { startDate: new Date(new Date().setDate(new Date().getDate() - 14)).toISOString().split('T')[0], endDate: weekAgoStr, name: 'lastWeek' }
-            ],
-            dimensions: [{ name: 'sessionGoogleAdsCampaignName' }],
+            dateRanges: [{ startDate: weekAgoStr, endDate: yesterdayStr }],
+            dimensions: [{ name: 'googleAdsCampaignName' }],
             metrics: [
               { name: 'advertiserAdClicks' },
               { name: 'advertiserAdImpressions' },
               { name: 'advertiserAdCost' },
-              { name: 'advertiserAdCostPerClick' },
-              { name: 'sessions' }
+              { name: 'advertiserAdCostPerClick' }
             ],
-            dimensionFilter: {
-              filter: {
-                fieldName: 'sessionGoogleAdsCampaignName',
-                stringFilter: { matchType: 'FULL_REGEXP', value: '.+' }
-              }
-            },
             orderBys: [{ metric: { metricName: 'advertiserAdClicks' }, desc: true }],
             limit: 5
           }
@@ -265,6 +262,7 @@ module.exports = async function handler(req, res) {
           userTypes: parseReport(userTypeReport.data),
           aiTraffic: parseReport(aiReport.data),
           keywords: parseReport(keywordReport.data),
+          keywordEngagement: parseReport(keywordEngagementReport.data),
           adsTrend: parseReport(adsTrendReport.data),
           adsCampaigns: parseReport(adsCampaignReport.data),
           yesterdayDate: yesterdayStr,
@@ -803,6 +801,18 @@ function buildWebReportHTML(dateStr, analytics) {
       </section>`;
     }
 
+    // Build engagement lookup from session-based keyword data
+    const engLookup = {};
+    if (analytics.keywordEngagement) {
+      analytics.keywordEngagement.forEach(r => {
+        engLookup[r.dimensions[0].toLowerCase()] = {
+          sessions: parseInt(r.metrics[0] || 0),
+          engRate: parseFloat(r.metrics[1] || 0),
+          avgDuration: parseFloat(r.metrics[2] || 0)
+        };
+      });
+    }
+
     // Keyword performance table
     content += `
     <section class="report-section">
@@ -816,7 +826,8 @@ function buildWebReportHTML(dateStr, analytics) {
       const impressions = parseInt(r.metrics[1] || 0);
       const cost = parseFloat(r.metrics[2] || 0);
       const cpc = parseFloat(r.metrics[3] || 0);
-      const engRate = parseFloat(r.metrics[6] || 0);
+      const eng = engLookup[keyword.toLowerCase()] || {};
+      const engRate = eng.engRate || 0;
       const ctr = impressions > 0 ? (clicks / impressions * 100) : 0;
       const ctrColor = ctr > 5 ? '#27ae60' : ctr > 2 ? '#e67e22' : '#c0392b';
       const engColor = engRate > 0.5 ? '#27ae60' : engRate > 0.3 ? '#e67e22' : '#c0392b';
@@ -832,15 +843,15 @@ function buildWebReportHTML(dateStr, analytics) {
     });
     content += `</tbody></table></section>`;
 
-    // Daily trend sparkline (text-based)
+    // Daily trend with bar chart
     if (analytics.adsTrend && analytics.adsTrend.length > 0) {
       content += `
       <section class="report-section">
         <h2>Ads Daily Trend (14 Days)</h2>
         <table class="full-table">
-          <thead><tr><th>Date</th><th>Clicks</th><th>Impr.</th><th>Spend</th><th>CPC</th><th>Trend</th></tr></thead>
+          <thead><tr><th>Date</th><th>Clicks</th><th>Impr.</th><th>Spend</th><th>CPC</th><th style="width:120px">Trend</th></tr></thead>
           <tbody>`;
-      const maxClicks = Math.max(...analytics.adsTrend.map(r => parseInt(r.metrics[0] || 0)));
+      const maxClicks = Math.max(...analytics.adsTrend.map(r => parseInt(r.metrics[0] || 0)), 1);
       analytics.adsTrend.forEach(r => {
         const dateRaw = r.dimensions[0];
         const dateFormatted = dateRaw.slice(4,6) + '/' + dateRaw.slice(6,8);
@@ -848,7 +859,7 @@ function buildWebReportHTML(dateStr, analytics) {
         const impressions = parseInt(r.metrics[1] || 0);
         const cost = parseFloat(r.metrics[2] || 0);
         const cpc = clicks > 0 ? cost / clicks : 0;
-        const barWidth = maxClicks > 0 ? Math.round(clicks / maxClicks * 100) : 0;
+        const barWidth = Math.round(clicks / maxClicks * 100);
         content += `<tr>
           <td>${dateFormatted}</td>
           <td>${clicks.toLocaleString()}</td>
