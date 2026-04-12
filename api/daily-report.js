@@ -167,19 +167,20 @@ module.exports = async function handler(req, res) {
         let adsCampaignReport = { data: {} };
 
         try {
-          // Report 7: Keyword cost data
+          // Report 7: Keyword sessions + engagement (session-scoped dims)
           keywordReport = await analyticsDataClient.properties.runReport({
             property: `properties/${GA4_PROPERTY_ID}`,
             requestBody: {
               dateRanges: [{ startDate: weekAgoStr, endDate: yesterdayStr }],
-              dimensions: [{ name: 'sessionGoogleAdsKeyword' }, { name: 'sessionCampaignName' }],
+              dimensions: [{ name: 'sessionGoogleAdsKeyword' }],
               metrics: [
-                { name: 'advertiserAdClicks' },
-                { name: 'advertiserAdImpressions' },
-                { name: 'advertiserAdCost' },
-                { name: 'advertiserAdCostPerClick' }
+                { name: 'sessions' },
+                { name: 'activeUsers' },
+                { name: 'engagementRate' },
+                { name: 'averageSessionDuration' },
+                { name: 'bounceRate' }
               ],
-              orderBys: [{ metric: { metricName: 'advertiserAdClicks' }, desc: true }],
+              orderBys: [{ metric: { metricName: 'sessions' }, desc: true }],
               limit: 20
             }
           });
@@ -213,7 +214,7 @@ module.exports = async function handler(req, res) {
             property: `properties/${GA4_PROPERTY_ID}`,
             requestBody: {
               dateRanges: [{ startDate: twoWeeksAgoStr, endDate: yesterdayStr }],
-              dimensions: [{ name: 'date' }, { name: 'sessionCampaignName' }],
+              dimensions: [{ name: 'date' }],
               metrics: [
                 { name: 'advertiserAdClicks' },
                 { name: 'advertiserAdImpressions' },
@@ -280,9 +281,9 @@ module.exports = async function handler(req, res) {
           retention: parseSimpleReport(retentionReport.data),
           userTypes: parseReport(userTypeReport.data),
           aiTraffic: parseReport(aiReport.data),
-          keywords: aggregateKeywords(parseReport(keywordReport.data)),
+          keywords: parseReport(keywordReport.data),
           keywordEngagement: parseReport(keywordEngagementReport.data),
-          adsTrend: aggregateByDate(parseReport(adsTrendReport.data)),
+          adsTrend: parseReport(adsTrendReport.data),
           adsCampaigns: parseReport(adsCampaignReport.data),
           yesterdayDate: yesterdayStr,
           weekAgoDate: weekAgoStr,
@@ -656,15 +657,14 @@ function buildEmailHTML(dateStr, analytics) {
     <div class="section">
       <h2>Top Keywords (7 Days)</h2>
       <table>
-        <tr><th>Keyword</th><th>Clicks</th><th>CPC</th><th>CTR</th><th>Cost</th></tr>`;
+        <tr><th>Keyword</th><th>Sessions</th><th>Users</th><th>Eng. Rate</th><th>Bounce</th></tr>`;
     analytics.keywords.slice(0, 10).forEach(r => {
       const keyword = r.dimensions[0];
-      const clicks = parseInt(r.metrics[0] || 0);
-      const impressions = parseInt(r.metrics[1] || 0);
-      const cost = parseFloat(r.metrics[2] || 0);
-      const cpc = parseFloat(r.metrics[3] || 0);
-      const ctr = impressions > 0 ? (clicks / impressions * 100) : 0;
-      html += `<tr><td>${keyword}</td><td style="text-align:right">${clicks.toLocaleString()}</td><td style="text-align:right">$${cpc.toFixed(2)}</td><td style="text-align:right">${ctr.toFixed(1)}%</td><td style="text-align:right">$${cost.toFixed(2)}</td></tr>`;
+      const sessions = parseInt(r.metrics[0] || 0);
+      const users = parseInt(r.metrics[1] || 0);
+      const engRate = parseFloat(r.metrics[2] || 0);
+      const bounceRate = parseFloat(r.metrics[4] || 0);
+      html += `<tr><td>${keyword}</td><td style="text-align:right">${sessions.toLocaleString()}</td><td style="text-align:right">${users.toLocaleString()}</td><td style="text-align:right">${Math.round(engRate * 100)}%</td><td style="text-align:right">${Math.round(bounceRate * 100)}%</td></tr>`;
     });
     html += `</table></div>`;
   } else {
@@ -865,44 +865,29 @@ function buildWebReportHTML(dateStr, analytics) {
       </section>`;
     }
 
-    // Build engagement lookup from session-based keyword data
-    const engLookup = {};
-    if (analytics.keywordEngagement) {
-      analytics.keywordEngagement.forEach(r => {
-        engLookup[r.dimensions[0].toLowerCase()] = {
-          sessions: parseInt(r.metrics[0] || 0),
-          engRate: parseFloat(r.metrics[1] || 0),
-          avgDuration: parseFloat(r.metrics[2] || 0)
-        };
-      });
-    }
-
-    // Keyword performance table
+    // Keyword performance table (session-based metrics)
     content += `
     <section class="report-section">
       <h2>Keyword Performance (7 Days)</h2>
       <table class="full-table">
-        <thead><tr><th>Keyword</th><th>Clicks</th><th>Impr.</th><th>CTR</th><th>CPC</th><th>Cost</th><th>Eng. Rate</th></tr></thead>
+        <thead><tr><th>Keyword</th><th>Sessions</th><th>Users</th><th>Eng. Rate</th><th>Avg. Duration</th><th>Bounce Rate</th></tr></thead>
         <tbody>`;
     analytics.keywords.forEach(r => {
       const keyword = r.dimensions[0];
-      const clicks = parseInt(r.metrics[0] || 0);
-      const impressions = parseInt(r.metrics[1] || 0);
-      const cost = parseFloat(r.metrics[2] || 0);
-      const cpc = parseFloat(r.metrics[3] || 0);
-      const eng = engLookup[keyword.toLowerCase()] || {};
-      const engRate = eng.engRate || 0;
-      const ctr = impressions > 0 ? (clicks / impressions * 100) : 0;
-      const ctrColor = ctr > 5 ? '#27ae60' : ctr > 2 ? '#e67e22' : '#c0392b';
+      const sessions = parseInt(r.metrics[0] || 0);
+      const users = parseInt(r.metrics[1] || 0);
+      const engRate = parseFloat(r.metrics[2] || 0);
+      const avgDuration = parseFloat(r.metrics[3] || 0);
+      const bounceRate = parseFloat(r.metrics[4] || 0);
       const engColor = engRate > 0.5 ? '#27ae60' : engRate > 0.3 ? '#e67e22' : '#c0392b';
+      const bounceColor = bounceRate > 0.7 ? '#c0392b' : bounceRate > 0.5 ? '#e67e22' : '#27ae60';
       content += `<tr>
         <td>${keyword}</td>
-        <td>${clicks.toLocaleString()}</td>
-        <td>${impressions.toLocaleString()}</td>
-        <td style="color:${ctrColor};font-weight:600">${ctr.toFixed(1)}%</td>
-        <td>$${cpc.toFixed(2)}</td>
-        <td>$${cost.toFixed(2)}</td>
+        <td>${sessions.toLocaleString()}</td>
+        <td>${users.toLocaleString()}</td>
         <td style="color:${engColor};font-weight:600">${Math.round(engRate * 100)}%</td>
+        <td>${formatDuration(avgDuration)}</td>
+        <td style="color:${bounceColor};font-weight:600">${Math.round(bounceRate * 100)}%</td>
       </tr>`;
     });
     content += `</tbody></table></section>`;
