@@ -160,6 +160,79 @@ module.exports = async function handler(req, res) {
           }
         });
 
+        // --- Report 7: Google Ads keyword performance (last 7 days) ---
+        const keywordReport = await analyticsDataClient.properties.runReport({
+          property: `properties/${GA4_PROPERTY_ID}`,
+          requestBody: {
+            dateRanges: [{ startDate: weekAgoStr, endDate: yesterdayStr }],
+            dimensions: [{ name: 'sessionGoogleAdsKeyword' }],
+            metrics: [
+              { name: 'advertiserAdClicks' },
+              { name: 'advertiserAdImpressions' },
+              { name: 'advertiserAdCost' },
+              { name: 'advertiserAdCostPerClick' },
+              { name: 'sessions' },
+              { name: 'activeUsers' },
+              { name: 'engagementRate' }
+            ],
+            dimensionFilter: {
+              filter: {
+                fieldName: 'sessionGoogleAdsKeyword',
+                stringFilter: { matchType: 'FULL_REGEXP', value: '.+' }
+              }
+            },
+            orderBys: [{ metric: { metricName: 'advertiserAdClicks' }, desc: true }],
+            limit: 20
+          }
+        });
+
+        // --- Report 8: Google Ads daily trend (last 14 days) ---
+        const twoWeeksAgo = new Date();
+        twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 14);
+        const twoWeeksAgoStr = twoWeeksAgo.toISOString().split('T')[0];
+
+        const adsTrendReport = await analyticsDataClient.properties.runReport({
+          property: `properties/${GA4_PROPERTY_ID}`,
+          requestBody: {
+            dateRanges: [{ startDate: twoWeeksAgoStr, endDate: yesterdayStr }],
+            dimensions: [{ name: 'date' }],
+            metrics: [
+              { name: 'advertiserAdClicks' },
+              { name: 'advertiserAdImpressions' },
+              { name: 'advertiserAdCost' },
+              { name: 'sessions' }
+            ],
+            orderBys: [{ dimension: { dimensionName: 'date' }, desc: false }]
+          }
+        });
+
+        // --- Report 9: Google Ads campaign summary (last 7 days) ---
+        const adsCampaignReport = await analyticsDataClient.properties.runReport({
+          property: `properties/${GA4_PROPERTY_ID}`,
+          requestBody: {
+            dateRanges: [
+              { startDate: weekAgoStr, endDate: yesterdayStr, name: 'thisWeek' },
+              { startDate: new Date(new Date().setDate(new Date().getDate() - 14)).toISOString().split('T')[0], endDate: weekAgoStr, name: 'lastWeek' }
+            ],
+            dimensions: [{ name: 'sessionGoogleAdsCampaignName' }],
+            metrics: [
+              { name: 'advertiserAdClicks' },
+              { name: 'advertiserAdImpressions' },
+              { name: 'advertiserAdCost' },
+              { name: 'advertiserAdCostPerClick' },
+              { name: 'sessions' }
+            ],
+            dimensionFilter: {
+              filter: {
+                fieldName: 'sessionGoogleAdsCampaignName',
+                stringFilter: { matchType: 'FULL_REGEXP', value: '.+' }
+              }
+            },
+            orderBys: [{ metric: { metricName: 'advertiserAdClicks' }, desc: true }],
+            limit: 5
+          }
+        });
+
         // --- Report 6: Traffic from AI sources (ChatGPT, etc.) ---
         const aiReport = await analyticsDataClient.properties.runReport({
           property: `properties/${GA4_PROPERTY_ID}`,
@@ -191,6 +264,9 @@ module.exports = async function handler(req, res) {
           retention: parseSimpleReport(retentionReport.data),
           userTypes: parseReport(userTypeReport.data),
           aiTraffic: parseReport(aiReport.data),
+          keywords: parseReport(keywordReport.data),
+          adsTrend: parseReport(adsTrendReport.data),
+          adsCampaigns: parseReport(adsCampaignReport.data),
           yesterdayDate: yesterdayStr,
           weekAgoDate: weekAgoStr,
           monthAgoDate: monthAgoStr
@@ -491,13 +567,51 @@ function buildEmailHTML(dateStr, analytics) {
     </div>`;
   }
 
-  // --- Google Ads reminder ---
-  html += `
+  // --- Google Ads keyword performance ---
+  if (analytics && analytics.keywords && analytics.keywords.length > 0) {
+    // Summary KPIs
+    if (analytics.adsCampaigns && analytics.adsCampaigns.length > 0) {
+      const totalClicks = analytics.adsCampaigns.reduce((s, r) => s + parseInt(r.metrics[0] || 0), 0);
+      const totalImpressions = analytics.adsCampaigns.reduce((s, r) => s + parseInt(r.metrics[1] || 0), 0);
+      const totalCost = analytics.adsCampaigns.reduce((s, r) => s + parseFloat(r.metrics[2] || 0), 0);
+      const avgCPC = totalClicks > 0 ? totalCost / totalClicks : 0;
+      const ctr = totalImpressions > 0 ? (totalClicks / totalImpressions * 100) : 0;
+      html += `
     <div class="section">
-      <h2>Google Ads Quick Link</h2>
-      <p style="font-size:14px;">View your full Google Ads dashboard: <a href="https://ads.google.com/aw/overview?ocid=7007488989" style="color:#1e6a3a;">Open Google Ads</a></p>
-      <p style="font-size:12px;color:#999;">Campaign: New Website Search Campaign 2026 &bull; Budget: $12/day &bull; Optimization: 96.8%</p>
+      <h2>Google Ads Overview (7 Days)</h2>
+      <div class="stats-grid">
+        <div class="stat-box"><div class="stat-value">${totalClicks.toLocaleString()}</div><div class="stat-label">Clicks</div></div>
+        <div class="stat-box"><div class="stat-value">${totalImpressions.toLocaleString()}</div><div class="stat-label">Impressions</div></div>
+        <div class="stat-box"><div class="stat-value">${ctr.toFixed(1)}%</div><div class="stat-label">CTR</div></div>
+        <div class="stat-box"><div class="stat-value">$${avgCPC.toFixed(2)}</div><div class="stat-label">Avg. CPC</div></div>
+        <div class="stat-box"><div class="stat-value">$${totalCost.toFixed(2)}</div><div class="stat-label">Total Spend</div></div>
+      </div>
     </div>`;
+    }
+
+    // Top keywords table (limit to 10 in email)
+    html += `
+    <div class="section">
+      <h2>Top Keywords (7 Days)</h2>
+      <table>
+        <tr><th>Keyword</th><th>Clicks</th><th>CPC</th><th>CTR</th><th>Cost</th></tr>`;
+    analytics.keywords.slice(0, 10).forEach(r => {
+      const keyword = r.dimensions[0];
+      const clicks = parseInt(r.metrics[0] || 0);
+      const impressions = parseInt(r.metrics[1] || 0);
+      const cost = parseFloat(r.metrics[2] || 0);
+      const cpc = parseFloat(r.metrics[3] || 0);
+      const ctr = impressions > 0 ? (clicks / impressions * 100) : 0;
+      html += `<tr><td>${keyword}</td><td style="text-align:right">${clicks.toLocaleString()}</td><td style="text-align:right">$${cpc.toFixed(2)}</td><td style="text-align:right">${ctr.toFixed(1)}%</td><td style="text-align:right">$${cost.toFixed(2)}</td></tr>`;
+    });
+    html += `</table></div>`;
+  } else {
+    html += `
+    <div class="section">
+      <h2>Google Ads</h2>
+      <p style="font-size:14px;">View your dashboard: <a href="https://ads.google.com/aw/overview?ocid=7007488989" style="color:#1e6a3a;">Open Google Ads</a></p>
+    </div>`;
+  }
 
   html += `
     <div class="section" style="text-align:center;">
@@ -507,7 +621,7 @@ function buildEmailHTML(dateStr, analytics) {
 
     <div class="footer">
       <p>CAFAYATE.COM &mdash; Insider's Guide to Salta's Wine Region</p>
-      <p>This report is sent daily at 8:00 AM (Argentina time). <a href="mailto:info@cafayate.com">Manage preferences</a></p>
+      <p>This report is sent daily at 6:00 AM (Argentina time). <a href="mailto:info@cafayate.com">Manage preferences</a></p>
     </div>
   </div>
 </body>
@@ -666,13 +780,94 @@ function buildWebReportHTML(dateStr, analytics) {
     content += `<section class="report-section"><div class="note">Setup required: Add GOOGLE_SERVICE_ACCOUNT_KEY in Vercel to see analytics data.</div></section>`;
   }
 
-  // Google Ads link
-  content += `
+  // Google Ads keyword performance
+  if (analytics && analytics.keywords && analytics.keywords.length > 0) {
+    // Campaign summary first
+    if (analytics.adsCampaigns && analytics.adsCampaigns.length > 0) {
+      const totalClicks = analytics.adsCampaigns.reduce((s, r) => s + parseInt(r.metrics[0] || 0), 0);
+      const totalImpressions = analytics.adsCampaigns.reduce((s, r) => s + parseInt(r.metrics[1] || 0), 0);
+      const totalCost = analytics.adsCampaigns.reduce((s, r) => s + parseFloat(r.metrics[2] || 0), 0);
+      const avgCPC = totalClicks > 0 ? totalCost / totalClicks : 0;
+      const ctr = totalImpressions > 0 ? (totalClicks / totalImpressions * 100) : 0;
+
+      content += `
+      <section class="report-section page-break-before">
+        <h2>Google Ads Overview (7 Days)</h2>
+        <div class="kpi-grid">
+          <div class="kpi"><span class="kpi-value">${totalClicks.toLocaleString()}</span><span class="kpi-label">Clicks</span></div>
+          <div class="kpi"><span class="kpi-value">${totalImpressions.toLocaleString()}</span><span class="kpi-label">Impressions</span></div>
+          <div class="kpi"><span class="kpi-value">${ctr.toFixed(1)}%</span><span class="kpi-label">CTR</span></div>
+          <div class="kpi"><span class="kpi-value">$${avgCPC.toFixed(2)}</span><span class="kpi-label">Avg. CPC</span></div>
+          <div class="kpi"><span class="kpi-value">$${totalCost.toFixed(2)}</span><span class="kpi-label">Total Spend</span></div>
+        </div>
+      </section>`;
+    }
+
+    // Keyword performance table
+    content += `
+    <section class="report-section">
+      <h2>Keyword Performance (7 Days)</h2>
+      <table class="full-table">
+        <thead><tr><th>Keyword</th><th>Clicks</th><th>Impr.</th><th>CTR</th><th>CPC</th><th>Cost</th><th>Eng. Rate</th></tr></thead>
+        <tbody>`;
+    analytics.keywords.forEach(r => {
+      const keyword = r.dimensions[0];
+      const clicks = parseInt(r.metrics[0] || 0);
+      const impressions = parseInt(r.metrics[1] || 0);
+      const cost = parseFloat(r.metrics[2] || 0);
+      const cpc = parseFloat(r.metrics[3] || 0);
+      const engRate = parseFloat(r.metrics[6] || 0);
+      const ctr = impressions > 0 ? (clicks / impressions * 100) : 0;
+      const ctrColor = ctr > 5 ? '#27ae60' : ctr > 2 ? '#e67e22' : '#c0392b';
+      const engColor = engRate > 0.5 ? '#27ae60' : engRate > 0.3 ? '#e67e22' : '#c0392b';
+      content += `<tr>
+        <td>${keyword}</td>
+        <td>${clicks.toLocaleString()}</td>
+        <td>${impressions.toLocaleString()}</td>
+        <td style="color:${ctrColor};font-weight:600">${ctr.toFixed(1)}%</td>
+        <td>$${cpc.toFixed(2)}</td>
+        <td>$${cost.toFixed(2)}</td>
+        <td style="color:${engColor};font-weight:600">${Math.round(engRate * 100)}%</td>
+      </tr>`;
+    });
+    content += `</tbody></table></section>`;
+
+    // Daily trend sparkline (text-based)
+    if (analytics.adsTrend && analytics.adsTrend.length > 0) {
+      content += `
+      <section class="report-section">
+        <h2>Ads Daily Trend (14 Days)</h2>
+        <table class="full-table">
+          <thead><tr><th>Date</th><th>Clicks</th><th>Impr.</th><th>Spend</th><th>CPC</th><th>Trend</th></tr></thead>
+          <tbody>`;
+      const maxClicks = Math.max(...analytics.adsTrend.map(r => parseInt(r.metrics[0] || 0)));
+      analytics.adsTrend.forEach(r => {
+        const dateRaw = r.dimensions[0];
+        const dateFormatted = dateRaw.slice(4,6) + '/' + dateRaw.slice(6,8);
+        const clicks = parseInt(r.metrics[0] || 0);
+        const impressions = parseInt(r.metrics[1] || 0);
+        const cost = parseFloat(r.metrics[2] || 0);
+        const cpc = clicks > 0 ? cost / clicks : 0;
+        const barWidth = maxClicks > 0 ? Math.round(clicks / maxClicks * 100) : 0;
+        content += `<tr>
+          <td>${dateFormatted}</td>
+          <td>${clicks.toLocaleString()}</td>
+          <td>${impressions.toLocaleString()}</td>
+          <td>$${cost.toFixed(2)}</td>
+          <td>$${cpc.toFixed(2)}</td>
+          <td><div style="background:#e8f5e9;border-radius:3px;height:14px;width:100%"><div style="background:#1e6a3a;border-radius:3px;height:14px;width:${barWidth}%"></div></div></td>
+        </tr>`;
+      });
+      content += `</tbody></table></section>`;
+    }
+  } else {
+    content += `
     <section class="report-section">
       <h2>Google Ads</h2>
-      <p>Campaign: New Website Search Campaign 2026 &bull; Budget: $12/day &bull; Optimization: 96.8%</p>
+      <p>Keyword data unavailable. Ensure your Google Ads account is linked to GA4.</p>
       <p><a href="https://ads.google.com/aw/overview?ocid=7007488989" class="btn-link">Open Google Ads Dashboard &rarr;</a></p>
     </section>`;
+  }
 
   return `<!DOCTYPE html>
 <html lang="en">
