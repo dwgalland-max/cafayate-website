@@ -256,6 +256,185 @@
       '</div>';
   }
 
+  // ===== DYNAMIC BLOG RENDERING =====
+  var blogContainer = document.getElementById('blog-list');
+  if (blogContainer) {
+    var blogPath = blogContainer.dataset.src || '/data/blog.json';
+    fetch(blogPath)
+      .then(function (r) { return r.json(); })
+      .then(function (posts) {
+        renderBlogPosts(posts, blogContainer);
+      })
+      .catch(function (err) {
+        console.error('Error loading blog posts:', err);
+        blogContainer.innerHTML = '<p class="no-events">' +
+          (isEnglish ? 'Error loading blog posts.' : 'Error al cargar las entradas del blog.') + '</p>';
+      });
+  }
+
+  function renderBlogPosts(posts, container) {
+    var lang = isEnglish ? 'en' : 'es';
+
+    // Check if we're viewing a single post (hash-based routing)
+    var hash = window.location.hash.replace('#', '');
+    if (hash) {
+      var post = posts.find(function (p) { return p.slug === hash; });
+      if (post) {
+        renderSinglePost(post, container, lang, posts);
+        injectBlogSchema([post]);
+        return;
+      }
+    }
+
+    // Sort by date descending (newest first)
+    var sorted = posts.slice().sort(function (a, b) { return b.date.localeCompare(a.date); });
+
+    if (sorted.length === 0) {
+      container.innerHTML = '<p class="no-events">' +
+        (isEnglish ? 'No blog posts yet. Check back soon!' : 'No hay entradas en el blog a\u00fan. \u00a1Volv\u00e9 pronto!') +
+        '</p>';
+      return;
+    }
+
+    var html = '<div class="blog-list">';
+    sorted.forEach(function (post) {
+      html += blogCardHTML(post, lang);
+    });
+    html += '</div>';
+
+    container.innerHTML = html;
+
+    // Add click handlers for blog cards
+    container.querySelectorAll('.blog-card-link').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        var slug = this.dataset.slug;
+        window.location.hash = slug;
+        var post = posts.find(function (p) { return p.slug === slug; });
+        if (post) {
+          renderSinglePost(post, container, lang, posts);
+          injectBlogSchema([post]);
+          window.scrollTo({ top: container.offsetTop - 80, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Inject structured data for all posts
+    injectBlogSchema(sorted);
+  }
+
+  function blogCardHTML(post, lang) {
+    var title = post['title_' + lang] || post.title_es || '';
+    var desc = post['description_' + lang] || post.description_es || '';
+    var dateObj = new Date(post.date + 'T12:00:00');
+    var dateStr = dateObj.toLocaleDateString(lang === 'en' ? 'en-US' : 'es-AR', {
+      year: 'numeric', month: 'long', day: 'numeric'
+    });
+
+    var categoryLabels = {
+      wine: { es: 'Vinos', en: 'Wine' },
+      travel: { es: 'Viajes', en: 'Travel' },
+      culture: { es: 'Cultura', en: 'Culture' }
+    };
+    var catLabel = categoryLabels[post.category] ? categoryLabels[post.category][lang] : (post.category || '');
+
+    return '<article class="blog-card">' +
+      '<a href="#' + post.slug + '" class="blog-card-link" data-slug="' + post.slug + '">' +
+      (post.image ? '<img class="blog-card-img" src="' + post.image + '" alt="' + title + '" loading="lazy">' : '') +
+      '<div class="blog-card-body">' +
+      '<div class="blog-card-meta">' +
+      '<span class="blog-card-date">' + dateStr + '</span>' +
+      (catLabel ? '<span class="blog-card-category">' + catLabel + '</span>' : '') +
+      '</div>' +
+      '<h3>' + title + '</h3>' +
+      '<p>' + desc + '</p>' +
+      '<span class="blog-card-readmore">' + (isEnglish ? 'Read more \u2192' : 'Leer m\u00e1s \u2192') + '</span>' +
+      '</div>' +
+      '</a></article>';
+  }
+
+  function renderSinglePost(post, container, lang, allPosts) {
+    var title = post['title_' + lang] || post.title_es || '';
+    var content = post['content_' + lang] || post.content_es || '';
+    var dateObj = new Date(post.date + 'T12:00:00');
+    var dateStr = dateObj.toLocaleDateString(lang === 'en' ? 'en-US' : 'es-AR', {
+      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+    });
+
+    var categoryLabels = {
+      wine: { es: 'Vinos', en: 'Wine' },
+      travel: { es: 'Viajes', en: 'Travel' },
+      culture: { es: 'Cultura', en: 'Culture' }
+    };
+    var catLabel = categoryLabels[post.category] ? categoryLabels[post.category][lang] : '';
+
+    var backLabel = isEnglish ? '\u2190 Back to Blog' : '\u2190 Volver al Blog';
+
+    var html = '<div class="blog-single">' +
+      '<a href="#" class="blog-back-link" id="blog-back">' + backLabel + '</a>' +
+      (post.image ? '<img class="blog-single-img" src="' + post.image + '" alt="' + title + '">' : '') +
+      '<div class="blog-single-meta">' +
+      '<span class="blog-card-date">' + dateStr + '</span>' +
+      (catLabel ? '<span class="blog-card-category">' + catLabel + '</span>' : '') +
+      '</div>' +
+      '<h2 class="blog-single-title">' + title + '</h2>' +
+      '<div class="blog-single-content">' + content + '</div>' +
+      '</div>';
+
+    container.innerHTML = html;
+
+    // Update page title
+    document.title = title + ' - CAFAYATE.com';
+
+    // Back button handler
+    var backBtn = document.getElementById('blog-back');
+    if (backBtn) {
+      backBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        window.location.hash = '';
+        renderBlogPosts(allPosts, container);
+        document.title = 'Blog - CAFAYATE.com';
+      });
+    }
+  }
+
+  function injectBlogSchema(posts) {
+    var lang = isEnglish ? 'en' : 'es';
+    var schemaItems = posts.map(function (p) {
+      var title = p['title_' + lang] || p.title_es || '';
+      var desc = p['description_' + lang] || p.description_es || '';
+      return {
+        '@type': 'BlogPosting',
+        'headline': title,
+        'description': desc,
+        'datePublished': p.date,
+        'author': { '@type': 'Organization', 'name': p.author || 'Cafayate.com' },
+        'publisher': { '@type': 'Organization', 'name': 'CAFAYATE.com', 'url': 'https://cafayate.com' },
+        'image': p.image ? 'https://cafayate.com' + p.image : undefined,
+        'url': 'https://cafayate.com/' + (isEnglish ? 'en/' : '') + 'pages/blog#' + p.slug
+      };
+    });
+
+    var schema = { '@context': 'https://schema.org', '@graph': schemaItems };
+    var script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(schema);
+    document.head.appendChild(script);
+  }
+
+  // Handle browser back/forward for blog posts
+  window.addEventListener('hashchange', function () {
+    var bc = document.getElementById('blog-list');
+    if (bc) {
+      var blogDataPath = bc.dataset.src || '/data/blog.json';
+      fetch(blogDataPath)
+        .then(function (r) { return r.json(); })
+        .then(function (posts) {
+          renderBlogPosts(posts, bc);
+        });
+    }
+  });
+
   // ===== DYNAMIC PROPERTY LISTINGS =====
   var propertiesContainer = document.getElementById('properties-list');
   if (propertiesContainer) {
