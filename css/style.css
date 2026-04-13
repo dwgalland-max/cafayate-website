@@ -789,6 +789,24 @@ img { max-width: 100%; height: auto; display: block; }
   color: var(--green-dark);
 }
 
+/* Pinned / featured blog post */
+.blog-card-pinned-post {
+  border-color: var(--green-dark);
+  border-width: 2px;
+}
+
+.blog-card-pinned {
+  display: inline-block;
+  padding: 2px 10px;
+  background: var(--green-dark);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 2px;
+}
+
 /* Blog single post view */
 .blog-single { margin-top: 10px; }
 

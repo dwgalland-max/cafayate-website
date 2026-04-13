@@ -286,8 +286,12 @@
       }
     }
 
-    // Sort by date descending (newest first)
-    var sorted = posts.slice().sort(function (a, b) { return b.date.localeCompare(a.date); });
+    // Sort: pinned posts first, then by date descending (newest first)
+    var sorted = posts.slice().sort(function (a, b) {
+      if (a.pinned && !b.pinned) return -1;
+      if (!a.pinned && b.pinned) return 1;
+      return b.date.localeCompare(a.date);
+    });
 
     if (sorted.length === 0) {
       container.innerHTML = '<p class="no-events">' +
@@ -338,11 +342,14 @@
     };
     var catLabel = categoryLabels[post.category] ? categoryLabels[post.category][lang] : (post.category || '');
 
-    return '<article class="blog-card">' +
+    var pinnedLabel = post.pinned ? '<span class="blog-card-pinned">' + (isEnglish ? 'Featured' : 'Destacado') + '</span>' : '';
+
+    return '<article class="blog-card' + (post.pinned ? ' blog-card-pinned-post' : '') + '">' +
       '<a href="#' + post.slug + '" class="blog-card-link" data-slug="' + post.slug + '">' +
       (post.image ? '<img class="blog-card-img" src="' + post.image + '" alt="' + title + '" loading="lazy">' : '') +
       '<div class="blog-card-body">' +
       '<div class="blog-card-meta">' +
+      pinnedLabel +
       '<span class="blog-card-date">' + dateStr + '</span>' +
       (catLabel ? '<span class="blog-card-category">' + catLabel + '</span>' : '') +
       '</div>' +
