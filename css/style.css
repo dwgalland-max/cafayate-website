@@ -736,8 +736,9 @@ img { max-width: 100%; height: auto; display: block; }
 
 .blog-card-img {
   width: 100%;
-  height: 200px;
+  height: 220px;
   object-fit: cover;
+  object-position: center 30%;
 }
 
 .blog-card-body {
