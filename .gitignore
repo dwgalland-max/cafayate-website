@@ -1,6 +1,9 @@
 # Claude Code
 .claude/
 
+# Dependencies
+node_modules/
+
 # OS files
 .DS_Store
 Thumbs.db
@@ -11,4 +14,8 @@ Thumbs.db
 *~
 .vscode/
 
+# Vercel
 .vercel
+
+# Temporary diagram files
+diagram-agros-terroir.*
