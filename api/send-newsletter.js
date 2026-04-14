@@ -112,7 +112,7 @@ function wrapNewsletter(subject, bodyHtml, firstName) {
   return `
     <div style="max-width:600px;margin:0 auto;font-family:'Segoe UI','Helvetica Neue',Arial,sans-serif;color:#333;">
       <div style="background:#1e6a3a;padding:24px 30px;text-align:center;">
-        <h1 style="color:#fff;margin:0;font-family:Georgia,'Times New Roman',serif;font-size:28px;">CAFAYATE.COM</h1>
+        <h1 style="color:#fff;margin:0;font-family:Georgia,'Times New Roman',serif;font-size:28px;"><a href="https://cafayate.com" style="color:#fff;text-decoration:none;">CAFAYATE.COM</a></h1>
         <p style="color:rgba(255,255,255,0.8);margin:6px 0 0;font-size:13px;letter-spacing:1px;">INSIDER'S GUIDE TO SALTA'S WINE REGION</p>
       </div>
       <div style="padding:30px;background:#fff;">
