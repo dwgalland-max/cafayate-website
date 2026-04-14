@@ -49,7 +49,18 @@ module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   try {
-    const { name, email } = req.body;
+    const { name, email, website, _t } = req.body;
+
+    // Honeypot — if "website" field has a value, it's a bot
+    if (website) {
+      // Return fake success so bot doesn't retry
+      return res.status(200).json({ success: true });
+    }
+
+    // Timing check — if submitted faster than 3 seconds, likely a bot
+    if (_t && typeof _t === 'number' && _t < 3000) {
+      return res.status(200).json({ success: true });
+    }
 
     if (!name || !email) {
       return res.status(400).json({ error: 'Name and email are required.' });
@@ -57,6 +68,24 @@ module.exports = async function handler(req, res) {
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return res.status(400).json({ error: 'Invalid email address.' });
+    }
+
+    // Name validation — reject gibberish bot names
+    // Must be 2-60 chars, contain at least one vowel, no more than 4 consecutive consonants
+    const nameTrimmed = name.trim();
+    if (nameTrimmed.length < 2 || nameTrimmed.length > 60) {
+      return res.status(400).json({ error: 'Please enter a valid name.' });
+    }
+    if (!/[aeiouAEIOU]/.test(nameTrimmed)) {
+      return res.status(200).json({ success: true }); // fake success for bots
+    }
+    if (/[bcdfghjklmnpqrstvwxyz]{5,}/i.test(nameTrimmed)) {
+      return res.status(200).json({ success: true }); // fake success for bots
+    }
+    // Reject names that are mostly uppercase random chars (like "McPASNbaTeaEwwQkNEDjr")
+    const upperCount = (nameTrimmed.match(/[A-Z]/g) || []).length;
+    if (nameTrimmed.length > 8 && upperCount > nameTrimmed.length * 0.4) {
+      return res.status(200).json({ success: true }); // fake success for bots
     }
 
     const ip = req.headers['x-forwarded-for'] || req.headers['x-real-ip'] || 'unknown';

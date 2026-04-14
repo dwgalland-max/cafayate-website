@@ -5,7 +5,7 @@ const AUDIENCE_ID = process.env.RESEND_AUDIENCE_ID;
 const ADMIN_KEY = process.env.NEWSLETTER_ADMIN_KEY;
 
 module.exports = async function handler(req, res) {
-  if (req.method !== 'GET') {
+  if (req.method !== 'GET' && req.method !== 'DELETE') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
@@ -17,6 +17,25 @@ module.exports = async function handler(req, res) {
 
   if (!AUDIENCE_ID) {
     return res.status(500).json({ error: 'RESEND_AUDIENCE_ID not configured.' });
+  }
+
+  // DELETE — remove a subscriber by email
+  if (req.method === 'DELETE') {
+    const email = req.query.email;
+    if (!email) {
+      return res.status(400).json({ error: 'email query param required.' });
+    }
+    try {
+      const { data, error } = await resend.contacts.list({ audienceId: AUDIENCE_ID });
+      if (error) return res.status(500).json({ error: 'Failed to fetch contacts.' });
+      const contact = (data?.data || []).find(c => c.email === email);
+      if (!contact) return res.status(404).json({ error: 'Subscriber not found.' });
+      await resend.contacts.remove({ audienceId: AUDIENCE_ID, id: contact.id });
+      return res.status(200).json({ success: true, removed: email });
+    } catch (err) {
+      console.error('Delete subscriber error:', err);
+      return res.status(500).json({ error: 'Failed to remove subscriber.' });
+    }
   }
 
   try {

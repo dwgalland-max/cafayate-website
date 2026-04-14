@@ -571,6 +571,9 @@
   // ===== NEWSLETTER FORM SUBMISSION =====
   var newsletterForms = document.querySelectorAll('.newsletter-form');
   newsletterForms.forEach(function (form) {
+    // Record when form was loaded for bot timing check
+    form.setAttribute('data-loaded', Date.now().toString());
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var btn = form.querySelector('button[type="submit"]');
@@ -581,9 +584,29 @@
       var oldMsg = form.querySelector('.form-status');
       if (oldMsg) oldMsg.remove();
 
+      // Honeypot check — if the hidden "website" field is filled, it's a bot
+      var honeypot = form.querySelector('[name="website"]');
+      if (honeypot && honeypot.value) {
+        var msg = document.createElement('p');
+        msg.className = 'form-status';
+        msg.style.fontSize = '14px';
+        msg.style.marginTop = '8px';
+        msg.style.color = '#2d8a4e';
+        msg.textContent = isEnglish ? 'Subscribed! Thank you.' : '\u00a1Suscrito! Gracias.';
+        form.appendChild(msg);
+        btn.disabled = false;
+        btn.textContent = origText;
+        return; // Silently reject — bot thinks it worked
+      }
+
+      // Timing check — form submitted in under 3 seconds is likely a bot
+      var loadedAt = parseInt(form.getAttribute('data-loaded') || '0');
+      var elapsed = Date.now() - loadedAt;
+
       var data = {
         name: form.querySelector('[name="name"]').value,
-        email: form.querySelector('[name="email"]').value
+        email: form.querySelector('[name="email"]').value,
+        _t: elapsed
       };
 
       fetch('/api/newsletter', {
