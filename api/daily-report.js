@@ -19,10 +19,13 @@ module.exports = async function handler(req, res) {
 
   if (!isWebView) {
     const authHeader = req.headers.authorization;
-    if (process.env.CRON_SECRET && authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
-      if (process.env.CRON_SECRET) {
-        return res.status(401).json({ error: 'Unauthorized' });
-      }
+    const adminKey = req.query.key;
+    const cronOk = process.env.CRON_SECRET && authHeader === `Bearer ${process.env.CRON_SECRET}`;
+    const adminOk = process.env.NEWSLETTER_ADMIN_KEY && adminKey === process.env.NEWSLETTER_ADMIN_KEY;
+    const noCronSecret = !process.env.CRON_SECRET;
+
+    if (!cronOk && !adminOk && !noCronSecret) {
+      return res.status(401).json({ error: 'Unauthorized' });
     }
   }
 
