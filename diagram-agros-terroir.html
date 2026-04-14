@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agros Terroir — Structure Diagram</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #f5f5f0;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  svg {
+    max-width: 1100px;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.08));
+  }
+  .country-label { font-size: 15px; font-weight: 700; fill: #888; letter-spacing: 2px; }
+  .entity-box { rx: 10; ry: 10; }
+  .hub-label { font-size: 16px; font-weight: 700; fill: #fff; }
+  .hub-sub { font-size: 11px; fill: rgba(255,255,255,0.8); }
+  .node-label { font-size: 12px; font-weight: 600; fill: #333; }
+  .node-sub { font-size: 10px; fill: #777; }
+  .value { font-size: 11px; font-weight: 700; }
+  .value-red { fill: #c0392b; }
+  .value-green { fill: #27ae60; }
+  .connector { stroke: #b0b0b0; stroke-width: 1.5; fill: none; }
+  .connector-thick { stroke: #7a6e5d; stroke-width: 2.5; fill: none; }
+  .connector-dashed { stroke: #b0b0b0; stroke-width: 1.5; fill: none; stroke-dasharray: 6 4; }
+  .arrow { fill: #7a6e5d; }
+  .region-br { fill: #e8f5e9; stroke: #a5d6a7; stroke-width: 1; rx: 12; }
+  .region-ar { fill: #e3f2fd; stroke: #90caf9; stroke-width: 1; rx: 12; }
+  .divider { stroke: #ccc; stroke-width: 1; stroke-dasharray: 8 6; }
+</style>
+</head>
+<body>
+<svg viewBox="0 0 1100 680" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Background regions -->
+  <rect class="region-br" x="20" y="30" width="280" height="630" opacity="0.4"/>
+  <rect class="region-ar" x="320" y="30" width="760" height="630" opacity="0.3"/>
+
+  <!-- Country labels -->
+  <text class="country-label" x="140" y="60" text-anchor="middle">BRAZIL</text>
+  <text class="country-label" x="700" y="60" text-anchor="middle">ARGENTINA</text>
+
+  <!-- Divider -->
+  <line class="divider" x1="310" y1="40" x2="310" y2="650"/>
+
+  <!-- ===== BRAZIL SIDE ===== -->
+
+  <!-- Pedros -->
+  <rect x="80" y="100" width="160" height="56" rx="10" fill="#fff" stroke="#a5d6a7" stroke-width="2"/>
+  <text class="node-label" x="160" y="124" text-anchor="middle">PEDROS</text>
+  <text class="node-sub" x="160" y="142" text-anchor="middle">5M</text>
+  <text class="value value-red" x="250" y="132" text-anchor="start">&#9660;</text>
+
+  <!-- MF / Attica / KK -->
+  <rect x="50" y="200" width="70" height="40" rx="8" fill="#fff" stroke="#c8e6c9" stroke-width="1.5"/>
+  <text class="node-label" x="85" y="225" text-anchor="middle">MF</text>
+
+  <rect x="130" y="200" width="80" height="40" rx="8" fill="#fff" stroke="#c8e6c9" stroke-width="1.5"/>
+  <text class="node-label" x="170" y="225" text-anchor="middle">ATTICA</text>
+
+  <rect x="220" y="200" width="60" height="40" rx="8" fill="#fff" stroke="#c8e6c9" stroke-width="1.5"/>
+  <text class="node-label" x="250" y="225" text-anchor="middle">KK</text>
+
+  <!-- Connectors Pedros -> investors -->
+  <line class="connector" x1="130" y1="156" x2="85" y2="200"/>
+  <line class="connector" x1="160" y1="156" x2="170" y2="200"/>
+  <line class="connector" x1="190" y1="156" x2="250" y2="200"/>
+
+  <!-- Attica ARG -->
+  <rect x="80" y="290" width="170" height="56" rx="10" fill="#4a7c59" stroke="none"/>
+  <text class="hub-label" x="165" y="314" text-anchor="middle" font-size="13">ATTICA ARG</text>
+  <text class="hub-sub" x="165" y="332" text-anchor="middle">(P11)</text>
+
+  <!-- Connector investors -> Attica ARG -->
+  <line class="connector-thick" x1="85" y1="240" x2="120" y2="290"/>
+  <line class="connector-thick" x1="170" y1="240" x2="165" y2="290"/>
+  <line class="connector-thick" x1="250" y1="240" x2="210" y2="290"/>
+
+  <!-- Fundo de Inversion -->
+  <rect x="55" y="410" width="190" height="56" rx="10" fill="#fff" stroke="#a5d6a7" stroke-width="2"/>
+  <text class="node-label" x="150" y="434" text-anchor="middle">FUNDO DE INVERSION</text>
+  <text class="node-sub" x="150" y="452" text-anchor="middle">(Investment Fund)</text>
+
+  <!-- Connector Attica ARG -> Fundo -->
+  <line class="connector-thick" x1="165" y1="346" x2="150" y2="410"/>
+
+  <!-- Values near Fundo -->
+  <text class="value" x="60" y="500" fill="#555">50 / 1M</text>
+  <text class="value" x="60" y="518" fill="#555">1M &#9660;</text>
+  <text class="value value-green" x="60" y="536">~350k</text>
+
+  <!-- ===== CENTRAL HUB: AGROS TERROIR ===== -->
+
+  <rect x="440" y="260" width="220" height="70" rx="14" fill="#3b5998" stroke="none"/>
+  <text class="hub-label" x="550" y="290" text-anchor="middle" font-size="17">AGROS TERROIR</text>
+  <text class="hub-sub" x="550" y="310" text-anchor="middle">Central Holding</text>
+
+  <!-- Arrow from Attica ARG / Fundo to Agros Terroir -->
+  <path class="connector-thick" d="M250,318 Q350,295 440,295" marker-end="url(#arrowhead)"/>
+
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon class="arrow" points="0 0, 10 3.5, 0 7"/>
+    </marker>
+  </defs>
+
+  <!-- ===== ASSETS (below hub) ===== -->
+
+  <!-- Bodega -->
+  <rect x="370" y="410" width="120" height="56" rx="10" fill="#fff" stroke="#90caf9" stroke-width="2"/>
+  <text class="node-label" x="430" y="434" text-anchor="middle">BODEGA</text>
+  <text class="node-sub" x="430" y="452" text-anchor="middle">2k</text>
+  <line class="connector" x1="500" y1="330" x2="430" y2="410"/>
+
+  <!-- Olivares -->
+  <rect x="510" y="410" width="130" height="56" rx="10" fill="#fff" stroke="#90caf9" stroke-width="2"/>
+  <text class="node-label" x="575" y="434" text-anchor="middle">OLIVARES</text>
+  <text class="node-sub" x="575" y="452" text-anchor="middle">3.5 ha</text>
+  <line class="connector" x1="550" y1="330" x2="575" y2="410"/>
+
+  <!-- Values under Olivares -->
+  <text class="value" x="520" y="490" fill="#555">50 (1.0M)</text>
+  <text class="value" x="520" y="508" fill="#555">0.5M &#9660;</text>
+
+  <!-- Cachi -->
+  <rect x="660" y="410" width="100" height="56" rx="10" fill="#fff" stroke="#90caf9" stroke-width="2"/>
+  <text class="node-label" x="710" y="442" text-anchor="middle">CACHI</text>
+  <line class="connector" x1="590" y1="330" x2="710" y2="410"/>
+
+  <!-- 1.25M red circle -->
+  <circle cx="575" cy="560" r="28" fill="#e74c3c" opacity="0.15" stroke="#e74c3c" stroke-width="2"/>
+  <text class="value value-red" x="575" y="565" text-anchor="middle" font-size="13">1.25M</text>
+
+  <!-- ===== RIGHT SIDE BUSINESSES ===== -->
+
+  <!-- Sunal Vines -->
+  <rect x="760" y="100" width="140" height="50" rx="10" fill="#fff" stroke="#90caf9" stroke-width="2"/>
+  <text class="node-label" x="830" y="130" text-anchor="middle">SUNAL WINES</text>
+  <line class="connector" x1="660" y1="280" x2="760" y2="125"/>
+
+  <!-- Bad Brothers Vines -->
+  <rect x="920" y="100" width="150" height="50" rx="10" fill="#fff" stroke="#90caf9" stroke-width="2"/>
+  <text class="node-label" x="995" y="130" text-anchor="middle">BAD BROTHERS WINES</text>
+  <line class="connector" x1="660" y1="275" x2="920" y2="125"/>
+
+  <!-- Restaurante Bad Brothers -->
+  <rect x="920" y="190" width="155" height="50" rx="10" fill="#fff" stroke="#90caf9" stroke-width="2"/>
+  <text class="node-label" x="998" y="212" text-anchor="middle" font-size="11">RESTAURANTE</text>
+  <text class="node-label" x="998" y="228" text-anchor="middle" font-size="11">BAD BROTHERS</text>
+  <line class="connector" x1="660" y1="290" x2="920" y2="215"/>
+
+  <!-- Luracatao -->
+  <rect x="800" y="360" width="130" height="50" rx="10" fill="#fff" stroke="#90caf9" stroke-width="2"/>
+  <text class="node-label" x="865" y="390" text-anchor="middle">LURACATAO</text>
+  <line class="connector" x1="660" y1="300" x2="800" y2="385"/>
+
+  <!-- Casa Vecina BB -->
+  <rect x="830" y="460" width="150" height="50" rx="10" fill="#fff" stroke="#90caf9" stroke-width="2"/>
+  <text class="node-label" x="905" y="482" text-anchor="middle" font-size="11">CASA VECINA</text>
+  <text class="node-label" x="905" y="498" text-anchor="middle" font-size="11">BB</text>
+  <line class="connector" x1="620" y1="330" x2="830" y2="485"/>
+
+</svg>
+</body>
+</html>
