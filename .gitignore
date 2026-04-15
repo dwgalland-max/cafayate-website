@@ -14,6 +14,9 @@ Thumbs.db
 *~
 .vscode/
 
+# Environment
+.env
+
 # Vercel
 .vercel
 
