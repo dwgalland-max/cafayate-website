@@ -522,7 +522,7 @@ function buildEmailHTML(dateStr, analytics) {
       <h2>New vs Returning Users (Last 7 Days)</h2>
       <table>
         <tr><th>Type</th><th>Users</th><th>Sessions</th><th>Eng. Rate</th><th>Avg. Duration</th></tr>`;
-      analytics.userTypes.forEach(r => {
+      analytics.userTypes.filter(r => r.dimensions[0] !== '(not set)').forEach(r => {
         const label = r.dimensions[0] === 'new' ? 'New visitors' : r.dimensions[0] === 'returning' ? 'Returning visitors' : r.dimensions[0];
         const er = parseFloat(r.metrics[2] || 0);
         const dur = parseFloat(r.metrics[3] || 0);
@@ -678,6 +678,10 @@ function buildEmailHTML(dateStr, analytics) {
     </div>`;
   }
 
+  // Add insights section
+  const emailInsights = generateInsights(analytics);
+  html += renderInsightsHTML(emailInsights, 'email');
+
   html += `
     <div class="section" style="text-align:center;">
       <p style="font-size:14px;"><a href="https://cafayate.com/api/daily-report?format=web" style="color:#1e6a3a;font-weight:600;">View full report in browser &rarr;</a></p>
@@ -752,7 +756,7 @@ function buildWebReportHTML(dateStr, analytics) {
         <table>
           <thead><tr><th>Visitor Type</th><th>Users</th><th>Sessions</th><th>Engagement Rate</th><th>Avg. Duration</th></tr></thead>
           <tbody>`;
-      analytics.userTypes.forEach(r => {
+      analytics.userTypes.filter(r => r.dimensions[0] !== '(not set)').forEach(r => {
         const label = r.dimensions[0] === 'new' ? 'New visitors' : r.dimensions[0] === 'returning' ? 'Returning visitors' : r.dimensions[0];
         content += `<tr><td>${label}</td><td>${parseInt(r.metrics[0]).toLocaleString()}</td><td>${parseInt(r.metrics[1]).toLocaleString()}</td><td>${Math.round(parseFloat(r.metrics[2] || 0) * 100)}%</td><td>${formatDuration(parseFloat(r.metrics[3] || 0))}</td></tr>`;
       });
@@ -932,6 +936,10 @@ function buildWebReportHTML(dateStr, analytics) {
     </section>`;
   }
 
+  // Add insights section to web report
+  const webInsights = generateInsights(analytics);
+  content += renderInsightsHTML(webInsights, 'web');
+
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1073,4 +1081,152 @@ function formatDuration(seconds) {
   const mins = Math.floor(seconds / 60);
   const secs = Math.round(seconds % 60);
   return mins > 0 ? `${mins}m ${secs}s` : `${secs}s`;
+}
+
+// ===== INSIGHTS ANALYSIS =====
+function generateInsights(analytics) {
+  const insights = [];
+  const y = analytics.yesterday || {};
+  const ret = analytics.retention || {};
+  const sources = analytics.sources || [];
+  const topPages = analytics.topPages || [];
+  const userTypes = analytics.userTypes || [];
+  const countries = analytics.countries || [];
+
+  // --- Engagement analysis ---
+  const engRate = parseFloat(ret.engagementRate || 0);
+  const avgDuration = parseFloat(y.averageSessionDuration || 0);
+  const pagesPerSession = parseFloat(ret.screenPageViewsPerSession || 0);
+  const bounceRate = parseFloat(y.bounceRate || 0);
+
+  if (engRate > 0.6) {
+    insights.push({ type: 'positive', text: `Engagement rate of ${Math.round(engRate * 100)}% is strong — well above the 40-50% typical for content sites. Visitors are actively interacting with the site, not just landing and leaving.` });
+  } else if (engRate > 0.4) {
+    insights.push({ type: 'neutral', text: `Engagement rate of ${Math.round(engRate * 100)}% is average. Consider adding more internal links within blog posts and content pages to encourage deeper browsing.` });
+  } else if (engRate > 0) {
+    insights.push({ type: 'negative', text: `Engagement rate of ${Math.round(engRate * 100)}% is below average. Many visitors are leaving quickly. Review your top landing pages for slow load times or mismatched content.` });
+  }
+
+  if (avgDuration > 90) {
+    insights.push({ type: 'positive', text: `Average session duration of ${formatDuration(avgDuration)} indicates visitors are reading content thoroughly — the blog and internal linking strategy is working.` });
+  } else if (avgDuration > 45) {
+    insights.push({ type: 'neutral', text: `Average session duration of ${formatDuration(avgDuration)} is decent but has room to grow. Longer-form blog content and photo galleries can increase time on site.` });
+  } else if (avgDuration > 0) {
+    insights.push({ type: 'negative', text: `Average session duration of ${formatDuration(avgDuration)} is short. Visitors may not be finding what they're looking for, or the content isn't capturing attention.` });
+  }
+
+  // --- Traffic source analysis ---
+  if (sources.length > 0) {
+    const topSource = sources[0];
+    const topName = topSource.dimensions[0];
+    const topSessions = parseInt(topSource.metrics[0]);
+    const totalSessions = sources.reduce((sum, s) => sum + parseInt(s.metrics[0]), 0);
+    const topPct = totalSessions > 0 ? Math.round((topSessions / totalSessions) * 100) : 0;
+
+    if (topPct > 70) {
+      insights.push({ type: 'neutral', text: `${topPct}% of traffic comes from ${topName}. Heavy reliance on a single channel is a risk — diversifying with social media, newsletter referrals, or SEO content would strengthen the foundation.` });
+    } else {
+      insights.push({ type: 'positive', text: `Traffic is well-distributed with ${topName} leading at ${topPct}%. A diversified traffic mix means the site isn't dependent on any single source.` });
+    }
+
+    // Check for organic search presence
+    const organic = sources.find(s => s.dimensions[0].toLowerCase().includes('organic'));
+    if (organic) {
+      const orgSessions = parseInt(organic.metrics[0]);
+      const orgPct = Math.round((orgSessions / totalSessions) * 100);
+      if (orgPct > 30) {
+        insights.push({ type: 'positive', text: `Organic search accounts for ${orgPct}% of traffic — the SEO strategy and structured data are paying off.` });
+      }
+    }
+  }
+
+  // --- Returning visitors ---
+  const returning = userTypes.find(u => u.dimensions[0] === 'returning');
+  const newUsers = userTypes.find(u => u.dimensions[0] === 'new');
+  if (returning && newUsers) {
+    const retSessions = parseInt(returning.metrics[0]);
+    const newSessions = parseInt(newUsers.metrics[0]);
+    const retPct = Math.round((retSessions / (retSessions + newSessions)) * 100);
+    if (retPct > 15) {
+      insights.push({ type: 'positive', text: `${retPct}% returning visitors shows the site is building a loyal audience who come back — the newsletter and regular content updates are driving repeat visits.` });
+    } else if (retPct > 5) {
+      insights.push({ type: 'neutral', text: `${retPct}% returning visitors is a starting point. Publishing the weekly newsletter and fresh blog content consistently will grow this number over time.` });
+    }
+
+    // Compare engagement between new and returning
+    const retEngRate = parseFloat(returning.metrics[2] || 0);
+    const newEngRate = parseFloat(newUsers.metrics[2] || 0);
+    if (retEngRate > newEngRate + 0.1) {
+      insights.push({ type: 'positive', text: `Returning visitors engage ${Math.round(retEngRate * 100)}% vs ${Math.round(newEngRate * 100)}% for new visitors — people who come back are more invested in the content.` });
+    }
+  }
+
+  // --- Top pages insight ---
+  if (topPages.length >= 3) {
+    const blogPages = topPages.filter(p => p.dimensions[0].includes('blog'));
+    if (blogPages.length > 0) {
+      const blogViews = blogPages.reduce((sum, p) => sum + parseInt(p.metrics[0]), 0);
+      const totalViews = topPages.reduce((sum, p) => sum + parseInt(p.metrics[0]), 0);
+      const blogPct = Math.round((blogViews / totalViews) * 100);
+      if (blogPct > 5) {
+        insights.push({ type: 'positive', text: `Blog content accounts for ${blogPct}% of page views — it's becoming a real traffic driver for the site.` });
+      }
+    }
+
+    // Find highest bounce page
+    const highBounce = topPages
+      .filter(p => parseInt(p.metrics[0]) > 10)
+      .sort((a, b) => parseFloat(b.metrics[3]) - parseFloat(a.metrics[3]))[0];
+    if (highBounce && parseFloat(highBounce.metrics[3]) > 0.75) {
+      const pageName = highBounce.dimensions[0] === '/' ? 'Homepage' : highBounce.dimensions[0].replace(/.*\//, '').replace(/-/g, ' ');
+      insights.push({ type: 'negative', text: `"${pageName}" has a ${Math.round(parseFloat(highBounce.metrics[3]) * 100)}% bounce rate — consider adding stronger calls-to-action or internal links to keep visitors exploring.` });
+    }
+  }
+
+  // --- Geographic insight ---
+  if (countries.length >= 2) {
+    const topCountries = countries.slice(0, 3).map(c => c.dimensions[0]).join(', ');
+    insights.push({ type: 'neutral', text: `Top visitor countries: ${topCountries}. This helps guide which content and language to prioritize.` });
+  }
+
+  // Fallback if no insights generated
+  if (insights.length === 0) {
+    insights.push({ type: 'neutral', text: 'Not enough data to generate insights yet. Check back once the site has a few days of consistent traffic.' });
+  }
+
+  return insights;
+}
+
+function renderInsightsHTML(insights, style) {
+  const icons = { positive: '&#9650;', negative: '&#9660;', neutral: '&#9679;' };
+  const colors = { positive: '#2d8a4e', negative: '#c0392b', neutral: '#7f8c8d' };
+
+  if (style === 'email') {
+    let html = `
+    <div class="section">
+      <h2 style="font-size:14px;text-transform:uppercase;letter-spacing:1px;color:#1e6a3a;border-bottom:2px solid #1e6a3a;padding-bottom:6px;margin-bottom:12px;">Insights &amp; Analysis</h2>`;
+    insights.forEach(i => {
+      html += `
+      <div style="padding:10px 14px;margin-bottom:8px;background:#f8faf9;border-left:3px solid ${colors[i.type]};border-radius:0 4px 4px 0;">
+        <span style="color:${colors[i.type]};font-size:11px;margin-right:6px;">${icons[i.type]}</span>
+        <span style="font-size:13px;color:#333;line-height:1.5;">${i.text}</span>
+      </div>`;
+    });
+    html += `</div>`;
+    return html;
+  }
+
+  // Web/PDF style
+  let html = `
+  <section class="report-section">
+    <h2>Insights &amp; Analysis</h2>`;
+  insights.forEach(i => {
+    html += `
+    <div style="padding:12px 16px;margin-bottom:10px;background:#f8faf9;border-left:4px solid ${colors[i.type]};border-radius:0 6px 6px 0;">
+      <span style="color:${colors[i.type]};font-size:12px;margin-right:8px;">${icons[i.type]}</span>
+      <span style="font-size:14px;color:#333;line-height:1.6;">${i.text}</span>
+    </div>`;
+  });
+  html += `</section>`;
+  return html;
 }
