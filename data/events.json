@@ -75,16 +75,5 @@
     "description_en": "Wine fair featuring the best wineries of the Calchaquí Valleys, followed by an electronic music party at sunset. Sports tournaments in the morning.",
     "category": "wine",
     "website": "https://www.instagram.com/wineex.ar/"
-  },
-  {
-    "title_es": "EVENTO DE PRUEBA - Ignorar",
-    "title_en": "TEST EVENT - Please Ignore",
-    "date": "2026-05-15",
-    "time": "19:00",
-    "location": "Plaza Principal, Cafayate",
-    "description_es": "Este es un evento de prueba para verificar que el sistema funciona.",
-    "description_en": "This is a test event to verify the submission system works.",
-    "category": "culture",
-    "website": ""
   }
 ]
