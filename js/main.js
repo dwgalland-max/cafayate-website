@@ -801,4 +801,17 @@
       });
   }
 
+  // Shuffle photo-grid figures so gallery feels fresh every visit
+  var photoGrid = document.querySelector('.photo-grid');
+  if (photoGrid) {
+    var figures = Array.prototype.slice.call(photoGrid.children);
+    for (var i = figures.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = figures[i];
+      figures[i] = figures[j];
+      figures[j] = tmp;
+    }
+    figures.forEach(function (fig) { photoGrid.appendChild(fig); });
+  }
+
 })();
