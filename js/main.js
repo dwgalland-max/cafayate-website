@@ -346,7 +346,7 @@
 
     return '<article class="blog-card' + (post.pinned ? ' blog-card-pinned-post' : '') + '">' +
       '<a href="#' + post.slug + '" class="blog-card-link" data-slug="' + post.slug + '">' +
-      (post.image ? '<img class="blog-card-img" src="' + post.image + '" alt="' + title + '" loading="lazy">' : '') +
+      (post.image ? '<img class="blog-card-img" src="' + post.image + '" alt="' + title + '" loading="lazy"' + (post.image_position ? ' style="object-position:' + post.image_position + '"' : '') + '>' : '') +
       '<div class="blog-card-body">' +
       '<div class="blog-card-meta">' +
       pinnedLabel +
