@@ -35,5 +35,24 @@
     "image": "/images/properties/lote-f12-estancia.jpg",
     "contact_email": "info@cafayate.com",
     "contact_phone": "3868-401416"
+  },
+  {
+    "id": "casa-estancia-wine-golf",
+    "title_es": "Casa en Venta en La Estancia de Cafayate Wine & Golf",
+    "title_en": "House for Sale in La Estancia de Cafayate Wine & Golf",
+    "type_es": "Residencial",
+    "type_en": "Residential",
+    "status": "for_sale",
+    "price": "",
+    "size": "435 m² en lote de 2.756 m²",
+    "bedrooms": 0,
+    "bathrooms": 0,
+    "location_es": "La Estancia de Cafayate, Salta",
+    "location_en": "La Estancia de Cafayate, Salta",
+    "description_es": "Dos casas emplazadas en un lote de 2.756 m². La vivienda principal consta de 273 m² y la de huéspedes de 162 m², haciendo un total de 435 m² construidos. Amoblada, con paisajismo y pileta incluida. Venta exclusiva de Consultora Calchaquí. SAE CUCIS 638.",
+    "description_en": "Two houses on a 2,756 m² lot. The main residence is 273 m² and the guest house is 162 m², totaling 435 m² of built space. Furnished, with landscaping and pool included. Exclusive sale by Consultora Calchaquí. SAE CUCIS 638.",
+    "image": "/images/properties/casa-estancia-wine-golf.jpg",
+    "contact_email": "consultoracalchaqui2026@gmail.com",
+    "contact_phone": "+54 9 387 474-9591"
   }
 ]
