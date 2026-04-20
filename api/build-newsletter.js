@@ -251,14 +251,16 @@ function buildNewsletterHTML({ editorsNote, latestPost, upcoming, properties, sp
     properties.forEach(function(prop) {
       const propUrl = prop.website || SITE + t.propertyPath;
       propsHtml += `
-        <div style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #eee;">
-          ${prop.image ? '<img src="' + SITE + prop.image + '" alt="' + title(prop) + '" style="width:100px;height:75px;object-fit:cover;border-radius:3px;flex-shrink:0;">' : ''}
-          <div>
-            <strong style="font-size:14px;color:#333;">${title(prop)}</strong>
-            <br><span style="font-size:12px;color:#777;">${propLocation(prop)}${prop.size ? ' · ' + prop.size : ''}</span>
-            <br><a href="${propUrl}" style="font-size:12px;color:#1e6a3a;text-decoration:underline;">${t.viewDetails}</a>
-          </div>
-        </div>
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="width:100%;padding:12px 0;border-bottom:1px solid #eee;">
+          <tr>
+            ${prop.image ? '<td valign="top" style="padding-right:16px;width:100px;"><img src="' + SITE + prop.image + '" alt="' + title(prop) + '" style="width:100px;height:75px;object-fit:cover;border-radius:3px;display:block;"></td>' : ''}
+            <td valign="top">
+              <strong style="font-size:14px;color:#333;">${title(prop)}</strong>
+              <br><span style="font-size:12px;color:#777;">${propLocation(prop)}${prop.size ? ' · ' + prop.size : ''}</span>
+              <br><a href="${propUrl}" style="font-size:12px;color:#1e6a3a;text-decoration:underline;">${t.viewDetails}</a>
+            </td>
+          </tr>
+        </table>
       `;
     });
 
