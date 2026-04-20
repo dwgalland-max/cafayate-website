@@ -55,6 +55,12 @@ const STRINGS = {
   },
 };
 
+// In-memory rate limit across serverless invocations on the same warm instance.
+// Protects against accidental flood (e.g. a runaway polling loop).
+// Not a hard guarantee — cold starts reset state — but catches the common case.
+let lastPreviewAt = 0;
+const MIN_PREVIEW_INTERVAL_MS = 2 * 60 * 1000; // 2 minutes between previews
+
 module.exports = async function handler(req, res) {
   if (req.method !== 'GET' && req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -65,6 +71,17 @@ module.exports = async function handler(req, res) {
     if (!ADMIN_KEY || key !== ADMIN_KEY) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
+  }
+
+  // Rate limit — block rapid re-triggers unless ?force=1 is passed (for legitimate retries)
+  const now = Date.now();
+  const force = req.query.force === '1' || (req.body && req.body.force === '1');
+  if (!force && lastPreviewAt && now - lastPreviewAt < MIN_PREVIEW_INTERVAL_MS) {
+    const waitMs = MIN_PREVIEW_INTERVAL_MS - (now - lastPreviewAt);
+    return res.status(429).json({
+      error: 'Rate limited',
+      message: `Preview was sent ${Math.round((now - lastPreviewAt) / 1000)}s ago. Wait ${Math.ceil(waitMs / 1000)}s or pass ?force=1 to override.`,
+    });
   }
 
   try {
@@ -141,6 +158,8 @@ module.exports = async function handler(req, res) {
         <p style="margin:0;font-size:16px;font-weight:700;color:#1e6a3a;letter-spacing:1px;">↓ VERSIÓN EN ESPAÑOL ↓</p>
       </div>
     `;
+
+    lastPreviewAt = now;
 
     await resend.emails.send({
       from: 'Cafayate.com <noreply@cafayate.com>',
