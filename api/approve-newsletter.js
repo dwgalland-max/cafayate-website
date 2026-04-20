@@ -6,6 +6,12 @@ const AUDIENCE_ID = process.env.RESEND_AUDIENCE_ID;
 const ADMIN_KEY = process.env.NEWSLETTER_ADMIN_KEY;
 const SITE = 'https://cafayate.com';
 
+// Double-send guard: track the most recent successful send time on this warm instance.
+// Refuses a second send within this window. Not a hard guarantee across cold starts,
+// but catches the common cases (double-click, browser prefetch, page reload).
+let lastSentAt = 0;
+const MIN_SEND_INTERVAL_MS = 10 * 60 * 1000; // 10 minutes
+
 module.exports = async function handler(req, res) {
   if (req.method !== 'GET' && req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -18,6 +24,18 @@ module.exports = async function handler(req, res) {
 
   if (!AUDIENCE_ID) {
     return res.status(500).send(htmlPage('Error', 'RESEND_AUDIENCE_ID not configured.'));
+  }
+
+  // Double-send guard (override with ?force=1 for legitimate retries)
+  const force = req.query.force === '1';
+  const now = Date.now();
+  if (!force && lastSentAt && now - lastSentAt < MIN_SEND_INTERVAL_MS) {
+    const ago = Math.round((now - lastSentAt) / 1000);
+    const waitSec = Math.ceil((MIN_SEND_INTERVAL_MS - (now - lastSentAt)) / 1000);
+    return res.status(429).send(htmlPage(
+      'Already sent',
+      `A newsletter was already sent ${ago} seconds ago. To prevent accidental double-sends, please wait ${waitSec} seconds, or append &force=1 to the URL if this is intentional.`
+    ));
   }
 
   try {
@@ -125,6 +143,9 @@ module.exports = async function handler(req, res) {
 
     const totalSent = sentEn + sentEs;
     const totalSubs = active.length;
+
+    // Record successful send so any retry within the guard window is refused
+    if (totalSent > 0) lastSentAt = Date.now();
 
     await resend.emails.send({
       from: 'Cafayate.com <noreply@cafayate.com>',

@@ -66,11 +66,16 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  if (req.method === 'POST') {
-    const key = req.query.key || req.body.key;
-    if (!ADMIN_KEY || key !== ADMIN_KEY) {
-      return res.status(401).json({ error: 'Unauthorized' });
-    }
+  // Auth: accept Vercel's CRON_SECRET bearer (for scheduled runs) or NEWSLETTER_ADMIN_KEY (for manual).
+  // Fall back to open GET only if CRON_SECRET isn't set at all (dev convenience).
+  const authHeader = req.headers.authorization;
+  const adminKey = req.query.key || (req.body && req.body.key);
+  const cronOk = process.env.CRON_SECRET && authHeader === `Bearer ${process.env.CRON_SECRET}`;
+  const adminOk = ADMIN_KEY && adminKey === ADMIN_KEY;
+  const noCronSecret = !process.env.CRON_SECRET;
+
+  if (!cronOk && !adminOk && !noCronSecret) {
+    return res.status(401).json({ error: 'Unauthorized' });
   }
 
   // Rate limit — block rapid re-triggers unless ?force=1 is passed (for legitimate retries)
