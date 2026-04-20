@@ -606,6 +606,7 @@
       var data = {
         name: form.querySelector('[name="name"]').value,
         email: form.querySelector('[name="email"]').value,
+        lang: window.location.pathname.indexOf('/en/') === 0 ? 'en' : 'es',
         _t: elapsed
       };
 

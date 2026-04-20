@@ -49,7 +49,8 @@ module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   try {
-    const { name, email, website, _t } = req.body;
+    const { name, email, website, lang, _t } = req.body;
+    const subscriberLang = lang === 'es' ? 'es' : 'en';
 
     // Honeypot — if "website" field has a value, it's a bot
     if (website) {
@@ -102,8 +103,8 @@ module.exports = async function handler(req, res) {
         await resend.contacts.create({
           audienceId: AUDIENCE_ID,
           email: email,
-          firstName: name.split(' ')[0],
-          lastName: name.split(' ').slice(1).join(' ') || '',
+          firstName: name.trim(),
+          lastName: subscriberLang,
           unsubscribed: false,
         });
       } catch (contactErr) {
@@ -112,46 +113,71 @@ module.exports = async function handler(req, res) {
       }
     }
 
-    // 2. Send welcome auto-response to subscriber
+    // 2. Send welcome auto-response to subscriber (in their language)
     try {
+      const welcome = subscriberLang === 'es' ? {
+        subject: '¡Bienvenido al boletín de Cafayate.com!',
+        tagline: 'GUÍA DEL PAÍS DEL VINO DE SALTA',
+        greeting: `¡Bienvenido, ${safeName}!`,
+        intro: 'Gracias por suscribirte al boletín de Cafayate.com. Recibirás novedades sobre:',
+        bullets: [
+          '<strong>Vinos y Bodegas</strong> — Nuevos lanzamientos, degustaciones y noticias de las bodegas de los Valles Calchaquíes',
+          '<strong>Consejos de Viaje</strong> — Las mejores épocas para visitar, dónde alojarte y qué ver',
+          '<strong>Cultura Local</strong> — Eventos, festivales y la vida en Cafayate',
+          '<strong>Blog</strong> — Historias y guías de nuestra serie Vida en Cafayate',
+        ],
+        cta: 'Mientras tanto, explorá nuestro contenido más reciente:',
+        button: 'Leer el Blog',
+        blogUrl: 'https://cafayate.com/pages/blog.html',
+        sign: '¡Salud desde Cafayate! 🍷',
+        footer: 'Un proyecto sin fines de lucro que apoya a organizaciones benéficas locales',
+        unsubscribe: 'Para darse de baja, responda a este correo con "unsubscribe" en el asunto.',
+      } : {
+        subject: 'Welcome to the Cafayate.com Newsletter!',
+        tagline: "INSIDER'S GUIDE TO SALTA'S WINE REGION",
+        greeting: `Welcome, ${safeName}!`,
+        intro: "Thank you for subscribing to the Cafayate.com newsletter. You'll receive updates on:",
+        bullets: [
+          '<strong>Wine &amp; Bodegas</strong> — New releases, tastings, and winery news from the Calchaqu&iacute; Valleys',
+          '<strong>Travel Tips</strong> — The best times to visit, where to stay, and what to see',
+          '<strong>Local Culture</strong> — Events, festivals, and life in Cafayate',
+          '<strong>Blog Posts</strong> — Stories and guides from our Cafayate Life series',
+        ],
+        cta: 'In the meantime, explore our latest content:',
+        button: 'Read Our Blog',
+        blogUrl: 'https://cafayate.com/en/pages/blog.html',
+        sign: 'Cheers from Cafayate! 🍷',
+        footer: 'A not-for-profit project supporting local charities',
+        unsubscribe: 'To unsubscribe, reply to this email with "unsubscribe" in the subject line.',
+      };
+
       await resend.emails.send({
         from: 'Cafayate.com <noreply@cafayate.com>',
         to: email,
-        subject: 'Welcome to the Cafayate.com Newsletter!',
+        subject: welcome.subject,
         html: `
           <div style="max-width:600px;margin:0 auto;font-family:'Segoe UI','Helvetica Neue',Arial,sans-serif;color:#333;">
             <div style="background:#1e6a3a;padding:24px 30px;text-align:center;">
               <h1 style="color:#fff;margin:0;font-family:Georgia,'Times New Roman',serif;font-size:28px;"><a href="https://cafayate.com" style="color:#fff;text-decoration:none;">CAFAYATE.COM</a></h1>
-              <p style="color:rgba(255,255,255,0.8);margin:6px 0 0;font-size:13px;letter-spacing:1px;">INSIDER'S GUIDE TO SALTA'S WINE REGION</p>
+              <p style="color:rgba(255,255,255,0.8);margin:6px 0 0;font-size:13px;letter-spacing:1px;">${welcome.tagline}</p>
             </div>
             <div style="padding:30px;background:#fff;">
-              <h2 style="font-family:Georgia,serif;color:#1e6a3a;margin-top:0;">Welcome, ${safeName}!</h2>
-              <p style="font-size:15px;line-height:1.7;color:#555;">
-                Thank you for subscribing to the Cafayate.com newsletter. You'll receive updates on:
-              </p>
+              <h2 style="font-family:Georgia,serif;color:#1e6a3a;margin-top:0;">${welcome.greeting}</h2>
+              <p style="font-size:15px;line-height:1.7;color:#555;">${welcome.intro}</p>
               <ul style="font-size:15px;line-height:1.8;color:#555;padding-left:20px;">
-                <li><strong>Wine &amp; Bodegas</strong> — New releases, tastings, and winery news from the Calchaqu&iacute; Valleys</li>
-                <li><strong>Travel Tips</strong> — The best times to visit, where to stay, and what to see</li>
-                <li><strong>Local Culture</strong> — Events, festivals, and life in Cafayate</li>
-                <li><strong>Blog Posts</strong> — Stories and guides from our Cafayate Life series</li>
+                ${welcome.bullets.map(b => '<li>' + b + '</li>').join('')}
               </ul>
-              <p style="font-size:15px;line-height:1.7;color:#555;">
-                In the meantime, explore our latest content:
-              </p>
+              <p style="font-size:15px;line-height:1.7;color:#555;">${welcome.cta}</p>
               <div style="margin:20px 0;">
-                <a href="https://cafayate.com/en/pages/blog.html" style="display:inline-block;background:#1e6a3a;color:#fff;padding:12px 28px;text-decoration:none;border-radius:3px;font-size:15px;font-weight:600;">Read Our Blog</a>
+                <a href="${welcome.blogUrl}" style="display:inline-block;background:#1e6a3a;color:#fff;padding:12px 28px;text-decoration:none;border-radius:3px;font-size:15px;font-weight:600;">${welcome.button}</a>
               </div>
-              <p style="font-size:15px;line-height:1.7;color:#555;">
-                Cheers from Cafayate! 🍷
-              </p>
+              <p style="font-size:15px;line-height:1.7;color:#555;">${welcome.sign}</p>
             </div>
             <div style="background:#f5f5f5;padding:20px 30px;text-align:center;border-top:3px solid #c0392b;">
               <p style="font-size:12px;color:#999;margin:0;">
-                <a href="https://cafayate.com" style="color:#1e6a3a;">cafayate.com</a> — A not-for-profit project supporting local charities
+                <a href="https://cafayate.com" style="color:#1e6a3a;">cafayate.com</a> — ${welcome.footer}
               </p>
-              <p style="font-size:11px;color:#bbb;margin:8px 0 0;">
-                To unsubscribe, reply to this email with "unsubscribe" in the subject line.
-              </p>
+              <p style="font-size:11px;color:#bbb;margin:8px 0 0;">${welcome.unsubscribe}</p>
             </div>
           </div>
         `,
@@ -170,6 +196,7 @@ module.exports = async function handler(req, res) {
         <h2>New Newsletter Subscriber</h2>
         <p><strong>Name:</strong> ${safeName}</p>
         <p><strong>Email:</strong> <a href="mailto:${safeEmail}">${safeEmail}</a></p>
+        <p><strong>Language:</strong> ${subscriberLang === 'es' ? 'Spanish' : 'English'}</p>
         <p><strong>Date:</strong> ${new Date().toISOString()}</p>
         <hr>
         <p style="color:#999;font-size:12px;">Subscriber added to Resend audience. Welcome email sent automatically.</p>
