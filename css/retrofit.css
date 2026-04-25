@@ -34,6 +34,17 @@ body.retrofit a:hover { color: var(--r-gold); text-decoration: none; }
 body.retrofit .site-header,
 body.retrofit .main-nav { border-left: none; border-right: none; }
 
+/* Sidebar gone site-wide once retrofit is applied; main becomes full-width */
+body.retrofit .sidebar { display: none; }
+body.retrofit .content-layout {
+  display: block;
+  grid-template-columns: 1fr;
+}
+body.retrofit .main-content { width: 100%; max-width: 100%; }
+
+/* Footer butts up against the altitude band — no extra margin */
+body.retrofit .site-footer { margin-top: 0; }
+
 /* ----- Top bar: keep functional, soften visually ----- */
 body.retrofit .top-bar {
   background: var(--r-charcoal);
@@ -363,28 +374,28 @@ body.retrofit .featured-card:hover .featured-card-cta { opacity: 1; }
 body.retrofit .altitude-pullquote {
   background: var(--r-charcoal);
   color: rgba(255, 255, 255, 0.85);
-  padding: 80px 32px;
+  padding: 56px 32px;
   text-align: center;
 }
 body.retrofit .altitude-inner { max-width: 880px; margin: 0 auto; }
-body.retrofit .altitude-pullquote .eyebrow { color: var(--r-gold); margin-bottom: 16px; }
+body.retrofit .altitude-pullquote .eyebrow { color: var(--r-gold); margin-bottom: 12px; }
 body.retrofit .altitude-pullquote h2 {
   font-family: var(--r-font-display);
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.85rem, 3.5vw, 2.6rem);
   font-weight: 300;
   line-height: 1.1;
   color: #fff;
   letter-spacing: -0.01em;
-  margin: 0 0 24px;
+  margin: 0 0 20px;
 }
 body.retrofit .altitude-lead {
   font-family: var(--r-font-sans);
   font-weight: 300;
-  font-size: 16px;
-  line-height: 1.75;
+  font-size: 15px;
+  line-height: 1.7;
   color: rgba(255, 255, 255, 0.7);
   max-width: 720px;
-  margin: 0 auto 48px;
+  margin: 0 auto 32px;
 }
 body.retrofit .altitude-stats {
   display: grid;
