@@ -183,16 +183,241 @@ body.retrofit .eyebrow {
   margin-bottom: 16px;
 }
 
-/* ----- Content layout: editorial spacing ----- */
+/* ----- Content layout: tighter editorial spacing ----- */
 body.retrofit .content-layout {
   background: var(--r-cream);
-  padding: 80px 32px 60px;
+  padding: 32px 32px 48px;
   max-width: var(--max-width);
 }
 body.retrofit .main-content { padding: 0; }
-body.retrofit .homepage-intro { display: none; } /* replaced by editorial-hero */
+body.retrofit .homepage-intro { display: none; }
+body.retrofit .section-divider { display: none; }
 
-/* ----- Quick-links: refined card grid ----- */
+/* =============================================================
+   CHICKLETS — compact horizontal nav strip directly under hero
+   ============================================================= */
+body.retrofit .chicklets {
+  display: flex;
+  flex-wrap: wrap;
+  background: #fff;
+  border-bottom: 1px solid var(--r-line);
+  margin: 0;
+  padding: 0;
+}
+body.retrofit .chicklet {
+  flex: 1 1 25%;
+  min-width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 18px 14px;
+  text-decoration: none;
+  border-right: 1px solid var(--r-line);
+  border-bottom: 1px solid var(--r-line);
+  background: #fff;
+  transition: background .2s ease, color .2s ease;
+}
+body.retrofit .chicklet:last-child { border-right: none; }
+@media (min-width: 720px) {
+  body.retrofit .chicklet {
+    min-width: auto;
+    border-bottom: none;
+    padding: 22px 24px;
+  }
+}
+body.retrofit .chicklet:hover {
+  background: var(--r-cream);
+  text-decoration: none;
+}
+body.retrofit .chicklet-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+body.retrofit .chicklet-label {
+  font-family: var(--r-font-sans);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--r-charcoal);
+  transition: color .2s ease;
+}
+body.retrofit .chicklet:hover .chicklet-label { color: var(--r-gold); }
+
+/* =============================================================
+   FEATURED ROW — magazine photo cards with overlay text
+   ============================================================= */
+body.retrofit .featured-row {
+  background: var(--r-cream);
+  padding: 64px 24px 48px;
+}
+body.retrofit .featured-row-header {
+  max-width: var(--max-width);
+  margin: 0 auto 36px;
+  text-align: center;
+}
+body.retrofit .featured-row-header .eyebrow { margin-bottom: 12px; }
+body.retrofit .featured-row-title {
+  font-family: var(--r-font-display);
+  font-size: clamp(1.85rem, 3.5vw, 2.75rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--r-charcoal);
+  margin: 0;
+  letter-spacing: -0.005em;
+}
+body.retrofit .featured-cards {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+@media (min-width: 900px) {
+  body.retrofit .featured-cards {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+}
+body.retrofit .featured-card {
+  position: relative;
+  display: block;
+  height: 360px;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform .5s ease;
+}
+@media (min-width: 900px) {
+  body.retrofit .featured-card { height: 460px; }
+}
+body.retrofit .featured-card:hover { text-decoration: none; transform: translateY(-4px); }
+body.retrofit .featured-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,0.85) 100%);
+  transition: background .35s ease;
+}
+body.retrofit .featured-card:hover .featured-card-overlay {
+  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.9) 100%);
+}
+body.retrofit .featured-card-content {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 22px;
+  z-index: 2;
+}
+body.retrofit .featured-card-eyebrow {
+  display: block;
+  font-family: var(--r-font-sans);
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 8px;
+}
+body.retrofit .featured-card-title {
+  font-family: var(--r-font-display);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.1;
+  color: #fff;
+  margin: 0 0 10px;
+  letter-spacing: -0.005em;
+}
+body.retrofit .featured-card-desc {
+  font-family: var(--r-font-sans);
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 0 12px;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height .35s ease, opacity .35s ease, margin .35s ease;
+}
+body.retrofit .featured-card:hover .featured-card-desc { max-height: 90px; opacity: 1; }
+body.retrofit .featured-card-cta {
+  display: inline-block;
+  font-family: var(--r-font-sans);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--r-gold);
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+body.retrofit .featured-card:hover .featured-card-cta { opacity: 1; }
+@media (hover: none) {
+  body.retrofit .featured-card-desc { max-height: 90px; opacity: 1; }
+  body.retrofit .featured-card-cta { opacity: 1; }
+}
+
+/* =============================================================
+   ALTITUDE PULL-QUOTE / STATS SECTION
+   ============================================================= */
+body.retrofit .altitude-pullquote {
+  background: var(--r-charcoal);
+  color: rgba(255, 255, 255, 0.85);
+  padding: 80px 32px;
+  text-align: center;
+}
+body.retrofit .altitude-inner { max-width: 880px; margin: 0 auto; }
+body.retrofit .altitude-pullquote .eyebrow { color: var(--r-gold); margin-bottom: 16px; }
+body.retrofit .altitude-pullquote h2 {
+  font-family: var(--r-font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: #fff;
+  letter-spacing: -0.01em;
+  margin: 0 0 24px;
+}
+body.retrofit .altitude-lead {
+  font-family: var(--r-font-sans);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 720px;
+  margin: 0 auto 48px;
+}
+body.retrofit .altitude-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+body.retrofit .altitude-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 0 8px;
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+}
+body.retrofit .altitude-stat:first-child { border-left: none; }
+body.retrofit .altitude-stat-value {
+  font-family: var(--r-font-display);
+  font-size: clamp(1.85rem, 5vw, 3.25rem);
+  font-weight: 300;
+  color: var(--r-gold);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+body.retrofit .altitude-stat-label {
+  font-family: var(--r-font-sans);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: 400;
+}
+
+/* ----- Old quick-link styles (kept for fallback if any other pages use them) ----- */
 body.retrofit .quick-links {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -240,39 +465,25 @@ body.retrofit .quick-link-desc {
   color: var(--r-muted);
 }
 
-/* ----- Hero sections (Museo del Vino, Nuestra Selección, etc.) ----- */
+/* ----- Map section (only remaining hero-section on homepage) ----- */
 body.retrofit .hero-section {
   background: transparent;
-  padding: 60px 0;
+  padding: 16px 0;
   margin: 0;
   border-radius: 0;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
   text-align: left;
 }
-@media (min-width: 720px) {
-  body.retrofit .hero-section {
-    grid-template-columns: 1.1fr 1fr;
-    gap: 56px;
-    align-items: center;
-  }
-}
-body.retrofit .hero-section img {
-  border-radius: 0;
-  margin: 0;
-}
+body.retrofit .hero-section img { border-radius: 0; margin: 0; }
 body.retrofit .hero-section h2 {
   font-family: var(--r-font-display);
-  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
   font-weight: 400;
-  line-height: 1.05;
+  line-height: 1.1;
   color: var(--r-charcoal);
   letter-spacing: -0.005em;
   margin: 0 0 16px;
   text-align: left;
   text-transform: none;
-  position: relative;
 }
 body.retrofit .hero-section h2::before {
   content: '';
@@ -280,22 +491,22 @@ body.retrofit .hero-section h2::before {
   width: 32px;
   height: 1px;
   background: var(--r-gold);
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 body.retrofit .hero-section p {
   font-family: var(--r-font-sans);
-  font-size: 15px;
-  line-height: 1.75;
+  font-size: 14px;
+  line-height: 1.7;
   color: var(--r-text);
   font-weight: 300;
-  margin: 0;
+  margin: 14px 0 0;
 }
 body.retrofit .hero-section .read-more {
   font-family: var(--r-font-sans);
   font-size: 11px;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  font-weight: 400;
+  font-weight: 500;
   color: var(--r-gold);
   border-bottom: 1px solid var(--r-gold);
   padding-bottom: 2px;
@@ -306,19 +517,9 @@ body.retrofit .hero-section .read-more:hover {
   color: var(--r-charcoal);
   border-color: var(--r-charcoal);
 }
-
-/* Map section: full width */
-body.retrofit .hero-section:has(#home-map) {
-  display: block;
-}
 body.retrofit #home-map {
-  margin: 24px 0 16px;
+  margin: 0;
   border: 1px solid var(--r-line);
-}
-
-/* ----- Section dividers ----- */
-body.retrofit .section-divider {
-  display: none; /* whitespace replaces hard rules */
 }
 
 /* ----- Sidebar ----- */
