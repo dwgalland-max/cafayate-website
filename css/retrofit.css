@@ -1,0 +1,418 @@
+/* =============================================================
+   RETROFIT — Editorial restyling of cafayate.com
+   Inspired by the cafayate.co redesign (Jarret).
+   Scoped to <body class="retrofit"> so untouched pages stay identical.
+   ============================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+body.retrofit {
+  /* New palette layered on top of the existing custom properties */
+  --r-cream: #F9F7F4;
+  --r-gold: #C5A572;
+  --r-gold-soft: #d4b685;
+  --r-charcoal: #1A1A1A;
+  --r-charcoal-soft: #2a2a2a;
+  --r-text: #3a3a3a;
+  --r-muted: #8a8a8a;
+  --r-line: rgba(26, 26, 26, 0.08);
+
+  --r-font-display: 'Cormorant Garamond', Georgia, serif;
+  --r-font-sans: 'Inter', 'Segoe UI', system-ui, sans-serif;
+
+  font-family: var(--r-font-sans);
+  font-weight: 300;
+  color: var(--r-text);
+  background: var(--r-cream);
+  letter-spacing: 0.005em;
+}
+
+body.retrofit a { color: var(--r-charcoal); }
+body.retrofit a:hover { color: var(--r-gold); text-decoration: none; }
+
+/* Hide the brutalist green side-borders on the retrofit pages */
+body.retrofit .site-header,
+body.retrofit .main-nav { border-left: none; border-right: none; }
+
+/* ----- Top bar: keep functional, soften visually ----- */
+body.retrofit .top-bar {
+  background: var(--r-charcoal);
+  font-family: var(--r-font-sans);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 400;
+  padding: 8px 24px;
+}
+
+/* ----- Site header: cleaner, more editorial ----- */
+body.retrofit .site-header {
+  background: var(--r-cream);
+  padding: 32px 0 16px;
+  border-bottom: none;
+}
+body.retrofit .site-logo {
+  max-width: 380px;
+  /* keep the original clip to hide the legacy red banner baked into the image */
+  clip-path: inset(0 0 22% 0);
+  margin-bottom: -8px;
+}
+body.retrofit .site-tagline {
+  font-family: var(--r-font-sans);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  font-weight: 400;
+  color: var(--r-gold);
+  margin-top: 4px;
+}
+
+/* ----- Navigation: minimalist horizontal rule ----- */
+body.retrofit .main-nav {
+  background: var(--r-cream);
+  border-bottom: 1px solid var(--r-line);
+  padding: 0;
+}
+body.retrofit .nav-list { gap: 0; }
+body.retrofit .nav-list a {
+  font-family: var(--r-font-sans);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: var(--r-charcoal);
+  padding: 18px 14px;
+  border-bottom: 1px solid transparent;
+  transition: color .25s, border-color .25s;
+}
+body.retrofit .nav-list a:hover,
+body.retrofit .nav-list a.active {
+  color: var(--r-gold);
+  border-bottom-color: var(--r-gold);
+  background: transparent;
+}
+
+/* ----- Editorial hero (homepage) ----- */
+body.retrofit .editorial-hero {
+  position: relative;
+  width: 100%;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin: 0;
+  background: var(--r-charcoal);
+}
+body.retrofit .editorial-hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 35%;
+  filter: saturate(1.05);
+}
+body.retrofit .editorial-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.25) 35%, rgba(0,0,0,0.65) 100%);
+}
+body.retrofit .editorial-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 80px 24px;
+  max-width: 900px;
+}
+body.retrofit .editorial-hero .eyebrow {
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 24px;
+}
+body.retrofit .editorial-hero h1 {
+  font-family: var(--r-font-display);
+  font-weight: 300;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  line-height: 1;
+  color: #fff;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.3);
+  margin: 0 0 24px;
+}
+body.retrofit .editorial-hero .lead {
+  font-family: var(--r-font-sans);
+  font-weight: 300;
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 640px;
+  margin: 0 auto 36px;
+}
+body.retrofit .hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--r-font-sans);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  padding: 16px 32px;
+  background: transparent;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+body.retrofit .hero-cta:hover {
+  background: #fff;
+  color: var(--r-charcoal) !important;
+  border-color: #fff;
+}
+body.retrofit .hero-cta::after {
+  content: '↓';
+  font-size: 14px;
+}
+
+/* ----- Eyebrow utility ----- */
+body.retrofit .eyebrow {
+  display: inline-block;
+  font-family: var(--r-font-sans);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: var(--r-gold);
+  margin-bottom: 16px;
+}
+
+/* ----- Content layout: editorial spacing ----- */
+body.retrofit .content-layout {
+  background: var(--r-cream);
+  padding: 80px 32px 60px;
+  max-width: var(--max-width);
+}
+body.retrofit .main-content { padding: 0; }
+body.retrofit .homepage-intro { display: none; } /* replaced by editorial-hero */
+
+/* ----- Quick-links: refined card grid ----- */
+body.retrofit .quick-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--r-line);
+  border-left: 1px solid var(--r-line);
+  margin: 0 0 80px;
+}
+body.retrofit .quick-link {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding: 32px 28px;
+  background: #fff;
+  border-right: 1px solid var(--r-line);
+  border-bottom: 1px solid var(--r-line);
+  text-decoration: none;
+  transition: background .25s ease;
+  min-height: 180px;
+  justify-content: space-between;
+}
+body.retrofit .quick-link:hover {
+  background: var(--r-cream);
+  text-decoration: none;
+}
+body.retrofit .quick-link-icon {
+  font-size: 28px;
+  color: var(--r-gold);
+  margin-bottom: 0;
+}
+body.retrofit .quick-link-title {
+  font-family: var(--r-font-display);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--r-charcoal);
+  margin-bottom: 4px;
+  margin-top: auto;
+}
+body.retrofit .quick-link-desc {
+  font-family: var(--r-font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: var(--r-muted);
+}
+
+/* ----- Hero sections (Museo del Vino, Nuestra Selección, etc.) ----- */
+body.retrofit .hero-section {
+  background: transparent;
+  padding: 60px 0;
+  margin: 0;
+  border-radius: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  text-align: left;
+}
+@media (min-width: 720px) {
+  body.retrofit .hero-section {
+    grid-template-columns: 1.1fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+}
+body.retrofit .hero-section img {
+  border-radius: 0;
+  margin: 0;
+}
+body.retrofit .hero-section h2 {
+  font-family: var(--r-font-display);
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 400;
+  line-height: 1.05;
+  color: var(--r-charcoal);
+  letter-spacing: -0.005em;
+  margin: 0 0 16px;
+  text-align: left;
+  text-transform: none;
+  position: relative;
+}
+body.retrofit .hero-section h2::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--r-gold);
+  margin-bottom: 16px;
+}
+body.retrofit .hero-section p {
+  font-family: var(--r-font-sans);
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--r-text);
+  font-weight: 300;
+  margin: 0;
+}
+body.retrofit .hero-section .read-more {
+  font-family: var(--r-font-sans);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: var(--r-gold);
+  border-bottom: 1px solid var(--r-gold);
+  padding-bottom: 2px;
+  margin-left: 8px;
+  transition: color .2s, border-color .2s;
+}
+body.retrofit .hero-section .read-more:hover {
+  color: var(--r-charcoal);
+  border-color: var(--r-charcoal);
+}
+
+/* Map section: full width */
+body.retrofit .hero-section:has(#home-map) {
+  display: block;
+}
+body.retrofit #home-map {
+  margin: 24px 0 16px;
+  border: 1px solid var(--r-line);
+}
+
+/* ----- Section dividers ----- */
+body.retrofit .section-divider {
+  display: none; /* whitespace replaces hard rules */
+}
+
+/* ----- Sidebar ----- */
+body.retrofit .sidebar { background: transparent; }
+body.retrofit .sidebar-card {
+  background: #fff;
+  border: 1px solid var(--r-line);
+  border-radius: 0;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+body.retrofit .sidebar-card-img { border-radius: 0; }
+body.retrofit .sidebar-card-title {
+  font-family: var(--r-font-display);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--r-charcoal);
+  display: block;
+  margin-bottom: 8px;
+}
+body.retrofit .sidebar-card-text {
+  font-family: var(--r-font-sans);
+  font-size: 13px;
+  line-height: 1.65;
+  font-weight: 300;
+  color: var(--r-text);
+}
+body.retrofit .sidebar-card .read-more {
+  color: var(--r-gold);
+  border-bottom: 1px solid var(--r-gold);
+}
+
+/* ----- Footer ----- */
+body.retrofit .site-footer {
+  background: var(--r-charcoal);
+  color: rgba(255, 255, 255, 0.75);
+  padding: 64px 24px 40px;
+  margin-top: 80px;
+}
+body.retrofit .site-footer h3 {
+  font-family: var(--r-font-display);
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: #fff;
+  margin-bottom: 16px;
+}
+body.retrofit .site-footer p,
+body.retrofit .site-footer a {
+  font-family: var(--r-font-sans);
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 300;
+}
+body.retrofit .site-footer a:hover { color: var(--r-gold); }
+
+body.retrofit .newsletter-form input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  border-radius: 0;
+  padding: 8px 0;
+  font-family: var(--r-font-sans);
+}
+body.retrofit .newsletter-form input::placeholder { color: rgba(255,255,255,0.4); }
+body.retrofit .newsletter-form label {
+  font-family: var(--r-font-sans);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+}
+body.retrofit .newsletter-form button {
+  background: var(--r-gold);
+  color: var(--r-charcoal);
+  border: none;
+  font-family: var(--r-font-sans);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 14px 24px;
+  margin-top: 16px;
+  cursor: pointer;
+  transition: background .2s ease;
+}
+body.retrofit .newsletter-form button:hover { background: var(--r-gold-soft); }
+
+/* ----- Scroll-to-top button ----- */
+body.retrofit .scroll-top {
+  background: var(--r-charcoal);
+  color: #fff;
+  border-radius: 0;
+}

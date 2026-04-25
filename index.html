@@ -23,6 +23,7 @@
   <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
   <link rel="author" href="https://cafayate.com/llms.txt" type="text/plain" title="LLMs.txt">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/retrofit.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script type="application/ld+json">
@@ -83,7 +84,7 @@
     gtag("config", "G-LK24283MWM");
   </script>
 </head>
-<body>
+<body class="retrofit">
 
   <!-- Top Bar -->
   <div class="top-bar">
@@ -124,6 +125,18 @@
       <li><a href="/en/" class="nav-lang-toggle"><img src="https://flagcdn.com/w40/us.png" alt="English"></a></li>
     </ul>
   </nav>
+
+  <!-- Editorial Hero -->
+  <section class="editorial-hero">
+    <div class="editorial-hero-bg" style="background-image: url('/images/photos/clubhouse-estancia-mountains.jpg');"></div>
+    <div class="editorial-hero-overlay"></div>
+    <div class="editorial-hero-content">
+      <span class="eyebrow">Valles Calchaqu&iacute;es · Salta · Argentina</span>
+      <h1>Tu Gu&iacute;a de Cafayate</h1>
+      <p class="lead">Donde los Andes se encuentran con la vi&ntilde;a. Una regi&oacute;n vin&iacute;cola dram&aacute;tica que se eleva a 1.700 metros, donde las condiciones extremas crean vinos extraordinarios.</p>
+      <a href="#explorar" class="hero-cta" onclick="document.querySelector('.quick-links').scrollIntoView({behavior:'smooth'}); return false;">Explorar el valle</a>
+    </div>
+  </section>
 
   <!-- Main Content -->
   <div class="content-layout">
