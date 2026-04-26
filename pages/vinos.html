@@ -22,6 +22,7 @@
   <meta name="twitter:image" content="https://cafayate.com/images/logo-header.png">
   <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/retrofit.css">
   <!-- Google Analytics (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-LK24283MWM"></script>
   <script>
@@ -58,7 +59,7 @@
   }
   </script>
 </head>
-<body>
+<body class="retrofit">
 
   <!-- Top Bar -->
   <div class="top-bar">
@@ -94,45 +95,78 @@
     </ul>
   </nav>
 
-  <div class="content-layout">
-    <main class="main-content page-content">
-      <img src="/images/hero/vinos-de-altura.png" alt="Vinos de Extrema Altura" style="margin-bottom:20px;">
-      <h1>Vinos de Extrema Altura</h1>
-      <p>Aunque peque&ntilde;o en comparaci&oacute;n con otras regiones vin&iacute;colas argentinas &mdash;produciendo solo el 3% de los vinos de Argentina&mdash; el &aacute;rea alrededor de Cafayate se ha hecho mundialmente famosa gracias a sus vinos de alta y extrema altitud.</p>
-      <p>Categorizamos los vinos de alta altitud bas&aacute;ndonos en vi&ntilde;edos situados a una elevaci&oacute;n de entre 1,500 y 2,200 metros sobre el nivel del mar (m.s.n.m.). Los vi&ntilde;edos de altitud extrema se encuentran por encima de los 2,200 m.s.n.m., donde un pu&ntilde;ado de en&oacute;logos del Valle Calchaqu&iacute; est&aacute;n produciendo vinos en los l&iacute;mites mismos de donde es posible cultivar uvas.</p>
+  <main>
 
-      <h2>&iquest;Por qu&eacute; es importante la altitud?</h2>
-      <p>La altitud es un factor clave en la vitivinicultura. Todo lo que hace que un vino sea distintivo &mdash;taninos, polifenoles, color, perfil de sabor&mdash; proviene de las pieles de las uvas. Para sobrevivir las dram&aacute;ticas variaciones de temperatura, niveles m&aacute;s altos de radiaci&oacute;n solar y largos periodos de maduraci&oacute;n en altitudes extremas, las uvas deben desarrollar pieles gruesas y resilientes que los en&oacute;logos aprovechan para crear vinos altamente concentrados y complejos.</p>
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="page-hero-bg" style="background-image: url('/images/hero/vinos-de-altura.png');"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <h1>Vinos de altura extrema</h1>
+      <p class="page-hero-subtitle">El terroir, la altitud y el car&aacute;cter &uacute;nico de los vinos de los Valles Calchaqu&iacute;es.</p>
+    </div>
+  </section>
 
-      <!-- Dynamic bodega list rendered by JS -->
-      <div id="bodega-list" data-src="/data/bodegas.json"></div>
-    </main>
-
-    <aside class="sidebar">
-      <div data-promo="sidebar"></div>
-      <div class="sidebar-card">
-        <img src="/images/sidebar/vinos.png" alt="Vinos" class="sidebar-card-img">
-        <div class="sidebar-card-content">
-          <span class="sidebar-card-title">Vinos de Extrema Altura</span>
-          <p class="sidebar-card-text">Un grupo de vitivinicultores de los Valles Calchaqu&iacute;es est&aacute;n produciendo vinos en vi&ntilde;edos ubicados en l&iacute;mites extremos | <a href="/pages/vinos.html" class="read-more">Leer m&aacute;s</a></p>
-        </div>
-      </div>
-      <div class="sidebar-card">
-        <img src="/images/sidebar/iglesia.png" alt="Bodegas" class="sidebar-card-img">
-        <div class="sidebar-card-content">
-          <span class="sidebar-card-title">Bodegas</span>
-          <p class="sidebar-card-text">Nuestras recomendaciones de bodegas y lugares para realizar degustaciones de vinos en Cafayate | <a href="/pages/bodegas.html" class="read-more">Leer m&aacute;s</a></p>
-        </div>
-      </div>
-      <div class="sidebar-card">
-        <img src="/images/sidebar/derImg1.jpg" alt="Galer&iacute;a" class="sidebar-card-img">
-        <div class="sidebar-card-content">
-          <span class="sidebar-card-title">Galer&iacute;a de Im&aacute;genes</span>
-          <p class="sidebar-card-text">Una colecci&oacute;n de fotos del vino de Cafayate | <a href="/pages/fotos.html" class="read-more">Leer m&aacute;s</a></p>
-        </div>
-      </div>
-    </aside>
+  <!-- Lead intro -->
+  <div class="page-intro">
+    <p>Aunque peque&ntilde;o en comparaci&oacute;n con otras regiones vin&iacute;colas argentinas &mdash; produciendo apenas el 3% de los vinos del pa&iacute;s &mdash; el &aacute;rea alrededor de Cafayate se ha hecho mundialmente famosa gracias a sus vinos de alta y extrema altitud.</p>
   </div>
+
+  <!-- Altitude pull-quote with stats -->
+  <section class="altitude-pullquote">
+    <div class="altitude-inner">
+      <span class="eyebrow">El terroir</span>
+      <h2>Vi&ntilde;edos en el l&iacute;mite</h2>
+      <p class="altitude-lead">Categorizamos los vinos de alta altitud por vi&ntilde;edos situados entre 1.500 y 2.200 metros sobre el nivel del mar. Los de altitud extrema se encuentran por encima de los 2.200 m, donde un pu&ntilde;ado de en&oacute;logos del Valle Calchaqu&iacute; est&aacute;n produciendo vinos en los mismos l&iacute;mites de donde es posible cultivar uvas.</p>
+      <div class="altitude-stats">
+        <div class="altitude-stat">
+          <span class="altitude-stat-value">3.111m</span>
+          <span class="altitude-stat-label">Vi&ntilde;edo m&aacute;s alto del Valle Calchaqu&iacute;</span>
+        </div>
+        <div class="altitude-stat">
+          <span class="altitude-stat-value">320</span>
+          <span class="altitude-stat-label">D&iacute;as de sol al a&ntilde;o</span>
+        </div>
+        <div class="altitude-stat">
+          <span class="altitude-stat-value">20&deg;C</span>
+          <span class="altitude-stat-label">Amplitud t&eacute;rmica diaria</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Long-form editorial: why altitude matters -->
+  <section class="prose">
+    <h2>&iquest;Por qu&eacute; es importante la altitud?</h2>
+    <p>La altitud es un factor clave en la vitivinicultura. Todo lo que hace que un vino sea distintivo &mdash; taninos, polifenoles, color, perfil arom&aacute;tico &mdash; proviene en gran parte de las pieles de las uvas.</p>
+    <p>Para sobrevivir las dram&aacute;ticas variaciones de temperatura, los niveles m&aacute;s altos de radiaci&oacute;n solar y los largos per&iacute;odos de maduraci&oacute;n a estas alturas, las uvas desarrollan pieles m&aacute;s gruesas y resilientes. Los en&oacute;logos del valle aprovechan ese rasgo para crear vinos altamente concentrados, de color profundo y de gran complejidad arom&aacute;tica.</p>
+    <p>El Malbec de Cafayate, por ejemplo, suele ser opaco al levantarlo a contraluz &mdash; una se&ntilde;al directa de la concentraci&oacute;n que la altura imprime en la uva. El Torront&eacute;s, la cepa blanca emblem&aacute;tica de la regi&oacute;n, gana en intensidad arom&aacute;tica gracias a la radiaci&oacute;n y al fr&iacute;o de las noches. El Tannat, m&aacute;s austero a baja altitud, encuentra ac&aacute; un equilibrio inusual.</p>
+  </section>
+
+  <!-- Interlink banner → Bodegas -->
+  <section class="interlink">
+    <div class="interlink-inner">
+      <span class="eyebrow">&iquest;D&oacute;nde probar estos vinos?</span>
+      <h3 class="interlink-title">Conoc&eacute; las bodegas y vinotecas de Cafayate</h3>
+      <p>Vinotecas en el pueblo, bodegas hist&oacute;ricas y pioneros de altura extrema &mdash; el listado completo de bodegas para visitar en Cafayate y los Valles Calchaqu&iacute;es.</p>
+      <a href="/pages/bodegas.html" class="interlink-cta">Ver todas las bodegas &rarr;</a>
+    </div>
+  </section>
+
+  <!-- Featured Partner — sponsor placement -->
+  <section class="featured-partner" aria-label="Patrocinador destacado">
+    <a href="https://badbrotherswe.com" target="_blank" rel="noopener" class="featured-partner-card" style="background-image: url('/images/promos/bad-brothers-hero.jpg');">
+      <div class="featured-partner-overlay"></div>
+      <div class="featured-partner-content">
+        <span class="featured-partner-eyebrow">Patrocinador destacado</span>
+        <h2 class="featured-partner-title">Bad Brothers Wine &amp; Food Experience</h2>
+        <p class="featured-partner-desc">La experiencia gastron&oacute;mica y en&oacute;logica m&aacute;s completa de Cafayate, con la carta del Chef Walter Leal &mdash; Le Cordon Bleu Par&iacute;s, Acad&eacute;mie Culinaire de France.</p>
+        <span class="featured-partner-cta">Visitar &rarr;</span>
+      </div>
+    </a>
+  </section>
+
+  </main>
 
   <footer class="site-footer">
     <div class="footer-grid">

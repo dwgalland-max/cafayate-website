@@ -647,6 +647,103 @@ body.retrofit .directory-list li span.directory-desc {
 }
 
 /* =============================================================
+   INTERLINK BANNER — cross-page CTA (e.g. "see also: Bodegas")
+   Cream-on-cream, gold accent rule, prominent button.
+   ============================================================= */
+body.retrofit .interlink {
+  background: #fff;
+  border-top: 1px solid var(--r-line);
+  border-bottom: 1px solid var(--r-line);
+  padding: 56px 32px;
+  margin: 56px 0 0;
+}
+body.retrofit .interlink-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+body.retrofit .interlink .eyebrow { margin-bottom: 12px; }
+body.retrofit .interlink-title {
+  font-family: var(--r-font-display);
+  font-size: clamp(1.6rem, 2.8vw, 2.25rem);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--r-charcoal);
+  letter-spacing: -0.005em;
+  margin: 0 0 12px;
+}
+body.retrofit .interlink p {
+  font-family: var(--r-font-sans);
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--r-text);
+  margin: 0 0 24px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+body.retrofit .interlink-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--r-font-sans);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--r-charcoal);
+  border: 1px solid var(--r-charcoal);
+  padding: 14px 28px;
+  text-decoration: none;
+  background: transparent;
+  transition: background .25s ease, color .25s ease;
+}
+body.retrofit .interlink-cta:hover {
+  background: var(--r-charcoal);
+  color: #fff;
+  text-decoration: none;
+}
+
+/* =============================================================
+   PROSE — long-form editorial body copy (used on Vinos & similar)
+   ============================================================= */
+body.retrofit .prose {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 16px 32px 0;
+}
+body.retrofit .prose h2 {
+  font-family: var(--r-font-display);
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--r-charcoal);
+  margin: 40px 0 16px;
+  letter-spacing: -0.005em;
+  text-align: left;
+}
+body.retrofit .prose h2:first-child { margin-top: 0; }
+body.retrofit .prose p {
+  font-family: var(--r-font-sans);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--r-text);
+  margin: 0 0 18px;
+}
+body.retrofit .prose a {
+  color: var(--r-gold);
+  border-bottom: 1px solid var(--r-gold);
+  transition: color .2s, border-color .2s;
+}
+body.retrofit .prose a:hover {
+  color: var(--r-charcoal);
+  border-color: var(--r-charcoal);
+  text-decoration: none;
+}
+
+/* =============================================================
    FEATURED PARTNER — sponsor placement (Position 1, mid-page)
    Single full-width photo card. Looks like a featured card but wider.
    Always labeled as a sponsor for transparency.
