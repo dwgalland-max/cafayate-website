@@ -732,6 +732,8 @@ body.retrofit .prose p {
   color: var(--r-text);
   margin: 0 0 18px;
 }
+body.retrofit .prose > p:last-child { margin-bottom: 0; }
+body.retrofit .prose { padding-bottom: 0; }
 body.retrofit .prose a {
   color: var(--r-gold);
   border-bottom: 1px solid var(--r-gold);
@@ -907,6 +909,8 @@ body.retrofit .altitude-pullquote.altitude-pullquote--light {
   color: var(--r-text);
   border-top: 1px solid var(--r-line);
   border-bottom: 1px solid var(--r-line);
+  padding-top: 48px;
+  padding-bottom: 48px;
 }
 body.retrofit .altitude-pullquote--light h2 { color: var(--r-charcoal); }
 body.retrofit .altitude-pullquote--light .altitude-lead { color: var(--r-text); }
