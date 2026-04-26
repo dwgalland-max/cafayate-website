@@ -22,6 +22,7 @@
   <meta name="twitter:image" content="https://cafayate.com/images/logo-header.png">
   <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/retrofit.css">
   <!-- Google Analytics (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-LK24283MWM"></script>
   <script>
@@ -62,7 +63,7 @@
   }
   </script>
 </head>
-<body>
+<body class="retrofit">
 
   <div class="top-bar">
     <div class="top-bar-left">
@@ -97,30 +98,22 @@
     </ul>
   </nav>
 
-  <div class="content-layout">
-    <main class="main-content page-content">
-      <!-- Dynamic events rendered by JS -->
-      <div id="events-list" data-src="/data/events.json"></div>
-    </main>
+  <main>
 
-    <aside class="sidebar">
-      <div data-promo="sidebar"></div>
-      <div class="sidebar-card">
-        <img src="/images/sidebar/vinos.png" alt="Vinos" class="sidebar-card-img">
-        <div class="sidebar-card-content">
-          <span class="sidebar-card-title">Vinos de Extrema Altura</span>
-          <p class="sidebar-card-text">Vinos producidos en vi&ntilde;edos a altitudes extremas | <a href="/pages/vinos.html" class="read-more">Leer m&aacute;s</a></p>
-        </div>
-      </div>
-      <div class="sidebar-card">
-        <img src="/images/sidebar/iglesia.png" alt="Bodegas" class="sidebar-card-img">
-        <div class="sidebar-card-content">
-          <span class="sidebar-card-title">Bodegas</span>
-          <p class="sidebar-card-text">Recomendaciones de bodegas y degustaciones | <a href="/pages/bodegas.html" class="read-more">Leer m&aacute;s</a></p>
-        </div>
-      </div>
-    </aside>
-  </div>
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="page-hero-bg" style="background-image: url('/images/photos/asado-cafayate.jpg');"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <h1>Agenda</h1>
+      <p class="page-hero-subtitle">Festivales, vendimias, conciertos y eventos en Cafayate y los Valles Calchaqu&iacute;es.</p>
+    </div>
+  </section>
+
+  <!-- Dynamic events rendered by JS -->
+  <div id="events-list" data-src="/data/events.json"></div>
+
+  </main>
 
   <footer class="site-footer">
     <div class="footer-grid">

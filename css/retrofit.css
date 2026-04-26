@@ -746,6 +746,197 @@ body.retrofit .prose a:hover {
 }
 
 /* =============================================================
+   CONTACT FORM — minimal editorial form styling
+   ============================================================= */
+body.retrofit .contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 16px 32px 0;
+}
+body.retrofit .contact-form .form-group { margin-bottom: 20px; }
+body.retrofit .contact-form label {
+  display: block;
+  font-family: var(--r-font-sans);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--r-charcoal);
+  margin-bottom: 8px;
+}
+body.retrofit .contact-form input,
+body.retrofit .contact-form textarea {
+  width: 100%;
+  font-family: var(--r-font-sans);
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--r-charcoal);
+  background: #fff;
+  border: 1px solid var(--r-line);
+  border-radius: 0;
+  padding: 12px 14px;
+  transition: border-color .2s ease;
+}
+body.retrofit .contact-form input:focus,
+body.retrofit .contact-form textarea:focus {
+  outline: none;
+  border-color: var(--r-gold);
+}
+body.retrofit .contact-form button {
+  font-family: var(--r-font-sans);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #fff;
+  background: var(--r-charcoal);
+  border: 1px solid var(--r-charcoal);
+  padding: 16px 32px;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+body.retrofit .contact-form button:hover {
+  background: var(--r-gold);
+  border-color: var(--r-gold);
+}
+
+/* =============================================================
+   PHOTO GRID — gallery
+   ============================================================= */
+body.retrofit .photo-grid {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 16px 32px 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+@media (min-width: 720px) { body.retrofit .photo-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { body.retrofit .photo-grid { grid-template-columns: repeat(3, 1fr); } }
+body.retrofit .photo-grid figure {
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+  background: var(--r-line);
+}
+body.retrofit .photo-grid figure img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  transition: transform .6s ease;
+}
+body.retrofit .photo-grid figure:hover img { transform: scale(1.04); }
+body.retrofit .photo-grid figcaption {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 12px 14px;
+  font-family: var(--r-font-sans);
+  font-size: 12px;
+  font-weight: 300;
+  color: #fff;
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,0.7));
+}
+
+/* =============================================================
+   BLOG/EVENTS — restyle JS-rendered cards on retrofit pages
+   ============================================================= */
+body.retrofit #blog-list,
+body.retrofit #events-list {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 16px 32px 0;
+}
+
+body.retrofit .blog-card {
+  background: #fff;
+  border: 1px solid var(--r-line);
+  border-radius: 0;
+  margin-bottom: 24px;
+}
+body.retrofit .blog-card-img {
+  border-radius: 0;
+  height: 280px;
+}
+body.retrofit .blog-card-body { padding: 24px 28px 28px; }
+body.retrofit .blog-card-meta {
+  font-family: var(--r-font-sans);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--r-muted);
+}
+body.retrofit .blog-card h3 {
+  font-family: var(--r-font-display);
+  font-size: 26px;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  color: var(--r-charcoal);
+  margin: 12px 0 12px;
+  text-transform: none;
+}
+body.retrofit .blog-card-link:hover h3 { color: var(--r-gold); }
+body.retrofit .blog-card p {
+  font-family: var(--r-font-sans);
+  font-size: 15px;
+  line-height: 1.7;
+  font-weight: 300;
+  color: var(--r-text);
+}
+body.retrofit .blog-card-readmore,
+body.retrofit .blog-card-pinned,
+body.retrofit .blog-card-category {
+  font-family: var(--r-font-sans);
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--r-gold);
+}
+body.retrofit .blog-card-pinned,
+body.retrofit .blog-card-category {
+  background: transparent;
+  border: 1px solid var(--r-gold);
+  padding: 4px 8px;
+}
+
+body.retrofit .event-card {
+  background: #fff;
+  border: 1px solid var(--r-line);
+  border-radius: 0;
+  margin-bottom: 16px;
+  padding: 20px 24px;
+}
+body.retrofit .event-card h3 {
+  font-family: var(--r-font-display);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--r-charcoal);
+  margin: 0 0 8px;
+  text-transform: none;
+}
+body.retrofit .event-card .event-date,
+body.retrofit .event-card .event-location {
+  font-family: var(--r-font-sans);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--r-gold);
+  font-weight: 500;
+}
+body.retrofit .event-card .event-link {
+  font-family: var(--r-font-sans);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--r-gold);
+  border-bottom: 1px solid var(--r-gold);
+  padding-bottom: 2px;
+}
+
+/* =============================================================
    FEATURED PARTNER — sponsor placement (Position 1, mid-page)
    Single full-width photo card. Looks like a featured card but wider.
    Always labeled as a sponsor for transparency.

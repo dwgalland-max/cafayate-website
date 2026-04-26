@@ -22,6 +22,7 @@
   <meta name="twitter:image" content="https://cafayate.com/images/logo-header.png">
   <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/retrofit.css">
   <!-- Google Analytics (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-LK24283MWM"></script>
   <script>
@@ -42,7 +43,7 @@
   }
   </script>
 </head>
-<body>
+<body class="retrofit">
 
   <div class="top-bar">
     <div class="top-bar-left">
@@ -77,11 +78,23 @@
     </ul>
   </nav>
 
-  <div class="content-layout">
-    <main class="main-content page-content">
-      <h1>Propiedad</h1>
-      <p>Cafayate se est&aacute; convirtiendo en un destino cada vez m&aacute;s popular no solo para turistas sino tambi&eacute;n para quienes buscan invertir en propiedades en un entorno &uacute;nico rodeado de vi&ntilde;edos y monta&ntilde;as.</p>
+  <main>
 
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="page-hero-bg" style="background-image: url('/images/photos/clubhouse-estancia-mountains.jpg');"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <h1>Propiedad</h1>
+      <p class="page-hero-subtitle">Casas, fincas, terrenos y alquileres en Cafayate y los Valles Calchaqu&iacute;es.</p>
+    </div>
+  </section>
+
+  <div class="page-intro">
+    <p>Cafayate se est&aacute; convirtiendo en un destino cada vez m&aacute;s popular no solo para turistas sino tambi&eacute;n para quienes buscan invertir en propiedades en un entorno &uacute;nico rodeado de vi&ntilde;edos y monta&ntilde;as.</p>
+  </div>
+
+  <section class="prose">
       <h2>Alquileres</h2>
       <p>Si est&aacute;s buscando un alquiler temporario en Cafayate, hay varias opciones disponibles, especialmente en La Estancia de Cafayate y alrededores. Desde casas con vista a los vi&ntilde;edos hasta departamentos en el centro del pueblo. Recomendamos estos dos agentes locales de alquileres:</p>
       <ul style="margin: 8px 0 16px 24px; line-height: 2;">
@@ -104,26 +117,22 @@
       </ul>
 
       <p>Para consultas sobre propiedades disponibles, cont&aacute;ctenos a <a href="mailto:info@cafayate.com">info@cafayate.com</a>.</p>
-    </main>
+  </section>
 
-    <aside class="sidebar">
-      <div data-promo="sidebar"></div>
-      <div class="sidebar-card">
-        <img src="/images/sidebar/vinos.png" alt="Vinos" class="sidebar-card-img">
-        <div class="sidebar-card-content">
-          <span class="sidebar-card-title">Vinos de Extrema Altura</span>
-          <p class="sidebar-card-text">Vinos de altitudes extremas | <a href="/pages/vinos.html" class="read-more">Leer m&aacute;s</a></p>
-        </div>
+  <!-- Featured Partner sponsor -->
+  <section class="featured-partner" aria-label="Patrocinador destacado">
+    <a href="https://badbrotherswe.com" target="_blank" rel="noopener" class="featured-partner-card" style="background-image: url('/images/promos/bad-brothers-hero.jpg');">
+      <div class="featured-partner-overlay"></div>
+      <div class="featured-partner-content">
+        <span class="featured-partner-eyebrow">Patrocinador destacado</span>
+        <h2 class="featured-partner-title">Bad Brothers Wine &amp; Food Experience</h2>
+        <p class="featured-partner-desc">La experiencia gastron&oacute;mica y en&oacute;logica m&aacute;s completa de Cafayate, con la carta del Chef Walter Leal &mdash; Le Cordon Bleu Par&iacute;s, Acad&eacute;mie Culinaire de France.</p>
+        <span class="featured-partner-cta">Visitar &rarr;</span>
       </div>
-      <div class="sidebar-card">
-        <img src="/images/sidebar/iglesia.png" alt="Bodegas" class="sidebar-card-img">
-        <div class="sidebar-card-content">
-          <span class="sidebar-card-title">Bodegas</span>
-          <p class="sidebar-card-text">Recomendaciones de degustaciones | <a href="/pages/bodegas.html" class="read-more">Leer m&aacute;s</a></p>
-        </div>
-      </div>
-    </aside>
-  </div>
+    </a>
+  </section>
+
+  </main>
 
   <footer class="site-footer">
     <div class="footer-grid">
