@@ -89,33 +89,22 @@
     </ul>
   </nav>
 
-  <div class="content-layout">
-    <main class="main-content page-content">
+  <main>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="page-hero-bg" style="background-image: url('/images/photos/almuerzo-vinedos.jpg');"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
       <h1>Blog</h1>
-      <p>News, guides and articles about wine, tourism and culture in Cafayate and the Calchaqu&iacute; Valleys.</p>
+      <p class="page-hero-subtitle">News, guides, and stories about wine, travel, and culture in Cafayate.</p>
+    </div>
+  </section>
 
-      <!-- Dynamic blog posts rendered by JS -->
-      <div id="blog-list" data-src="/data/blog.json"></div>
-    </main>
+  <!-- Dynamic blog posts rendered by JS -->
+  <div id="blog-list" data-src="/data/blog.json"></div>
 
-    <aside class="sidebar">
-      <div data-promo="sidebar"></div>
-      <div class="sidebar-card">
-        <img src="/images/sidebar/vinos.png" alt="Wines" class="sidebar-card-img">
-        <div class="sidebar-card-content">
-          <span class="sidebar-card-title">Extreme Altitude Wines</span>
-          <p class="sidebar-card-text">Wines from extreme altitudes | <a href="/en/pages/vinos.html" class="read-more">Read more</a></p>
-        </div>
-      </div>
-      <div class="sidebar-card">
-        <img src="/images/sidebar/iglesia.png" alt="Bodegas" class="sidebar-card-img">
-        <div class="sidebar-card-content">
-          <span class="sidebar-card-title">Bodegas</span>
-          <p class="sidebar-card-text">Winery recommendations and tastings | <a href="/en/pages/bodegas.html" class="read-more">Read more</a></p>
-        </div>
-      </div>
-    </aside>
-  </div>
+  </main>
 
   <footer class="site-footer">
     <div class="footer-grid">
