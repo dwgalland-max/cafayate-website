@@ -369,6 +369,284 @@ body.retrofit .featured-card:hover .featured-card-cta { opacity: 1; }
 }
 
 /* =============================================================
+   PAGE HERO — shorter than homepage hero, used on interior pages
+   ============================================================= */
+body.retrofit .page-hero {
+  position: relative;
+  min-height: 380px;
+  height: 50vh;
+  max-height: 540px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: var(--r-charcoal);
+}
+body.retrofit .page-hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 40%;
+}
+body.retrofit .page-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.7) 100%);
+}
+body.retrofit .page-hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 32px 56px;
+}
+body.retrofit .page-hero h1 {
+  font-family: var(--r-font-display);
+  font-weight: 300;
+  font-size: clamp(2.25rem, 6vw, 5rem);
+  line-height: 1;
+  color: #fff;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.3);
+  margin: 0 0 12px;
+  text-align: left;
+}
+body.retrofit .page-hero-subtitle {
+  font-family: var(--r-font-sans);
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 540px;
+  margin: 0;
+}
+
+/* =============================================================
+   PAGE INTRO — body copy block under page hero
+   ============================================================= */
+body.retrofit .page-intro {
+  max-width: 760px;
+  margin: 56px auto 0;
+  padding: 0 32px;
+  text-align: left;
+}
+body.retrofit .page-intro p {
+  font-family: var(--r-font-sans);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--r-text);
+  margin: 0;
+}
+
+/* =============================================================
+   SECTION HEADER — eyebrow + title pair
+   ============================================================= */
+body.retrofit .section-header {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 64px 32px 28px;
+}
+body.retrofit .section-header .eyebrow {
+  margin-bottom: 10px;
+}
+body.retrofit .section-header h2 {
+  font-family: var(--r-font-display);
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--r-charcoal);
+  letter-spacing: -0.005em;
+  margin: 0;
+  text-transform: none;
+  text-align: left;
+}
+
+/* =============================================================
+   LISTING GRID — magazine-style 3-up cards, photo on top, text below
+   ============================================================= */
+body.retrofit .listing-grid {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 32px 16px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+@media (min-width: 720px) {
+  body.retrofit .listing-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1000px) {
+  body.retrofit .listing-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+}
+body.retrofit .listing-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--r-line);
+  text-decoration: none;
+  transition: border-color .25s ease, transform .35s ease;
+  overflow: hidden;
+}
+body.retrofit .listing-card:hover {
+  border-color: var(--r-gold-soft);
+  text-decoration: none;
+  transform: translateY(-3px);
+}
+body.retrofit .listing-card-img {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+body.retrofit .listing-card-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.18) 100%);
+}
+body.retrofit .listing-card-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  display: inline-block;
+  padding: 6px 10px;
+  background: var(--r-gold);
+  color: var(--r-charcoal);
+  font-family: var(--r-font-sans);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+body.retrofit .listing-card-altitude {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  display: inline-block;
+  padding: 6px 10px;
+  background: rgba(26, 26, 26, 0.85);
+  color: rgba(255, 255, 255, 0.95);
+  font-family: var(--r-font-sans);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+body.retrofit .listing-card-body {
+  padding: 22px 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-grow: 1;
+}
+body.retrofit .listing-card-category {
+  font-family: var(--r-font-sans);
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--r-gold);
+  margin: 0;
+}
+body.retrofit .listing-card-title {
+  font-family: var(--r-font-display);
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--r-charcoal);
+  margin: 0;
+  letter-spacing: -0.005em;
+  transition: color .25s ease;
+}
+body.retrofit .listing-card:hover .listing-card-title { color: var(--r-gold); }
+body.retrofit .listing-card-desc {
+  font-family: var(--r-font-sans);
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--r-text);
+  margin: 0;
+}
+body.retrofit .listing-card-footer {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--r-line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+body.retrofit .listing-card-cta {
+  font-family: var(--r-font-sans);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--r-gold);
+}
+body.retrofit .listing-card-website {
+  font-family: var(--r-font-sans);
+  font-size: 12px;
+  color: var(--r-muted);
+  text-decoration: none;
+  transition: color .2s ease;
+}
+body.retrofit .listing-card-website:hover { color: var(--r-gold); text-decoration: none; }
+
+/* =============================================================
+   DIRECTORY LIST — clean 2-col text list (no photos)
+   ============================================================= */
+body.retrofit .directory {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 24px 32px 64px;
+}
+body.retrofit .directory-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-top: 1px solid var(--r-line);
+}
+@media (min-width: 720px) {
+  body.retrofit .directory-list { grid-template-columns: 1fr 1fr; }
+}
+body.retrofit .directory-list li {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--r-line);
+  font-family: var(--r-font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+}
+@media (min-width: 720px) {
+  body.retrofit .directory-list li:nth-child(odd) { padding-right: 24px; }
+  body.retrofit .directory-list li:nth-child(even) { padding-left: 24px; border-left: 1px solid var(--r-line); }
+}
+body.retrofit .directory-list li strong {
+  font-family: var(--r-font-display);
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--r-charcoal);
+  display: block;
+  margin-bottom: 4px;
+}
+body.retrofit .directory-list li strong a {
+  color: var(--r-charcoal);
+  text-decoration: none;
+}
+body.retrofit .directory-list li strong a:hover { color: var(--r-gold); }
+body.retrofit .directory-list li span.directory-desc {
+  color: var(--r-muted);
+  font-weight: 300;
+}
+
+/* =============================================================
    FEATURED PARTNER — sponsor placement (Position 1, mid-page)
    Single full-width photo card. Looks like a featured card but wider.
    Always labeled as a sponsor for transparency.
