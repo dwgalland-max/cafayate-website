@@ -95,45 +95,76 @@
     </ul>
   </nav>
 
-  <div class="content-layout">
-    <main class="main-content page-content">
-      <img src="/images/hero/vinos-de-altura.png" alt="Extreme Altitude Wines" style="margin-bottom:20px;">
-      <h1>Extreme Altitude Wines</h1>
-      <p>Although small compared to other Argentine wine regions &mdash;producing only 3% of Argentina's wines&mdash; the area around Cafayate has become world-famous thanks to its high and extreme altitude wines.</p>
-      <p>We categorize high altitude wines based on vineyards situated at an elevation between 1,500 and 2,200 meters above sea level (m.a.s.l.). Extreme altitude vineyards are found above 2,200 m.a.s.l., where a handful of winemakers in the Calchaqu&iacute; Valley are producing wines at the very limits of where it is possible to grow grapes.</p>
+  <main>
 
-      <h2>Why does altitude matter?</h2>
-      <p>Altitude is a key factor in winemaking. Everything that makes a wine distinctive &mdash;tannins, polyphenols, color, flavor profile&mdash; comes from the grape skins. To survive the dramatic temperature swings, higher levels of solar radiation, and long ripening periods at extreme altitudes, grapes must develop thick, resilient skins that winemakers harness to create highly concentrated and complex wines.</p>
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="page-hero-bg" style="background-image: url('/images/hero/vinos-de-altura.png');"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <h1>Extreme altitude wines</h1>
+      <p class="page-hero-subtitle">The terroir, the altitude, and the unique character of the wines of the Calchaqu&iacute; Valleys.</p>
+    </div>
+  </section>
 
-      <!-- Dynamic bodega list rendered by JS -->
-      <div id="bodega-list" data-src="/data/bodegas.json"></div>
-    </main>
-
-    <aside class="sidebar">
-      <div data-promo="sidebar"></div>
-      <div class="sidebar-card">
-        <img src="/images/sidebar/vinos.png" alt="Wines" class="sidebar-card-img">
-        <div class="sidebar-card-content">
-          <span class="sidebar-card-title">Extreme Altitude Wines</span>
-          <p class="sidebar-card-text">A group of winemakers in the Calchaqu&iacute; Valleys are producing wines from vineyards at extreme altitudes | <a href="/en/pages/vinos.html" class="read-more">Read more</a></p>
-        </div>
-      </div>
-      <div class="sidebar-card">
-        <img src="/images/sidebar/iglesia.png" alt="Tastings" class="sidebar-card-img">
-        <div class="sidebar-card-content">
-          <span class="sidebar-card-title">Bodegas</span>
-          <p class="sidebar-card-text">Our recommendations for wineries and places to enjoy wine tastings in Cafayate | <a href="/en/pages/bodegas.html" class="read-more">Read more</a></p>
-        </div>
-      </div>
-      <div class="sidebar-card">
-        <img src="/images/sidebar/derImg1.jpg" alt="Gallery" class="sidebar-card-img">
-        <div class="sidebar-card-content">
-          <span class="sidebar-card-title">Photo Gallery</span>
-          <p class="sidebar-card-text">A collection of photos from Cafayate's wine country | <a href="/en/pages/fotos.html" class="read-more">Read more</a></p>
-        </div>
-      </div>
-    </aside>
+  <div class="page-intro">
+    <p>Although small compared to other Argentine wine regions &mdash; producing only 3% of the country's wines &mdash; the area around Cafayate has become world-famous thanks to its high and extreme altitude wines.</p>
   </div>
+
+  <section class="prose">
+    <h2>Why does altitude matter?</h2>
+    <p>Altitude is a key factor in winemaking. Everything that makes a wine distinctive &mdash; tannins, polyphenols, color, aromatic profile &mdash; comes largely from the grape skins.</p>
+    <p>To survive the dramatic temperature swings, higher levels of solar radiation, and long ripening periods at these elevations, grapes develop thicker, more resilient skins. Winemakers harness that trait to create wines of high concentration, deep color, and great aromatic complexity.</p>
+    <p>Cafayate's Malbec, for example, is often opaque when held to the light &mdash; a direct sign of the concentration that altitude imparts to the grape. Torront&eacute;s, the region's emblematic white, gains aromatic intensity thanks to UV radiation and cool nights. Tannat, more austere at low altitude, finds an unusual balance here.</p>
+  </section>
+
+  <!-- Stats summary block -->
+  <section class="altitude-pullquote altitude-pullquote--light">
+    <div class="altitude-inner">
+      <span class="eyebrow">By the numbers</span>
+      <h2>Vineyards at the limit</h2>
+      <p class="altitude-lead">High-altitude wines are those produced between 1,500 and 2,200 meters above sea level. Extreme altitude vineyards are found above 2,200 m, where a handful of winemakers cultivate at the very limits of where grapes can grow.</p>
+      <div class="altitude-stats">
+        <div class="altitude-stat">
+          <span class="altitude-stat-value">3,111m</span>
+          <span class="altitude-stat-label">Highest vineyard, Calchaqu&iacute; Valley</span>
+        </div>
+        <div class="altitude-stat">
+          <span class="altitude-stat-value">320</span>
+          <span class="altitude-stat-label">Sunny days per year</span>
+        </div>
+        <div class="altitude-stat">
+          <span class="altitude-stat-value">20&deg;C</span>
+          <span class="altitude-stat-label">Daily temperature swing</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interlink banner → Bodegas -->
+  <section class="interlink">
+    <div class="interlink-inner">
+      <span class="eyebrow">Where to taste these wines</span>
+      <h3 class="interlink-title">Discover the wineries and wine bars of Cafayate</h3>
+      <p>Wine bars in town, historic bodegas, and extreme-altitude pioneers &mdash; the full directory of places to taste in Cafayate and the Calchaqu&iacute; Valleys.</p>
+      <a href="/en/pages/bodegas.html" class="interlink-cta">View all bodegas &rarr;</a>
+    </div>
+  </section>
+
+  <!-- Featured Partner sponsor -->
+  <section class="featured-partner" aria-label="Featured partner">
+    <a href="https://badbrotherswe.com" target="_blank" rel="noopener" class="featured-partner-card" style="background-image: url('/images/promos/bad-brothers-hero.jpg');">
+      <div class="featured-partner-overlay"></div>
+      <div class="featured-partner-content">
+        <span class="featured-partner-eyebrow">Featured partner</span>
+        <h2 class="featured-partner-title">Bad Brothers Wine &amp; Food Experience</h2>
+        <p class="featured-partner-desc">Cafayate's most complete dining and wine experience, with a menu by Chef Walter Leal &mdash; Le Cordon Bleu Paris, Acad&eacute;mie Culinaire de France.</p>
+        <span class="featured-partner-cta">Visit &rarr;</span>
+      </div>
+    </a>
+  </section>
+
+  </main>
 
   <footer class="site-footer">
     <div class="footer-grid">
