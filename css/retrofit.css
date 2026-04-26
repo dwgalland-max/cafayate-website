@@ -901,6 +901,23 @@ body.retrofit .altitude-stat-label {
   font-weight: 400;
 }
 
+/* Light variant: same component, on-page colors instead of charcoal-on-white */
+body.retrofit .altitude-pullquote.altitude-pullquote--light {
+  background: var(--r-cream);
+  color: var(--r-text);
+  border-top: 1px solid var(--r-line);
+  border-bottom: 1px solid var(--r-line);
+}
+body.retrofit .altitude-pullquote--light h2 { color: var(--r-charcoal); }
+body.retrofit .altitude-pullquote--light .altitude-lead { color: var(--r-text); }
+body.retrofit .altitude-pullquote--light .altitude-stat {
+  border-left-color: var(--r-line);
+}
+body.retrofit .altitude-pullquote--light .altitude-stat-label {
+  color: var(--r-muted);
+}
+/* eyebrow & stat values keep their gold by default */
+
 /* ----- Old quick-link styles (kept for fallback if any other pages use them) ----- */
 body.retrofit .quick-links {
   display: grid;
