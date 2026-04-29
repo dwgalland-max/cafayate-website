@@ -22,6 +22,7 @@
   <meta name="twitter:image" content="https://cafayate.com/images/logo-header.png">
   <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/retrofit.css">
   <!-- Google Analytics (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-LK24283MWM"></script>
   <script>
@@ -42,7 +43,7 @@
   }
   </script>
 </head>
-<body>
+<body class="retrofit">
 
   <div class="top-bar">
     <div class="top-bar-left">
@@ -77,11 +78,23 @@
     </ul>
   </nav>
 
-  <div class="content-layout">
-    <main class="main-content page-content">
-      <h1>Property</h1>
-      <p>Cafayate is becoming an increasingly popular destination not only for tourists but also for those looking to invest in property in a unique setting surrounded by vineyards and mountains.</p>
+  <main>
 
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="page-hero-bg" style="background-image: url('/images/photos/clubhouse-estancia-mountains.jpg');"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <h1>Property</h1>
+      <p class="page-hero-subtitle">Houses, estates, land, and rentals in Cafayate and the Calchaqu&iacute; Valleys.</p>
+    </div>
+  </section>
+
+  <div class="page-intro">
+    <p>Cafayate is becoming an increasingly popular destination not only for tourists but also for those looking to invest in property in a unique setting surrounded by vineyards and mountains.</p>
+  </div>
+
+  <section class="prose">
       <h2>Rentals</h2>
       <p>If you&rsquo;re looking for a holiday rental in Cafayate, there are several options available, especially in La Estancia de Cafayate and the surrounding area. From houses with vineyard views to apartments in the town center. We recommend these two local rental agents:</p>
       <ul style="margin: 8px 0 16px 24px; line-height: 2;">
@@ -92,38 +105,71 @@
       <h2>Investing in Cafayate</h2>
       <p>The region offers investment opportunities in land, houses, estates, and tourism ventures. The growth of wine tourism has driven real estate development in the area.</p>
 
-      <h2>Available Properties</h2>
-      <div id="properties-list" data-src="/data/properties.json"></div>
+  </section>
 
-      <h2>Types of properties</h2>
-      <ul style="margin: 16px 0 16px 24px; color: var(--text-medium); line-height: 2;">
-        <li><strong>Commercial</strong> &mdash; Shops, hotels, and tourism ventures</li>
-        <li><strong>Estates</strong> &mdash; Land with vineyards and agricultural production</li>
-        <li><strong>Houses</strong> &mdash; Residential properties in the center and surroundings</li>
-        <li><strong>Land</strong> &mdash; Lots in town and on the outskirts with vineyard views</li>
-      </ul>
+  <header class="section-header">
+    <span class="eyebrow">Who to contact</span>
+    <h2>Cafayate real estate agents</h2>
+  </header>
+  <div class="listing-grid">
 
-      <p>For inquiries about available properties, contact us at <a href="mailto:info@cafayate.com">info@cafayate.com</a>.</p>
-    </main>
-
-    <aside class="sidebar">
-      <div data-promo="sidebar"></div>
-      <div class="sidebar-card">
-        <img src="/images/sidebar/vinos.png" alt="Wines" class="sidebar-card-img">
-        <div class="sidebar-card-content">
-          <span class="sidebar-card-title">Extreme Altitude Wines</span>
-          <p class="sidebar-card-text">Wines from extreme altitudes | <a href="/en/pages/vinos.html" class="read-more">Read more</a></p>
+    <a href="https://cafayateholiday.com/propiedadesVenta" target="_blank" rel="noopener" class="listing-card">
+      <div class="listing-card-img" style="background-image: url('/images/photos/cafayate-holiday.jpg'); background-size: 70%; background-color: #fff; background-repeat: no-repeat;"></div>
+      <div class="listing-card-body">
+        <p class="listing-card-category">Sales &amp; rentals &middot; La Estancia</p>
+        <h3 class="listing-card-title">Cafayate Holiday</h3>
+        <p class="listing-card-desc">Houses in La Estancia for rent or purchase.</p>
+        <div class="listing-card-footer">
+          <span class="listing-card-cta">Visit &rarr;</span>
+          <span class="listing-card-website">cafayateholiday.com</span>
         </div>
       </div>
-      <div class="sidebar-card">
-        <img src="/images/sidebar/iglesia.png" alt="Tastings" class="sidebar-card-img">
-        <div class="sidebar-card-content">
-          <span class="sidebar-card-title">Bodegas</span>
-          <p class="sidebar-card-text">Tasting recommendations | <a href="/en/pages/bodegas.html" class="read-more">Read more</a></p>
+    </a>
+
+    <a href="https://www.instagram.com/consultora.calchaqui/" target="_blank" rel="noopener" class="listing-card">
+      <div class="listing-card-img" style="background-image: url('/images/photos/consultora-calchaqui.jpg');"></div>
+      <div class="listing-card-body">
+        <p class="listing-card-category">Sales &middot; La Estancia</p>
+        <h3 class="listing-card-title">Consultora Calchaqu&iacute;</h3>
+        <p class="listing-card-desc">Land and houses within La Estancia de Cafayate.</p>
+        <div class="listing-card-footer">
+          <span class="listing-card-cta">Visit &rarr;</span>
+          <span class="listing-card-website">@consultora.calchaqui</span>
         </div>
       </div>
-    </aside>
+    </a>
+
+    <a href="https://innoacafayate.com/venta/" target="_blank" rel="noopener" class="listing-card">
+      <div class="listing-card-img" style="background-image: url('/images/photos/innoa.jpg'); background-size: 70%; background-color: #fff; background-repeat: no-repeat;"></div>
+      <div class="listing-card-body">
+        <p class="listing-card-category">Sales &middot; Town center</p>
+        <h3 class="listing-card-title">INNOA Inmobiliaria</h3>
+        <p class="listing-card-desc">Primarily houses, land, and commercial properties in town.</p>
+        <div class="listing-card-footer">
+          <span class="listing-card-cta">Visit &rarr;</span>
+          <span class="listing-card-website">innoacafayate.com</span>
+        </div>
+      </div>
+    </a>
+
   </div>
+
+  <p style="margin: 32px auto; max-width: 720px; padding: 0 24px; font-family: var(--r-font-sans); font-size: 14px; line-height: 1.7; color: var(--r-muted); text-align: center;">Cafayate.com is not a party to any real estate transaction. For general questions about the region, email <a href="mailto:info@cafayate.com" style="color: var(--r-gold); border-bottom: 1px solid var(--r-gold);">info@cafayate.com</a>.</p>
+
+  <!-- Featured Partner sponsor -->
+  <section class="featured-partner" aria-label="Featured partner">
+    <a href="https://badbrotherswe.com" target="_blank" rel="noopener" data-sponsor="bad_brothers" data-placement="featured_partner" class="featured-partner-card" style="background-image: url('/images/promos/bad-brothers-hero.jpg');">
+      <div class="featured-partner-overlay"></div>
+      <div class="featured-partner-content">
+        <span class="featured-partner-eyebrow">Featured partner</span>
+        <h2 class="featured-partner-title">Bad Brothers Wine &amp; Food Experience</h2>
+        <p class="featured-partner-desc">Cafayate's most complete dining and wine experience, with a menu by Chef Walter Leal &mdash; Le Cordon Bleu Paris, Acad&eacute;mie Culinaire de France.</p>
+        <span class="featured-partner-cta">Visit &rarr;</span>
+      </div>
+    </a>
+  </section>
+
+  </main>
 
   <footer class="site-footer">
     <div class="footer-grid">

@@ -23,6 +23,7 @@
   <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
   <link rel="author" href="https://cafayate.com/llms.txt" type="text/plain" title="LLMs.txt">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/retrofit.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script type="application/ld+json">
@@ -83,7 +84,7 @@
     gtag("config", "G-LK24283MWM");
   </script>
 </head>
-<body>
+<body class="retrofit">
 
   <!-- Top Bar -->
   <div class="top-bar">
@@ -125,103 +126,119 @@
     </ul>
   </nav>
 
-  <!-- Main Content -->
-  <div class="content-layout">
-    <main class="main-content">
+  <!-- Editorial Hero -->
+  <section class="editorial-hero">
+    <div class="editorial-hero-bg" style="background-image: url('/images/photos/clubhouse-estancia-mountains.jpg');"></div>
+    <div class="editorial-hero-overlay"></div>
+    <div class="editorial-hero-content">
+      <span class="eyebrow">Valles Calchaqu&iacute;es · Salta · Argentina</span>
+      <h1>Tu Gu&iacute;a de Cafayate</h1>
+      <p class="lead">Donde los Andes se encuentran con la vi&ntilde;a. Una regi&oacute;n vin&iacute;cola dram&aacute;tica que se eleva a 1.700 metros, donde las condiciones extremas crean vinos extraordinarios.</p>
+      <a href="#explorar" class="hero-cta" onclick="document.querySelector('.quick-links').scrollIntoView({behavior:'smooth'}); return false;">Explorar el valle</a>
+    </div>
+  </section>
 
-      <!-- Quick Links -->
-      <div class="homepage-intro">
-        <h1>Tu Gu&iacute;a de Cafayate</h1>
-        <p>Explor&aacute; bodegas, degustaciones, mapas y todo lo que necesit&aacute;s para planificar tu visita a los Valles Calchaqu&iacute;es.</p>
+  <!-- Chicklets — compact horizontal nav strip directly under hero -->
+  <nav class="chicklets" aria-label="Quick navigation">
+    <a href="/pages/bodegas.html" class="chicklet">
+      <span class="chicklet-icon">&#127863;</span>
+      <span class="chicklet-label">Degustaciones</span>
+    </a>
+    <a href="/pages/lugares.html" class="chicklet">
+      <span class="chicklet-icon">&#128205;</span>
+      <span class="chicklet-label">Mapa y Lugares</span>
+    </a>
+    <a href="/pages/visitas.html" class="chicklet">
+      <span class="chicklet-icon">&#127748;</span>
+      <span class="chicklet-label">Qu&eacute; Visitar</span>
+    </a>
+    <a href="/pages/agenda.html" class="chicklet">
+      <span class="chicklet-icon">&#128197;</span>
+      <span class="chicklet-label">Agenda</span>
+    </a>
+  </nav>
+
+  <!-- Featured Experiences — magazine-style photo cards -->
+  <section class="featured-row">
+    <div class="featured-row-header">
+      <span class="eyebrow">Comenz&aacute; tu visita</span>
+      <h2 class="featured-row-title">Cuatro maneras de descubrir Cafayate</h2>
+    </div>
+    <div class="featured-cards">
+      <a href="/pages/bodegas.html" class="featured-card" style="background-image: url('/images/photos/amalaya-deck-sunset.jpg');">
+        <div class="featured-card-overlay"></div>
+        <div class="featured-card-content">
+          <span class="featured-card-eyebrow">Bodegas y degustaciones</span>
+          <h3 class="featured-card-title">Nuestra Selecci&oacute;n</h3>
+          <p class="featured-card-desc">Recomendaciones de bodegas y lugares para realizar degustaciones de vinos en Cafayate.</p>
+          <span class="featured-card-cta">Ver bodegas &rarr;</span>
+        </div>
+      </a>
+      <a href="/pages/vinos.html" class="featured-card" style="background-image: url('/images/photos/moonrise-cafayate.jpg');">
+        <div class="featured-card-overlay"></div>
+        <div class="featured-card-content">
+          <span class="featured-card-eyebrow">El terroir</span>
+          <h3 class="featured-card-title">Vinos de Extrema Altura</h3>
+          <p class="featured-card-desc">Vitivinicultores produciendo vinos en vi&ntilde;edos ubicados en los l&iacute;mites extremos del cultivo de la vi&ntilde;a.</p>
+          <span class="featured-card-cta">Conocer m&aacute;s &rarr;</span>
+        </div>
+      </a>
+      <a href="/pages/visitas.html" class="featured-card" style="background-image: url('/images/hero/museo-del-vino.png');">
+        <div class="featured-card-overlay"></div>
+        <div class="featured-card-content">
+          <span class="featured-card-eyebrow">Cultura</span>
+          <h3 class="featured-card-title">Museo del Vino</h3>
+          <p class="featured-card-desc">Una mirada a la historia del vino en los Valles Calchaqu&iacute;es.</p>
+          <span class="featured-card-cta">Visitar &rarr;</span>
+        </div>
+      </a>
+      <a href="/pages/lugares.html" class="featured-card" style="background-image: url('/images/photos/clubhouse-estancia-garden.jpg');">
+        <div class="featured-card-overlay"></div>
+        <div class="featured-card-content">
+          <span class="featured-card-eyebrow">Mapa interactivo</span>
+          <h3 class="featured-card-title">Mapa de Bodegas</h3>
+          <p class="featured-card-desc">Explor&aacute; las bodegas de Cafayate en nuestro mapa interactivo.</p>
+          <span class="featured-card-cta">Ver mapa &rarr;</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Featured Partner — sponsor placement (Position 1) -->
+  <section class="featured-partner" aria-label="Patrocinador destacado">
+    <a href="https://badbrotherswe.com" target="_blank" rel="noopener" data-sponsor="bad_brothers" data-placement="featured_partner" class="featured-partner-card" style="background-image: url('/images/promos/bad-brothers-hero.jpg');">
+      <div class="featured-partner-overlay"></div>
+      <div class="featured-partner-content">
+        <span class="featured-partner-eyebrow">Patrocinador destacado</span>
+        <h2 class="featured-partner-title">Bad Brothers Wine &amp; Food Experience</h2>
+        <p class="featured-partner-desc">La experiencia gastron&oacute;mica y en&oacute;logica m&aacute;s completa de Cafayate, con la carta del Chef Walter Leal &mdash; Le Cordon Bleu Par&iacute;s, Acad&eacute;mie Culinaire de France.</p>
+        <span class="featured-partner-cta">Visitar &rarr;</span>
       </div>
+    </a>
+  </section>
 
-      <div class="quick-links">
-        <a href="/pages/bodegas.html" class="quick-link">
-          <span class="quick-link-icon">&#127863;</span>
-          <span class="quick-link-title">Degustaciones</span>
-          <span class="quick-link-desc">D&oacute;nde catar vinos</span>
-        </a>
-        <a href="/pages/lugares.html" class="quick-link">
-          <span class="quick-link-icon">&#128205;</span>
-          <span class="quick-link-title">Mapa y Lugares</span>
-          <span class="quick-link-desc">Bodegas y puntos de inter&eacute;s</span>
-        </a>
-        <a href="/pages/visitas.html" class="quick-link">
-          <span class="quick-link-icon">&#127748;</span>
-          <span class="quick-link-title">Qu&eacute; Visitar</span>
-          <span class="quick-link-desc">Atracciones y paseos</span>
-        </a>
-        <a href="/pages/agenda.html" class="quick-link">
-          <span class="quick-link-icon">&#128197;</span>
-          <span class="quick-link-title">Agenda</span>
-          <span class="quick-link-desc">Eventos y actividades</span>
-        </a>
-      </div>
-
-      <!-- Museo del Vino -->
-      <section class="hero-section">
-        <img src="/images/hero/museo-del-vino.png" alt="Museo del Vino">
-        <h2>Museo del Vino</h2>
-        <p>Te invitamos a explorar la historia del vino en los Valles Calchaqu&iacute;es | <a href="/pages/visitas.html" class="read-more">Leer m&aacute;s</a></p>
-      </section>
-
-      <hr class="section-divider">
-
-      <!-- Nuestra Selecci&oacute;n -->
-      <section class="hero-section">
-        <img src="/images/hero/nuestra-seleccion.png" alt="Nuestra Selecci&oacute;n">
-        <h2>Nuestra Selecci&oacute;n</h2>
-        <p>Te acercamos nuestras recomendaciones de bodegas y lugares para realizar degustaciones de vinos en Cafayate | <a href="/pages/bodegas.html" class="read-more">Leer m&aacute;s</a></p>
-      </section>
-
-      <hr class="section-divider">
-
-      <!-- Mapa de Cafayate -->
-      <section class="hero-section">
-        <h2>Mapa de Bodegas</h2>
-        <div id="home-map" style="height: 300px; border-radius: 4px; margin-bottom: 12px;"></div>
-        <p>Explor&aacute; las bodegas de Cafayate en nuestro mapa interactivo | <a href="/pages/lugares.html" class="read-more">Ver mapa completo</a></p>
-      </section>
-
-      <hr class="section-divider">
-
-      <!-- Vinos de Extrema Altura -->
-      <section class="hero-section">
-        <img src="/images/hero/bodegas.png" alt="Vinos de Extrema Altura">
-        <h2>Vinos de Extrema Altura</h2>
-        <p>Un grupo de vitivinicultores de los Valles Calchaqu&iacute;es est&aacute;n produciendo vinos en vi&ntilde;edos ubicados en l&iacute;mites extremos para el cultivo | <a href="/pages/vinos.html" class="read-more">Leer m&aacute;s</a></p>
-      </section>
-
-    </main>
-
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <div data-promo="sidebar"></div>
-      <div class="sidebar-card">
-        <img src="/images/sidebar/vinos.png" alt="Vinos" class="sidebar-card-img">
-        <div class="sidebar-card-content">
-          <span class="sidebar-card-title">Vinos de Extrema Altura</span>
-          <p class="sidebar-card-text">Un grupo de vitivinicultores de los Valles Calchaqu&iacute;es est&aacute;n produciendo vinos en vi&ntilde;edos ubicados en l&iacute;mites extremos para el cultivo de la vi&ntilde;a | <a href="/pages/vinos.html" class="read-more">Leer m&aacute;s</a></p>
+  <!-- Altitude pull-quote / stats -->
+  <section class="altitude-pullquote">
+    <div class="altitude-inner">
+      <span class="eyebrow">El terroir</span>
+      <h2>Vinos de altura extrema</h2>
+      <p class="altitude-lead">Aunque peque&ntilde;a comparada con otras regiones vin&iacute;colas argentinas &mdash; produciendo apenas el 3% de los vinos del pa&iacute;s &mdash; Cafayate se ha hecho mundialmente conocida gracias a sus vinos de altura y altura extrema.</p>
+      <div class="altitude-stats">
+        <div class="altitude-stat">
+          <span class="altitude-stat-value">3.111m</span>
+          <span class="altitude-stat-label">Vi&ntilde;edo m&aacute;s alto del Valle Calchaqu&iacute;</span>
+        </div>
+        <div class="altitude-stat">
+          <span class="altitude-stat-value">320</span>
+          <span class="altitude-stat-label">D&iacute;as de sol al a&ntilde;o</span>
+        </div>
+        <div class="altitude-stat">
+          <span class="altitude-stat-value">30+</span>
+          <span class="altitude-stat-label">Bodegas en la regi&oacute;n</span>
         </div>
       </div>
-
-      <div class="sidebar-card">
-        <img src="/images/sidebar/iglesia.png" alt="Degustaciones" class="sidebar-card-img">
-        <div class="sidebar-card-content">
-          <span class="sidebar-card-title">Degustaciones</span>
-          <p class="sidebar-card-text">Nuestras recomendaciones de bodegas y lugares para realizar degustaciones de vinos en Cafayate | <a href="/pages/bodegas.html" class="read-more">Leer m&aacute;s</a></p>
-        </div>
-      </div>
-
-      <div class="sidebar-card">
-        <img src="/images/sidebar/derImg1.jpg" alt="Galer&iacute;a" class="sidebar-card-img">
-        <div class="sidebar-card-content">
-          <span class="sidebar-card-title">Galer&iacute;a de Im&aacute;genes</span>
-          <p class="sidebar-card-text">Una colecci&oacute;n de fotos del vino de Cafayate | <a href="/pages/fotos.html" class="read-more">Leer m&aacute;s</a></p>
-        </div>
-      </div>
-    </aside>
-  </div>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer class="site-footer">

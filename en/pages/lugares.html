@@ -22,6 +22,7 @@
   <meta name="twitter:image" content="https://cafayate.com/images/logo-header.png">
   <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/retrofit.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <!-- Google Analytics (GA4) -->
@@ -43,7 +44,7 @@
   }
   </script>
 </head>
-<body>
+<body class="retrofit">
 
   <div class="top-bar">
     <div class="top-bar-left">
@@ -78,10 +79,19 @@
     </ul>
   </nav>
 
-  <div class="content-layout">
-    <main class="main-content page-content">
-      <h1>Directions &amp; Map</h1>
+  <main>
 
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="page-hero-bg" style="background-image: url('/images/photos/lagoon-estancia-sunset.jpg');"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <h1>How to get here</h1>
+      <p class="page-hero-subtitle">Directions, transportation, and the winery map for planning your visit.</p>
+    </div>
+  </section>
+
+  <section class="prose">
       <h2>How to get to Cafayate</h2>
       <p>Cafayate is located in the province of Salta, in northern Argentina, about 3 hours south of the provincial capital, Salta. The nearest airport is the Mart&iacute;n Miguel de G&uuml;emes International Airport (SLA) in Salta, approximately 190 km away.</p>
 
@@ -109,29 +119,31 @@
         <li><strong>From Tucum&aacute;n:</strong> <a href="https://transporteaconquija.com.ar/" target="_blank" rel="noopener">Transporte Aconquija</a> &mdash; daily departures from Tucum&aacute;n bus terminal</li>
       </ul>
 
-      <h2>Winery Map</h2>
-      <p>Click on each marker to see winery details.</p>
-      <div id="bodega-map" style="height:500px;border-radius:6px;border:1px solid #ddd;margin-bottom:20px;"></div>
-    </main>
+  </section>
 
-    <aside class="sidebar">
-      <div data-promo="sidebar"></div>
-      <div class="sidebar-card">
-        <img src="/images/sidebar/vinos.png" alt="Wines" class="sidebar-card-img">
-        <div class="sidebar-card-content">
-          <span class="sidebar-card-title">Extreme Altitude Wines</span>
-          <p class="sidebar-card-text">Wines from extreme altitudes | <a href="/en/pages/vinos.html" class="read-more">Read more</a></p>
-        </div>
-      </div>
-      <div class="sidebar-card">
-        <img src="/images/sidebar/iglesia.png" alt="Tastings" class="sidebar-card-img">
-        <div class="sidebar-card-content">
-          <span class="sidebar-card-title">Bodegas</span>
-          <p class="sidebar-card-text">Tasting recommendations | <a href="/en/pages/bodegas.html" class="read-more">Read more</a></p>
-        </div>
-      </div>
-    </aside>
+  <header class="section-header">
+    <span class="eyebrow">The map</span>
+    <h2>The wineries of Cafayate</h2>
+  </header>
+  <div style="max-width: var(--max-width); margin: 0 auto; padding: 0 32px 48px;">
+    <p style="font-family: var(--r-font-sans); font-size: 14px; line-height: 1.7; color: var(--r-text); margin: 0 0 20px;">Click each marker to see winery details.</p>
+    <div id="bodega-map" style="height:500px;border:1px solid var(--r-line);"></div>
   </div>
+
+  <!-- Featured Partner sponsor -->
+  <section class="featured-partner" aria-label="Featured partner">
+    <a href="https://badbrotherswe.com" target="_blank" rel="noopener" data-sponsor="bad_brothers" data-placement="featured_partner" class="featured-partner-card" style="background-image: url('/images/promos/bad-brothers-hero.jpg');">
+      <div class="featured-partner-overlay"></div>
+      <div class="featured-partner-content">
+        <span class="featured-partner-eyebrow">Featured partner</span>
+        <h2 class="featured-partner-title">Bad Brothers Wine &amp; Food Experience</h2>
+        <p class="featured-partner-desc">Cafayate's most complete dining and wine experience, with a menu by Chef Walter Leal &mdash; Le Cordon Bleu Paris, Acad&eacute;mie Culinaire de France.</p>
+        <span class="featured-partner-cta">Visit &rarr;</span>
+      </div>
+    </a>
+  </section>
+
+  </main>
 
   <footer class="site-footer">
     <div class="footer-grid">

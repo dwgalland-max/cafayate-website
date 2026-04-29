@@ -1,0 +1,1315 @@
+/* =============================================================
+   RETROFIT — Editorial restyling of cafayate.com
+   Inspired by the cafayate.co redesign (Jarret).
+   Scoped to <body class="retrofit"> so untouched pages stay identical.
+   ============================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+body.retrofit {
+  /* New palette layered on top of the existing custom properties */
+  --r-cream: #F9F7F4;
+  --r-gold: #C5A572;
+  --r-gold-soft: #d4b685;
+  --r-charcoal: #1A1A1A;
+  --r-charcoal-soft: #2a2a2a;
+  --r-text: #3a3a3a;
+  --r-muted: #8a8a8a;
+  --r-line: rgba(26, 26, 26, 0.08);
+
+  --r-font-display: 'Cormorant Garamond', Georgia, serif;
+  --r-font-sans: 'Inter', 'Segoe UI', system-ui, sans-serif;
+
+  font-family: var(--r-font-sans);
+  font-weight: 300;
+  color: var(--r-text);
+  background: var(--r-cream);
+  letter-spacing: 0.005em;
+}
+
+body.retrofit a { color: var(--r-charcoal); }
+body.retrofit a:hover { color: var(--r-gold); text-decoration: none; }
+
+/* Hide the brutalist green side-borders on the retrofit pages */
+body.retrofit .site-header,
+body.retrofit .main-nav { border-left: none; border-right: none; }
+
+/* Sidebar gone site-wide once retrofit is applied; main becomes full-width */
+body.retrofit .sidebar { display: none; }
+body.retrofit .content-layout {
+  display: block;
+  grid-template-columns: 1fr;
+}
+body.retrofit .main-content { width: 100%; max-width: 100%; }
+
+/* Footer butts up against the altitude band — no extra margin */
+body.retrofit .site-footer { margin-top: 0; }
+
+/* ----- Top bar: keep functional, soften visually ----- */
+body.retrofit .top-bar {
+  background: var(--r-charcoal);
+  font-family: var(--r-font-sans);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 400;
+  padding: 8px 24px;
+}
+
+/* ----- Site header: cleaner, more editorial ----- */
+body.retrofit .site-header {
+  background: var(--r-cream);
+  padding: 32px 0 16px;
+  border-bottom: none;
+}
+body.retrofit .site-logo {
+  max-width: 380px;
+  /* keep the original clip to hide the legacy red banner baked into the image */
+  clip-path: inset(0 0 22% 0);
+  margin-bottom: -8px;
+}
+body.retrofit .site-tagline {
+  font-family: var(--r-font-sans);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  font-weight: 400;
+  color: var(--r-gold);
+  margin-top: 4px;
+}
+
+/* ----- Navigation: minimalist horizontal rule ----- */
+body.retrofit .main-nav {
+  background: var(--r-cream);
+  border-bottom: 1px solid var(--r-line);
+  padding: 0;
+}
+body.retrofit .nav-list { gap: 0; }
+body.retrofit .nav-list a {
+  font-family: var(--r-font-sans);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: var(--r-charcoal);
+  padding: 18px 14px;
+  border-bottom: 1px solid transparent;
+  transition: color .25s, border-color .25s;
+}
+body.retrofit .nav-list a:hover,
+body.retrofit .nav-list a.active {
+  color: var(--r-gold);
+  border-bottom-color: var(--r-gold);
+  background: transparent;
+}
+
+/* ----- Editorial hero (homepage) ----- */
+body.retrofit .editorial-hero {
+  position: relative;
+  width: 100%;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin: 0;
+  background: var(--r-charcoal);
+}
+body.retrofit .editorial-hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 35%;
+  filter: saturate(1.05);
+}
+body.retrofit .editorial-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.25) 35%, rgba(0,0,0,0.65) 100%);
+}
+body.retrofit .editorial-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 80px 24px;
+  max-width: 900px;
+}
+body.retrofit .editorial-hero .eyebrow {
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 24px;
+}
+body.retrofit .editorial-hero h1 {
+  font-family: var(--r-font-display);
+  font-weight: 300;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  line-height: 1;
+  color: #fff;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.3);
+  margin: 0 0 24px;
+}
+body.retrofit .editorial-hero .lead {
+  font-family: var(--r-font-sans);
+  font-weight: 300;
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 640px;
+  margin: 0 auto 36px;
+}
+body.retrofit .hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--r-font-sans);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  padding: 16px 32px;
+  background: transparent;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+body.retrofit .hero-cta:hover {
+  background: #fff;
+  color: var(--r-charcoal) !important;
+  border-color: #fff;
+}
+body.retrofit .hero-cta::after {
+  content: '↓';
+  font-size: 14px;
+}
+
+/* ----- Eyebrow utility ----- */
+body.retrofit .eyebrow {
+  display: inline-block;
+  font-family: var(--r-font-sans);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: var(--r-gold);
+  margin-bottom: 16px;
+}
+
+/* ----- Content layout: tighter editorial spacing ----- */
+body.retrofit .content-layout {
+  background: var(--r-cream);
+  padding: 32px 32px 48px;
+  max-width: var(--max-width);
+}
+body.retrofit .main-content { padding: 0; }
+body.retrofit .homepage-intro { display: none; }
+body.retrofit .section-divider { display: none; }
+
+/* =============================================================
+   CHICKLETS — compact horizontal nav strip directly under hero
+   ============================================================= */
+body.retrofit .chicklets {
+  display: flex;
+  flex-wrap: wrap;
+  background: #fff;
+  border-bottom: 1px solid var(--r-line);
+  margin: 0;
+  padding: 0;
+}
+body.retrofit .chicklet {
+  flex: 1 1 25%;
+  min-width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 18px 14px;
+  text-decoration: none;
+  border-right: 1px solid var(--r-line);
+  border-bottom: 1px solid var(--r-line);
+  background: #fff;
+  transition: background .2s ease, color .2s ease;
+}
+body.retrofit .chicklet:last-child { border-right: none; }
+@media (min-width: 720px) {
+  body.retrofit .chicklet {
+    min-width: auto;
+    border-bottom: none;
+    padding: 22px 24px;
+  }
+}
+body.retrofit .chicklet:hover {
+  background: var(--r-cream);
+  text-decoration: none;
+}
+body.retrofit .chicklet-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+body.retrofit .chicklet-label {
+  font-family: var(--r-font-sans);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--r-charcoal);
+  transition: color .2s ease;
+}
+body.retrofit .chicklet:hover .chicklet-label { color: var(--r-gold); }
+
+/* =============================================================
+   FEATURED ROW — magazine photo cards with overlay text
+   ============================================================= */
+body.retrofit .featured-row {
+  background: var(--r-cream);
+  padding: 32px 24px 48px;
+}
+body.retrofit .featured-row-header {
+  max-width: var(--max-width);
+  margin: 0 auto 36px;
+  text-align: center;
+}
+body.retrofit .featured-row-header .eyebrow { margin-bottom: 12px; }
+body.retrofit .featured-row-title {
+  font-family: var(--r-font-display);
+  font-size: clamp(1.85rem, 3.5vw, 2.75rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--r-charcoal);
+  margin: 0;
+  letter-spacing: -0.005em;
+}
+body.retrofit .featured-cards {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+@media (min-width: 900px) {
+  body.retrofit .featured-cards {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+}
+body.retrofit .featured-card {
+  position: relative;
+  display: block;
+  height: 360px;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform .5s ease;
+}
+@media (min-width: 900px) {
+  body.retrofit .featured-card { height: 460px; }
+}
+body.retrofit .featured-card:hover { text-decoration: none; transform: translateY(-4px); }
+body.retrofit .featured-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,0.85) 100%);
+  transition: background .35s ease;
+}
+body.retrofit .featured-card:hover .featured-card-overlay {
+  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.9) 100%);
+}
+body.retrofit .featured-card-content {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 22px;
+  z-index: 2;
+}
+body.retrofit .featured-card-eyebrow {
+  display: block;
+  font-family: var(--r-font-sans);
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 8px;
+}
+body.retrofit .featured-card-title {
+  font-family: var(--r-font-display);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.1;
+  color: #fff;
+  margin: 0 0 10px;
+  letter-spacing: -0.005em;
+}
+body.retrofit .featured-card-desc {
+  font-family: var(--r-font-sans);
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 0 12px;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height .35s ease, opacity .35s ease, margin .35s ease;
+}
+body.retrofit .featured-card:hover .featured-card-desc { max-height: 90px; opacity: 1; }
+body.retrofit .featured-card-cta {
+  display: inline-block;
+  font-family: var(--r-font-sans);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--r-gold);
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+body.retrofit .featured-card:hover .featured-card-cta { opacity: 1; }
+@media (hover: none) {
+  body.retrofit .featured-card-desc { max-height: 90px; opacity: 1; }
+  body.retrofit .featured-card-cta { opacity: 1; }
+}
+
+/* =============================================================
+   PAGE HERO — shorter than homepage hero, used on interior pages
+   ============================================================= */
+body.retrofit .page-hero {
+  position: relative;
+  min-height: 380px;
+  height: 50vh;
+  max-height: 540px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: var(--r-charcoal);
+}
+body.retrofit .page-hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 40%;
+}
+body.retrofit .page-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.7) 100%);
+}
+body.retrofit .page-hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 32px 56px;
+}
+body.retrofit .page-hero h1 {
+  font-family: var(--r-font-display);
+  font-weight: 300;
+  font-size: clamp(2.25rem, 6vw, 5rem);
+  line-height: 1;
+  color: #fff;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.3);
+  margin: 0 0 12px;
+  text-align: left;
+}
+body.retrofit .page-hero-subtitle {
+  font-family: var(--r-font-sans);
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 540px;
+  margin: 0;
+}
+
+/* =============================================================
+   PAGE INTRO — body copy block under page hero
+   ============================================================= */
+body.retrofit .page-intro {
+  max-width: 760px;
+  margin: 56px auto 0;
+  padding: 0 32px;
+  text-align: left;
+}
+body.retrofit .page-intro p {
+  font-family: var(--r-font-sans);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--r-text);
+  margin: 0;
+}
+
+/* =============================================================
+   SECTION HEADER — eyebrow + title pair
+   ============================================================= */
+body.retrofit .section-header {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 64px 32px 28px;
+}
+body.retrofit .section-header .eyebrow {
+  margin-bottom: 10px;
+}
+body.retrofit .section-header h2 {
+  font-family: var(--r-font-display);
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--r-charcoal);
+  letter-spacing: -0.005em;
+  margin: 0;
+  text-transform: none;
+  text-align: left;
+}
+
+/* =============================================================
+   LISTING GRID — magazine-style 3-up cards, photo on top, text below
+   ============================================================= */
+body.retrofit .listing-grid {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 32px 16px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+@media (min-width: 720px) {
+  body.retrofit .listing-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1000px) {
+  body.retrofit .listing-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+}
+body.retrofit .listing-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--r-line);
+  text-decoration: none;
+  transition: border-color .25s ease, transform .35s ease;
+  overflow: hidden;
+}
+body.retrofit .listing-card:hover {
+  border-color: var(--r-gold-soft);
+  text-decoration: none;
+  transform: translateY(-3px);
+}
+body.retrofit .listing-card-img {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+body.retrofit .listing-card-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.18) 100%);
+}
+body.retrofit .listing-card-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  display: inline-block;
+  padding: 6px 10px;
+  background: var(--r-gold);
+  color: var(--r-charcoal);
+  font-family: var(--r-font-sans);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+body.retrofit .listing-card-altitude {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  display: inline-block;
+  padding: 6px 10px;
+  background: rgba(26, 26, 26, 0.85);
+  color: rgba(255, 255, 255, 0.95);
+  font-family: var(--r-font-sans);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+body.retrofit .listing-card-body {
+  padding: 22px 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-grow: 1;
+}
+body.retrofit .listing-card-category {
+  font-family: var(--r-font-sans);
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--r-gold);
+  margin: 0;
+}
+body.retrofit .listing-card-title {
+  font-family: var(--r-font-display);
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--r-charcoal);
+  margin: 0;
+  letter-spacing: -0.005em;
+  transition: color .25s ease;
+}
+body.retrofit .listing-card:hover .listing-card-title { color: var(--r-gold); }
+body.retrofit .listing-card-desc {
+  font-family: var(--r-font-sans);
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--r-text);
+  margin: 0;
+}
+body.retrofit .listing-card-footer {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--r-line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+body.retrofit .listing-card-cta {
+  font-family: var(--r-font-sans);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--r-gold);
+}
+body.retrofit .listing-card-website {
+  font-family: var(--r-font-sans);
+  font-size: 12px;
+  color: var(--r-muted);
+  text-decoration: none;
+  transition: color .2s ease;
+}
+body.retrofit .listing-card-website:hover { color: var(--r-gold); text-decoration: none; }
+
+/* =============================================================
+   DIRECTORY LIST — clean 2-col text list (no photos)
+   ============================================================= */
+body.retrofit .directory {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 24px 32px 64px;
+}
+body.retrofit .directory-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-top: 1px solid var(--r-line);
+}
+@media (min-width: 720px) {
+  body.retrofit .directory-list { grid-template-columns: 1fr 1fr; }
+}
+body.retrofit .directory-list li {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--r-line);
+  font-family: var(--r-font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+}
+@media (min-width: 720px) {
+  body.retrofit .directory-list li:nth-child(odd) { padding-right: 24px; }
+  body.retrofit .directory-list li:nth-child(even) { padding-left: 24px; border-left: 1px solid var(--r-line); }
+}
+body.retrofit .directory-list li strong {
+  font-family: var(--r-font-display);
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--r-charcoal);
+  display: block;
+  margin-bottom: 4px;
+}
+body.retrofit .directory-list li strong a {
+  color: var(--r-charcoal);
+  text-decoration: none;
+}
+body.retrofit .directory-list li strong a:hover { color: var(--r-gold); }
+body.retrofit .directory-list li span.directory-desc {
+  color: var(--r-muted);
+  font-weight: 300;
+}
+
+/* =============================================================
+   INTERLINK BANNER — cross-page CTA (e.g. "see also: Bodegas")
+   Cream-on-cream, gold accent rule, prominent button.
+   ============================================================= */
+body.retrofit .interlink {
+  background: #fff;
+  border-top: 1px solid var(--r-line);
+  border-bottom: 1px solid var(--r-line);
+  padding: 56px 32px;
+  margin: 56px 0 0;
+}
+body.retrofit .interlink-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+body.retrofit .interlink .eyebrow { margin-bottom: 12px; }
+body.retrofit .interlink-title {
+  font-family: var(--r-font-display);
+  font-size: clamp(1.6rem, 2.8vw, 2.25rem);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--r-charcoal);
+  letter-spacing: -0.005em;
+  margin: 0 0 12px;
+}
+body.retrofit .interlink p {
+  font-family: var(--r-font-sans);
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--r-text);
+  margin: 0 0 24px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+body.retrofit .interlink-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--r-font-sans);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--r-charcoal);
+  border: 1px solid var(--r-charcoal);
+  padding: 14px 28px;
+  text-decoration: none;
+  background: transparent;
+  transition: background .25s ease, color .25s ease;
+}
+body.retrofit .interlink-cta:hover {
+  background: var(--r-charcoal);
+  color: #fff;
+  text-decoration: none;
+}
+
+/* =============================================================
+   PROSE — long-form editorial body copy (used on Vinos & similar)
+   ============================================================= */
+body.retrofit .prose {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 16px 32px 0;
+}
+body.retrofit .prose h2 {
+  font-family: var(--r-font-display);
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--r-charcoal);
+  margin: 40px 0 16px;
+  letter-spacing: -0.005em;
+  text-align: left;
+}
+body.retrofit .prose h2:first-child { margin-top: 0; }
+body.retrofit .prose p {
+  font-family: var(--r-font-sans);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--r-text);
+  margin: 0 0 18px;
+}
+body.retrofit .prose > p:last-child { margin-bottom: 0; }
+body.retrofit .prose { padding-bottom: 0; }
+body.retrofit .prose a {
+  color: var(--r-gold);
+  border-bottom: 1px solid var(--r-gold);
+  transition: color .2s, border-color .2s;
+}
+body.retrofit .prose a:hover {
+  color: var(--r-charcoal);
+  border-color: var(--r-charcoal);
+  text-decoration: none;
+}
+
+/* =============================================================
+   CONTACT FORM — minimal editorial form styling
+   ============================================================= */
+body.retrofit .contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 16px 32px 0;
+}
+body.retrofit .contact-form .form-group { margin-bottom: 20px; }
+body.retrofit .contact-form label {
+  display: block;
+  font-family: var(--r-font-sans);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--r-charcoal);
+  margin-bottom: 8px;
+}
+body.retrofit .contact-form input,
+body.retrofit .contact-form textarea {
+  width: 100%;
+  font-family: var(--r-font-sans);
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--r-charcoal);
+  background: #fff;
+  border: 1px solid var(--r-line);
+  border-radius: 0;
+  padding: 12px 14px;
+  transition: border-color .2s ease;
+}
+body.retrofit .contact-form input:focus,
+body.retrofit .contact-form textarea:focus {
+  outline: none;
+  border-color: var(--r-gold);
+}
+body.retrofit .contact-form button {
+  font-family: var(--r-font-sans);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #fff;
+  background: var(--r-charcoal);
+  border: 1px solid var(--r-charcoal);
+  padding: 16px 32px;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+body.retrofit .contact-form button:hover {
+  background: var(--r-gold);
+  border-color: var(--r-gold);
+}
+
+/* =============================================================
+   PHOTO GRID — gallery
+   ============================================================= */
+body.retrofit .photo-grid {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 16px 32px 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+@media (min-width: 720px) { body.retrofit .photo-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { body.retrofit .photo-grid { grid-template-columns: repeat(3, 1fr); } }
+body.retrofit .photo-grid figure {
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+  background: var(--r-line);
+}
+body.retrofit .photo-grid figure img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  transition: transform .6s ease;
+}
+body.retrofit .photo-grid figure:hover img { transform: scale(1.04); }
+body.retrofit .photo-grid figcaption {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 12px 14px;
+  font-family: var(--r-font-sans);
+  font-size: 12px;
+  font-weight: 300;
+  color: #fff;
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,0.7));
+}
+
+/* =============================================================
+   BLOG/EVENTS — restyle JS-rendered cards on retrofit pages
+   ============================================================= */
+body.retrofit #blog-list,
+body.retrofit #events-list {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 16px 32px 0;
+}
+
+body.retrofit .blog-card {
+  background: #fff;
+  border: 1px solid var(--r-line);
+  border-radius: 0;
+  margin-bottom: 24px;
+}
+body.retrofit .blog-card-img {
+  border-radius: 0;
+  height: 280px;
+}
+body.retrofit .blog-card-body { padding: 24px 28px 28px; }
+body.retrofit .blog-card-meta {
+  font-family: var(--r-font-sans);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--r-muted);
+}
+body.retrofit .blog-card h3 {
+  font-family: var(--r-font-display);
+  font-size: 26px;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  color: var(--r-charcoal);
+  margin: 12px 0 12px;
+  text-transform: none;
+}
+body.retrofit .blog-card-link:hover h3 { color: var(--r-gold); }
+body.retrofit .blog-card p {
+  font-family: var(--r-font-sans);
+  font-size: 15px;
+  line-height: 1.7;
+  font-weight: 300;
+  color: var(--r-text);
+}
+body.retrofit .blog-card-readmore,
+body.retrofit .blog-card-pinned,
+body.retrofit .blog-card-category {
+  font-family: var(--r-font-sans);
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--r-gold);
+}
+body.retrofit .blog-card-pinned,
+body.retrofit .blog-card-category {
+  background: transparent;
+  border: 1px solid var(--r-gold);
+  padding: 4px 8px;
+}
+
+body.retrofit .event-card {
+  background: #fff;
+  border: 1px solid var(--r-line);
+  border-radius: 0;
+  margin-bottom: 16px;
+  padding: 20px 24px;
+}
+body.retrofit .event-card h3 {
+  font-family: var(--r-font-display);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--r-charcoal);
+  margin: 0 0 8px;
+  text-transform: none;
+}
+body.retrofit .event-card .event-date,
+body.retrofit .event-card .event-location {
+  font-family: var(--r-font-sans);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--r-gold);
+  font-weight: 500;
+}
+body.retrofit .event-card .event-link {
+  font-family: var(--r-font-sans);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--r-gold);
+  border-bottom: 1px solid var(--r-gold);
+  padding-bottom: 2px;
+}
+
+/* =============================================================
+   FEATURED PARTNER — sponsor placement (Position 1, mid-page)
+   Single full-width photo card. Looks like a featured card but wider.
+   Always labeled as a sponsor for transparency.
+   ============================================================= */
+body.retrofit .featured-partner {
+  background: var(--r-cream);
+  padding: 0 24px 48px;
+}
+body.retrofit .featured-partner-card {
+  position: relative;
+  display: block;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  min-height: 260px;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform .5s ease;
+}
+@media (min-width: 720px) {
+  body.retrofit .featured-partner-card { min-height: 220px; height: 220px; }
+}
+body.retrofit .featured-partner-card:hover {
+  text-decoration: none;
+  transform: translateY(-3px);
+}
+body.retrofit .featured-partner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.25) 100%);
+}
+@media (max-width: 719px) {
+  body.retrofit .featured-partner-overlay {
+    background: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.85) 100%);
+  }
+}
+body.retrofit .featured-partner-content {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 22px 24px;
+  z-index: 2;
+  max-width: 540px;
+}
+@media (min-width: 720px) {
+  body.retrofit .featured-partner-content {
+    inset: 0 auto 0 0;
+    padding: 28px 36px 28px 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+body.retrofit .featured-partner-eyebrow {
+  display: block;
+  font-family: var(--r-font-sans);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--r-gold);
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+body.retrofit .featured-partner-title {
+  font-family: var(--r-font-display);
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  font-weight: 400;
+  line-height: 1.05;
+  color: #fff;
+  margin: 0 0 10px;
+  letter-spacing: -0.005em;
+}
+body.retrofit .featured-partner-desc {
+  font-family: var(--r-font-sans);
+  font-size: 13px;
+  line-height: 1.55;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0 0 14px;
+}
+body.retrofit .featured-partner-cta {
+  display: inline-block;
+  font-family: var(--r-font-sans);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--r-gold);
+  border-bottom: 1px solid var(--r-gold);
+  padding-bottom: 3px;
+  transition: color .2s, border-color .2s;
+}
+body.retrofit .featured-partner-card:hover .featured-partner-cta {
+  color: #fff;
+  border-color: #fff;
+}
+
+/* =============================================================
+   ALTITUDE PULL-QUOTE / STATS SECTION
+   ============================================================= */
+body.retrofit .altitude-pullquote {
+  background: var(--r-charcoal);
+  color: rgba(255, 255, 255, 0.85);
+  padding: 56px 32px;
+  text-align: center;
+}
+body.retrofit .altitude-inner { max-width: 880px; margin: 0 auto; }
+body.retrofit .altitude-pullquote .eyebrow { color: var(--r-gold); margin-bottom: 12px; }
+body.retrofit .altitude-pullquote h2 {
+  font-family: var(--r-font-display);
+  font-size: clamp(1.85rem, 3.5vw, 2.6rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: #fff;
+  letter-spacing: -0.01em;
+  margin: 0 0 20px;
+}
+body.retrofit .altitude-lead {
+  font-family: var(--r-font-sans);
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 720px;
+  margin: 0 auto 32px;
+}
+body.retrofit .altitude-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+body.retrofit .altitude-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 0 8px;
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+}
+body.retrofit .altitude-stat:first-child { border-left: none; }
+body.retrofit .altitude-stat-value {
+  font-family: var(--r-font-display);
+  font-size: clamp(1.85rem, 5vw, 3.25rem);
+  font-weight: 300;
+  color: var(--r-gold);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+body.retrofit .altitude-stat-label {
+  font-family: var(--r-font-sans);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: 400;
+}
+
+/* Light variant: same component, on-page colors instead of charcoal-on-white */
+body.retrofit .altitude-pullquote.altitude-pullquote--light {
+  background: var(--r-cream);
+  color: var(--r-text);
+  border-top: 1px solid var(--r-line);
+  border-bottom: 1px solid var(--r-line);
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+body.retrofit .altitude-pullquote--light h2 { color: var(--r-charcoal); }
+body.retrofit .altitude-pullquote--light .altitude-lead { color: var(--r-text); }
+body.retrofit .altitude-pullquote--light .altitude-stat {
+  border-left-color: var(--r-line);
+}
+body.retrofit .altitude-pullquote--light .altitude-stat-label {
+  color: var(--r-muted);
+}
+/* eyebrow & stat values keep their gold by default */
+
+/* ----- Old quick-link styles (kept for fallback if any other pages use them) ----- */
+body.retrofit .quick-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--r-line);
+  border-left: 1px solid var(--r-line);
+  margin: 0 0 80px;
+}
+body.retrofit .quick-link {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding: 32px 28px;
+  background: #fff;
+  border-right: 1px solid var(--r-line);
+  border-bottom: 1px solid var(--r-line);
+  text-decoration: none;
+  transition: background .25s ease;
+  min-height: 180px;
+  justify-content: space-between;
+}
+body.retrofit .quick-link:hover {
+  background: var(--r-cream);
+  text-decoration: none;
+}
+body.retrofit .quick-link-icon {
+  font-size: 28px;
+  color: var(--r-gold);
+  margin-bottom: 0;
+}
+body.retrofit .quick-link-title {
+  font-family: var(--r-font-display);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--r-charcoal);
+  margin-bottom: 4px;
+  margin-top: auto;
+}
+body.retrofit .quick-link-desc {
+  font-family: var(--r-font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: var(--r-muted);
+}
+
+/* ----- Map section (only remaining hero-section on homepage) ----- */
+body.retrofit .hero-section {
+  background: transparent;
+  padding: 16px 0;
+  margin: 0;
+  border-radius: 0;
+  text-align: left;
+}
+body.retrofit .hero-section img { border-radius: 0; margin: 0; }
+body.retrofit .hero-section h2 {
+  font-family: var(--r-font-display);
+  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--r-charcoal);
+  letter-spacing: -0.005em;
+  margin: 0 0 16px;
+  text-align: left;
+  text-transform: none;
+}
+body.retrofit .hero-section h2::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--r-gold);
+  margin-bottom: 14px;
+}
+body.retrofit .hero-section p {
+  font-family: var(--r-font-sans);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--r-text);
+  font-weight: 300;
+  margin: 14px 0 0;
+}
+body.retrofit .hero-section .read-more {
+  font-family: var(--r-font-sans);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--r-gold);
+  border-bottom: 1px solid var(--r-gold);
+  padding-bottom: 2px;
+  margin-left: 8px;
+  transition: color .2s, border-color .2s;
+}
+body.retrofit .hero-section .read-more:hover {
+  color: var(--r-charcoal);
+  border-color: var(--r-charcoal);
+}
+body.retrofit #home-map {
+  margin: 0;
+  border: 1px solid var(--r-line);
+}
+
+/* ----- Sidebar ----- */
+body.retrofit .sidebar { background: transparent; }
+body.retrofit .sidebar-card {
+  background: #fff;
+  border: 1px solid var(--r-line);
+  border-radius: 0;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+body.retrofit .sidebar-card-img { border-radius: 0; }
+body.retrofit .sidebar-card-title {
+  font-family: var(--r-font-display);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--r-charcoal);
+  display: block;
+  margin-bottom: 8px;
+}
+body.retrofit .sidebar-card-text {
+  font-family: var(--r-font-sans);
+  font-size: 13px;
+  line-height: 1.65;
+  font-weight: 300;
+  color: var(--r-text);
+}
+body.retrofit .sidebar-card .read-more {
+  color: var(--r-gold);
+  border-bottom: 1px solid var(--r-gold);
+}
+
+/* ----- Footer ----- */
+body.retrofit .site-footer {
+  background: var(--r-charcoal);
+  color: rgba(255, 255, 255, 0.75);
+  padding: 64px 24px 40px;
+  margin-top: 80px;
+}
+body.retrofit .site-footer h3 {
+  font-family: var(--r-font-display);
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: #fff;
+  margin-bottom: 16px;
+}
+body.retrofit .site-footer p,
+body.retrofit .site-footer a {
+  font-family: var(--r-font-sans);
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 300;
+}
+body.retrofit .site-footer a:hover { color: var(--r-gold); }
+
+body.retrofit .newsletter-form input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  border-radius: 0;
+  padding: 8px 0;
+  font-family: var(--r-font-sans);
+}
+body.retrofit .newsletter-form input::placeholder { color: rgba(255,255,255,0.4); }
+body.retrofit .newsletter-form label {
+  font-family: var(--r-font-sans);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+}
+body.retrofit .newsletter-form button {
+  background: var(--r-gold);
+  color: var(--r-charcoal);
+  border: none;
+  font-family: var(--r-font-sans);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 14px 24px;
+  margin-top: 16px;
+  cursor: pointer;
+  transition: background .2s ease;
+}
+body.retrofit .newsletter-form button:hover { background: var(--r-gold-soft); }
+
+/* ----- Scroll-to-top button ----- */
+body.retrofit .scroll-top {
+  background: var(--r-charcoal);
+  color: #fff;
+  border-radius: 0;
+}

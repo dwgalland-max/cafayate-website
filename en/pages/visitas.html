@@ -22,6 +22,7 @@
   <meta name="twitter:image" content="https://cafayate.com/images/logo-header.png">
   <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/retrofit.css">
   <!-- Google Analytics (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-LK24283MWM"></script>
   <script>
@@ -42,7 +43,7 @@
   }
   </script>
 </head>
-<body>
+<body class="retrofit">
 
   <div class="top-bar">
     <div class="top-bar-left">
@@ -77,12 +78,23 @@
     </ul>
   </nav>
 
-  <div class="content-layout">
-    <main class="main-content page-content">
-      <img src="/images/hero/museo-del-vino.png" alt="Wine Museum" style="margin-bottom:20px;">
-      <h1>Sights &amp; Attractions</h1>
-      <p>When you're not busy tasting the local wines, there's plenty more to see and do. Here are some of the attractions worth exploring in and around Cafayate.</p>
+  <main>
 
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="page-hero-bg" style="background-image: url('/images/photos/rio-cafayate.jpg');"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <h1>Things to do</h1>
+      <p class="page-hero-subtitle">Red sandstone gorges, pre-Columbian ruins, flights over the vineyards, and much more.</p>
+    </div>
+  </section>
+
+  <div class="page-intro">
+    <p>When you're not busy tasting the local wines, there's plenty more to see and do. Here are some of the attractions worth exploring in and around Cafayate.</p>
+  </div>
+
+  <section class="prose">
       <h2>Museum of the Vine and Wine</h2>
       <p>An interactive museum dedicated to the history of viticulture in the Calchaqu&iacute; Valleys. Perfect for understanding the cultural and historical context of wine in the region before visiting the wineries.</p>
 
@@ -97,7 +109,7 @@
 
       <h2>La Estancia de Cafayate</h2>
       <p>A premier resort community on the outskirts of town featuring a championship 18-hole golf course designed by Bob Cupp, former head golf course designer for Jack Nicklaus Golf &mdash; one of the most scenic courses in South America, set against the dramatic backdrop of the Calchaqu&iacute; Valleys. The Clubhouse restaurant is open to visitors for lunch and offers excellent regional cuisine with panoramic views of the course and surrounding mountains. The property is also home to the <strong>Grace Cafayate Hotel</strong>, a luxury boutique hotel with spa, pool, and first-class dining.</p>
-      <p><a href="https://www.laestanciadecafayate.com/" target="_blank" rel="noopener" class="read-more">laestanciadecafayate.com &rarr;</a></p>
+      <p><a href="https://www.lec.com.ar/" target="_blank" rel="noopener" class="read-more">lec.com.ar &rarr;</a></p>
 
       <h2>Quilmes Ruins</h2>
       <p>About 50 km south of Cafayate along Ruta 40, the Quilmes Ruins are the remains of the largest pre-Columbian settlement in Argentina. This fortified city was home to the Quilmes people for over a thousand years before the Spanish conquest. The site features restored stone walls climbing the hillside, an on-site museum, and sweeping views of the valley. Allow 2-3 hours for the visit.</p>
@@ -112,13 +124,13 @@
       <h2>Horseback Riding</h2>
       <p>Horseback riding is a spectacular way to explore the Calchaqu&iacute; Valleys landscape. Two recommended options:</p>
       <ul style="margin: 16px 0 16px 24px; color: var(--text-medium); line-height: 2;">
-        <li><strong>La Estancia de Cafayate</strong> offers trail rides through vineyards with mountain views. <a href="https://www.laestanciadecafayate.com/" target="_blank" rel="noopener" class="read-more">laestanciadecafayate.com &rarr;</a></li>
+        <li><strong>La Estancia de Cafayate</strong> offers trail rides through vineyards with mountain views. <a href="https://www.lec.com.ar/" target="_blank" rel="noopener" class="read-more">lec.com.ar &rarr;</a></li>
         <li><strong>Patios de Cafayate</strong> organizes guided rides around the town&rsquo;s surroundings. <a href="https://www.patiosdecafayate.com/" target="_blank" rel="noopener" class="read-more">patiosdecafayate.com &rarr;</a></li>
       </ul>
 
       <h2>Golf</h2>
       <p>La Estancia de Cafayate is home to the only golf course in Cafayate, open to the public. Designed by Bob Cupp for Jack Nicklaus Golf, the 18-hole championship course offers spectacular views of the dramatic Calchaqu&iacute; Valleys. Club and cart rentals available at the pro shop.</p>
-      <p><a href="https://www.laestanciadecafayate.com/" target="_blank" rel="noopener" class="read-more">laestanciadecafayate.com &rarr;</a></p>
+      <p><a href="https://www.lec.com.ar/" target="_blank" rel="noopener" class="read-more">lec.com.ar &rarr;</a></p>
 
       <h2>Wine ice cream</h2>
       <p>Don't leave Cafayate without trying the famous wine ice cream. A unique regional specialty that combines the flavors of Torront&eacute;s and Malbec with the freshness of artisanal gelato. You'll find it at helader&iacute;as around the main plaza.</p>
@@ -127,26 +139,22 @@
       <p><strong>Spring (Sep-Nov):</strong> Pleasant temperatures and blooming vineyards.</p>
       <p><strong>Autumn (Mar-May):</strong> Harvest season with wine festivals.</p>
       <p><strong>Winter (Jun-Aug):</strong> Cool temperatures, ideal for red wine tastings.</p>
-    </main>
+  </section>
 
-    <aside class="sidebar">
-      <div data-promo="sidebar"></div>
-      <div class="sidebar-card">
-        <img src="/images/sidebar/vinos.png" alt="Wines" class="sidebar-card-img">
-        <div class="sidebar-card-content">
-          <span class="sidebar-card-title">Extreme Altitude Wines</span>
-          <p class="sidebar-card-text">Wines from extreme altitudes | <a href="/en/pages/vinos.html" class="read-more">Read more</a></p>
-        </div>
+  <!-- Featured Partner sponsor -->
+  <section class="featured-partner" aria-label="Featured partner">
+    <a href="https://badbrotherswe.com" target="_blank" rel="noopener" data-sponsor="bad_brothers" data-placement="featured_partner" class="featured-partner-card" style="background-image: url('/images/promos/bad-brothers-hero.jpg');">
+      <div class="featured-partner-overlay"></div>
+      <div class="featured-partner-content">
+        <span class="featured-partner-eyebrow">Featured partner</span>
+        <h2 class="featured-partner-title">Bad Brothers Wine &amp; Food Experience</h2>
+        <p class="featured-partner-desc">Cafayate's most complete dining and wine experience, with a menu by Chef Walter Leal &mdash; Le Cordon Bleu Paris, Acad&eacute;mie Culinaire de France.</p>
+        <span class="featured-partner-cta">Visit &rarr;</span>
       </div>
-      <div class="sidebar-card">
-        <img src="/images/sidebar/iglesia.png" alt="Tastings" class="sidebar-card-img">
-        <div class="sidebar-card-content">
-          <span class="sidebar-card-title">Bodegas</span>
-          <p class="sidebar-card-text">Tasting recommendations | <a href="/en/pages/bodegas.html" class="read-more">Read more</a></p>
-        </div>
-      </div>
-    </aside>
-  </div>
+    </a>
+  </section>
+
+  </main>
 
   <footer class="site-footer">
     <div class="footer-grid">

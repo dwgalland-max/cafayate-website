@@ -815,4 +815,24 @@
     figures.forEach(function (fig) { photoGrid.appendChild(fig); });
   }
 
+  // ===== SPONSOR CLICK TRACKING (GA4 custom event) =====
+  // Any anchor tagged with data-sponsor (e.g. Bad Brothers banners and listing cards)
+  // fires a 'sponsor_click' event with sponsor + placement params, so we can attribute
+  // outbound clicks per ad placement rather than just per-domain.
+  document.addEventListener('click', function (e) {
+    var anchor = e.target.closest && e.target.closest('a[data-sponsor]');
+    if (!anchor) return;
+    if (typeof window.gtag !== 'function') return; // gtag blocked or not yet loaded
+    try {
+      window.gtag('event', 'sponsor_click', {
+        sponsor: anchor.getAttribute('data-sponsor') || 'unknown',
+        placement: anchor.getAttribute('data-placement') || 'unknown',
+        link_url: anchor.href,
+        page_path: window.location.pathname
+      });
+    } catch (err) {
+      // Tracking should never break the user's click-through
+    }
+  });
+
 })();
