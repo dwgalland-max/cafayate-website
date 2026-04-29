@@ -21,29 +21,9 @@
     if (navFlagLi) navFlagLi.style.display = 'none';
   }
 
-  // ===== AUTO LANGUAGE DETECTION =====
-  // On first visit, redirect to the user's preferred language version
-  if (!document.cookie.includes('lang_pref=')) {
-    var browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
-    var prefersEnglish = browserLang.startsWith('en');
-    var onSpanishSite = !isEnglish;
-    var onEnglishSite = isEnglish;
-    // Set cookie so we only do this once (expires in 90 days)
-    document.cookie = 'lang_pref=' + (prefersEnglish ? 'en' : 'es') + ';path=/;max-age=7776000;SameSite=Lax';
-    // Redirect if mismatch: English browser on Spanish page, or vice versa
-    if (prefersEnglish && onSpanishSite) {
-      // Redirect to English equivalent
-      var enPath = '/en' + window.location.pathname;
-      window.location.replace(enPath);
-      return;
-    } else if (!prefersEnglish && onEnglishSite) {
-      // Redirect to Spanish equivalent
-      var esPath = window.location.pathname.replace(/^\/en/, '');
-      if (esPath === '') esPath = '/';
-      window.location.replace(esPath);
-      return;
-    }
-  }
+  // (Auto language redirect removed — was overriding the user's URL choice and
+  // causing surprise switches between ES and EN. The flag toggle in the top bar
+  // gives users explicit control to switch.)
 
   // ===== MOBILE NAV TOGGLE =====
   const navToggle = document.querySelector('.nav-toggle');
