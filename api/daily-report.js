@@ -1108,9 +1108,9 @@ function generateInsights(analytics) {
   }
 
   if (avgDuration > 90) {
-    insights.push({ type: 'positive', text: `Average session duration of ${formatDuration(avgDuration)} indicates visitors are reading content thoroughly — the blog and internal linking strategy is working.` });
+    insights.push({ type: 'positive', text: `Average session duration of ${formatDuration(avgDuration)} indicates visitors are spending real time on the site. The Top Pages table above shows where that time is going.` });
   } else if (avgDuration > 45) {
-    insights.push({ type: 'neutral', text: `Average session duration of ${formatDuration(avgDuration)} is decent but has room to grow. Longer-form blog content and photo galleries can increase time on site.` });
+    insights.push({ type: 'neutral', text: `Average session duration of ${formatDuration(avgDuration)} is decent but has room to grow. Longer-form content and photo galleries on the most-visited pages can increase time on site.` });
   } else if (avgDuration > 0) {
     insights.push({ type: 'negative', text: `Average session duration of ${formatDuration(avgDuration)} is short. Visitors may not be finding what they're looking for, or the content isn't capturing attention.` });
   }
