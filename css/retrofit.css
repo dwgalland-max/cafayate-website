@@ -901,6 +901,18 @@ body.retrofit .blog-card-category {
   padding: 4px 8px;
 }
 
+/* Inline links inside blog post bodies — make them visibly clickable */
+body.retrofit .blog-single-content a {
+  color: var(--r-gold);
+  border-bottom: 1px solid var(--r-gold);
+  text-decoration: none;
+  transition: opacity .2s ease;
+}
+body.retrofit .blog-single-content a:hover {
+  opacity: 0.7;
+  text-decoration: none;
+}
+
 body.retrofit .event-card {
   background: #fff;
   border: 1px solid var(--r-line);
