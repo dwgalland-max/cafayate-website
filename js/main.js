@@ -359,7 +359,7 @@
 
     var html = '<div class="blog-single">' +
       '<a href="#" class="blog-back-link" id="blog-back">' + backLabel + '</a>' +
-      (post.image ? '<img class="blog-single-img" src="' + post.image + '" alt="' + title + '">' : '') +
+      (post.image ? '<img class="blog-single-img" src="' + post.image + '" alt="' + title + '"' + (post.image_position ? ' style="object-position:' + post.image_position + '"' : '') + '>' : '') +
       '<div class="blog-single-meta">' +
       '<span class="blog-card-date">' + dateStr + '</span>' +
       (catLabel ? '<span class="blog-card-category">' + catLabel + '</span>' : '') +
