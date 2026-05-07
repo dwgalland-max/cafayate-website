@@ -29,30 +29,43 @@ const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 // ── Helpers ─────────────────────────────────────────────────────────────
 
+// Returns { items, error } so the handler can distinguish:
+//   - missing env vars (config issue)
+//   - HTTP non-OK (rate limit / quota / auth)
+//   - fetch exception (network / timeout)
+//   - successful zero-result query (error: null, items: [])
 async function searchGoogle(query) {
   const apiKey = process.env.GOOGLE_SEARCH_API_KEY;
   const cx = process.env.GOOGLE_SEARCH_CX;
-  if (!apiKey || !cx) return [];
+  if (!apiKey || !cx) {
+    const missing = !apiKey ? 'GOOGLE_SEARCH_API_KEY' : 'GOOGLE_SEARCH_CX';
+    return { items: [], error: { code: 'missing_env', detail: missing + ' not set' } };
+  }
 
   // Search last 14 days
-  const twoWeeksAgo = new Date();
-  twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 14);
   const dateRestrict = 'd14';
-
   const url = `https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${cx}&q=${encodeURIComponent(query)}&dateRestrict=${dateRestrict}&num=5`;
 
   try {
     const resp = await fetch(url);
-    if (!resp.ok) return [];
+    if (!resp.ok) {
+      // Read body for diagnostics, but strip anything that looks like a key just in case.
+      let body = '';
+      try { body = (await resp.text()).slice(0, 400); } catch (_) {}
+      const safeBody = body.replace(/key=[^&"'\s]+/gi, 'key=<redacted>');
+      console.warn(`[scrape] search "${query}" -> HTTP ${resp.status}: ${safeBody}`);
+      return { items: [], error: { code: `http_${resp.status}`, detail: safeBody } };
+    }
     const data = await resp.json();
-    return (data.items || []).map(item => ({
+    const items = (data.items || []).map(item => ({
       title: item.title,
       snippet: item.snippet,
       link: item.link,
     }));
+    return { items, error: null };
   } catch (e) {
-    console.error(`Search error for "${query}":`, e.message);
-    return [];
+    console.error(`[scrape] search "${query}" -> fetch exception:`, e.message);
+    return { items: [], error: { code: 'fetch_exception', detail: e.message } };
   }
 }
 
@@ -233,21 +246,33 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    console.log('Starting event scrape...');
+    const searchConfigured = !!(process.env.GOOGLE_SEARCH_API_KEY && process.env.GOOGLE_SEARCH_CX);
+    console.log(`[scrape] starting; search API configured: ${searchConfigured}; queries: ${SEARCH_QUERIES.length}`);
 
     // 1. Get existing events from GitHub
     const { events: existingEvents, sha } = await getExistingEvents();
-    console.log(`Found ${existingEvents.length} existing events`);
+    console.log(`[scrape] found ${existingEvents.length} existing events`);
 
-    // 2. Search Google for recent Cafayate events
+    // 2. Search Google for recent Cafayate events (with per-query diagnostics)
     const allResults = [];
+    const searchStats = []; // per-query results so failures are visible
     for (const query of SEARCH_QUERIES) {
-      const results = await searchGoogle(query);
-      allResults.push(...results);
+      const { items, error } = await searchGoogle(query);
+      searchStats.push({
+        query,
+        items: items.length,
+        error: error ? error.code : null,
+      });
+      allResults.push(...items);
       // Small delay to avoid rate limits
       await new Promise((r) => setTimeout(r, 300));
     }
-    console.log(`Got ${allResults.length} search results`);
+    const failedQueries = searchStats.filter(s => s.error);
+    console.log(`[scrape] search done: ${allResults.length} total results; ${failedQueries.length}/${SEARCH_QUERIES.length} queries failed`);
+    if (failedQueries.length) {
+      const errorCodes = [...new Set(failedQueries.map(f => f.error))];
+      console.log(`[scrape] error codes seen: ${errorCodes.join(', ')}`);
+    }
 
     // Deduplicate URLs
     const seenUrls = new Set();
@@ -285,6 +310,9 @@ module.exports = async function handler(req, res) {
         message: 'No new events found',
         existing: existingEvents.length,
         searched: uniqueResults.length,
+        search_configured: searchConfigured,
+        search_stats: searchStats,
+        pages_fetched: pageTexts.length,
       });
     }
 
@@ -296,6 +324,9 @@ module.exports = async function handler(req, res) {
       return res.status(200).json({
         message: 'All found events already exist',
         existing: existingEvents.length,
+        searched: uniqueResults.length,
+        search_configured: searchConfigured,
+        search_stats: searchStats,
       });
     }
 
@@ -320,6 +351,9 @@ module.exports = async function handler(req, res) {
         date: e.date,
       })),
       total: cleaned.length,
+      searched: uniqueResults.length,
+      search_configured: searchConfigured,
+      search_stats: searchStats,
     });
   } catch (err) {
     console.error('Scrape error:', err);
