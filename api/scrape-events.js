@@ -13,6 +13,10 @@ const SEARCH_QUERIES = [
   'Cafayate festival música cultura',
   'Museo de la Vid y el Vino Cafayate evento',
   'Cafayate Salta agenda cultural',
+  // Nearby Calchaquí Valley towns
+  'San Carlos Salta Calchaquí eventos',
+  'Animaná Salta eventos',
+  'Tolombón Salta eventos',
 ];
 
 // Known sources to check directly
@@ -159,7 +163,7 @@ WEB PAGE CONTENT:
 ${pagesContext || '(no pages fetched)'}
 
 INSTRUCTIONS:
-- Only extract events in or near Cafayate, Salta, Argentina
+- Only extract events in Cafayate or nearby Calchaquí Valley towns (San Carlos, Animaná, Tolombón) in Salta, Argentina
 - Only extract events with enough detail (at least a title, approximate date, and location)
 - Events can be: wine tastings, festivals, cultural events, concerts, art exhibitions, food events, markets, sports events, etc.
 - If a date is approximate (e.g. "this weekend"), calculate the actual date based on today (${today})
@@ -217,11 +221,12 @@ Return [] if no new events found.`;
 // ── Handler ─────────────────────────────────────────────────────────────
 
 module.exports = async function handler(req, res) {
-  // Allow manual trigger via POST with secret, or Vercel cron (GET)
+  // Allow Vercel cron, or manual trigger via CRON_SECRET / NEWSLETTER_ADMIN_KEY
   const isAuthorized =
     req.headers.authorization === `Bearer ${process.env.CRON_SECRET}` ||
     req.headers['x-vercel-cron'] === '1' ||
-    (req.method === 'POST' && req.body?.secret === process.env.CRON_SECRET);
+    (req.method === 'POST' && req.body?.secret === process.env.CRON_SECRET) ||
+    (process.env.NEWSLETTER_ADMIN_KEY && req.query.key === process.env.NEWSLETTER_ADMIN_KEY);
 
   if (!isAuthorized) {
     return res.status(401).json({ error: 'Unauthorized' });
