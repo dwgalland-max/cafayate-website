@@ -97,5 +97,27 @@
     "description_en": "Wine fair featuring the best wineries of the Calchaquí Valleys, followed by an electronic music party at sunset. Sports tournaments in the morning.",
     "category": "wine",
     "website": "https://www.instagram.com/wineex.ar/"
+  },
+  {
+    "title_es": "Ciclo Legado Ancestral: Taller de Tintes Naturales",
+    "title_en": "Ancestral Legacy Cycle: Natural Dyes Workshop",
+    "date": "2026-05-08",
+    "time": "",
+    "location": "Terraza de Cultura, Güemes Sur 81, Cafayate",
+    "description_es": "Taller gratuito de capacitación sobre tintes naturales como parte del Ciclo Legado Ancestral que se desarrolla durante el viernes 8 y sábado 9 de mayo en Cafayate.",
+    "description_en": "Free training workshop on natural dyes as part of the Ancestral Legacy Cycle taking place on Friday May 8th and Saturday May 9th in Cafayate.",
+    "category": "culture",
+    "website": "https://www.salta.gob.ar/prensa/noticias/ciclo-legado-ancestral-las-capacitaciones-gratuitas-llegan-a-cafayate-con-un-taller-de-tintes-naturales-107597"
+  },
+  {
+    "title_es": "Feria del Vino Jujuy",
+    "title_en": "Jujuy Wine Fair",
+    "date": "2026-05-21",
+    "time": "",
+    "location": "Cabildo de Jujuy, Jujuy",
+    "description_es": "Segunda edición de la Feria del Vino en el marco de la Semana Gastronómica Jujuy a Punto. Evento abierto al público que reúne bodegas, proyectos vitivinícolas y actores del ecosistema gastronómico en una jornada de degustaciones, intercambio cultural y promoción turística.",
+    "description_en": "Second edition of the Wine Fair within the framework of Jujuy a Punto Gastronomic Week. Open event that brings together wineries, wine projects and gastronomic ecosystem actors in a day of tastings, cultural exchange and tourism promotion.",
+    "category": "wine",
+    "website": "https://prensamercosur.org/2026/05/06/jujuy-impulsa-el-turismo-del-vino-con-feria-clave-en-el-cabildo_a69fa24c109bc184dd7649e00/"
   }
 ]
