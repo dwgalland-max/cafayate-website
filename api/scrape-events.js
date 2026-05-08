@@ -29,38 +29,48 @@ const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 // ── Helpers ─────────────────────────────────────────────────────────────
 
+// Web search via Brave Search API. Web-wide by default — no CSE config dance.
+// Free tier: 2,000 queries/month, 1 query/sec.
+//
 // Returns { items, error } so the handler can distinguish:
 //   - missing env vars (config issue)
 //   - HTTP non-OK (rate limit / quota / auth)
 //   - fetch exception (network / timeout)
 //   - successful zero-result query (error: null, items: [])
-async function searchGoogle(query) {
-  const apiKey = process.env.GOOGLE_SEARCH_API_KEY;
-  const cx = process.env.GOOGLE_SEARCH_CX;
-  if (!apiKey || !cx) {
-    const missing = !apiKey ? 'GOOGLE_SEARCH_API_KEY' : 'GOOGLE_SEARCH_CX';
-    return { items: [], error: { code: 'missing_env', detail: missing + ' not set' } };
+async function searchWeb(query) {
+  const apiKey = process.env.BRAVE_SEARCH_API_KEY;
+  if (!apiKey) {
+    return { items: [], error: { code: 'missing_env', detail: 'BRAVE_SEARCH_API_KEY not set' } };
   }
 
-  // Search last 14 days
-  const dateRestrict = 'd14';
-  const url = `https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${cx}&q=${encodeURIComponent(query)}&dateRestrict=${dateRestrict}&num=5`;
+  // Restrict to the last 14 days, same as the previous Google implementation.
+  const fmt = d => d.toISOString().split('T')[0];
+  const today = new Date();
+  const twoWeeksAgo = new Date(today.getTime() - 14 * 86400000);
+  const freshness = `${fmt(twoWeeksAgo)}to${fmt(today)}`;
+
+  const url = `https://api.search.brave.com/res/v1/web/search?q=${encodeURIComponent(query)}&count=5&freshness=${freshness}`;
 
   try {
-    const resp = await fetch(url);
+    const resp = await fetch(url, {
+      headers: {
+        'Accept': 'application/json',
+        'Accept-Encoding': 'gzip',
+        'X-Subscription-Token': apiKey,
+      },
+    });
     if (!resp.ok) {
-      // Read body for diagnostics, but strip anything that looks like a key just in case.
       let body = '';
       try { body = (await resp.text()).slice(0, 400); } catch (_) {}
-      const safeBody = body.replace(/key=[^&"'\s]+/gi, 'key=<redacted>');
-      console.warn(`[scrape] search "${query}" -> HTTP ${resp.status}: ${safeBody}`);
-      return { items: [], error: { code: `http_${resp.status}`, detail: safeBody } };
+      console.warn(`[scrape] search "${query}" -> HTTP ${resp.status}: ${body}`);
+      return { items: [], error: { code: `http_${resp.status}`, detail: body } };
     }
     const data = await resp.json();
-    const items = (data.items || []).map(item => ({
-      title: item.title,
-      snippet: item.snippet,
-      link: item.link,
+    const results = (data.web && data.web.results) || [];
+    const items = results.map(item => ({
+      title: item.title || '',
+      snippet: item.description || '',
+      link: item.url || '',
     }));
     return { items, error: null };
   } catch (e) {
@@ -246,26 +256,26 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const searchConfigured = !!(process.env.GOOGLE_SEARCH_API_KEY && process.env.GOOGLE_SEARCH_CX);
+    const searchConfigured = !!process.env.BRAVE_SEARCH_API_KEY;
     console.log(`[scrape] starting; search API configured: ${searchConfigured}; queries: ${SEARCH_QUERIES.length}`);
 
     // 1. Get existing events from GitHub
     const { events: existingEvents, sha } = await getExistingEvents();
     console.log(`[scrape] found ${existingEvents.length} existing events`);
 
-    // 2. Search Google for recent Cafayate events (with per-query diagnostics)
+    // 2. Web search for recent Calchaquí Valley events (with per-query diagnostics)
     const allResults = [];
     const searchStats = []; // per-query results so failures are visible
     for (const query of SEARCH_QUERIES) {
-      const { items, error } = await searchGoogle(query);
+      const { items, error } = await searchWeb(query);
       searchStats.push({
         query,
         items: items.length,
         error: error ? error.code : null,
       });
       allResults.push(...items);
-      // Small delay to avoid rate limits
-      await new Promise((r) => setTimeout(r, 300));
+      // Brave free tier is 1 query/sec — wait 1.1s between queries to stay under the limit.
+      await new Promise((r) => setTimeout(r, 1100));
     }
     const failedQueries = searchStats.filter(s => s.error);
     console.log(`[scrape] search done: ${allResults.length} total results; ${failedQueries.length}/${SEARCH_QUERIES.length} queries failed`);
