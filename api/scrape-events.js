@@ -186,7 +186,17 @@ WEB PAGE CONTENT:
 ${pagesContext || '(no pages fetched)'}
 
 INSTRUCTIONS:
-- Only extract events in Cafayate or nearby Calchaquí Valley towns (San Carlos, Animaná, Tolombón) in Salta, Argentina
+- LOCATION RULE — only extract events whose physical location is one of:
+  Cafayate, San Carlos (Salta), Animaná, or Tolombón. These are all towns in
+  the Calchaquí Valleys of Salta province, Argentina.
+- REJECT (do not extract) events located anywhere else, including but not
+  limited to: Salta capital city, Jujuy province (any town), Tucumán province
+  (any town, including Amaicha del Valle and San Miguel de Tucumán), Buenos
+  Aires, Mendoza, Córdoba, Rosario, or any province other than Salta. An
+  event being "wine-related" or "near Cafayate in spirit" does NOT qualify —
+  the venue must physically be in one of the four listed towns.
+- If the source text doesn't make the exact town/city of the event clear,
+  skip it. When in doubt, do not extract.
 - Only extract events with enough detail (at least a title, approximate date, and location)
 - Events can be: wine tastings, festivals, cultural events, concerts, art exhibitions, food events, markets, sports events, etc.
 - If a date is approximate (e.g. "this weekend"), calculate the actual date based on today (${today})
