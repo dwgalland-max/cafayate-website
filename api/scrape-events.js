@@ -17,6 +17,10 @@ const SEARCH_QUERIES = [
   'San Carlos Salta Calchaquí eventos',
   'Animaná Salta eventos',
   'Tolombón Salta eventos',
+  // Sports + traditional / patron-saint events that the wine queries miss
+  'Cafayate carrera deportiva',
+  'Cafayate fiesta patronal',
+  'Cruce Calchaquí carrera',
 ];
 
 // Known sources to check directly
@@ -43,11 +47,13 @@ async function searchWeb(query) {
     return { items: [], error: { code: 'missing_env', detail: 'BRAVE_SEARCH_API_KEY not set' } };
   }
 
-  // Restrict to the last 14 days, same as the previous Google implementation.
+  // Look back 90 days. Far-future events (a 4-month-out race, a saint's day
+  // 6 months out) get pre-coverage when registration opens or organizers
+  // start announcing — a 14-day window misses most of that.
   const fmt = d => d.toISOString().split('T')[0];
   const today = new Date();
-  const twoWeeksAgo = new Date(today.getTime() - 14 * 86400000);
-  const freshness = `${fmt(twoWeeksAgo)}to${fmt(today)}`;
+  const ninetyDaysAgo = new Date(today.getTime() - 90 * 86400000);
+  const freshness = `${fmt(ninetyDaysAgo)}to${fmt(today)}`;
 
   const url = `https://api.search.brave.com/res/v1/web/search?q=${encodeURIComponent(query)}&count=5&freshness=${freshness}`;
 

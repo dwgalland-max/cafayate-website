@@ -108,5 +108,38 @@
     "description_en": "Free training workshop on natural dyes as part of the Ancestral Legacy Cycle taking place on Friday May 8th and Saturday May 9th in Cafayate.",
     "category": "culture",
     "website": "https://www.salta.gob.ar/prensa/noticias/ciclo-legado-ancestral-las-capacitaciones-gratuitas-llegan-a-cafayate-con-un-taller-de-tintes-naturales-107597"
+  },
+  {
+    "title_es": "Cruce Calchaquí",
+    "title_en": "Cruce Calchaquí",
+    "date": "2026-08-28",
+    "time": "",
+    "location": "Tafí del Valle a Cafayate",
+    "description_es": "El evento de resistencia más importante de la región. Carrera de relevos de 126 km en 6 etapas de 21 km cada una, que conecta Tafí del Valle (Tucumán) con Cafayate (Salta) por la Ruta Provincial 307/357 y la Ruta 40. Atraviesa todo el Valle Calchaquí. 28 y 29 de agosto.",
+    "description_en": "The marquee endurance event of the region. A 126k relay race in 6 stages of 21k each, connecting Tafí del Valle (Tucumán) to Cafayate (Salta) via provincial route 307/357 and Ruta 40. Effectively traverses the entire Calchaquí Valley. August 28–29.",
+    "category": "sports",
+    "website": ""
+  },
+  {
+    "title_es": "Fiesta Patronal de la Virgen del Rosario",
+    "title_en": "Patron Saint Day — Virgen del Rosario",
+    "date": "2026-10-04",
+    "time": "",
+    "location": "Cafayate",
+    "description_es": "Fiesta patronal de Cafayate en honor a la Virgen del Rosario. Procesión, misachicos y eventos gauchos.",
+    "description_en": "Cafayate's patron saint festival honoring the Virgen del Rosario. Procession, misachicos, and gaucho events.",
+    "category": "culture",
+    "website": ""
+  },
+  {
+    "title_es": "Fiesta Patronal de San Carlos Borromeo",
+    "title_en": "Patron Saint Day — San Carlos Borromeo",
+    "date": "2026-11-04",
+    "time": "",
+    "location": "San Carlos",
+    "description_es": "Día del santo patrono de la localidad de San Carlos. Ritos religiosos, kermesses, fogones, ferias y exhibiciones de destrezas gauchas.",
+    "description_en": "Saint's day for San Carlos Borromeo, patron of the village of San Carlos. Religious rites, kermesses, bonfires, fairs, and gaucho skill exhibitions.",
+    "category": "culture",
+    "website": ""
   }
 ]
