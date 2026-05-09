@@ -78,12 +78,12 @@ module.exports = async function handler(req, res) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
 
-  // Biweekly cadence: send only on alternating Mondays, anchored to 2026-05-04.
-  // Vercel cron doesn't support biweekly natively, so cron still fires every Monday
+  // Biweekly cadence: send only on alternating Saturdays, anchored to 2026-05-09.
+  // Vercel cron doesn't support biweekly natively, so cron still fires every Saturday
   // and we return early on off-weeks. Manual admin triggers (?key=…) bypass this
   // gate, so previews / one-off sends still work whenever needed.
   if (cronOk) {
-    const BIWEEKLY_ANCHOR = Date.UTC(2026, 4, 4); // 2026-05-04 00:00 UTC
+    const BIWEEKLY_ANCHOR = Date.UTC(2026, 4, 9); // 2026-05-09 00:00 UTC
     const daysSinceAnchor = Math.floor((Date.now() - BIWEEKLY_ANCHOR) / 86400000);
     const isSendWeek = daysSinceAnchor < 0 || daysSinceAnchor % 14 < 7;
     if (!isSendWeek) {
