@@ -57,11 +57,13 @@ module.exports = async function handler(req, res) {
     const sortedBlog = blog.slice().sort((a, b) => b.date.localeCompare(a.date));
     const latestPost = sortedBlog[0];
     const now = new Date();
-    const twoWeeks = new Date(now.getTime() + 14 * 24 * 60 * 60 * 1000);
+    // Match build-newsletter: 90-day window so anchor events that are months
+    // out (Cruce Calchaquí, patron saint days) still surface.
+    const ninetyDays = new Date(now.getTime() + 90 * 24 * 60 * 60 * 1000);
     const upcoming = events
-      .filter(e => { const d = new Date(e.date); return d >= now && d <= twoWeeks; })
+      .filter(e => { const d = new Date(e.date); return d >= now && d <= ninetyDays; })
       .sort((a, b) => a.date.localeCompare(b.date))
-      .slice(0, 4);
+      .slice(0, 6);
     const recentProperties = properties.slice(0, 3);
 
     const subjectEn = latestPost

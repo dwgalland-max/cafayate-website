@@ -134,14 +134,17 @@ module.exports = async function handler(req, res) {
     const latestPost = sortedBlog[0];
 
     const now = new Date();
-    const twoWeeks = new Date(now.getTime() + 14 * 24 * 60 * 60 * 1000);
+    // Look 90 days ahead so anchor events that are 1-3 months out (Cruce
+    // Calchaquí, patron saint days) still surface in the newsletter, not just
+    // events happening in the next two weeks.
+    const ninetyDays = new Date(now.getTime() + 90 * 24 * 60 * 60 * 1000);
     const upcoming = events
       .filter(e => {
         const d = new Date(e.date);
-        return d >= now && d <= twoWeeks;
+        return d >= now && d <= ninetyDays;
       })
       .sort((a, b) => a.date.localeCompare(b.date))
-      .slice(0, 4);
+      .slice(0, 6);
 
     const recentProperties = properties.slice(0, 3);
 
@@ -332,7 +335,7 @@ function buildNewsletterHTML({ editorsNote, latestPost, upcoming, properties, sp
           ${sponsor.image ? '<a href="' + sponsor.url + '"><img src="' + SITE + sponsor.image + '" alt="' + sponsor.name + '" style="max-width:180px;max-height:60px;margin-bottom:10px;"></a>' : ''}
           <p style="font-size:14px;color:#333;margin:0 0 8px;"><strong>${sponsor.name}</strong></p>
           <p style="font-size:13px;color:#666;line-height:1.5;margin:0 0 10px;">${sponsorDesc(sponsor)}</p>
-          <a href="${sponsor.url}" style="display:inline-block;background:#c0392b;color:#fff;padding:8px 20px;text-decoration:none;border-radius:3px;font-size:13px;font-weight:600;">${t.visit} ${sponsor.name.split(' ')[0]} →</a>
+          <a href="${sponsor.url}" style="display:inline-block;background:#c0392b;color:#fff;padding:8px 20px;text-decoration:none;border-radius:3px;font-size:13px;font-weight:600;">${t.visit} →</a>
         </div>
       `;
     });
