@@ -247,7 +247,7 @@ function buildNewsletterHTML({ editorsNote, latestPost, upcoming, properties, sp
         <h2 style="font-family:Georgia,serif;color:#1e6a3a;font-size:20px;margin:0 0 12px;border-bottom:2px solid #1e6a3a;padding-bottom:8px;">
           ${t.latestBlog}
         </h2>
-        ${latestPost.image ? '<a href="' + postUrl + '" style="text-decoration:none;"><img src="' + SITE + latestPost.image + '" alt="' + title(latestPost) + '" style="width:100%;max-height:220px;object-fit:cover;border-radius:4px;margin-bottom:12px;"></a>' : ''}
+        ${latestPost.image ? '<a href="' + postUrl + '" style="text-decoration:none;"><img src="' + SITE + latestPost.image + '" alt="' + title(latestPost) + '" style="width:100%;max-height:220px;object-fit:cover;object-position:' + (latestPost.image_position || 'center') + ';border-radius:4px;margin-bottom:12px;"></a>' : ''}
         <h3 style="margin:0 0 8px;font-family:Georgia,serif;font-size:18px;">
           <a href="${postUrl}" style="color:#333;text-decoration:none;">${title(latestPost)}</a>
         </h3>
