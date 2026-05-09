@@ -43,7 +43,9 @@ module.exports = async function handler(req, res) {
     const [blogRes, eventsRes, propertiesRes, newsletterRes] = await Promise.all([
       fetch(SITE + '/data/blog.json').then(r => r.json()),
       fetch(SITE + '/data/events.json').then(r => r.json()),
-      fetch(SITE + '/data/properties.json').then(r => r.json()),
+      // properties.json was removed when the propiedad page moved to a static realtor directory.
+      // Empty array means buildNewsletterHTML's `if (properties.length > 0)` skips the section.
+      Promise.resolve([]),
       fetch(SITE + '/data/newsletter.json').then(r => r.json()),
     ]);
 
