@@ -22,6 +22,127 @@
     "website": "https://serenataacafayate.com/"
   },
   {
+    "title_es": "Serenata a Cafayate — 52nd Edition",
+    "title_en": "Serenata a Cafayate — 52nd Edition",
+    "date": "2026-02-27",
+    "time": "",
+    "location": "Bodega Encantada, Cafayate",
+    "description_es": "Segunda noche del festival más emblemático de música popular argentina en los Valles Calchaquíes, con artistas como El Chaqueño Palavecino, Jorge Rojas y Los Nocheros.",
+    "description_en": "Second night of the most emblematic popular Argentine music festival in the Calchaquí Valleys, featuring artists like El Chaqueño Palavecino, Jorge Rojas and Los Nocheros.",
+    "category": "music",
+    "website": ""
+  },
+  {
+    "title_es": "Serenata a Cafayate — 52nd Edition",
+    "title_en": "Serenata a Cafayate — 52nd Edition",
+    "date": "2026-02-28",
+    "time": "",
+    "location": "Bodega Encantada, Cafayate",
+    "description_es": "Noche final del festival más emblemático de música popular argentina en los Valles Calchaquíes, con artistas como El Chaqueño Palavecino, Jorge Rojas y Los Nocheros.",
+    "description_en": "Final night of the most emblematic popular Argentine music festival in the Calchaquí Valleys, featuring artists like El Chaqueño Palavecino, Jorge Rojas and Los Nocheros.",
+    "category": "music",
+    "website": ""
+  },
+  {
+    "title_es": "Vendimia Rosa",
+    "title_en": "Pink Harvest",
+    "date": "2026-03-07",
+    "time": "",
+    "location": "Finca Aureum Terra, Animaná",
+    "description_es": "Jornada de cosecha y molienda de uvas para vino rosado, que incluye degustación, música, buffet y una acción solidaria vinculada a la prevención del cáncer de mama.",
+    "description_en": "Day of harvest and crushing of grapes for rosé wine, including tasting, music, buffet and a solidarity action linked to breast cancer prevention.",
+    "category": "wine",
+    "website": ""
+  },
+  {
+    "title_es": "VII Vendimia Tukma - Vendimiemos Juntos",
+    "title_en": "VII Tukma Harvest - Let's Harvest Together",
+    "date": "2026-03-07",
+    "time": "",
+    "location": "Hotel Altalaluna, Tolombón",
+    "description_es": "Inicio de la VII edición de la Vendimia de Bodega Tukma con actividades diarias que incluyen kit de vendimia, charla técnica, cosecha guiada, pisado tradicional y degustación.",
+    "description_en": "Start of the VII edition of Bodega Tukma's Harvest with daily activities including harvest kit, technical talk, guided harvest, traditional grape stomping and tasting.",
+    "category": "wine",
+    "website": ""
+  },
+  {
+    "title_es": "VII Vendimia Tukma - Vendimiemos Juntos",
+    "title_en": "VII Tukma Harvest - Let's Harvest Together",
+    "date": "2026-03-08",
+    "time": "",
+    "location": "Hotel Altalaluna, Tolombón",
+    "description_es": "Segundo día de la VII edición de la Vendimia de Bodega Tukma con actividades que incluyen kit de vendimia, charla técnica, cosecha guiada, pisado tradicional y degustación.",
+    "description_en": "Second day of the VII edition of Bodega Tukma's Harvest with activities including harvest kit, technical talk, guided harvest, traditional grape stomping and tasting.",
+    "category": "wine",
+    "website": ""
+  },
+  {
+    "title_es": "VII Vendimia Tukma - Vendimiemos Juntos",
+    "title_en": "VII Tukma Harvest - Let's Harvest Together",
+    "date": "2026-03-09",
+    "time": "",
+    "location": "Hotel Altalaluna, Tolombón",
+    "description_es": "Tercer día de la VII edición de la Vendimia de Bodega Tukma con actividades que incluyen kit de vendimia, charla técnica, cosecha guiada, pisado tradicional y degustación.",
+    "description_en": "Third day of the VII edition of Bodega Tukma's Harvest with activities including harvest kit, technical talk, guided harvest, traditional grape stomping and tasting.",
+    "category": "wine",
+    "website": ""
+  },
+  {
+    "title_es": "VII Vendimia Tukma - Vendimiemos Juntos",
+    "title_en": "VII Tukma Harvest - Let's Harvest Together",
+    "date": "2026-03-10",
+    "time": "",
+    "location": "Hotel Altalaluna, Tolombón",
+    "description_es": "Cuarto día de la VII edición de la Vendimia de Bodega Tukma con actividades que incluyen kit de vendimia, charla técnica, cosecha guiada, pisado tradicional y degustación.",
+    "description_en": "Fourth day of the VII edition of Bodega Tukma's Harvest with activities including harvest kit, technical talk, guided harvest, traditional grape stomping and tasting.",
+    "category": "wine",
+    "website": ""
+  },
+  {
+    "title_es": "VII Vendimia Tukma - Vendimiemos Juntos",
+    "title_en": "VII Tukma Harvest - Let's Harvest Together",
+    "date": "2026-03-11",
+    "time": "",
+    "location": "Hotel Altalaluna, Tolombón",
+    "description_es": "Quinto día de la VII edición de la Vendimia de Bodega Tukma con actividades que incluyen kit de vendimia, charla técnica, cosecha guiada, pisado tradicional y degustación.",
+    "description_en": "Fifth day of the VII edition of Bodega Tukma's Harvest with activities including harvest kit, technical talk, guided harvest, traditional grape stomping and tasting.",
+    "category": "wine",
+    "website": ""
+  },
+  {
+    "title_es": "VII Vendimia Tukma - Vendimiemos Juntos",
+    "title_en": "VII Tukma Harvest - Let's Harvest Together",
+    "date": "2026-03-12",
+    "time": "",
+    "location": "Hotel Altalaluna, Tolombón",
+    "description_es": "Sexto día de la VII edición de la Vendimia de Bodega Tukma con actividades que incluyen kit de vendimia, charla técnica, cosecha guiada, pisado tradicional y degustación.",
+    "description_en": "Sixth day of the VII edition of Bodega Tukma's Harvest with activities including harvest kit, technical talk, guided harvest, traditional grape stomping and tasting.",
+    "category": "wine",
+    "website": ""
+  },
+  {
+    "title_es": "VII Vendimia Tukma - Vendimiemos Juntos",
+    "title_en": "VII Tukma Harvest - Let's Harvest Together",
+    "date": "2026-03-13",
+    "time": "",
+    "location": "Hotel Altalaluna, Tolombón",
+    "description_es": "Séptimo día de la VII edición de la Vendimia de Bodega Tukma con actividades que incluyen kit de vendimia, charla técnica, cosecha guiada, pisado tradicional y degustación.",
+    "description_en": "Seventh day of the VII edition of Bodega Tukma's Harvest with activities including harvest kit, technical talk, guided harvest, traditional grape stomping and tasting.",
+    "category": "wine",
+    "website": ""
+  },
+  {
+    "title_es": "VII Vendimia Tukma - Vendimiemos Juntos",
+    "title_en": "VII Tukma Harvest - Let's Harvest Together",
+    "date": "2026-03-14",
+    "time": "",
+    "location": "Hotel Altalaluna, Tolombón",
+    "description_es": "Último día de la VII edición de la Vendimia de Bodega Tukma con actividades que incluyen kit de vendimia, charla técnica, cosecha guiada, pisado tradicional y degustación.",
+    "description_en": "Final day of the VII edition of Bodega Tukma's Harvest with activities including harvest kit, technical talk, guided harvest, traditional grape stomping and tasting.",
+    "category": "wine",
+    "website": ""
+  },
+  {
     "title_es": "XXII Vendimia en Las Nubes",
     "title_en": "XXII Harvest in the Clouds",
     "date": "2026-03-28",
@@ -163,6 +284,17 @@
     "description_en": "Free training workshop on natural dyes as part of the Ancestral Legacy Cycle taking place on Friday May 8th and Saturday May 9th in Cafayate.",
     "category": "culture",
     "website": "https://www.salta.gob.ar/prensa/noticias/ciclo-legado-ancestral-las-capacitaciones-gratuitas-llegan-a-cafayate-con-un-taller-de-tintes-naturales-107597"
+  },
+  {
+    "title_es": "Ancestral Legacy Cycle: Natural Dyes Workshop",
+    "title_en": "Ancestral Legacy Cycle: Natural Dyes Workshop",
+    "date": "2026-05-09",
+    "time": "",
+    "location": "Terraza de Cultura, Güemes Sur 81, Cafayate",
+    "description_es": "Segundo día del Taller de Tintes Naturales, parte del Ciclo Legado Ancestral con capacitaciones gratuitas sobre técnicas tradicionales de teñido.",
+    "description_en": "Second day of the Natural Dyes Workshop, part of the Ancestral Legacy Cycle with free training on traditional dyeing techniques.",
+    "category": "culture",
+    "website": ""
   },
   {
     "title_es": "Wine & Music — Bad Brothers",
