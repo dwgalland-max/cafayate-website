@@ -146,10 +146,36 @@ async function commitEvents(events, sha, message) {
 }
 
 function deduplicateEvents(existing, newEvents) {
-  const key = (e) => `${e.date}|${e.title_en.toLowerCase().trim()}`;
-  const existingKeys = new Set(existing.map(key));
-  const unique = newEvents.filter((e) => !existingKeys.has(key(e)));
-  return unique;
+  // Two checks: exact (date|title) match AND fuzzy title-within-30-days match.
+  // The fuzzy match catches multi-day events the scraper would otherwise add
+  // once per day (e.g. an 8-day harvest festival surfacing as 8 separate
+  // events with consecutive dates).
+  const titleKey = (e) => (e.title_en || '').toLowerCase().trim();
+  const exactKey = (e) => `${e.date}|${titleKey(e)}`;
+
+  const existingExact = new Set(existing.map(exactKey));
+  const existingByTitle = {};
+  existing.forEach(e => {
+    const t = titleKey(e);
+    if (!existingByTitle[t]) existingByTitle[t] = [];
+    existingByTitle[t].push(new Date(e.date).getTime());
+  });
+
+  const FUZZY_WINDOW_MS = 30 * 86400000; // ±30 days
+
+  return newEvents.filter(e => {
+    if (existingExact.has(exactKey(e))) return false;
+
+    const t = titleKey(e);
+    const candidate = new Date(e.date).getTime();
+    const dates = existingByTitle[t];
+    if (dates) {
+      for (const d of dates) {
+        if (Math.abs(candidate - d) <= FUZZY_WINDOW_MS) return false;
+      }
+    }
+    return true;
+  });
 }
 
 function cleanOldEvents(events, keepDays = 90) {
