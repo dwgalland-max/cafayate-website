@@ -1,5 +1,16 @@
 [
   {
+    "title_es": "Concurso de la Empanada",
+    "title_en": "Empanada Contest",
+    "date": "2026-02-21",
+    "time": "",
+    "location": "Plaza Principal de San Carlos",
+    "description_es": "5° Concurso de la Empanada que se realizará en la Plaza Principal de San Carlos como parte de las celebraciones del carnaval en la provincia de Salta.",
+    "description_en": "5th Empanada Contest taking place at the Main Square of San Carlos as part of the carnival celebrations in Salta province.",
+    "category": "food",
+    "website": ""
+  },
+  {
     "title_es": "Sonidos para Melania",
     "title_en": "Sounds for Melania",
     "date": "2026-02-25",
@@ -218,6 +229,17 @@
     "description_en": "Bad Brothers Wine Experience presents its new winter menu with a Wine & Music evening — blues, swing, and jazz with Daniela Zunino and Gabriel Espinosa.",
     "category": "music",
     "website": "https://www.badbrotherswe.com/"
+  },
+  {
+    "title_es": "Encuentro Latinoamericano de Ceramistas, Barro Calchaquí",
+    "title_en": "Latin American Ceramicists Meeting, Barro Calchaquí",
+    "date": "2026-07-20",
+    "time": "",
+    "location": "San Carlos, Salta",
+    "description_es": "Encuentro de ceramistas latinoamericanos que se realizará del 20 al 25 de julio en San Carlos, Valles Calchaquíes. Una propuesta gratuita para alfareros y ceramistas con intercambio de saberes y experiencias sobre producción cerámica.",
+    "description_en": "Latin American ceramicists meeting taking place from July 20-25 in San Carlos, Calchaquí Valleys. A free proposal for potters and ceramicists with knowledge and experience exchange about ceramic production.",
+    "category": "culture",
+    "website": "https://barrocalchaqui.org/bases/"
   },
   {
     "title_es": "Cruce Calchaquí",
