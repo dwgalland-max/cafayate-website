@@ -33,28 +33,6 @@
     "website": "https://serenataacafayate.com/"
   },
   {
-    "title_es": "Serenata a Cafayate 2026 - 52ª Edición - Día 2",
-    "title_en": "Serenata a Cafayate 2026 - 52nd Edition - Day 2",
-    "date": "2026-02-27",
-    "time": "",
-    "location": "Bodega Encantada, Cafayate",
-    "description_es": "Continuación de la 52ª edición de la Serenata a Cafayate, el festival de música popular argentina más emblemático de la provincia, con una grilla encabezada por El Chaqueño Palavecino, Jorge Rojas y Los Nocheros.",
-    "description_en": "Continuation of the 52nd edition of the Serenata a Cafayate, the most emblematic popular Argentine music festival in the province, headlined by El Chaqueño Palavecino, Jorge Rojas and Los Nocheros.",
-    "category": "music",
-    "website": ""
-  },
-  {
-    "title_es": "Serenata a Cafayate 2026 - 52ª Edición - Día 3",
-    "title_en": "Serenata a Cafayate 2026 - 52nd Edition - Day 3",
-    "date": "2026-02-28",
-    "time": "",
-    "location": "Bodega Encantada, Cafayate",
-    "description_es": "Día final de la 52ª edición de la Serenata a Cafayate, el festival de música popular argentina más emblemático de la provincia, con una grilla encabezada por El Chaqueño Palavecino, Jorge Rojas y Los Nocheros.",
-    "description_en": "Final day of the 52nd edition of the Serenata a Cafayate, the most emblematic popular Argentine music festival in the province, headlined by El Chaqueño Palavecino, Jorge Rojas and Los Nocheros.",
-    "category": "music",
-    "website": ""
-  },
-  {
     "title_es": "Vendimia Rosa",
     "title_en": "Pink Harvest",
     "date": "2026-03-07",
@@ -95,17 +73,6 @@
     "location": "Museo de la Vid y el Vino, Cafayate",
     "description_es": "Encuentro literario con lecturas y reflexiones sobre Cafayate, los Valles Calchaquíes, el vino y las tradiciones regionales. Entrada libre y gratuita.",
     "description_en": "Literary gathering with readings and reflections on Cafayate, the Calchaquí Valleys, wine, and regional traditions. Free admission.",
-    "category": "culture",
-    "website": ""
-  },
-  {
-    "title_es": "El Baúl de las Letras - Encuentro Literario",
-    "title_en": "The Chest of Letters - Literary Gathering",
-    "date": "2026-04-01",
-    "time": "19:00",
-    "location": "Museo de la Vid y el Vino, Cafayate",
-    "description_es": "Encuentro literario organizado en el marco del Día Internacional del Libro, en colaboración con la Biblioteca Popular Dr. Nicolás Avellaneda. Escritores, lectores y librerías locales compartirán textos vinculados a Cafayate, el vino y las tradiciones de la región. Entrada libre y gratuita.",
-    "description_en": "Literary gathering organized for International Book Day, in collaboration with the Dr. Nicolás Avellaneda Popular Library. Local writers, readers and bookstores will share texts related to Cafayate, wine and regional traditions. Free admission.",
     "category": "culture",
     "website": ""
   },

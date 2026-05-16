@@ -145,30 +145,61 @@ async function commitEvents(events, sha, message) {
   return resp.json();
 }
 
+// Normalize a title for fuzzy comparison:
+//  - lowercase, strip accents, unify em/en dashes to plain hyphen
+//  - drop year markers (2026, 2027, …)
+//  - drop trailing "day N" / "día N" / "noche N" suffixes (only when at the END
+//    of the title, so 'WINEEX — Day 1: Welcome' keeps the meaningful 'Welcome'
+//    subtitle and stays distinct from 'Day 2: Sunset Party')
+//  - collapse whitespace and trim trailing separators
+function normalizeTitle(s) {
+  if (!s) return '';
+  let t = s.toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/[–—]/g, '-')
+    .trim();
+  t = t.replace(/\b20\d{2}\b/g, '');
+  t = t.replace(/[\s\-:|]+(day|dia|jornada|noche|night)\s*\d+\s*$/i, '');
+  t = t.replace(/\s+/g, ' ').trim();
+  t = t.replace(/[\s\-:|]+$/, '');
+  return t;
+}
+
 function deduplicateEvents(existing, newEvents) {
-  // Two checks: exact (date|title) match AND fuzzy title-within-30-days match.
-  // The fuzzy match catches multi-day events the scraper would otherwise add
-  // once per day (e.g. an 8-day harvest festival surfacing as 8 separate
-  // events with consecutive dates).
-  const titleKey = (e) => (e.title_en || '').toLowerCase().trim();
-  const exactKey = (e) => `${e.date}|${titleKey(e)}`;
+  // Three checks against existing events:
+  //   1. exact (date|title) match
+  //   2. specific-venue + same-date (catches different titles for the same
+  //      event — e.g. 'Literary Gathering' vs 'The Chest of Letters' at the
+  //      same museum on the same day). Skips when the location is just a town
+  //      name, since 'Cafayate' alone isn't specific enough.
+  //   3. normalized-title within 30 days (catches multi-day events the scraper
+  //      surfaces once per day with slightly different titles).
+  const titleRaw = (e) => (e.title_en || '').toLowerCase().trim();
+  const exactKey = (e) => `${e.date}|${titleRaw(e)}`;
+  const venueKey = (e) => `${e.date}|${(e.location || '').toLowerCase().trim()}`;
+  const isSpecificVenue = (loc) => !!(loc && (loc.includes(',') || loc.length > 14));
 
   const existingExact = new Set(existing.map(exactKey));
-  const existingByTitle = {};
+  const existingVenue = new Set(
+    existing.filter(e => isSpecificVenue(e.location)).map(venueKey)
+  );
+  const existingByNorm = {};
   existing.forEach(e => {
-    const t = titleKey(e);
-    if (!existingByTitle[t]) existingByTitle[t] = [];
-    existingByTitle[t].push(new Date(e.date).getTime());
+    const t = normalizeTitle(e.title_en);
+    if (!t) return;
+    if (!existingByNorm[t]) existingByNorm[t] = [];
+    existingByNorm[t].push(new Date(e.date).getTime());
   });
 
   const FUZZY_WINDOW_MS = 30 * 86400000; // ±30 days
 
   return newEvents.filter(e => {
     if (existingExact.has(exactKey(e))) return false;
+    if (isSpecificVenue(e.location) && existingVenue.has(venueKey(e))) return false;
 
-    const t = titleKey(e);
+    const t = normalizeTitle(e.title_en);
     const candidate = new Date(e.date).getTime();
-    const dates = existingByTitle[t];
+    const dates = existingByNorm[t];
     if (dates) {
       for (const d of dates) {
         if (Math.abs(candidate - d) <= FUZZY_WINDOW_MS) return false;
