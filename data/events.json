@@ -11,6 +11,17 @@
     "website": ""
   },
   {
+    "title_es": "Encuentro de Grandes Viajeros - Salida Cultural",
+    "title_en": "Meeting of Great Travelers - Cultural Outing",
+    "date": "2026-02-22",
+    "time": "",
+    "location": "Cafayate",
+    "description_es": "Salida cultural y rodada por los alrededores de Cafayate con experiencias locales que ponen en valor el paisaje. Parte del Encuentro de Grandes Viajeros 2026.",
+    "description_en": "Cultural outing and ride around Cafayate with local experiences that highlight the landscape. Part of the 2026 Meeting of Great Travelers.",
+    "category": "culture",
+    "website": ""
+  },
+  {
     "title_es": "Sonidos para Melania",
     "title_en": "Sounds for Melania",
     "date": "2026-02-25",
@@ -196,6 +207,17 @@
     "description_en": "Bad Brothers Wine Experience presents its new winter menu with a Wine & Music evening — blues, swing, and jazz with Daniela Zunino and Gabriel Espinosa.",
     "category": "music",
     "website": "https://www.badbrotherswe.com/"
+  },
+  {
+    "title_es": "Escapada de Mujeres: Experiencia de Vino",
+    "title_en": "Women's Getaway: Wine Experience",
+    "date": "2026-05-20",
+    "time": "",
+    "location": "Cafayate",
+    "description_es": "Escapada turística para mujeres del 20 al 24 de mayo que combina recorridos por bodegas, gastronomía y actividades en contacto con la naturaleza. Incluye degustaciones de vinos de alta gama y la experiencia 'Noche Estrellada'.",
+    "description_en": "Tourist getaway for women from May 20-24 combining winery tours, gastronomy and activities in contact with nature. Includes high-end wine tastings and the 'Starry Night' experience.",
+    "category": "wine",
+    "website": ""
   },
   {
     "title_es": "Encuentro Latinoamericano de Ceramistas, Barro Calchaquí",
