@@ -220,6 +220,39 @@
     "website": ""
   },
   {
+    "title_es": "Maridaje de Autor: Cena de Pasos con Vinos de Cafayate",
+    "title_en": "Author's Pairing: Course Dinner with Cafayate Wines",
+    "date": "2026-05-21",
+    "time": "20:30",
+    "location": "Tomate Estación Rosedal, Cafayate",
+    "description_es": "Cena maridaje de cuatro tiempos conducida por la sommelier Claudia Piedrabuena, con vinos de Bodega Etchart como hilo conductor de la experiencia gastronómica.",
+    "description_en": "Four-course pairing dinner led by sommelier Claudia Piedrabuena, featuring wines from Bodega Etchart as the guiding thread of the gastronomic experience.",
+    "category": "wine",
+    "website": ""
+  },
+  {
+    "title_es": "Entre Añadas - Degustación Vertical",
+    "title_en": "Between Vintages - Vertical Tasting",
+    "date": "2026-05-23",
+    "time": "11:00",
+    "location": "Bodega El Esteco, Cafayate",
+    "description_es": "Experiencia exclusiva que combina degustaciones verticales de partidas limitadas en espacios únicos de la bodega. Se realiza todos los viernes con cupos limitados.",
+    "description_en": "Exclusive experience combining vertical tastings of limited batches in unique spaces of the winery. Takes place every Friday with limited capacity.",
+    "category": "wine",
+    "website": ""
+  },
+  {
+    "title_es": "Entre Añadas - Degustación Vertical",
+    "title_en": "Between Vintages - Vertical Tasting",
+    "date": "2026-05-30",
+    "time": "11:00",
+    "location": "Bodega El Esteco, Cafayate",
+    "description_es": "Experiencia exclusiva que combina degustaciones verticales de partidas limitadas en espacios únicos de la bodega. Se realiza todos los viernes con cupos limitados.",
+    "description_en": "Exclusive experience combining vertical tastings of limited batches in unique spaces of the winery. Takes place every Friday with limited capacity.",
+    "category": "wine",
+    "website": ""
+  },
+  {
     "title_es": "Rutas de Altura - Cabalgata entre Viñedos",
     "title_en": "Routes of Altitude - Horseback Riding Among Vineyards",
     "date": "2026-06-04",
@@ -229,6 +262,17 @@
     "description_en": "Monthly experience that combines horseback riding among vineyards with wine tasting and regional cheese platters in a privileged natural environment. Takes place on the first Wednesday of each month with very limited capacity.",
     "category": "wine",
     "website": "https://www.elesteco.com.ar"
+  },
+  {
+    "title_es": "Entre Añadas - Degustación Vertical",
+    "title_en": "Between Vintages - Vertical Tasting",
+    "date": "2026-06-06",
+    "time": "11:00",
+    "location": "Bodega El Esteco, Cafayate",
+    "description_es": "Experiencia exclusiva que combina degustaciones verticales de partidas limitadas en espacios únicos de la bodega. Se realiza todos los viernes con cupos limitados.",
+    "description_en": "Exclusive experience combining vertical tastings of limited batches in unique spaces of the winery. Takes place every Friday with limited capacity.",
+    "category": "wine",
+    "website": ""
   },
   {
     "title_es": "Encuentro Latinoamericano de Ceramistas, Barro Calchaquí",
