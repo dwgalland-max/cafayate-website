@@ -1,16 +1,5 @@
 [
   {
-    "title_es": "Concurso de la Empanada",
-    "title_en": "Empanada Contest",
-    "date": "2026-02-21",
-    "time": "",
-    "location": "Plaza Principal de San Carlos",
-    "description_es": "5° Concurso de la Empanada que se realizará en la Plaza Principal de San Carlos como parte de las celebraciones del carnaval en la provincia de Salta.",
-    "description_en": "5th Empanada Contest taking place at the Main Square of San Carlos as part of the carnival celebrations in Salta province.",
-    "category": "food",
-    "website": ""
-  },
-  {
     "title_es": "Encuentro de Grandes Viajeros - Salida Cultural",
     "title_en": "Meeting of Great Travelers - Cultural Outing",
     "date": "2026-02-22",
@@ -42,6 +31,28 @@
     "description_en": "The most important folk music festival in the region. Three nights (February 26, 27, and 28) featuring national artists including El Chaqueño Palavecino, Los Nocheros, Jorge Rojas, and more.",
     "category": "music",
     "website": "https://serenataacafayate.com/"
+  },
+  {
+    "title_es": "Serenata a Cafayate 2026 — Día 2",
+    "title_en": "Serenata a Cafayate 2026 — Day 2",
+    "date": "2026-02-27",
+    "time": "",
+    "location": "Bodega Encantada, Cafayate",
+    "description_es": "Segunda noche de la 52ª edición de la tradicional Serenata a Cafayate, el festival folclórico más importante del Norte Argentino con figuras históricas del folclore y la música popular argentina.",
+    "description_en": "Second night of the 52nd edition of the traditional Serenata a Cafayate, the most important folk festival in Northern Argentina featuring historic figures of folk and popular Argentine music.",
+    "category": "music",
+    "website": ""
+  },
+  {
+    "title_es": "Serenata a Cafayate 2026 — Día 3",
+    "title_en": "Serenata a Cafayate 2026 — Day 3",
+    "date": "2026-02-28",
+    "time": "",
+    "location": "Bodega Encantada, Cafayate",
+    "description_es": "Última noche de la 52ª edición de la tradicional Serenata a Cafayate, con artistas como el Chaqueño Palavecino, Jorge Rojas y Los Nocheros.",
+    "description_en": "Final night of the 52nd edition of the traditional Serenata a Cafayate, featuring artists like Chaqueño Palavecino, Jorge Rojas and Los Nocheros.",
+    "category": "music",
+    "website": ""
   },
   {
     "title_es": "Vendimia Rosa",
