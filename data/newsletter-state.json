@@ -1,0 +1,7 @@
+{
+  "last_sent_at": "2026-05-23T13:00:00.000Z",
+  "last_subject_en": "Cafayate This Week: Surrounded by History",
+  "last_subject_es": "Cafayate Esta Semana: Rodeados de Historia",
+  "last_sent_count": null,
+  "_note": "Updated by api/approve-newsletter.js after each successful send. Used as a persistent idempotency guard across Vercel cold starts. Initial value seeded to the May 23 2026 send."
+}
