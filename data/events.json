@@ -1,16 +1,5 @@
 [
   {
-    "title_es": "Encuentro de Grandes Viajeros - Salida Cultural",
-    "title_en": "Meeting of Great Travelers - Cultural Outing",
-    "date": "2026-02-22",
-    "time": "",
-    "location": "Cafayate",
-    "description_es": "Salida cultural y rodada por los alrededores de Cafayate con experiencias locales que ponen en valor el paisaje. Parte del Encuentro de Grandes Viajeros 2026.",
-    "description_en": "Cultural outing and ride around Cafayate with local experiences that highlight the landscape. Part of the 2026 Meeting of Great Travelers.",
-    "category": "culture",
-    "website": ""
-  },
-  {
     "title_es": "Sonidos para Melania",
     "title_en": "Sounds for Melania",
     "date": "2026-02-25",
@@ -272,6 +261,17 @@
     "description_es": "Experiencia exclusiva que combina degustaciones verticales de partidas limitadas en espacios únicos de la bodega. Se realiza todos los viernes con cupos limitados.",
     "description_en": "Exclusive experience combining vertical tastings of limited batches in unique spaces of the winery. Takes place every Friday with limited capacity.",
     "category": "wine",
+    "website": ""
+  },
+  {
+    "title_es": "4° Feria de la Miel",
+    "title_en": "4th Honey Fair",
+    "date": "2026-05-24",
+    "time": "",
+    "location": "San Carlos, Salta",
+    "description_es": "Feria de artesanos y emprendedores con productos de miel y derivados durante la Semana de Mayo.",
+    "description_en": "Fair of artisans and entrepreneurs with honey products and derivatives during May Week.",
+    "category": "market",
     "website": ""
   },
   {
