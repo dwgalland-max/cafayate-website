@@ -266,6 +266,15 @@ INSTRUCTIONS:
 - For recurring events (e.g. "every Saturday"), create ONE entry for the next occurrence only
 - Provide descriptions in both Spanish and English
 - Category should be one of: wine, music, culture, food, sports, market, festival, other
+- DATE VERIFICATION — If the source text explicitly states a day of the week
+  for the event (e.g. "el sábado 24", "Saturday May 23", "domingo 4 de octubre",
+  "this Thursday"), include that day name in the source_day_of_week field
+  using lowercase English: "monday", "tuesday", "wednesday", "thursday",
+  "friday", "saturday", "sunday". If the source does NOT mention a day of
+  the week, use "" (empty string). Do NOT guess or infer the day from the
+  date — only fill this field if the source TEXT explicitly says it. This
+  field is used server-side to verify your date math; if your "date" and
+  "source_day_of_week" disagree, the event is dropped.
 - If no new events are found, return an empty array
 
 Return ONLY a valid JSON array (no markdown, no explanation) with objects in this exact format:
@@ -279,7 +288,8 @@ Return ONLY a valid JSON array (no markdown, no explanation) with objects in thi
     "description_es": "...",
     "description_en": "...",
     "category": "...",
-    "website": "..."
+    "website": "...",
+    "source_day_of_week": ""
   }
 ]
 
@@ -303,10 +313,35 @@ Return [] if no new events found.`;
   try {
     const events = JSON.parse(jsonStr);
     if (!Array.isArray(events)) return [];
-    // Validate each event has required fields
-    return events.filter(
-      (e) => e.title_es && e.title_en && e.date && e.location
-    );
+
+    // Day-of-week sanity check: if Claude said the source mentioned a specific
+    // day (e.g. "Saturday the 24th"), confirm the assigned date actually falls
+    // on that day. Catches LLM date-math errors like "June 24" labelled as a
+    // Saturday when it's actually a Wednesday — the failure mode that gave us
+    // the phantom Honey Fair entry.
+    const DAY_NAMES = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
+    const validated = events.filter(e => {
+      if (!e.title_es || !e.title_en || !e.date || !e.location) return false;
+      const claimedDay = (e.source_day_of_week || '').toLowerCase().trim();
+      if (!claimedDay) return true; // no day asserted by source -> nothing to check
+      if (!DAY_NAMES.includes(claimedDay)) {
+        console.warn(`[scrape] event '${e.title_en}' has unrecognized source_day_of_week '${claimedDay}'; skipping check`);
+        return true;
+      }
+      const actualDayIdx = new Date(e.date + 'T12:00:00Z').getUTCDay();
+      const actualDay = DAY_NAMES[actualDayIdx];
+      if (actualDay !== claimedDay) {
+        console.warn(`[scrape] DROPPED '${e.title_en}' (${e.date}): source said ${claimedDay} but ${e.date} is ${actualDay}`);
+        return false;
+      }
+      return true;
+    });
+
+    // Strip the verification field before returning — it's not persisted.
+    return validated.map(e => {
+      const { source_day_of_week, ...rest } = e;
+      return rest;
+    });
   } catch (e) {
     console.error('Failed to parse Claude response:', e.message);
     console.error('Raw response:', text.slice(0, 500));
