@@ -228,7 +228,7 @@
     "description_es": "Feria de artesanos y emprendedores con productos de miel y derivados durante la Semana de Mayo.",
     "description_en": "Fair of artisans and entrepreneurs with honey products and derivatives during May Week.",
     "category": "market",
-    "website": ""
+    "website": "https://visitsalta.ar/post/2-feria-de-la-miel-"
   },
   {
     "title_es": "Locreada y Kermés Cultural Patria",
@@ -272,17 +272,6 @@
     "description_es": "Experiencia exclusiva que combina degustaciones verticales de partidas limitadas en espacios únicos de la bodega. Se realiza todos los viernes con cupos limitados.",
     "description_en": "Exclusive experience combining vertical tastings of limited batches in unique spaces of the winery. Takes place every Friday with limited capacity.",
     "category": "wine",
-    "website": ""
-  },
-  {
-    "title_es": "4° Feria de la Miel",
-    "title_en": "4th Honey Fair",
-    "date": "2026-06-24",
-    "time": "",
-    "location": "San Carlos, Salta",
-    "description_es": "Feria de artesanos y emprendedores dedicada a la miel y productos apícolas. Incluye degustaciones, venta de productos locales y actividades culturales.",
-    "description_en": "Fair of artisans and entrepreneurs dedicated to honey and beekeeping products. Includes tastings, sale of local products and cultural activities.",
-    "category": "market",
     "website": ""
   },
   {
