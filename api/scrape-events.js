@@ -21,6 +21,12 @@ const SEARCH_QUERIES = [
   'Cafayate carrera deportiva',
   'Cafayate fiesta patronal',
   'Cruce Calchaquí carrera',
+  // Instagram-targeted queries. Brave indexes public IG posts but coverage is
+  // uneven — many event flyers are image-only with minimal caption text, which
+  // limits what's searchable. These queries catch the ones with rich captions.
+  'site:instagram.com Cafayate evento',
+  'site:instagram.com Cafayate bodega',
+  'site:instagram.com Piattelli Cafayate',
 ];
 
 // Known sources to check directly
