@@ -1,27 +1,5 @@
 [
   {
-    "title_es": "Vendimia Rosa",
-    "title_en": "Pink Harvest",
-    "date": "2026-03-07",
-    "time": "",
-    "location": "Finca Aureum Terra, Animaná",
-    "description_es": "Jornada de cosecha y molienda de uvas para vino rosado, que incluye degustación, música, buffet y una acción solidaria vinculada a la prevención del cáncer de mama.",
-    "description_en": "Day of harvest and crushing of grapes for rosé wine, including tasting, music, buffet and a solidarity action linked to breast cancer prevention.",
-    "category": "wine",
-    "website": ""
-  },
-  {
-    "title_es": "VII Vendimia Tukma - Vendimiemos Juntos",
-    "title_en": "VII Tukma Harvest - Let's Harvest Together",
-    "date": "2026-03-07",
-    "time": "",
-    "location": "Hotel Altalaluna, Tolombón",
-    "description_es": "Inicio de la VII edición de la Vendimia de Bodega Tukma con actividades diarias que incluyen kit de vendimia, charla técnica, cosecha guiada, pisado tradicional y degustación.",
-    "description_en": "Eight-day harvest experience at Hotel Altalaluna, Tolombón, March 7-14. Grape harvesting, gastronomy, and vineyard experiences.",
-    "category": "wine",
-    "website": ""
-  },
-  {
     "title_es": "XXII Vendimia en Las Nubes",
     "title_en": "XXII Harvest in the Clouds",
     "date": "2026-03-28",
@@ -275,6 +253,39 @@
     "website": ""
   },
   {
+    "title_es": "Capacitación: El Arte de Comunicar el Vino",
+    "title_en": "Training: The Art of Communicating Wine",
+    "date": "2026-06-16",
+    "time": "",
+    "location": "Cafayate",
+    "description_es": "Capacitación especializada sobre técnicas de comunicación en el sector vitivinícola, dirigida a prestadores turísticos y profesionales del vino.",
+    "description_en": "Specialized training on communication techniques in the wine sector, aimed at tourism providers and wine professionals.",
+    "category": "wine",
+    "website": ""
+  },
+  {
+    "title_es": "La Guardia Bajo las Estrellas",
+    "title_en": "The Guard Under the Stars",
+    "date": "2026-06-17",
+    "time": "",
+    "location": "Cafayate",
+    "description_es": "Tradición emblemática en homenaje al General Martín Miguel de Güemes, una de las celebraciones más sentidas de la región.",
+    "description_en": "Emblematic tradition in honor of General Martín Miguel de Güemes, one of the most heartfelt celebrations in the region.",
+    "category": "culture",
+    "website": ""
+  },
+  {
+    "title_es": "Piattelli WINEEX",
+    "title_en": "Piattelli WINEEX",
+    "date": "2026-07-11",
+    "time": "15:00",
+    "location": "Bodega Piattelli, Cafayate",
+    "description_es": "Evento de Piattelli Entertainment en Bodega Piattelli, Cafayate. Save the date — detalles próximos.",
+    "description_en": "A Piattelli Entertainment event at Bodega Piattelli, Cafayate. Save the date — full details to follow.",
+    "category": "wine",
+    "website": "https://www.passline.com/eventos/piattelli-wineex-session-v"
+  },
+  {
     "title_es": "Encuentro Latinoamericano de Ceramistas, Barro Calchaquí",
     "title_en": "Latin American Ceramicists Meeting, Barro Calchaquí",
     "date": "2026-07-20",
@@ -317,16 +328,5 @@
     "description_en": "Saint's day for San Carlos Borromeo, patron of the village of San Carlos. Religious rites, kermesses, bonfires, fairs, and gaucho skill exhibitions.",
     "category": "culture",
     "website": ""
-  },
-  {
-    "title_es": "Piattelli WINEEX",
-    "title_en": "Piattelli WINEEX",
-    "date": "2026-07-11",
-    "time": "15:00",
-    "location": "Bodega Piattelli, Cafayate",
-    "description_es": "Evento de Piattelli Entertainment en Bodega Piattelli, Cafayate. Save the date — detalles próximos.",
-    "description_en": "A Piattelli Entertainment event at Bodega Piattelli, Cafayate. Save the date — full details to follow.",
-    "category": "wine",
-    "website": "https://www.passline.com/eventos/piattelli-wineex-session-v"
   }
 ]
