@@ -25,7 +25,7 @@ The site catalogs 25 wineries in the Calchaqui Valleys region, organized by alti
 Accommodation options in Cafayate ranging from luxury resorts to boutique hotels, including properties in La Estancia de Cafayate.
 
 ### Restaurants (/pages/restaurantes.html)
-Dining guide covering the best restaurants in Cafayate, from traditional Argentine parrilla to fine dining with wine pairings.
+Dining guide covering the best restaurants in Cafayate, from traditional Argentinean parrilla to fine dining with wine pairings.
 
 ### Events & Calendar (/pages/agenda.html)
 Cultural calendar including:
