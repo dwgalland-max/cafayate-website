@@ -298,6 +298,34 @@ module.exports = async function handler(req, res) {
       }
     }
 
+    // --- Fetch newsletter subscriber counts (independent of GA4 so this
+    // still renders if Google Analytics is misconfigured). ---
+    let newsletterData = null;
+    if (process.env.RESEND_AUDIENCE_ID) {
+      try {
+        const { data: contactsData, error: contactsError } = await resend.contacts.list({
+          audienceId: process.env.RESEND_AUDIENCE_ID,
+        });
+        if (!contactsError && contactsData) {
+          const contacts = contactsData.data || [];
+          const active = contacts.filter(c => !c.unsubscribed);
+          const es = active.filter(c => (c.last_name || '').toLowerCase() === 'es').length;
+          newsletterData = { total: active.length, en: active.length - es, es };
+        } else if (contactsError) {
+          console.error('Resend contacts list error:', contactsError);
+        }
+      } catch (nlErr) {
+        console.error('Newsletter subscriber fetch error:', nlErr.message);
+      }
+    }
+    if (analyticsData && !analyticsData.error && newsletterData) {
+      analyticsData.newsletter = newsletterData;
+    } else if (newsletterData && (!analyticsData || analyticsData.error)) {
+      // GA4 unavailable but subscribers fetched — make a stub so the section still renders
+      analyticsData = analyticsData || {};
+      analyticsData.newsletter = newsletterData;
+    }
+
     // --- Build report ---
     const today = new Date();
     const dateStr = today.toLocaleDateString('en-US', {
@@ -552,6 +580,29 @@ function buildEmailHTML(dateStr, analytics) {
       </div>
     </div>`;
 
+    // --- Newsletter subscribers (active count + language split) ---
+    if (analytics.newsletter) {
+      const nl = analytics.newsletter;
+      html += `
+    <div class="section">
+      <h2>Newsletter Subscribers</h2>
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-value">${nl.total.toLocaleString()}</div>
+          <div class="stat-label">Total Active</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value">${nl.en.toLocaleString()}</div>
+          <div class="stat-label">English</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value">${nl.es.toLocaleString()}</div>
+          <div class="stat-label">Spanish</div>
+        </div>
+      </div>
+    </div>`;
+    }
+
     // --- Traffic sources (last 7 days) ---
     if (analytics.sources && analytics.sources.length > 0) {
       html += `
@@ -773,6 +824,19 @@ function buildWebReportHTML(dateStr, analytics) {
           <div class="kpi"><span class="kpi-value">${parseInt(m.screenPageViews || 0).toLocaleString()}</span><span class="kpi-label">Total Page Views</span></div>
         </div>
       </section>`;
+
+    if (analytics.newsletter) {
+      const nl = analytics.newsletter;
+      content += `
+      <section class="report-section">
+        <h2>Newsletter Subscribers</h2>
+        <div class="kpi-row">
+          <div class="kpi"><span class="kpi-value">${nl.total.toLocaleString()}</span><span class="kpi-label">Total Active</span></div>
+          <div class="kpi"><span class="kpi-value">${nl.en.toLocaleString()}</span><span class="kpi-label">English</span></div>
+          <div class="kpi"><span class="kpi-value">${nl.es.toLocaleString()}</span><span class="kpi-label">Spanish</span></div>
+        </div>
+      </section>`;
+    }
 
     // Two-column layout: sources + countries
     content += `<div class="two-col">`;
