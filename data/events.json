@@ -299,24 +299,24 @@
   {
     "title_es": "Cruce Calchaquí",
     "title_en": "Cruce Calchaquí",
-    "date": "2026-08-28",
+    "date": "2026-08-29",
     "time": "",
     "location": "Tafí del Valle a Cafayate",
-    "description_es": "El evento de resistencia más importante de la región. Carrera de relevos de 126 km en 6 etapas de 21 km cada una, que conecta Tafí del Valle (Tucumán) con Cafayate (Salta) por la Ruta Provincial 307/357 y la Ruta 40. Atraviesa todo el Valle Calchaquí. 28 y 29 de agosto.",
-    "description_en": "The marquee endurance event of the region. A 126k relay race in 6 stages of 21k each, connecting Tafí del Valle (Tucumán) to Cafayate (Salta) via provincial route 307/357 and Ruta 40. Effectively traverses the entire Calchaquí Valley. August 28–29.",
+    "description_es": "El evento de resistencia más importante de la región. Carrera de relevos de 126 km en 6 etapas de 21 km cada una, que conecta Tafí del Valle (Tucumán) con Cafayate (Salta) por la Ruta Provincial 307/357 y la Ruta 40. Atraviesa todo el Valle Calchaquí. 29 y 30 de agosto.",
+    "description_en": "The marquee endurance event of the region. A 126k relay race in 6 stages of 21k each, connecting Tafí del Valle (Tucumán) to Cafayate (Salta) via provincial route 307/357 and Ruta 40. Effectively traverses the entire Calchaquí Valley. August 29–30.",
     "category": "sports",
-    "website": ""
+    "website": "https://organizacioncalchaqui.com.ar/"
   },
   {
-    "title_es": "Fiesta Patronal de la Virgen del Rosario",
-    "title_en": "Patron Saint Day — Virgen del Rosario",
-    "date": "2026-10-04",
+    "title_es": "Fiesta Patronal de la Virgen del Rosario — La Sentadita",
+    "title_en": "Patron Saint Day — Virgen del Rosario (La Sentadita)",
+    "date": "2026-10-07",
     "time": "",
     "location": "Cafayate",
-    "description_es": "Fiesta patronal de Cafayate en honor a la Virgen del Rosario. Procesión, misachicos y eventos gauchos.",
-    "description_en": "Cafayate's patron saint festival honoring the Virgen del Rosario. Procession, misachicos, and gaucho events.",
+    "description_es": "Fiesta patronal de Cafayate en honor a la Virgen del Rosario, conocida localmente como \"La Sentadita\" — una imagen de más de 250 años, modelada sentada para facilitar su traslado por los Valles Calchaquíes. La novena comienza el 28 de septiembre y culmina el 7 de octubre con procesión, misa, misachicos y eventos gauchos. Patrona también de los agricultores y vitivinicultores de la región.",
+    "description_en": "Cafayate's patron saint festival honoring the Virgen del Rosario, known locally as \"La Sentadita\" (The Little Seated One) — a 250+ year-old image sculpted in a seated posture so she could be carried through the Calchaquí Valleys. The novena begins September 28 and culminates October 7 with procession, mass, misachicos (small chanted Masses), and gaucho events. Also patroness of the region's farmers and winegrowers.",
     "category": "culture",
-    "website": ""
+    "website": "https://www.cafayate.tur.ar/itinerario/fiesta-patronal-de-la-virgen-nuestra-senora-del-rosario"
   },
   {
     "title_es": "Fiesta Patronal de San Carlos Borromeo",
