@@ -255,19 +255,27 @@
   function renderBlogPosts(posts, container) {
     var lang = isEnglish ? 'en' : 'es';
 
-    // Check if we're viewing a single post (hash-based routing)
+    // Hide future-dated posts. Posts dated in the future are queued for a
+    // newsletter cron firing and shouldn't appear publicly until that day.
+    // The cron itself runs server-side and picks sortedBlog[0] from the
+    // unfiltered data, so future posts still get sent on schedule.
+    var today = new Date().toISOString().split('T')[0];
+    var visible = posts.filter(function (p) { return p.date <= today; });
+
+    // Check if we're viewing a single post (hash-based routing).
+    // Direct-link to a still-future-dated post is treated as not-yet-published.
     var hash = window.location.hash.replace('#', '');
     if (hash) {
-      var post = posts.find(function (p) { return p.slug === hash; });
+      var post = visible.find(function (p) { return p.slug === hash; });
       if (post) {
-        renderSinglePost(post, container, lang, posts);
+        renderSinglePost(post, container, lang, visible);
         injectBlogSchema([post]);
         return;
       }
     }
 
     // Sort: pinned posts first, then by date descending (newest first)
-    var sorted = posts.slice().sort(function (a, b) {
+    var sorted = visible.slice().sort(function (a, b) {
       if (a.pinned && !b.pinned) return -1;
       if (!a.pinned && b.pinned) return 1;
       return b.date.localeCompare(a.date);
