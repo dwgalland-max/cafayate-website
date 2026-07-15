@@ -259,8 +259,11 @@
     // newsletter cron firing and shouldn't appear publicly until that day.
     // The cron itself runs server-side and picks sortedBlog[0] from the
     // unfiltered data, so future posts still get sent on schedule.
+    // Bypass with ?preview=1 (or ?preview=<slug>) so we can eyeball a queued
+    // post ahead of its publish date.
     var today = new Date().toISOString().split('T')[0];
-    var visible = posts.filter(function (p) { return p.date <= today; });
+    var previewFlag = new URLSearchParams(window.location.search).get('preview');
+    var visible = previewFlag ? posts.slice() : posts.filter(function (p) { return p.date <= today; });
 
     // Check if we're viewing a single post (hash-based routing).
     // Direct-link to a still-future-dated post is treated as not-yet-published.
