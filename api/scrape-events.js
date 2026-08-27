@@ -303,7 +303,7 @@ If time is unknown, use "". If website is unknown, use "".
 Return [] if no new events found.`;
 
   const response = await anthropic.messages.create({
-    model: 'claude-sonnet-4-20250514',
+    model: 'claude-sonnet-5',
     max_tokens: 4096,
     messages: [{ role: 'user', content: prompt }],
   });
