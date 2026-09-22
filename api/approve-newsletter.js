@@ -1,5 +1,5 @@
 const { Resend } = require('resend');
-const { buildNewsletterHTML, wrapNewsletter, STRINGS } = require('./build-newsletter');
+const { buildNewsletterHTML, wrapNewsletter, STRINGS, staleBlogReason } = require('./build-newsletter');
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const AUDIENCE_ID = process.env.RESEND_AUDIENCE_ID;
@@ -11,14 +11,16 @@ const GITHUB_REPO = 'cafayate-website';
 const GITHUB_BRANCH = 'main';
 const STATE_PATH = 'data/newsletter-state.json';
 
-// Two layers of double-send protection:
+// Three layers of double-send protection:
 //
 //   1. In-memory short-window guard — catches rapid double-clicks while the
 //      serverless instance is warm. Reset on cold start.
 //   2. Persistent guard via data/newsletter-state.json committed through the
 //      GitHub API — survives cold starts and covers the entire biweekly cycle.
+//   3. Stale-blog guard — refuses to send when the latest blog post is the one
+//      already recorded in the state file (no new post since the last send).
 //
-// Override either guard by appending ?force=1 to the URL.
+// Override any guard by appending ?force=1 to the URL.
 let lastSentAt = 0;
 const MIN_SEND_INTERVAL_MS = 10 * 60 * 1000;      // 10 minutes
 const PERSISTENT_SEND_WINDOW_MS = 6 * 24 * 60 * 60 * 1000;  // 6 days
@@ -95,11 +97,16 @@ module.exports = async function handler(req, res) {
   // any other automated GET-fetcher from triggering an actual send by
   // following the link in the preview email.
   if (req.method === 'GET') {
-    const state = await getState();
+    const [state, blogForCheck] = await Promise.all([
+      getState(),
+      fetch(SITE + '/data/blog.json').then(r => r.json()).catch(() => []),
+    ]);
     const lastSent = state && state.state && state.state.last_sent_at
       ? new Date(state.state.last_sent_at)
       : null;
-    return res.status(200).send(confirmationPage(key, lastSent, force));
+    const newest = (blogForCheck || []).slice().sort((a, b) => b.date.localeCompare(a.date))[0];
+    const staleWarning = staleBlogReason(newest, state && state.state);
+    return res.status(200).send(confirmationPage(key, lastSent, force, staleWarning));
   }
 
   // POST = actually perform the send. From here on it's identical to the
@@ -148,6 +155,16 @@ module.exports = async function handler(req, res) {
 
     const sortedBlog = blog.slice().sort((a, b) => b.date.localeCompare(a.date));
     const latestPost = sortedBlog[0];
+
+    // Layer 3: stale-blog guard
+    const staleReason = staleBlogReason(latestPost, stateResp && stateResp.state);
+    if (!force && staleReason) {
+      return res.status(409).send(htmlPage(
+        'No new blog post',
+        `${staleReason} Refusing to send a duplicate issue. Add a new post first, or append &amp;force=1 to the URL to resend on purpose.`
+      ));
+    }
+
     const now = new Date();
     // Match build-newsletter: 90-day window so anchor events that are months
     // out (Cruce Calchaquí, patron saint days) still surface.
@@ -286,9 +303,12 @@ function htmlPage(title, message) {
     </head><body><div class="card"><h1>${title}</h1><p>${message}</p></div></body></html>`;
 }
 
-function confirmationPage(key, lastSent, force) {
+function confirmationPage(key, lastSent, force, staleWarning) {
   const lastSentLine = lastSent
     ? `<p class="muted">Last newsletter was sent on ${lastSent.toUTCString()}.</p>`
+    : '';
+  const staleLine = staleWarning
+    ? `<p class="warn">&#9888; ${staleWarning}${force ? ' You are forcing a resend.' : ' Sending will be refused unless you add &amp;force=1.'}</p>`
     : '';
   const forceQuery = force ? '&force=1' : '';
   return `<!DOCTYPE html><html><head><title>Confirm Newsletter Send</title>
@@ -298,6 +318,7 @@ function confirmationPage(key, lastSent, force) {
       h1{color:#1e6a3a;font-family:Georgia,serif;margin:0 0 12px;font-size:24px;}
       p{color:#555;font-size:15px;line-height:1.6;margin:0 0 18px;}
       .muted{color:#888;font-size:13px;}
+      .warn{background:#fff3cd;border:1px solid #ffc107;border-radius:4px;padding:10px 14px;color:#7a5b00;font-size:14px;text-align:left;}
       button{background:#1e6a3a;color:#fff;border:0;padding:13px 36px;font-size:15px;font-weight:600;border-radius:4px;cursor:pointer;font-family:inherit;}
       button:hover{background:#155227;}
       .note{font-size:12px;color:#aaa;margin-top:28px;border-top:1px solid #eee;padding-top:16px;}
@@ -305,6 +326,7 @@ function confirmationPage(key, lastSent, force) {
     <h1>Confirm Newsletter Send</h1>
     <p>You're about to send the latest newsletter to all active subscribers.</p>
     ${lastSentLine}
+    ${staleLine}
     <form method="POST" action="/api/approve-newsletter?key=${encodeURIComponent(key)}${forceQuery}">
       <button type="submit">Confirm &mdash; Send to all subscribers</button>
     </form>

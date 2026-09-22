@@ -61,6 +61,24 @@ const STRINGS = {
 let lastPreviewAt = 0;
 const MIN_PREVIEW_INTERVAL_MS = 2 * 60 * 1000; // 2 minutes between previews
 
+// Stale-blog guard. The newsletter always leads with the newest blog post, so
+// if nothing has been published since the last send, sending again would mail
+// every subscriber a duplicate issue (this happened on 2026-09-12). Returns a
+// human-readable reason when the latest post has already gone out, else null.
+// `state` is the parsed data/newsletter-state.json (or null if unavailable).
+function staleBlogReason(latestPost, state) {
+  if (!latestPost || !state || !state.last_sent_at) return null;
+  const lastSentDay = String(state.last_sent_at).slice(0, 10);   // YYYY-MM-DD
+  const subjectEn = STRINGS.en.subjectPrefix + (latestPost.title_en || '');
+  if (state.last_subject_en && state.last_subject_en === subjectEn) {
+    return `"${latestPost.title_en}" was already sent on ${lastSentDay}.`;
+  }
+  if (latestPost.date && latestPost.date < lastSentDay) {
+    return `Latest post "${latestPost.title_en}" is dated ${latestPost.date}, before the last send on ${lastSentDay}.`;
+  }
+  return null;
+}
+
 module.exports = async function handler(req, res) {
   if (req.method !== 'GET' && req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -78,16 +96,18 @@ module.exports = async function handler(req, res) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
 
-  // Biweekly cadence: send only on alternating Saturdays, anchored to 2026-05-09.
+  // Biweekly cadence: send only on alternating Saturdays, anchored to 2026-10-03
+  // (schedule restarted after the September 2026 travel gap; previous anchor 2026-05-09).
   // Vercel cron doesn't support biweekly natively, so cron still fires every Saturday
   // and we return early on off-weeks. Manual admin triggers (?key=…) bypass this
   // gate, so previews / one-off sends still work whenever needed.
   if (cronOk) {
-    const BIWEEKLY_ANCHOR = Date.UTC(2026, 4, 9); // 2026-05-09 00:00 UTC
+    const BIWEEKLY_ANCHOR = Date.UTC(2026, 9, 3); // 2026-10-03 00:00 UTC
     const daysSinceAnchor = Math.floor((Date.now() - BIWEEKLY_ANCHOR) / 86400000);
-    const isSendWeek = daysSinceAnchor < 0 || daysSinceAnchor % 14 < 7;
+    const cyclePos = ((daysSinceAnchor % 14) + 14) % 14; // 0-13, correct for negative days too
+    const isSendWeek = cyclePos < 7;
     if (!isSendWeek) {
-      const daysToNext = 14 - (daysSinceAnchor % 14);
+      const daysToNext = 14 - cyclePos;
       console.log(`Biweekly off-week: skipping. Next send in ${daysToNext} day(s).`);
       return res.status(200).json({
         success: true,
@@ -111,7 +131,7 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const [blogRes, eventsRes, propertiesRes, newsletterRes, subscribersData] = await Promise.all([
+    const [blogRes, eventsRes, propertiesRes, newsletterRes, subscribersData, stateRes] = await Promise.all([
       fetch(SITE + '/data/blog.json').then(r => r.json()),
       fetch(SITE + '/data/events.json').then(r => r.json()),
       // properties.json was removed when the propiedad page moved to a static realtor directory.
@@ -119,6 +139,8 @@ module.exports = async function handler(req, res) {
       Promise.resolve([]),
       fetch(SITE + '/data/newsletter.json').then(r => r.json()),
       AUDIENCE_ID ? resend.contacts.list({ audienceId: AUDIENCE_ID }) : Promise.resolve({ data: { data: [] } }),
+      // Last-send record, written by approve-newsletter via the GitHub API. Missing → no guard.
+      fetch(SITE + '/data/newsletter-state.json').then(r => (r.ok ? r.json() : null)).catch(() => null),
     ]);
 
     const blog = blogRes || [];
@@ -132,6 +154,32 @@ module.exports = async function handler(req, res) {
 
     const sortedBlog = blog.slice().sort((a, b) => b.date.localeCompare(a.date));
     const latestPost = sortedBlog[0];
+
+    // Stale-blog guard: no new post since the last send → no preview, so there is
+    // no Approve link to click by mistake. ?force=1 overrides for deliberate resends.
+    const staleReason = staleBlogReason(latestPost, stateRes);
+    if (!force && staleReason) {
+      console.log('Stale blog, skipping preview:', staleReason);
+      if (cronOk) {
+        // Scheduled run: tell the editor why no preview arrived this Saturday.
+        await resend.emails.send({
+          from: 'Cafayate.com <noreply@cafayate.com>',
+          to: 'dwgalland@gmail.com',
+          subject: '[Cafayate.com] Newsletter preview skipped: no new blog post',
+          html: `
+            <h2>Newsletter preview skipped</h2>
+            <p>${staleReason}</p>
+            <p>Add a new post to <code>data/blog.json</code> and trigger a preview manually, or pass <code>&amp;force=1</code> to resend the previous issue on purpose.</p>
+          `,
+        });
+      }
+      return res.status(200).json({
+        success: true,
+        skipped: true,
+        reason: 'stale_blog',
+        message: staleReason + ' No preview sent. Pass ?force=1 to override.',
+      });
+    }
 
     const now = new Date();
     // Look 90 days ahead so anchor events that are 1-3 months out (Cruce
@@ -382,3 +430,4 @@ function wrapNewsletter(subject, bodyHtml, lang, firstName) {
 module.exports.buildNewsletterHTML = buildNewsletterHTML;
 module.exports.wrapNewsletter = wrapNewsletter;
 module.exports.STRINGS = STRINGS;
+module.exports.staleBlogReason = staleBlogReason;
