@@ -412,13 +412,16 @@ module.exports = async function handler(req, res) {
       ...KNOWN_SOURCES,
     ];
 
-    const pageTexts = [];
-    for (const url of pagesToFetch) {
-      const text = await fetchPageText(url);
-      if (text.length > 100) {
-        pageTexts.push({ url, text });
-      }
-    }
+    // Fetch pages in parallel — no rate limit gate here, unlike Brave.
+    // Sequential was costing ~20s of wall-clock; Promise.all trims it to
+    // the slowest single fetch (~3-5s).
+    const pageResults = await Promise.all(
+      pagesToFetch.map(async (url) => {
+        const text = await fetchPageText(url);
+        return { url, text };
+      })
+    );
+    const pageTexts = pageResults.filter((p) => p.text.length > 100);
     console.log(`Fetched ${pageTexts.length} pages`);
 
     // 4. Use Claude to extract events
