@@ -305,6 +305,7 @@ Return [] if no new events found.`;
   const response = await anthropic.messages.create({
     model: 'claude-sonnet-5',
     max_tokens: 4096,
+    thinking: { type: 'disabled' },
     messages: [{ role: 'user', content: prompt }],
   });
 
@@ -380,7 +381,8 @@ module.exports = async function handler(req, res) {
     // 2. Web search for recent Calchaquí Valley events (with per-query diagnostics)
     const allResults = [];
     const searchStats = []; // per-query results so failures are visible
-    for (const query of SEARCH_QUERIES) {
+    for (let i = 0; i < SEARCH_QUERIES.length; i++) {
+      const query = SEARCH_QUERIES[i];
       const { items, error } = await searchWeb(query);
       searchStats.push({
         query,
@@ -389,7 +391,10 @@ module.exports = async function handler(req, res) {
       });
       allResults.push(...items);
       // Brave free tier is 1 query/sec — wait 1.1s between queries to stay under the limit.
-      await new Promise((r) => setTimeout(r, 1100));
+      // Skip the trailing sleep after the last query to save one throttle cycle.
+      if (i < SEARCH_QUERIES.length - 1) {
+        await new Promise((r) => setTimeout(r, 1100));
+      }
     }
     const failedQueries = searchStats.filter(s => s.error);
     console.log(`[scrape] search done: ${allResults.length} total results; ${failedQueries.length}/${SEARCH_QUERIES.length} queries failed`);
