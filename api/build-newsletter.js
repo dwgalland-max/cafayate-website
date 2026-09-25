@@ -13,7 +13,7 @@ const STRINGS = {
     tagline: "INSIDER'S GUIDE TO SALTA'S WINE REGION",
     greeting: 'Hi',
     editorSign: 'David Galland, Editor',
-    latestBlog: '📝 Latest from the Blog',
+    latestBlog: '📝 The Latest from Cafayate!',
     readMore: 'Read More →',
     upcomingEvents: '📅 Upcoming Events',
     viewAllEvents: 'View all events →',
@@ -35,7 +35,7 @@ const STRINGS = {
     tagline: 'GUÍA DEL PAÍS DEL VINO DE SALTA',
     greeting: 'Hola',
     editorSign: 'David Galland, Editor',
-    latestBlog: '📝 Último del Blog',
+    latestBlog: '📝 Lo Último de Cafayate!',
     readMore: 'Leer más →',
     upcomingEvents: '📅 Próximos Eventos',
     viewAllEvents: 'Ver todos los eventos →',
@@ -289,17 +289,6 @@ function buildNewsletterHTML({ editorsNote, latestPost, upcoming, properties, sp
 
   let html = '';
 
-  if (editorsNote) {
-    html += `
-      <div style="margin-bottom:28px;">
-        <p style="font-size:15px;line-height:1.7;color:#555;font-style:italic;border-left:3px solid #1e6a3a;padding-left:16px;margin:0;">
-          ${editorsNote}
-        </p>
-        <p style="font-size:13px;color:#999;margin:8px 0 0;">— ${t.editorSign}</p>
-      </div>
-    `;
-  }
-
   if (latestPost) {
     const postUrl = SITE + t.blogPath + blogQuery + '#' + latestPost.slug;
     html += `
@@ -412,7 +401,6 @@ function buildNewsletterHTML({ editorsNote, latestPost, upcoming, properties, sp
 
 function wrapNewsletter(subject, bodyHtml, lang, firstName) {
   const t = STRINGS[lang] || STRINGS.en;
-  const greeting = firstName ? `${t.greeting} ${firstName},` : `${t.greeting},`;
   return `
     <div style="max-width:600px;margin:0 auto;font-family:'Segoe UI','Helvetica Neue',Arial,sans-serif;color:#333;">
       <div style="background:#1e6a3a;padding:24px 30px;text-align:center;">
@@ -420,7 +408,6 @@ function wrapNewsletter(subject, bodyHtml, lang, firstName) {
         <p style="color:rgba(255,255,255,0.8);margin:6px 0 0;font-size:13px;letter-spacing:1px;">${t.tagline}</p>
       </div>
       <div style="padding:30px;background:#fff;">
-        <p style="font-size:15px;color:#555;">${greeting}</p>
         ${bodyHtml}
       </div>
       <div style="background:#f5f5f5;padding:20px 30px;text-align:center;border-top:3px solid #c0392b;">
