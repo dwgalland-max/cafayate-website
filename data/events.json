@@ -1,291 +1,5 @@
 [
   {
-    "title_es": "Torneo Tigero Golf Cafayate 2026",
-    "title_en": "Tigero Golf Tournament Cafayate 2026",
-    "date": "2026-08-07",
-    "time": "",
-    "location": "La Estancia de Cafayate · Hospedaje en Grace Cafayate (Native Valley)",
-    "description_es": "Experiencia de tres días para golfistas del 7 al 9 de agosto de 2026 en Cafayate, el destino más encantador del Noroeste Argentino. Convoca a jugadores de distintas provincias de Argentina. Incluye tres noches de alojamiento en Grace Cafayate (Native Valley — Master Suite, Deluxe Room o Villa completa), tres desayunos buffet, tres comidas con bebidas, tres días de green fee, dos torneos Medal Play con entrega de premios y sorteos, y coordinación permanente. Costo: USD 650. Contacto: Fernando Tigero, +54 9 3534 24-8871.",
-    "description_en": "A three-day experience for golfers August 7–9, 2026 in Cafayate, the most enchanting destination in Argentina's Northwest. Draws players from provinces across Argentina. Includes three nights lodging at Grace Cafayate (Native Valley — Master Suite, Deluxe Room, or full Villa), three buffet breakfasts, three meals with drinks, three days of green fees, two Medal Play tournaments with awards ceremonies and raffles, and full coordination throughout. Cost: USD 650. Contact: Fernando Tigero, +54 9 3534 24-8871.",
-    "category": "sports",
-    "website": ""
-  },
-  {
-    "title_es": "XXII Vendimia en Las Nubes",
-    "title_en": "XXII Harvest in the Clouds",
-    "date": "2026-03-28",
-    "time": "",
-    "location": "Bodega Finca Las Nubes, Cafayate",
-    "description_es": "La XXII edición de 'Vendimia en Las Nubes' incluye explicación técnica inicial, cosecha, pisado de uvas, espectáculo en vivo y almuerzo de tres pasos con bebidas incluidas.",
-    "description_en": "The 22nd edition of 'Harvest in the Clouds' includes initial technical explanation, harvest, grape stomping, live show and three-course lunch with drinks included.",
-    "category": "wine",
-    "website": "www.fincalasnubes.com.ar"
-  },
-  {
-    "title_es": "Semana del Malbec de Altura — El Baúl de las Letras",
-    "title_en": "High Altitude Malbec Week — Literary Gathering",
-    "date": "2026-04-01",
-    "time": "19:00",
-    "location": "Museo de la Vid y el Vino, Cafayate",
-    "description_es": "Encuentro literario con lecturas y reflexiones sobre Cafayate, los Valles Calchaquíes, el vino y las tradiciones regionales. Entrada libre y gratuita.",
-    "description_en": "Literary gathering with readings and reflections on Cafayate, the Calchaquí Valleys, wine, and regional traditions. Free admission.",
-    "category": "culture",
-    "website": ""
-  },
-  {
-    "title_es": "Semana del Malbec de Altura — Degustación al Aire Libre",
-    "title_en": "High Altitude Malbec Week — Open-Air Tasting",
-    "date": "2026-04-04",
-    "time": "19:00",
-    "location": "Museo de la Vid y el Vino, Cafayate",
-    "description_es": "Degustación al aire libre con más de 30 bodegas, productores artesanales, música en vivo y DJ. Entrada: $6.000.",
-    "description_en": "Open-air tasting with over 30 wineries, artisan producers, live music, and DJ. Admission: $6,000 ARS.",
-    "category": "wine",
-    "website": ""
-  },
-  {
-    "title_es": "Vendimia del Alto Valle Calchaquí",
-    "title_en": "High Calchaquí Valley Harvest Festival",
-    "date": "2026-04-10",
-    "time": "",
-    "location": "Cachi, Salta",
-    "description_es": "Nueva edición de la tradicional Vendimia del Alto Valle Calchaquí que se celebra del 10 al 12 de abril en Cachi.",
-    "description_en": "New edition of the traditional High Calchaquí Valley Harvest Festival celebrated from April 10-12 in Cachi.",
-    "category": "wine",
-    "website": ""
-  },
-  {
-    "title_es": "Vendimia Sunset - Nueve Cumbres",
-    "title_en": "Sunset Harvest - Nine Peaks",
-    "date": "2026-04-10",
-    "time": "",
-    "location": "Cafayate",
-    "description_es": "Experiencia de vendimia al atardecer que incluye recepción en el viñedo, explicación técnica sobre la cosecha, participación activa en la recolección de uvas y cierre con asado al aire libre y música en vivo.",
-    "description_en": "Sunset harvest experience including vineyard reception, technical explanation about harvest, active participation in grape collection and closing with outdoor barbecue and live music.",
-    "category": "wine",
-    "website": ""
-  },
-  {
-    "title_es": "Vendimia Sunset - Nueve Cumbres",
-    "title_en": "Sunset Harvest - Nine Peaks",
-    "date": "2026-04-12",
-    "time": "",
-    "location": "Cafayate",
-    "description_es": "Experiencia de vendimia al atardecer que incluye recepción en el viñedo, explicación técnica sobre la cosecha, participación activa en la recolección de uvas y cierre con asado al aire libre y música en vivo.",
-    "description_en": "Sunset harvest experience including vineyard reception, technical explanation about harvest, active participation in grape collection and closing with outdoor barbecue and live music.",
-    "category": "wine",
-    "website": ""
-  },
-  {
-    "title_es": "Momento Cabras — Festejamos al Malbec",
-    "title_en": "Momento Cabras — A Celebration of Malbec",
-    "date": "2026-04-25",
-    "time": "17:00",
-    "location": "Cabras de Cafayate",
-    "description_es": "Celebración dedicada al Malbec en Cabras de Cafayate con bodegas invitadas, degustación de Malbec y música en vivo de Karavankas y Tauro, de 17:00 a 21:30. “Buena copa, buena música, buen día para brindar.”",
-    "description_en": "A celebration of Malbec at Cabras de Cafayate featuring guest wineries, a Malbec tasting, and live music from Karavankas and Tauro, from 5pm to 9:30pm. “Good wine, good music, a good day to toast.”",
-    "category": "wine",
-    "website": ""
-  },
-  {
-    "title_es": "WINEEX Cafayate 2026 — Día 1: Bienvenida",
-    "title_en": "WINEEX Cafayate 2026 — Day 1: Welcome",
-    "date": "2026-05-01",
-    "time": "17:00",
-    "location": "Finca El Recreo, Ruta 40 Km 4340",
-    "description_es": "Día de bienvenida del festival WINEEX con degustaciones de vino, gastronomía y torneos de polo, golf y tenis en La Estancia de Cafayate.",
-    "description_en": "Opening day of the WINEEX festival with wine tastings, gastronomy, and polo, golf, and tennis tournaments at La Estancia de Cafayate.",
-    "category": "wine",
-    "website": "https://www.instagram.com/wineex.ar/"
-  },
-  {
-    "title_es": "WINEEX Cafayate 2026 — Día 2: Cachengue al Atardecer",
-    "title_en": "WINEEX Cafayate 2026 — Day 2: Sunset Party",
-    "date": "2026-05-02",
-    "time": "17:00",
-    "location": "Finca El Recreo, Ruta 40 Km 4340",
-    "description_es": "Música al atardecer entre viñedos con DJs en vivo, vinos y gastronomía. Torneos deportivos por la mañana en La Estancia de Cafayate.",
-    "description_en": "Sunset music among the vineyards with live DJs, wine, and gastronomy. Sports tournaments in the morning at La Estancia de Cafayate.",
-    "category": "wine",
-    "website": "https://www.instagram.com/wineex.ar/"
-  },
-  {
-    "title_es": "Torneo de Golf - Copa Wineex",
-    "title_en": "Wineex Cup Golf Tournament",
-    "date": "2026-05-02",
-    "time": "",
-    "location": "La Estancia de Cafayate",
-    "description_es": "Jornada única de golf en La Estancia de Cafayate, en los Valles Calchaquíes. Formato: parejas (Fourball Americana), categoría única con premios al 1ro, 2do y 3er puesto. Incluye lunch y entrega de premios al finalizar la jornada. Valor: $35.000 propietarios, $75.000 visitas. Inscripciones al 381 644-7706.",
-    "description_en": "A one-day golf tournament at La Estancia de Cafayate in the Calchaquí Valleys. Format: pairs (Fourball Americana / Best Ball), single category with prizes for 1st, 2nd, and 3rd place. Lunch and awards ceremony at the end of the day. Cost: ARS $35,000 for La Estancia owners, ARS $75,000 for visitors. Registration: +54 9 381 644-7706.",
-    "category": "sports",
-    "website": ""
-  },
-  {
-    "title_es": "WINEEX Cafayate 2026 — Día 3: Feria de Vinos y Electrónica",
-    "title_en": "WINEEX Cafayate 2026 — Day 3: Wine Fair & Electronica",
-    "date": "2026-05-03",
-    "time": "11:00",
-    "location": "Finca El Recreo, Ruta 40 Km 4340",
-    "description_es": "Feria de vinos con las mejores bodegas de los Valles Calchaquíes, seguida de fiesta electrónica al atardecer. Torneos deportivos por la mañana.",
-    "description_en": "Wine fair featuring the best wineries of the Calchaquí Valleys, followed by an electronic music party at sunset. Sports tournaments in the morning.",
-    "category": "wine",
-    "website": "https://www.instagram.com/wineex.ar/"
-  },
-  {
-    "title_es": "Ciclo Legado Ancestral: Taller de Tintes Naturales",
-    "title_en": "Ancestral Legacy Cycle: Natural Dyes Workshop",
-    "date": "2026-05-08",
-    "time": "",
-    "location": "Terraza de Cultura, Güemes Sur 81, Cafayate",
-    "description_es": "Taller gratuito de capacitación sobre tintes naturales como parte del Ciclo Legado Ancestral. Viernes 8 y sábado 9 de mayo en la Terraza de Cultura, Cafayate.",
-    "description_en": "Free training workshop on natural dyes as part of the Ancestral Legacy Cycle. Friday May 8 and Saturday May 9 at Terraza de Cultura, Cafayate.",
-    "category": "culture",
-    "website": "https://www.salta.gob.ar/prensa/noticias/ciclo-legado-ancestral-las-capacitaciones-gratuitas-llegan-a-cafayate-con-un-taller-de-tintes-naturales-107597"
-  },
-  {
-    "title_es": "Taller de Tintes Naturales - Ciclo Legado Ancestral",
-    "title_en": "Natural Dyes Workshop - Ancestral Legacy Cycle",
-    "date": "2026-05-09",
-    "time": "",
-    "location": "Terraza de Cultura, Güemes Sur 81, Cafayate",
-    "description_es": "Taller gratuito de tintes naturales como parte del Ciclo Legado Ancestral. Las capacitaciones se desarrollan el viernes 8 y sábado 9 de mayo en la Terraza de Cultura.",
-    "description_en": "Free natural dyes workshop as part of the Ancestral Legacy Cycle. Training sessions take place on Friday 8th and Saturday 9th May at the Culture Terrace.",
-    "category": "culture",
-    "website": "https://www.salta.gob.ar/prensa/noticias/ciclo-legado-ancestral-las-capacitaciones-gratuitas-llegan-a-cafayate-con-un-taller-de-tintes-naturales-107597"
-  },
-  {
-    "title_es": "Wine & Music — Bad Brothers",
-    "title_en": "Wine & Music — Bad Brothers",
-    "date": "2026-05-12",
-    "time": "21:00",
-    "location": "Bad Brothers Wine Experience, Cafayate",
-    "description_es": "Bad Brothers Wine Experience presenta su nuevo menú de invierno y te invita a una noche de Wine & Music: blues, swing y jazz con Daniela Zunino y Gabriel Espinosa.",
-    "description_en": "Bad Brothers Wine Experience presents its new winter menu with a Wine & Music evening — blues, swing, and jazz with Daniela Zunino and Gabriel Espinosa.",
-    "category": "music",
-    "website": "https://www.badbrotherswe.com/"
-  },
-  {
-    "title_es": "Deidades Andinas. Naturaleza Sagrada - Muestra itinerante",
-    "title_en": "Andean Deities. Sacred Nature - Traveling Exhibition",
-    "date": "2026-05-14",
-    "time": "09:00",
-    "location": "Museo de la Vid y el Vino, Cafayate",
-    "description_es": "Muestra itinerante sobre las deidades andinas y la naturaleza sagrada en el Museo de la Vid y el Vino. Horario de 9 a 18 horas, se extiende hasta el 7 de junio.",
-    "description_en": "Traveling exhibition about Andean deities and sacred nature at the Museum of Vine and Wine. Open from 9 to 18 hours, runs until June 7th.",
-    "category": "culture",
-    "website": "https://www.salta.gob.ar/prensa/noticias/salta-celebra-la-semana-de-mayo-con-una-variada-agenda-cultural-deportiva-y-gastronomica-107964"
-  },
-  {
-    "title_es": "Escapada de Mujeres: Experiencia de Vino",
-    "title_en": "Women's Getaway: Wine Experience",
-    "date": "2026-05-20",
-    "time": "",
-    "location": "Cafayate",
-    "description_es": "Escapada turística para mujeres del 20 al 24 de mayo que combina recorridos por bodegas, gastronomía y actividades en contacto con la naturaleza. Incluye degustaciones de vinos de alta gama y la experiencia 'Noche Estrellada'.",
-    "description_en": "Tourist getaway for women from May 20-24 combining winery tours, gastronomy and activities in contact with nature. Includes high-end wine tastings and the 'Starry Night' experience.",
-    "category": "wine",
-    "website": ""
-  },
-  {
-    "title_es": "Maridaje de Autor: Cena de Pasos con Vinos de Cafayate",
-    "title_en": "Author's Pairing: Course Dinner with Cafayate Wines",
-    "date": "2026-05-21",
-    "time": "20:30",
-    "location": "Tomate Estación Rosedal, Cafayate",
-    "description_es": "Cena maridaje de cuatro tiempos conducida por la sommelier Claudia Piedrabuena, con vinos de Bodega Etchart como hilo conductor de la experiencia gastronómica.",
-    "description_en": "Four-course pairing dinner led by sommelier Claudia Piedrabuena, featuring wines from Bodega Etchart as the guiding thread of the gastronomic experience.",
-    "category": "wine",
-    "website": ""
-  },
-  {
-    "title_es": "Entre Añadas - Degustación Vertical",
-    "title_en": "Between Vintages - Vertical Tasting",
-    "date": "2026-05-23",
-    "time": "11:00",
-    "location": "Bodega El Esteco, Cafayate",
-    "description_es": "Experiencia exclusiva que combina degustaciones verticales de partidas limitadas en espacios únicos de la bodega. Se realiza todos los viernes con cupos limitados.",
-    "description_en": "Exclusive experience combining vertical tastings of limited batches in unique spaces of the winery. Takes place every Friday with limited capacity.",
-    "category": "wine",
-    "website": ""
-  },
-  {
-    "title_es": "4° Feria de la Miel",
-    "title_en": "4th Honey Fair",
-    "date": "2026-05-24",
-    "time": "",
-    "location": "San Carlos, Salta",
-    "description_es": "Feria de artesanos y emprendedores con productos de miel y derivados durante la Semana de Mayo.",
-    "description_en": "Fair of artisans and entrepreneurs with honey products and derivatives during May Week.",
-    "category": "market",
-    "website": "https://visitsalta.ar/post/2-feria-de-la-miel-"
-  },
-  {
-    "title_es": "Locreada y Kermés Cultural Patria",
-    "title_en": "Locro Festival and Cultural Patriotic Fair",
-    "date": "2026-05-25",
-    "time": "",
-    "location": "Plaza Michel Torino, Cafayate",
-    "description_es": "Jornada dedicada a las tradiciones argentinas con gastronomía y actividades culturales para celebrar la patria.",
-    "description_en": "Day dedicated to Argentinean traditions with gastronomy and cultural activities to celebrate the homeland.",
-    "category": "culture",
-    "website": "https://culturasalta.gov.ar/evento/la-plaza-michel-torino-en-cafayate-recibira-una-gran-kermes-cultural-para-celebrar-la-patria/"
-  },
-  {
-    "title_es": "Entre Añadas - Degustación Vertical",
-    "title_en": "Between Vintages - Vertical Tasting",
-    "date": "2026-05-30",
-    "time": "11:00",
-    "location": "Bodega El Esteco, Cafayate",
-    "description_es": "Experiencia exclusiva que combina degustaciones verticales de partidas limitadas en espacios únicos de la bodega. Se realiza todos los viernes con cupos limitados.",
-    "description_en": "Exclusive experience combining vertical tastings of limited batches in unique spaces of the winery. Takes place every Friday with limited capacity.",
-    "category": "wine",
-    "website": ""
-  },
-  {
-    "title_es": "Rutas de Altura - Cabalgata entre Viñedos",
-    "title_en": "Routes of Altitude - Horseback Riding Among Vineyards",
-    "date": "2026-06-04",
-    "time": "",
-    "location": "Bodega El Esteco, Cafayate",
-    "description_es": "Experiencia mensual que combina una cabalgata entre viñedos con degustación de vinos y una picada de quesos regionales en un entorno natural privilegiado. Se realiza el primer miércoles de cada mes con cupos muy limitados.",
-    "description_en": "Monthly experience that combines horseback riding among vineyards with wine tasting and regional cheese platters in a privileged natural environment. Takes place on the first Wednesday of each month with very limited capacity.",
-    "category": "wine",
-    "website": "https://www.elesteco.com.ar"
-  },
-  {
-    "title_es": "Entre Añadas - Degustación Vertical",
-    "title_en": "Between Vintages - Vertical Tasting",
-    "date": "2026-06-06",
-    "time": "11:00",
-    "location": "Bodega El Esteco, Cafayate",
-    "description_es": "Experiencia exclusiva que combina degustaciones verticales de partidas limitadas en espacios únicos de la bodega. Se realiza todos los viernes con cupos limitados.",
-    "description_en": "Exclusive experience combining vertical tastings of limited batches in unique spaces of the winery. Takes place every Friday with limited capacity.",
-    "category": "wine",
-    "website": ""
-  },
-  {
-    "title_es": "Capacitación: El Arte de Comunicar el Vino",
-    "title_en": "Training: The Art of Communicating Wine",
-    "date": "2026-06-16",
-    "time": "",
-    "location": "Cafayate",
-    "description_es": "Capacitación especializada sobre técnicas de comunicación en el sector vitivinícola, dirigida a prestadores turísticos y profesionales del vino.",
-    "description_en": "Specialized training on communication techniques in the wine sector, aimed at tourism providers and wine professionals.",
-    "category": "wine",
-    "website": ""
-  },
-  {
-    "title_es": "La Guardia Bajo las Estrellas",
-    "title_en": "The Guard Under the Stars",
-    "date": "2026-06-17",
-    "time": "",
-    "location": "Cafayate",
-    "description_es": "Tradición emblemática en homenaje al General Martín Miguel de Güemes, una de las celebraciones más sentidas de la región.",
-    "description_en": "Emblematic tradition in honor of General Martín Miguel de Güemes, one of the most heartfelt celebrations in the region.",
-    "category": "culture",
-    "website": ""
-  },
-  {
     "title_es": "Piattelli WINEEX",
     "title_en": "Piattelli WINEEX",
     "date": "2026-07-11",
@@ -308,6 +22,17 @@
     "website": "https://barrocalchaqui.org/bases/"
   },
   {
+    "title_es": "Torneo Tigero Golf Cafayate 2026",
+    "title_en": "Tigero Golf Tournament Cafayate 2026",
+    "date": "2026-08-07",
+    "time": "",
+    "location": "La Estancia de Cafayate · Hospedaje en Grace Cafayate (Native Valley)",
+    "description_es": "Experiencia de tres días para golfistas del 7 al 9 de agosto de 2026 en Cafayate, el destino más encantador del Noroeste Argentino. Convoca a jugadores de distintas provincias de Argentina. Incluye tres noches de alojamiento en Grace Cafayate (Native Valley — Master Suite, Deluxe Room o Villa completa), tres desayunos buffet, tres comidas con bebidas, tres días de green fee, dos torneos Medal Play con entrega de premios y sorteos, y coordinación permanente. Costo: USD 650. Contacto: Fernando Tigero, +54 9 3534 24-8871.",
+    "description_en": "A three-day experience for golfers August 7–9, 2026 in Cafayate, the most enchanting destination in Argentina's Northwest. Draws players from provinces across Argentina. Includes three nights lodging at Grace Cafayate (Native Valley — Master Suite, Deluxe Room, or full Villa), three buffet breakfasts, three meals with drinks, three days of green fees, two Medal Play tournaments with awards ceremonies and raffles, and full coordination throughout. Cost: USD 650. Contact: Fernando Tigero, +54 9 3534 24-8871.",
+    "category": "sports",
+    "website": ""
+  },
+  {
     "title_es": "Cruce Calchaquí",
     "title_en": "Cruce Calchaquí",
     "date": "2026-08-29",
@@ -319,15 +44,26 @@
     "website": "https://organizacioncalchaqui.com.ar/"
   },
   {
-    "title_es": "Wineex Cachengue — Finca El Recreo",
-    "title_en": "Wineex Cachengue — Finca El Recreo",
-    "date": "2026-10-11",
-    "time": "17:00",
-    "location": "Finca El Recreo, Cafayate",
-    "description_es": "Fiesta Wineex Cachengue en la Finca El Recreo el domingo 11 de octubre a las 17:00. Line-up: Los Totora, JF Taboada, Andy Klix y Meri Moisa. Presentado por Wineex y Andy Klix.",
-    "description_en": "Wineex Cachengue party at Finca El Recreo on Sunday, October 11 at 5:00 PM. Line-up: Los Totora, JF Taboada, Andy Klix, and Meri Moisa. Presented by Wineex and Andy Klix.",
-    "category": "music",
-    "website": ""
+    "title_es": "Semana del Turismo: Taller Sinergías de Altura y Astroturismo",
+    "title_en": "Tourism Week: High Altitude Synergies and Astro-tourism Workshop",
+    "date": "2026-09-25",
+    "time": "14:00",
+    "location": "Cine Teatro Municipal y Museo de la Vid y el Vino, Cafayate",
+    "description_es": "En el marco de la Semana del Turismo, la enóloga y sommelier Ingrid Cruz brinda el taller 'Sinergías de Altura' sobre gastronomía de cercanía y enología de altura a las 14 hrs en el Cine Teatro Municipal. A las 16:30 hrs, en el Museo de la Vid y el Vino, el profesor Sebastián Zerpa ofrece el taller 'Observar el cielo desde Salta' sobre astronomía y astroturismo.",
+    "description_en": "As part of Tourism Week, sommelier Ingrid Cruz gives the workshop 'High Altitude Synergies' on local gastronomy and high-altitude winemaking at 2 PM at the Cine Teatro Municipal. At 4:30 PM, at the Museo de la Vid y el Vino, professor Sebastián Zerpa offers the workshop 'Observing the Sky from Salta' on astronomy and astro-tourism.",
+    "category": "culture",
+    "website": "https://culturasalta.gov.ar/cafayate-desplegara-una-variada-agenda-cultural-y-formativa-en-septiembre/"
+  },
+  {
+    "title_es": "Capacitación en inglés 'The English Lore' y Expo Cultural en Plaza 20 de Febrero",
+    "title_en": "English Training 'The English Lore' and Cultural Expo at Plaza 20 de Febrero",
+    "date": "2026-09-26",
+    "time": "10:00",
+    "location": "Museo de la Vid y el Vino y Plaza 20 de Febrero, Cafayate",
+    "description_es": "A las 10 hrs se dicta en el Museo de la Vid y el Vino la capacitación en inglés 'The English Lore' a cargo de la profesora Ana Herrera. A partir de las 19 hrs, la Plaza 20 de Febrero alberga una expo cultural con oferta educativa, muestreos, patio gastronómico, degustaciones y puestos institucionales organizados por la Municipalidad de Cafayate, UPATECo, UNSa, IES, Policía Turística, bodegas locales y el Museo de la Vid y el Vino.",
+    "description_en": "At 10 AM, the Museo de la Vid y el Vino hosts the English training 'The English Lore' led by professor Ana Herrera. Starting at 7 PM, Plaza 20 de Febrero hosts a cultural expo with educational offerings, sampling, a food court, tastings, and institutional stands organized by the Municipality of Cafayate, UPATECo, UNSa, IES, Tourist Police, local wineries, and the Museo de la Vid y el Vino.",
+    "category": "culture",
+    "website": "https://culturasalta.gov.ar/cafayate-desplegara-una-variada-agenda-cultural-y-formativa-en-septiembre/"
   },
   {
     "title_es": "Fiesta Patronal de la Virgen del Rosario — La Sentadita",
@@ -339,6 +75,28 @@
     "description_en": "Cafayate's patron saint festival honoring the Virgen del Rosario, known locally as \"La Sentadita\" (The Little Seated One) — a 250+ year-old image sculpted in a seated posture so she could be carried through the Calchaquí Valleys. The novena begins September 28 and culminates October 7 with procession, mass, misachicos (small chanted Masses), and gaucho events. Also patroness of the region's farmers and winegrowers.",
     "category": "culture",
     "website": "https://www.cafayate.tur.ar/itinerario/fiesta-patronal-de-la-virgen-nuestra-senora-del-rosario"
+  },
+  {
+    "title_es": "Semana del Torrontés de Altura 2026 — Evento Estelar",
+    "title_en": "High Altitude Torrontés Week 2026 — Star Event",
+    "date": "2026-10-10",
+    "time": "19:00",
+    "location": "Museo de la Vid y el Vino, Cafayate",
+    "description_es": "Evento central de la 13.ª edición de la Semana del Torrontés de Altura, que se desarrolla del 5 al 11 de octubre en Cafayate y los Valles Calchaquíes. El sábado a las 19 hrs se realiza el evento estelar 'Torrontés de Altura' en el Museo de la Vid y el Vino, seguido de un cierre musical con la banda de covers 'Tauro' y DJ invitado. También incluye actividades y promociones especiales en la plaza principal viernes y sábado.",
+    "description_en": "Central event of the 13th edition of High Altitude Torrontés Week, held October 5-11 in Cafayate and the Calchaquí Valleys. On Saturday at 7 PM, the star event 'Torrontés de Altura' takes place at the Museo de la Vid y el Vino, followed by a musical closing with cover band 'Tauro' and a guest DJ. The weekend also includes special activities and promotions in the main plaza.",
+    "category": "wine",
+    "website": "https://www.radiocafayate.com/?p=76887"
+  },
+  {
+    "title_es": "Wineex Cachengue — Finca El Recreo",
+    "title_en": "Wineex Cachengue — Finca El Recreo",
+    "date": "2026-10-11",
+    "time": "17:00",
+    "location": "Finca El Recreo, Cafayate",
+    "description_es": "Fiesta Wineex Cachengue en la Finca El Recreo el domingo 11 de octubre a las 17:00. Line-up: Los Totora, JF Taboada, Andy Klix y Meri Moisa. Presentado por Wineex y Andy Klix.",
+    "description_en": "Wineex Cachengue party at Finca El Recreo on Sunday, October 11 at 5:00 PM. Line-up: Los Totora, JF Taboada, Andy Klix, and Meri Moisa. Presented by Wineex and Andy Klix.",
+    "category": "music",
+    "website": ""
   },
   {
     "title_es": "Fiesta Patronal de San Carlos Borromeo",
