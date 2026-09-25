@@ -185,12 +185,14 @@ module.exports = async function handler(req, res) {
     const now = new Date();
     // Look 90 days ahead so anchor events that are 1-3 months out (Cruce
     // Calchaquí, patron saint days) still surface in the newsletter, not just
-    // events happening in the next two weeks.
+    // events happening in the next two weeks. Multi-day events (with end_date)
+    // stay visible until their end_date passes, not their start date.
     const ninetyDays = new Date(now.getTime() + 90 * 24 * 60 * 60 * 1000);
     const upcoming = events
       .filter(e => {
-        const d = new Date(e.date);
-        return d >= now && d <= ninetyDays;
+        const start = new Date(e.date);
+        const end = e.end_date ? new Date(e.end_date) : start;
+        return end >= now && start <= ninetyDays;
       })
       .sort((a, b) => a.date.localeCompare(b.date))
       .slice(0, 6);
@@ -312,7 +314,20 @@ function buildNewsletterHTML({ editorsNote, latestPost, upcoming, properties, sp
     let eventsHtml = '';
     upcoming.forEach(function(event) {
       const eventDate = new Date(event.date + 'T12:00:00');
-      const dateStr = eventDate.toLocaleDateString(t.dateLocale, { weekday: 'short', month: 'short', day: 'numeric' });
+      let dateStr = eventDate.toLocaleDateString(t.dateLocale, { weekday: 'short', month: 'short', day: 'numeric' });
+      // Multi-day event: show a compact range. Same-month collapses to
+      // "Sep 25–27"; cross-month falls back to "Sep 30 – Oct 2".
+      if (event.end_date && event.end_date !== event.date) {
+        const endDate = new Date(event.end_date + 'T12:00:00');
+        if (eventDate.getMonth() === endDate.getMonth() && eventDate.getFullYear() === endDate.getFullYear()) {
+          const monthShort = eventDate.toLocaleDateString(t.dateLocale, { month: 'short' });
+          dateStr = monthShort + ' ' + eventDate.getDate() + '–' + endDate.getDate();
+        } else {
+          const startShort = eventDate.toLocaleDateString(t.dateLocale, { month: 'short', day: 'numeric' });
+          const endShort = endDate.toLocaleDateString(t.dateLocale, { month: 'short', day: 'numeric' });
+          dateStr = startShort + ' – ' + endShort;
+        }
+      }
       eventsHtml += `
         <tr>
           <td style="padding:10px 12px;border-bottom:1px solid #eee;width:100px;">

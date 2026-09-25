@@ -162,7 +162,9 @@
     var today = new Date().toISOString().split('T')[0];
 
     // Sort by date, upcoming first
-    var upcoming = events.filter(function (e) { return e.date >= today; })
+    // Multi-day events (with end_date) stay visible until their end_date
+    // passes, not their start date.
+    var upcoming = events.filter(function (e) { return (e.end_date || e.date) >= today; })
       .sort(function (a, b) { return a.date.localeCompare(b.date); });
 
     if (upcoming.length === 0) {
@@ -222,10 +224,19 @@
   function eventCardHTML(e, lang) {
     var title = e['title_' + lang] || e.title_es || '';
     var desc = e['description_' + lang] || e.description_es || '';
+    var locale = lang === 'en' ? 'en-US' : 'es-AR';
     var dateObj = new Date(e.date + 'T12:00:00');
-    var dateStr = dateObj.toLocaleDateString(lang === 'en' ? 'en-US' : 'es-AR', {
+    var dateStr = dateObj.toLocaleDateString(locale, {
       weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
     });
+    // Multi-day event \u2192 show a full range on the card (there's more room here
+    // than in the newsletter's date column).
+    if (e.end_date && e.end_date !== e.date) {
+      var endObj = new Date(e.end_date + 'T12:00:00');
+      var startFmt = dateObj.toLocaleDateString(locale, { weekday: 'long', month: 'long', day: 'numeric' });
+      var endFmt = endObj.toLocaleDateString(locale, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+      dateStr = startFmt + ' \u2013 ' + endFmt;
+    }
 
     return '<div class="event-card">' +
       '<div class="event-date">' + dateStr + (e.time ? ' \u2022 ' + e.time : '') + '</div>' +
