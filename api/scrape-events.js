@@ -8,15 +8,11 @@ const GITHUB_BRANCH = 'main';
 
 const SEARCH_QUERIES = [
   'Cafayate eventos vino degustación',
-  'Cafayate wine tasting event',
-  'Cafayate bodega evento',
   'Cafayate festival música cultura',
-  'Museo de la Vid y el Vino Cafayate evento',
   'Cafayate Salta agenda cultural',
   // Nearby Calchaquí Valley towns
   'San Carlos Salta Calchaquí eventos',
-  'Animaná Salta eventos',
-  'Tolombón Salta eventos',
+  'Animaná Tolombón eventos',
   // Sports + traditional / patron-saint events that the wine queries miss
   'Cafayate carrera deportiva',
   'Cafayate fiesta patronal',
