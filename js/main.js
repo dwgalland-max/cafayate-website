@@ -329,7 +329,8 @@
     var categoryLabels = {
       wine: { es: 'Vinos', en: 'Wine' },
       travel: { es: 'Viajes', en: 'Travel' },
-      culture: { es: 'Cultura', en: 'Culture' }
+      culture: { es: 'Cultura', en: 'Culture' },
+      property: { es: 'Propiedad', en: 'Property' }
     };
     var catLabel = categoryLabels[post.category] ? categoryLabels[post.category][lang] : (post.category || '');
 
@@ -362,7 +363,8 @@
     var categoryLabels = {
       wine: { es: 'Vinos', en: 'Wine' },
       travel: { es: 'Viajes', en: 'Travel' },
-      culture: { es: 'Cultura', en: 'Culture' }
+      culture: { es: 'Cultura', en: 'Culture' },
+      property: { es: 'Propiedad', en: 'Property' }
     };
     var catLabel = categoryLabels[post.category] ? categoryLabels[post.category][lang] : '';
 
