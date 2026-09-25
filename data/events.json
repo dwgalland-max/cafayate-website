@@ -55,6 +55,17 @@
     "website": "https://culturasalta.gov.ar/cafayate-desplegara-una-variada-agenda-cultural-y-formativa-en-septiembre/"
   },
   {
+    "title_es": "Taller Sinergias de Altura con Ingrid Cruz",
+    "title_en": "Sinergias de Altura Workshop with Ingrid Cruz",
+    "date": "2026-09-25",
+    "time": "14:00",
+    "location": "Cine Teatro Municipal, Cafayate",
+    "description_es": "Taller a cargo de la enóloga y sommelier Ingrid Cruz sobre gastronomía de cercanía, enología de altura y experiencias locales, en el marco de la Semana del Turismo.",
+    "description_en": "Workshop led by winemaker and sommelier Ingrid Cruz on local gastronomy, high-altitude winemaking, and local experiences, as part of Tourism Week.",
+    "category": "wine",
+    "website": ""
+  },
+  {
     "title_es": "Capacitación en inglés 'The English Lore' y Expo Cultural en Plaza 20 de Febrero",
     "title_en": "English Training 'The English Lore' and Cultural Expo at Plaza 20 de Febrero",
     "date": "2026-09-26",
@@ -85,6 +96,17 @@
     "description_es": "Inauguración de la muestra \"Encuentros\" de la artista Panchi Coll en el Club LEC. Pintura en vivo con vino, conversación con la artista sobre su obra y proceso creativo, y brindis de cierre. Actividad gratuita para propietarios de La Estancia y sus invitados.",
     "description_en": "Opening of local artist Panchi Coll's new exhibition \"Encuentros\" at Club LEC. Live wine-painting demonstration, conversation with the artist about her work and creative process, and a closing toast. Free for La Estancia owners and their invited guests.",
     "category": "culture",
+    "website": ""
+  },
+  {
+    "title_es": "Promociones y Actividades en la Plaza Principal - Semana del Torrontés",
+    "title_en": "Promotions and Activities at the Main Square - Torrontés Week",
+    "date": "2026-10-09",
+    "time": "",
+    "location": "Plaza principal de Cafayate",
+    "description_es": "Actividades y promociones especiales organizadas por la Municipalidad de Cafayate en la plaza principal, como parte de la Semana del Torrontés de Altura.",
+    "description_en": "Special activities and promotions organized by the Municipality of Cafayate at the main square, as part of the High Altitude Torrontés Week.",
+    "category": "festival",
     "website": ""
   },
   {
