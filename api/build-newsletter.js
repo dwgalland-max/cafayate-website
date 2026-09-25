@@ -96,13 +96,14 @@ module.exports = async function handler(req, res) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
 
-  // Biweekly cadence: send only on alternating Saturdays, anchored to 2026-10-03
-  // (schedule restarted after the September 2026 travel gap; previous anchor 2026-05-09).
+  // Biweekly cadence: send only on alternating Saturdays, anchored to 2026-09-26
+  // (schedule brought forward by one week from the 2026-10-03 restart; previous
+  // anchor before the September travel gap was 2026-05-09).
   // Vercel cron doesn't support biweekly natively, so cron still fires every Saturday
   // and we return early on off-weeks. Manual admin triggers (?key=…) bypass this
   // gate, so previews / one-off sends still work whenever needed.
   if (cronOk) {
-    const BIWEEKLY_ANCHOR = Date.UTC(2026, 9, 3); // 2026-10-03 00:00 UTC
+    const BIWEEKLY_ANCHOR = Date.UTC(2026, 8, 26); // 2026-09-26 00:00 UTC
     const daysSinceAnchor = Math.floor((Date.now() - BIWEEKLY_ANCHOR) / 86400000);
     const cyclePos = ((daysSinceAnchor % 14) + 14) % 14; // 0-13, correct for negative days too
     const isSendWeek = cyclePos < 7;
