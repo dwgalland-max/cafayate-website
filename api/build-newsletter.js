@@ -210,6 +210,7 @@ module.exports = async function handler(req, res) {
       upcoming,
       properties: recentProperties,
       sponsors: newsletter.sponsors || [],
+      preview: true,
     }, 'en');
 
     const htmlEs = buildNewsletterHTML({
@@ -218,6 +219,7 @@ module.exports = async function handler(req, res) {
       upcoming,
       properties: recentProperties,
       sponsors: newsletter.sponsors || [],
+      preview: true,
     }, 'es');
 
     const approveUrl = `${SITE}/api/approve-newsletter?key=${ADMIN_KEY}`;
@@ -272,12 +274,18 @@ module.exports = async function handler(req, res) {
   }
 };
 
-function buildNewsletterHTML({ editorsNote, latestPost, upcoming, properties, sponsors }, lang) {
+function buildNewsletterHTML({ editorsNote, latestPost, upcoming, properties, sponsors, preview = false }, lang) {
   const t = STRINGS[lang] || STRINGS.en;
   const title = (post) => post[`title_${lang}`] || post.title_en || '';
   const desc = (post) => post[`description_${lang}`] || post.description_en || '';
   const sponsorDesc = (s) => s[`description_${lang}`] || s.description_en || '';
   const propLocation = (p) => p[`location_${lang}`] || p.location_en || p.location || '';
+
+  // `preview` mode appends ?preview=1 to the blog URL so the approval-preview
+  // recipient can click through to the queued post before its publish date
+  // (the future-date filter in js/main.js honors ?preview=1 to bypass hiding).
+  // Actual subscriber sends leave the URL clean.
+  const blogQuery = preview ? '?preview=1' : '';
 
   let html = '';
 
@@ -293,7 +301,7 @@ function buildNewsletterHTML({ editorsNote, latestPost, upcoming, properties, sp
   }
 
   if (latestPost) {
-    const postUrl = SITE + t.blogPath + '#' + latestPost.slug;
+    const postUrl = SITE + t.blogPath + blogQuery + '#' + latestPost.slug;
     html += `
       <div style="margin-bottom:28px;">
         <h2 style="font-family:Georgia,serif;color:#1e6a3a;font-size:20px;margin:0 0 12px;border-bottom:2px solid #1e6a3a;padding-bottom:8px;">
