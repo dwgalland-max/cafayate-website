@@ -66,17 +66,6 @@
     "website": ""
   },
   {
-    "title_es": "Capacitación en inglés 'The English Lore' y Expo Cultural en Plaza 20 de Febrero",
-    "title_en": "English Training 'The English Lore' and Cultural Expo at Plaza 20 de Febrero",
-    "date": "2026-09-26",
-    "time": "10:00",
-    "location": "Museo de la Vid y el Vino y Plaza 20 de Febrero, Cafayate",
-    "description_es": "A las 10 hrs se dicta en el Museo de la Vid y el Vino la capacitación en inglés 'The English Lore' a cargo de la profesora Ana Herrera. A partir de las 19 hrs, la Plaza 20 de Febrero alberga una expo cultural con oferta educativa, muestreos, patio gastronómico, degustaciones y puestos institucionales organizados por la Municipalidad de Cafayate, UPATECo, UNSa, IES, Policía Turística, bodegas locales y el Museo de la Vid y el Vino.",
-    "description_en": "At 10 AM, the Museo de la Vid y el Vino hosts the English training 'The English Lore' led by professor Ana Herrera. Starting at 7 PM, Plaza 20 de Febrero hosts a cultural expo with educational offerings, sampling, a food court, tastings, and institutional stands organized by the Municipality of Cafayate, UPATECo, UNSa, IES, Tourist Police, local wineries, and the Museo de la Vid y el Vino.",
-    "category": "culture",
-    "website": "https://culturasalta.gov.ar/cafayate-desplegara-una-variada-agenda-cultural-y-formativa-en-septiembre/"
-  },
-  {
     "title_es": "Luna Llena en Amalaya Wine Bar",
     "title_en": "Full Moon Weekend at Amalaya Wine Bar",
     "date": "2026-09-25",
@@ -87,6 +76,17 @@
     "description_en": "Full Moon weekend at Amalaya Wine Bar (Friday September 25, Saturday 26, and Sunday 27) with special drink and food discounts. An Andean sunset and a lingering evening as the moon rises, with a nod to Cafayate locals.",
     "category": "wine",
     "website": ""
+  },
+  {
+    "title_es": "Capacitación en inglés 'The English Lore' y Expo Cultural en Plaza 20 de Febrero",
+    "title_en": "English Training 'The English Lore' and Cultural Expo at Plaza 20 de Febrero",
+    "date": "2026-09-26",
+    "time": "10:00",
+    "location": "Museo de la Vid y el Vino y Plaza 20 de Febrero, Cafayate",
+    "description_es": "A las 10 hrs se dicta en el Museo de la Vid y el Vino la capacitación en inglés 'The English Lore' a cargo de la profesora Ana Herrera. A partir de las 19 hrs, la Plaza 20 de Febrero alberga una expo cultural con oferta educativa, muestreos, patio gastronómico, degustaciones y puestos institucionales organizados por la Municipalidad de Cafayate, UPATECo, UNSa, IES, Policía Turística, bodegas locales y el Museo de la Vid y el Vino.",
+    "description_en": "At 10 AM, the Museo de la Vid y el Vino hosts the English training 'The English Lore' led by professor Ana Herrera. Starting at 7 PM, Plaza 20 de Febrero hosts a cultural expo with educational offerings, sampling, a food court, tastings, and institutional stands organized by the Municipality of Cafayate, UPATECo, UNSa, IES, Tourist Police, local wineries, and the Museo de la Vid y el Vino.",
+    "category": "culture",
+    "website": "https://culturasalta.gov.ar/cafayate-desplegara-una-variada-agenda-cultural-y-formativa-en-septiembre/"
   },
   {
     "title_es": "Fiesta Patronal de la Virgen del Rosario — La Sentadita",
@@ -131,6 +131,17 @@
     "description_en": "Central event of the 13th edition of High Altitude Torrontés Week, held October 5-11 in Cafayate and the Calchaquí Valleys. On Saturday at 7 PM, the star event 'Torrontés de Altura' takes place at the Museo de la Vid y el Vino, followed by a musical closing with cover band 'Tauro' and a guest DJ. The weekend also includes special activities and promotions in the main plaza.",
     "category": "wine",
     "website": "https://www.radiocafayate.com/?p=76887"
+  },
+  {
+    "title_es": "Concierto en la Montaña",
+    "title_en": "Concert in the Mountain",
+    "date": "2026-10-10",
+    "time": "",
+    "location": "Fincas y anfiteatros naturales, Cafayate",
+    "description_es": "Ciclo cultural que combina música folclórica y lírica en vivo con degustación de vinos de altura en fincas y anfiteatros naturales de Cafayate, organizado por la Municipalidad de Cafayate.",
+    "description_en": "Cultural cycle combining live folk and lyrical music with high-altitude wine tastings at natural amphitheaters and estates in Cafayate, organized by the Cafayate Municipality.",
+    "category": "music",
+    "website": ""
   },
   {
     "title_es": "Wineex Cachengue — Finca El Recreo",
