@@ -100,6 +100,17 @@
     "website": "https://culturasalta.gov.ar/cafayate-desplegara-una-variada-agenda-cultural-y-formativa-en-septiembre/"
   },
   {
+    "title_es": "Torrontés en Versos y Poesías",
+    "title_en": "Torrontés in Verses and Poems",
+    "date": "2026-10-06",
+    "time": "19:00",
+    "location": "Hotel Asturias, Cafayate",
+    "description_es": "Evento literario que combina poesía e identidad de la cepa Torrontés, parte de la Semana del Torrontés de Altura 2026.",
+    "description_en": "Literary event blending poetry and the identity of the Torrontés grape variety, part of Torrontés de Altura Week 2026.",
+    "category": "culture",
+    "website": ""
+  },
+  {
     "title_es": "Fiesta Patronal de la Virgen del Rosario — La Sentadita",
     "title_en": "Patron Saint Day — Virgen del Rosario (La Sentadita)",
     "date": "2026-10-07",
@@ -109,6 +120,17 @@
     "description_en": "Cafayate's patron saint festival honoring the Virgen del Rosario, known locally as \"La Sentadita\" (The Little Seated One) — a 250+ year-old image sculpted in a seated posture so she could be carried through the Calchaquí Valleys. The novena begins September 28 and culminates October 7 with procession, mass, misachicos (small chanted Masses), and gaucho events. Also patroness of the region's farmers and winegrowers.",
     "category": "culture",
     "website": "https://www.cafayate.tur.ar/itinerario/fiesta-patronal-de-la-virgen-nuestra-senora-del-rosario"
+  },
+  {
+    "title_es": "Torrontés x3 — Experiencia de maridaje",
+    "title_en": "Torrontés x3 — Pairing Experience",
+    "date": "2026-10-08",
+    "time": "19:00",
+    "location": "Museo de la Vid y el Vino, Cafayate",
+    "description_es": "Experiencia de maridaje con tres vinos Torrontés, tres bocados y un terruño, parte de la Semana del Torrontés de Altura 2026.",
+    "description_en": "Pairing experience featuring three Torrontés wines, three bites, and a terroir focus, part of Torrontés de Altura Week 2026.",
+    "category": "wine",
+    "website": ""
   },
   {
     "title_es": "Panchi Coll — Inauguración de \"Encuentros\"",
@@ -133,6 +155,28 @@
     "website": ""
   },
   {
+    "title_es": "Master Class: Redescubriendo el proceso del Torrontés",
+    "title_en": "Master Class: Rediscovering the Torrontés Process",
+    "date": "2026-10-09",
+    "time": "19:00",
+    "location": "Cafayate",
+    "description_es": "Clase magistral enfocada en la elaboración y características técnicas de la cepa Torrontés, parte de la Semana del Torrontés de Altura 2026.",
+    "description_en": "Master class focused on the production and technical characteristics of the Torrontés grape variety, part of Torrontés de Altura Week 2026.",
+    "category": "wine",
+    "website": ""
+  },
+  {
+    "title_es": "Master Class del IES N° 6038 a beneficio del Centro de Jubilados de Cafayate",
+    "title_en": "IES N° 6038 Master Class Benefiting the Cafayate Retirees' Center",
+    "date": "2026-10-09",
+    "time": "",
+    "location": "Cafayate",
+    "description_es": "Master class organizada por el IES N° 6038 con bono contribución a beneficio del Centro de Jubilados de Cafayate, parte de la agenda de la Semana del Torrontés de Altura.",
+    "description_en": "Master class organized by IES N° 6038 with a contribution fee benefiting the Cafayate Retirees' Center, part of the Torrontés de Altura Week agenda.",
+    "category": "culture",
+    "website": ""
+  },
+  {
     "title_es": "Semana del Torrontés de Altura 2026 — Evento Estelar",
     "title_en": "High Altitude Torrontés Week 2026 — Star Event",
     "date": "2026-10-10",
@@ -151,6 +195,28 @@
     "location": "Fincas y anfiteatros naturales, Cafayate",
     "description_es": "Ciclo cultural que combina música folclórica y lírica en vivo con degustación de vinos de altura en fincas y anfiteatros naturales de Cafayate, organizado por la Municipalidad de Cafayate.",
     "description_en": "Cultural cycle combining live folk and lyrical music with high-altitude wine tastings at natural amphitheaters and estates in Cafayate, organized by the Cafayate Municipality.",
+    "category": "music",
+    "website": ""
+  },
+  {
+    "title_es": "11° Encuentro Coral 'Aires de Cafayate'",
+    "title_en": "11th Choral Gathering 'Aires de Cafayate'",
+    "date": "2026-10-10",
+    "time": "",
+    "location": "Vasija Secreta, Cafayate",
+    "description_es": "Encuentro coral en el marco de la Semana del Torrontés de Altura, celebrado en la bodega Vasija Secreta.",
+    "description_en": "Choral gathering held as part of Torrontés de Altura Week, hosted at Vasija Secreta winery.",
+    "category": "music",
+    "website": ""
+  },
+  {
+    "title_es": "Concierto en la Montaña — Ciclo de música y gastronomía",
+    "title_en": "Concert in the Mountain — Music and Gastronomy Series",
+    "date": "2026-10-10",
+    "time": "",
+    "location": "Anfiteatros naturales y fincas de Cafayate",
+    "description_es": "Lanzamiento del ciclo Concierto en la Montaña, que combina música folclórica y lírica en vivo con degustación de vinos de altura en escenarios naturales de Cafayate.",
+    "description_en": "Launch of the Concert in the Mountain series, combining live folk and lyrical music with high-altitude wine tastings in natural settings around Cafayate.",
     "category": "music",
     "website": ""
   },
