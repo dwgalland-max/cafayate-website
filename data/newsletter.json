@@ -1,6 +1,17 @@
 {
   "editors_note": "This week we introduce our first-ever guest contributor, a local realtor specializing in the Cafayate market. Whether you already own a property here or find yourself dreaming of picking up your own little part of paradise, you should find her views on the current state of the market of interest.",
   "editors_note_es": "Esta semana presentamos a nuestra primera colaboradora invitada, una realtora local especializada en el mercado de Cafayate. Ya seas propietario acá o sueñes con conseguir tu propio pedacito de paraíso, su mirada sobre el estado actual del mercado te va a interesar.",
+  "news": [
+    {
+      "url": "https://www.travelandtourworld.com/news/article/fpnwjcpi7lz5/",
+      "title_en": "Argentina's Cafayate Brings High-Altitude Torrontés to the Heart of Wine Country",
+      "title_es": "Cafayate lleva el Torrontés de altura al corazón del país del vino",
+      "source": "Travel and Tour World",
+      "date": "2026-09-30",
+      "snippet_en": "Cafayate is emerging as a distinctive high-altitude wine destination in Argentina's Calchaquí Valleys — drawing visitors for its Torrontés, red-rock landscapes, and slower pace of life.",
+      "snippet_es": "Cafayate emerge como un destino distintivo de vinos de altura en los Valles Calchaquíes — atrayendo visitantes por su Torrontés, sus paisajes de roca roja y su ritmo pausado."
+    }
+  ],
   "sponsors": [
     {
       "name": "Bad Brothers Wine Experience",

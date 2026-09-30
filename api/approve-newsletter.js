@@ -185,6 +185,7 @@ module.exports = async function handler(req, res) {
     const bodyEn = buildNewsletterHTML({
       editorsNote: newsletter.editors_note || '',
       latestPost,
+      news: newsletter.news || [],
       upcoming,
       properties: recentProperties,
       sponsors: newsletter.sponsors || [],
@@ -193,6 +194,7 @@ module.exports = async function handler(req, res) {
     const bodyEs = buildNewsletterHTML({
       editorsNote: newsletter.editors_note_es || newsletter.editors_note || '',
       latestPost,
+      news: newsletter.news || [],
       upcoming,
       properties: recentProperties,
       sponsors: newsletter.sponsors || [],

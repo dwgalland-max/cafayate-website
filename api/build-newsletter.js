@@ -15,6 +15,7 @@ const STRINGS = {
     editorSign: 'David Galland, Editor',
     latestBlog: '📝 The Latest from Cafayate!',
     readMore: 'Read More →',
+    inTheNews: '📰 Cafayate in the News',
     upcomingEvents: '📅 Upcoming Events',
     viewAllEvents: 'View all events →',
     properties: '🏡 Property Listings',
@@ -37,6 +38,7 @@ const STRINGS = {
     editorSign: 'David Galland, Editor',
     latestBlog: '📝 Lo Último de Cafayate!',
     readMore: 'Leer más →',
+    inTheNews: '📰 Cafayate en las Noticias',
     upcomingEvents: '📅 Próximos Eventos',
     viewAllEvents: 'Ver todos los eventos →',
     properties: '🏡 Propiedades',
@@ -209,6 +211,7 @@ module.exports = async function handler(req, res) {
     const htmlEn = buildNewsletterHTML({
       editorsNote: newsletter.editors_note || '',
       latestPost,
+      news: newsletter.news || [],
       upcoming,
       properties: recentProperties,
       sponsors: newsletter.sponsors || [],
@@ -218,6 +221,7 @@ module.exports = async function handler(req, res) {
     const htmlEs = buildNewsletterHTML({
       editorsNote: newsletter.editors_note_es || newsletter.editors_note || '',
       latestPost,
+      news: newsletter.news || [],
       upcoming,
       properties: recentProperties,
       sponsors: newsletter.sponsors || [],
@@ -276,7 +280,7 @@ module.exports = async function handler(req, res) {
   }
 };
 
-function buildNewsletterHTML({ editorsNote, latestPost, upcoming, properties, sponsors, preview = false }, lang) {
+function buildNewsletterHTML({ editorsNote, latestPost, news, upcoming, properties, sponsors, preview = false }, lang) {
   const t = STRINGS[lang] || STRINGS.en;
   const title = (post) => post[`title_${lang}`] || post.title_en || '';
   const desc = (post) => post[`description_${lang}`] || post.description_en || '';
@@ -306,6 +310,30 @@ function buildNewsletterHTML({ editorsNote, latestPost, upcoming, properties, sp
           ${desc(latestPost)}
         </p>
         <a href="${postUrl}" style="display:inline-block;background:#1e6a3a;color:#fff;padding:10px 22px;text-decoration:none;border-radius:3px;font-size:14px;font-weight:600;">${t.readMore}</a>
+      </div>
+    `;
+  }
+
+  if (news && news.length > 0) {
+    let newsHtml = '';
+    news.forEach(function (item) {
+      const itemTitle = item[`title_${lang}`] || item.title_en || '';
+      const itemSnippet = item[`snippet_${lang}`] || item.snippet_en || '';
+      const meta = [item.source, item.date].filter(Boolean).join(' · ');
+      newsHtml += `
+        <div style="padding:12px 0;border-bottom:1px solid #eee;">
+          <a href="${item.url}" target="_blank" rel="noopener" style="font-size:15px;font-weight:600;color:#1e6a3a;text-decoration:none;line-height:1.4;">${itemTitle}</a>
+          ${meta ? '<div style="font-size:12px;color:#999;margin:4px 0 6px;">' + meta + '</div>' : ''}
+          ${itemSnippet ? '<p style="font-size:13px;color:#555;line-height:1.5;margin:0;">' + itemSnippet + '</p>' : ''}
+        </div>
+      `;
+    });
+    html += `
+      <div style="margin-bottom:28px;">
+        <h2 style="font-family:Georgia,serif;color:#1e6a3a;font-size:20px;margin:0 0 12px;border-bottom:2px solid #1e6a3a;padding-bottom:8px;">
+          ${t.inTheNews}
+        </h2>
+        ${newsHtml}
       </div>
     `;
   }
