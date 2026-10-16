@@ -1,16 +1,5 @@
 [
   {
-    "title_es": "Piattelli WINEEX",
-    "title_en": "Piattelli WINEEX",
-    "date": "2026-07-11",
-    "time": "15:00",
-    "location": "Bodega Piattelli, Cafayate",
-    "description_es": "Evento de Piattelli Entertainment en Bodega Piattelli, Cafayate. Save the date — detalles próximos.",
-    "description_en": "A Piattelli Entertainment event at Bodega Piattelli, Cafayate. Save the date — full details to follow.",
-    "category": "wine",
-    "website": "https://www.passline.com/eventos/piattelli-wineex-session-v"
-  },
-  {
     "title_es": "Encuentro Latinoamericano de Ceramistas, Barro Calchaquí",
     "title_en": "Latin American Ceramicists Meeting, Barro Calchaquí",
     "date": "2026-07-20",
@@ -252,5 +241,16 @@
     "description_en": "Saint's day for San Carlos Borromeo, patron of the village of San Carlos. Religious rites, kermesses, bonfires, fairs, and gaucho skill exhibitions.",
     "category": "culture",
     "website": ""
+  },
+  {
+    "title_es": "Serenata a Cafayate 2027",
+    "title_en": "Serenata a Cafayate 2027",
+    "date": "2027-02-25",
+    "time": "",
+    "location": "Bodega Encantada (Escenario Payo Solá), Cafayate",
+    "description_es": "La 53° edición del tradicional festival de los Valles Calchaquíes se realizará durante tres noches con música, folclore y tradiciones locales, reuniendo a vecinos y turistas en el centro de Cafayate.",
+    "description_en": "The 53rd edition of the traditional Calchaquí Valleys festival will take place over three nights with music, folklore, and local traditions, bringing together residents and tourists in downtown Cafayate.",
+    "category": "festival",
+    "website": "https://www.radiocafayate.com/?p=77022"
   }
 ]
