@@ -1,16 +1,5 @@
 [
   {
-    "title_es": "Encuentro Latinoamericano de Ceramistas, Barro Calchaquí",
-    "title_en": "Latin American Ceramicists Meeting, Barro Calchaquí",
-    "date": "2026-07-20",
-    "time": "",
-    "location": "San Carlos, Salta",
-    "description_es": "Encuentro de ceramistas latinoamericanos que se realizará del 20 al 25 de julio en San Carlos, Valles Calchaquíes. Una propuesta gratuita para alfareros y ceramistas con intercambio de saberes y experiencias sobre producción cerámica.",
-    "description_en": "Latin American ceramicists meeting taking place from July 20-25 in San Carlos, Calchaquí Valleys. A free proposal for potters and ceramicists with knowledge and experience exchange about ceramic production.",
-    "category": "culture",
-    "website": "https://barrocalchaqui.org/bases/"
-  },
-  {
     "title_es": "Torneo Tigero Golf Cafayate 2026",
     "title_en": "Tigero Golf Tournament Cafayate 2026",
     "date": "2026-08-07",
@@ -208,6 +197,17 @@
     "description_en": "Launch of the Concert in the Mountain series, combining live folk and lyrical music with high-altitude wine tastings in natural settings around Cafayate.",
     "category": "music",
     "website": ""
+  },
+  {
+    "title_es": "Corona Sunset x Wineex — Finca El Recreo",
+    "title_en": "Corona Sunset x Wineex — Finca El Recreo",
+    "date": "2026-10-10",
+    "time": "17:00",
+    "location": "Finca El Recreo, Cafayate",
+    "description_es": "Fiesta electrónica al atardecer en Finca El Recreo, Cafayate, con presentaciones de Facundo Mohrr, Rodriguez jr, Mojave Grey, y Andrea Fo, Estefano Forani y Giuliano Forani.",
+    "description_en": "Sunset electronic music party at Finca El Recreo, Cafayate, featuring performances by Facundo Mohrr, Rodriguez jr, Mojave Grey, and Andrea Fo, Estefano Forani and Giuliano Forani.",
+    "category": "music",
+    "website": "https://elevenflow.app/events/corona-sunset-x-wineex-finca-el-recreo-cafayate-salta-20261010-9equ"
   },
   {
     "title_es": "Wineex Cachengue — Finca El Recreo",
