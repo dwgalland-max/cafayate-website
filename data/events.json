@@ -243,6 +243,39 @@
     "website": "http://www.radiocafayate.com/?p=77077"
   },
   {
+    "title_es": "Jornadas del Coprovi - Encuentro Anual del Consejo de Profesionales Vitivinícolas del NOA",
+    "title_en": "Coprovi Annual Meeting - NOA Wine Professionals Council",
+    "date": "2026-10-29",
+    "time": "18:00",
+    "location": "Centro de Convenciones de Cafayate, Cafayate",
+    "description_es": "El Consejo de Profesionales Vitivinícolas del NOA (Coprovi) celebra su encuentro anual en Cafayate, reuniendo a especialistas de Salta, Tucumán y Catamarca. Incluye una Feria de vinos del Valle Calchaquí con 50 proyectos de bodegas, clínicas técnicas, charlas sobre enología y la tradicional Fiesta del Vino Calchaquí con una cata a ciegas especial. El evento se extiende desde el jueves 29 hasta el sábado 31 de octubre.",
+    "description_en": "The NOA Wine Professionals Council (Coprovi) holds its annual gathering in Cafayate, bringing together specialists from Salta, Tucumán, and Catamarca. It includes a Calchaquí Valley Wine Fair with 50 winery projects, technical workshops, enology talks, and the traditional Calchaquí Wine Festival with a special blind tasting. The event runs from Thursday the 29th through Saturday the 31st of October.",
+    "category": "wine",
+    "website": "https://www.lagaceta.com.ar/nota/1160111/sociedad/cafayate-se-convierte-epicentro-vino-noa-jornadas-coprovi.html"
+  },
+  {
+    "title_es": "Jornada Técnica del Coprovi - Capacitaciones Enológicas",
+    "title_en": "Coprovi Technical Day - Enology Workshops",
+    "date": "2026-10-30",
+    "time": "18:00",
+    "location": "Centro de Convenciones de Cafayate, Cafayate",
+    "description_es": "Día técnico de las Jornadas del Coprovi dedicado a la capacitación y exposición de temáticas enológicas de vanguardia, con charlas sobre el informe climático del año, diversidad del piedemonte, diseño de viñedos y el recurso hídrico, a cargo de destacados ingenieros agrónomos y especialistas.",
+    "description_en": "Technical day of the Coprovi gathering dedicated to training and presentations on cutting-edge enology topics, including talks on the year's climate report, piedmont diversity, vineyard design, and water resources, led by prominent agricultural engineers and specialists.",
+    "category": "wine",
+    "website": "https://www.lagaceta.com.ar/nota/1160111/sociedad/cafayate-se-convierte-epicentro-vino-noa-jornadas-coprovi.html"
+  },
+  {
+    "title_es": "Fiesta del Vino Calchaquí - Cierre de las Jornadas del Coprovi",
+    "title_en": "Calchaquí Wine Festival - Coprovi Closing Event",
+    "date": "2026-10-31",
+    "time": "18:00",
+    "location": "Cafayate",
+    "description_es": "Cierre de las Jornadas del Coprovi con la tradicional Fiesta del Vino Calchaquí, una cata especial de muestras seleccionadas cuidadosamente a lo largo de las degustaciones realizadas durante todo el año.",
+    "description_en": "Closing event of the Coprovi gathering featuring the traditional Calchaquí Wine Festival, a special tasting of samples carefully selected throughout the year's evaluations.",
+    "category": "wine",
+    "website": "https://www.lagaceta.com.ar/nota/1160111/sociedad/cafayate-se-convierte-epicentro-vino-noa-jornadas-coprovi.html"
+  },
+  {
     "title_es": "Fiesta Patronal de San Carlos Borromeo",
     "title_en": "Patron Saint Day — San Carlos Borromeo",
     "date": "2026-11-04",
