@@ -232,17 +232,6 @@
     "website": ""
   },
   {
-    "title_es": "La Vuelta por las Bodegas — Segunda Edición",
-    "title_en": "La Vuelta por las Bodegas — Second Edition",
-    "date": "2026-10-18",
-    "time": "",
-    "location": "Cafayate",
-    "description_es": "Los Bomberos Voluntarios de Cafayate organizan la segunda edición de la carrera de mountain bike 'La Vuelta por las Bodegas', recorriendo las bodegas de la región.",
-    "description_en": "The Cafayate Volunteer Firefighters organize the second edition of 'La Vuelta por las Bodegas,' a mountain bike race through the region's wineries.",
-    "category": "sports",
-    "website": "http://www.radiocafayate.com/?p=77077"
-  },
-  {
     "title_es": "Jornadas del Coprovi - Encuentro Anual del Consejo de Profesionales Vitivinícolas del NOA",
     "title_en": "Coprovi Annual Meeting - NOA Wine Professionals Council",
     "date": "2026-10-29",
@@ -285,6 +274,18 @@
     "description_en": "Saint's day for San Carlos Borromeo, patron of the village of San Carlos. Religious rites, kermesses, bonfires, fairs, and gaucho skill exhibitions.",
     "category": "culture",
     "website": ""
+  },
+  {
+    "title_es": "La Vuelta de las Bodegas — Segunda Edición (Rally MTB)",
+    "title_en": "La Vuelta de las Bodegas — 2nd Edition (MTB Rally)",
+    "date": "2026-11-07",
+    "time": "08:00",
+    "location": "Cafayate — recorrido por bodegas Lavaque, Amalaya, Piattelli, Finca Las Nubes, San Pedro de Yacochuya y Domingo Molina",
+    "description_es": "Segunda edición del rally de mountain bike organizado por los Bomberos Voluntarios de Cafayate. Dos distancias: 20K y 40K. El recorrido atraviesa las bodegas del valle, con paradas de hidratación y espacios para espectadores. La primera edición en 2025 reunió cerca de 400 ciclistas de distintas provincias. Inscripciones abiertas en el sitio oficial. El domingo cierra con el After Bikes en Bodega Domingo Hermanos.",
+    "description_en": "Second edition of the mountain bike rally organized by the Cafayate Volunteer Firefighters. Two distances: 20K and 40K. The route winds through the valley's wineries with hydration stops and spectator zones. The 2025 inaugural edition drew roughly 400 cyclists from across Argentina and abroad. Registration open at the official site. Sunday closes with the After Bikes party at Bodega Domingo Hermanos.",
+    "category": "sports",
+    "website": "https://lavueltadelasbodegas.com.ar/",
+    "end_date": "2026-11-08"
   },
   {
     "title_es": "After Bikes — Meri Moisa & DJ Teeo",
