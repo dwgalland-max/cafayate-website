@@ -287,6 +287,39 @@
     "website": ""
   },
   {
+    "title_es": "After Bikes — Meri Moisa & DJ Teeo",
+    "title_en": "After Bikes — Meri Moisa & DJ Teeo",
+    "date": "2026-11-08",
+    "time": "18:00",
+    "location": "Bodega Domingo Hermanos, Cafayate",
+    "description_es": "After Bikes en Bodega Domingo Hermanos con Meri Moisa y DJ Teeo. Organizado por La Vuelta de las Bodegas.",
+    "description_en": "After Bikes party at Bodega Domingo Hermanos featuring Meri Moisa and DJ Teeo. Hosted by La Vuelta de las Bodegas.",
+    "category": "music",
+    "website": ""
+  },
+  {
+    "title_es": "Piattelli Wineex Session VI — Cachengue",
+    "title_en": "Piattelli Wineex Session VI — Cachengue",
+    "date": "2026-11-21",
+    "time": "17:00",
+    "location": "Piattelli Vineyards, Ruta Provincial N°2, Cafayate",
+    "description_es": "Sexta edición de Wineex en Piattelli Vineyards. Edición Cachengue (+18): música, vino y gastronomía al atardecer. Se recomienda llegar 30–45 minutos antes.",
+    "description_en": "Sixth edition of the Wineex series at Piattelli Vineyards. Cachengue night (18+): music, wine, and gastronomy at sunset. Arrive 30–45 minutes early.",
+    "category": "music",
+    "website": "https://saleplan.ar/go/SW19T0WV66GGJHGG"
+  },
+  {
+    "title_es": "Piattelli Wineex Session VI — Electrónica",
+    "title_en": "Piattelli Wineex Session VI — Electronic",
+    "date": "2026-11-22",
+    "time": "17:00",
+    "location": "Piattelli Vineyards, Ruta Provincial N°2, Cafayate",
+    "description_es": "Sexta edición de Wineex en Piattelli Vineyards. Edición electrónica (+18): música electrónica, vino y gastronomía al atardecer.",
+    "description_en": "Sixth edition of the Wineex series at Piattelli Vineyards. Electronic music night (18+): wine and gastronomy at sunset.",
+    "category": "music",
+    "website": "https://www.passline.com/productora/4038056-cwe-sas"
+  },
+  {
     "title_es": "Serenata a Cafayate 2027",
     "title_en": "Serenata a Cafayate 2027",
     "date": "2027-02-25",

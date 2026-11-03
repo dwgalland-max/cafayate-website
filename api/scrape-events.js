@@ -23,12 +23,28 @@ const SEARCH_QUERIES = [
   'site:instagram.com Cafayate evento',
   'site:instagram.com Cafayate bodega',
   'site:instagram.com Piattelli Cafayate',
+  // Wineex is a recurring series that moves between Finca El Recreo and
+  // Piattelli — image-only IG flyers mean Brave often misses the dates, so
+  // give it a dedicated lane.
+  'WINEEX Cafayate Session',
+  'WINEEX Piattelli Cafayate',
+  // Ticket + aggregator sites that list Cafayate events with real dates.
+  'site:passline.com Cafayate',
+  'site:allmusicparties.com Cafayate',
 ];
 
-// Known sources to check directly
+// Known sources to check directly. fetchPageText tolerates 404/403/timeout and
+// returns empty text, so a dead URL costs nothing — err on the side of adding.
 const KNOWN_SOURCES = [
   'https://www.cafayate.tur.ar/',
   'https://turismosalta.gov.ar/',
+  // Wineex producer page lists every upcoming Session with dates & venues.
+  'https://www.passline.com/productora/4038056-cwe-sas',
+  // Bodegas that announce events on their own sites.
+  'https://www.piattellivineyards.com/',
+  'https://www.elesteco.com/',
+  // Club LEC / La Estancia hosts cultural + sport events most years.
+  'https://www.laestanciadecafayate.com/',
 ];
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
@@ -260,8 +276,16 @@ INSTRUCTIONS:
   Aires, Mendoza, Córdoba, Rosario, or any province other than Salta. An
   event being "wine-related" or "near Cafayate in spirit" does NOT qualify —
   the venue must physically be in one of the four listed towns.
-- If the source text doesn't make the exact town/city of the event clear,
-  skip it. When in doubt, do not extract.
+- The following venue names uniquely identify Cafayate even if the town name
+  isn't printed in the source: Piattelli Vineyards, El Esteco (Bodega), El
+  Porvenir de Cafayate, Yacochuya, Vasija Secreta, Amalaya Wine Bar, Finca
+  El Recreo, Finca Las Nubes, Bodega La Vaque, Domingo Hermanos, Nanni,
+  Museo de la Vid y el Vino, Plaza 20 de Febrero (Cafayate), Cine Teatro
+  Municipal (Cafayate), Club LEC, La Estancia de Cafayate, Bodega Encantada,
+  Escenario Payo Solá, Hotel Asturias (Cafayate). Treat events at these
+  venues as being in Cafayate even if the source only names the venue.
+- If the source text doesn't make the town clear AND the venue isn't one of
+  the above, skip it. When in doubt, do not extract.
 - Only extract events with enough detail (at least a title, approximate date, and location)
 - Events can be: wine tastings, festivals, cultural events, concerts, art exhibitions, food events, markets, sports events, etc.
 - If a date is approximate (e.g. "this weekend"), calculate the actual date based on today (${today})
