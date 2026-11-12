@@ -1,16 +1,5 @@
 [
   {
-    "title_es": "Torneo Tigero Golf Cafayate 2026",
-    "title_en": "Tigero Golf Tournament Cafayate 2026",
-    "date": "2026-08-07",
-    "time": "",
-    "location": "La Estancia de Cafayate · Hospedaje en Grace Cafayate (Native Valley)",
-    "description_es": "Experiencia de tres días para golfistas del 7 al 9 de agosto de 2026 en Cafayate, el destino más encantador del Noroeste Argentino. Convoca a jugadores de distintas provincias de Argentina. Incluye tres noches de alojamiento en Grace Cafayate (Native Valley — Master Suite, Deluxe Room o Villa completa), tres desayunos buffet, tres comidas con bebidas, tres días de green fee, dos torneos Medal Play con entrega de premios y sorteos, y coordinación permanente. Costo: USD 650. Contacto: Fernando Tigero, +54 9 3534 24-8871.",
-    "description_en": "A three-day experience for golfers August 7–9, 2026 in Cafayate, the most enchanting destination in Argentina's Northwest. Draws players from provinces across Argentina. Includes three nights lodging at Grace Cafayate (Native Valley — Master Suite, Deluxe Room, or full Villa), three buffet breakfasts, three meals with drinks, three days of green fees, two Medal Play tournaments with awards ceremonies and raffles, and full coordination throughout. Cost: USD 650. Contact: Fernando Tigero, +54 9 3534 24-8871.",
-    "category": "sports",
-    "website": ""
-  },
-  {
     "title_es": "La Mesa Compartida: '2 bodegas | 1 experiencia' - El Porvenir de Cafayate y Pausa",
     "title_en": "The Shared Table: '2 Wineries | 1 Experience' - El Porvenir de Cafayate and Pausa",
     "date": "2026-08-26",
@@ -98,6 +87,17 @@
     "description_en": "Cafayate's patron saint festival honoring the Virgen del Rosario, known locally as \"La Sentadita\" (The Little Seated One) — a 250+ year-old image sculpted in a seated posture so she could be carried through the Calchaquí Valleys. The novena begins September 28 and culminates October 7 with procession, mass, misachicos (small chanted Masses), and gaucho events. Also patroness of the region's farmers and winegrowers.",
     "category": "culture",
     "website": "https://www.cafayate.tur.ar/itinerario/fiesta-patronal-de-la-virgen-nuestra-senora-del-rosario"
+  },
+  {
+    "title_es": "Inauguración de la muestra fotográfica \"Momentos\" - Museo Casa Arias Rengel",
+    "title_en": "Opening of the \"Momentos\" Photography Exhibition - Museo Casa Arias Rengel",
+    "date": "2026-10-07",
+    "time": "11:30",
+    "location": "Museo de la Vid y el Vino, Cafayate",
+    "description_es": "Como parte de la Semana del Torrontés de Altura, el Museo de la Vid y el Vino de Cafayate impulsa junto al Museo Casa Arias Rengel la muestra fotográfica 'Momentos', con 18 obras del archivo visual del museo cafayateño, degustación de vinos y tango en vivo.",
+    "description_en": "As part of High Altitude Torrontés Week, the Museo de la Vid y el Vino de Cafayate co-presents the photography exhibition 'Momentos' with 18 works from the museum's visual archive, featuring wine tasting and live tango.",
+    "category": "culture",
+    "website": "https://culturasalta.gov.ar/evento/el-museo-casa-arias-rengel-inaugurara-la-muestra-fotografica-momentos-en-el-marco-de-la-semana-del-torrontes-de-altura/"
   },
   {
     "title_es": "Torrontés x3 — Experiencia de maridaje",
